@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	font:12px Arial, Tahoma, Verdana, Helvetica, sans-serif;
+	color:#000;
+}
+
+h2{
+	color:#03F;
+	font-size:16px;
+	font-style:italic;	
+}
+
+#borde, #bd{
+	border:1px solid black;
+	border-color:#000;
+}

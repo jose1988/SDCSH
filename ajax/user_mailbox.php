@@ -1,0 +1,115 @@
+
+	<!-- styles -->
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+       
+	<link href="../css/bootstrap.css" rel="stylesheet">
+	<link href="../css/bootstrap-combined.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../css/jquery.fancybox.css" rel="stylesheet">
+	<!-- [if IE 7]>
+	  <link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+	<![endif]--> 
+	
+	<!--Load fontAwesome css-->
+	<link rel="stylesheet" type="text/css" media="all" href="../font-awesome/css/font-awesome.min.css">
+	<link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+	
+	<!-- [if IE 7]>
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+	<![endif]-->
+    <link href="../css/footable-0.1.css" rel="stylesheet" type="text/css" />
+	<link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
+	<link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
+<body class="appBg">
+
+
+	 <?php
+		$nom= $_POST['nom'];
+		$ape=$_POST['ape'];
+		$area=$_POST['area'];
+		$reg=0;
+    $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+    $client = new SOAPClient($wsdl_url);
+    $client->decode_utf8 = false;
+    $BuzonNA = array('nombre' => $nom, 'apellido' => $ape,'area' => $area);
+    $Buz = $client->consultarBuzonParaEnviar($BuzonNA);
+	if(isset($Buz->return)){
+	$reg = count($Buz->return);
+	}
+		
+		if($reg!=0){	  
+		
+     echo "<h2> <strong>Usuarios</strong> </h2>";
+            
+	echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
+    	 <thead bgcolor='#ff0000'>
+                                    <tr>";
+			echo "<th ; text-align:center' >Nombre</th>";
+				
+echo "<th  text-align:center' data-sort-ignore='true'>Apellido </th>";								
+						        echo "<th style='width:7%; text-align:center' >Buzon</th>
+								<th style='width:7%; text-align:center' ></th>
+								
+                                     
+								
+         </thead>
+        <tbody>
+		
+        	<tr>";
+		
+				$j=0;
+				if($reg>1){
+				while($j<$reg){ 
+				
+								
+				echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return[$j]->idusu->nombreusu."</th>";			
+				echo "<td style='text-align:center'>".$Buz->return[$j]->idusu->apellidousu."</td>";
+				echo "<td style='text-align:center'>".$Buz->return[$j]->nombrebuz."</td>";
+				?>
+				<th  'text-align:center' > 
+                
+                <button class='btn' onClick="seleccionar('<?php echo $Buz->return[$j]->idbuz; ?>','<?php echo $Buz->return[$j]->nombrebuz; ?>');">
+              <span class="icon-check" > </span>
+                
+                
+                 </button></th>
+				<?php
+            echo "</tr>";
+					$j++;
+				} 
+			 }else{
+				 
+				echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return->idusu->nombreusu."</th>";			
+				echo "<td style='text-align:center'>".$Buz->return->idusu->apellidousu."</td>";
+				echo "<td style='text-align:center'>".$Buz->return->nombrebuz."</td>";
+				?>
+				<th  'text-align:center' > 
+                
+                <button class='btn' onClick="seleccionar('<?php echo $Buz->return->idbuz; ?>','<?php echo $Buz->return->nombrebuz; ?>');">
+              <span class="icon-check" > </span>
+                
+                
+                 </button></th> 
+			 
+			
+           
+            <?php
+			 }
+			 
+			
+	echo " </tbody>
+  	</table>;";
+   
+    }else{
+		echo " No se encuentran coincidencias en la busqueda";
+	}
+   
+  ?>
+  
+ 
+   
+ 
+
+
