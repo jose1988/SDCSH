@@ -21,7 +21,7 @@ try {
     }
 
     if (isset($_POST["crear"])) {
-        if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["descripcion"]) && $_POST["descripcion"] != "" && isset($_POST["sede"]) && $_POST["sede"] != "" ) {
+        if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["sede"]) && $_POST["sede"] != "" ) {
 			
 			$result=0;
 			try{
@@ -38,7 +38,6 @@ try {
                 $areanueva =
                         array(
                             'nombreatr' => $_POST["nombre"],
-                            'descripcionatr' => $_POST["descripcion"],
                             'idsed' => $_POST["sede"]);
                 $parametros = array('registroArea' => $areanueva,'idsed' => $_POST["sede"]);
 				 

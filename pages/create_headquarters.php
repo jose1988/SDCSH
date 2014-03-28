@@ -48,7 +48,6 @@ try {
                 $Sedenueva =
                         array(
                             'nombresed' => $_POST["nombre"],
-                            'descripcionsed' => $_POST["descripcion"],
                             'direccionsed' => $direccion,
                             'telefonosed' => $telefono,
                             'telefono2sed' => $telefono2,

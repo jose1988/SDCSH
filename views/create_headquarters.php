@@ -108,9 +108,7 @@ if (!isset($org->return)) {
                                     <td style="text-align:center" >Nombre de la Sede</td>
                                     <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el nombre la sede"  autofocus required></td>
                                 </tr>
-                                <tr>
-                                    <td style="text-align:center" >Descripción</td>
-                                    <td style="text-align:center"><textarea style="width:500px;"   id="descripcion" name="descripcion" maxlength="2000"  style="width:800px" ></textarea></td>
+                                
                                 </tr>
                                
                                 </tr>

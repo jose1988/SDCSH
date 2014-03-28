@@ -16,18 +16,20 @@ if (isset($_POST["Biniciar"])) {
   $client->decode_utf8 = false; 
   $Usuario= array('user' => $_POST["usuario"]);
   $UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
-  $_SESSION["Usuario"]=$UsuarioLogIn;
+ 
+  
+  
+  if(isset($UsuarioLogIn->return)){
+	  
+	   $_SESSION["Usuario"]=$UsuarioLogIn;
   $idUsu= array('idusu' =>$UsuarioLogIn->return->idusu);
   $registroUsu= array('registroUsuario' =>$idUsu);
   $Sedes=$client->consultarSedeDeUsuario($registroUsu);
-  
-  
-  if(isset($UsuarioLogIn->return) && isset($Sedes->return)){
-  if(count($Sedes->return)==1){
+  if(isset( $Sedes->return) && count($Sedes->return)==1){
   $_SESSION["Sede"]=$Sedes;
 // echo '<pre>'; print_r($_SESSION["Sede"]); 
-  iraURL("pages/inbox.php");
-  }else{
+  iraURL("inbox.php");
+  }else  if(isset( $Sedes->return)){
   $_SESSION["Sedes"]=$Sedes;
   iraURL("pages/headquarters.php");
 

@@ -4,10 +4,7 @@ session_start();
 
 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
-if (!isset($_SESSION["Usuario"])) {
 
-    iraURL("../pages/index.php");
-}
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
@@ -23,11 +20,11 @@ try {
     $Sedes = $client->listarSedes();
     if (!isset($Sedes->return)) {
         javaalert("Lo sentimos no se puede crear el usuario porque no hay sedes registradas,Consulte con el Administrador");
-        iraURL('../pages/inbox.php');
+        iraURL('../inbox.php');
     }
 
     if (isset($_POST["crear"])) {
-        if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["apellido"]) && $_POST["apellido"] != "" && isset($_POST["correo"]) && $_POST["correo"] != "" && isset($_POST["sede"]) && $_POST["sede"] != "" && isset($_POST["area"]) && $_POST["area"] != "") {
+        if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["apellido"]) && $_POST["apellido"] != "" && isset($_POST["correo"]) && $_POST["correo"] != "" && isset($_POST["cargo"]) && $_POST["cargo"] != "" && isset($_POST["sede"]) && $_POST["sede"] != "" && isset($_POST["area"]) && $_POST["area"] != "") {
 
             if (preg_match('{^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$}', $_POST["correo"])) {
                 $correo = $_POST["correo"];
@@ -37,6 +34,9 @@ try {
                 $direccion2 = "";
                 if (isset($_POST["telefono1"])) {
                     $telefono1 = $_POST["telefono1"];
+                }
+				 if (isset($_POST["cargo"])) {
+                    $cargo = $_POST["cargo"];
                 }
                 if (isset($_POST["telefono2"])) {
                     $telefono2 = $_POST["telefono2"];
@@ -57,6 +57,7 @@ try {
                             'telefonousu' => $telefono1,
                             'telefono2usu' => $telefono2,
                             'tipousu' => "0",
+							'cargousu' => $cargo,
                             'userusu' => $usernuevo,
                             'statususu' => "1");
                 $parametros = array('registroUsuario' => $Usuario);
@@ -90,6 +91,6 @@ try {
     include("../views/create_user.php");
 } catch (Exception $e) {
     javaalert('Error al crear el usuario');
-    iraURL('../pages/inbox.php');
+    iraURL('../index.php');
 }
 ?>

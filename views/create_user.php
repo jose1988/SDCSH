@@ -123,7 +123,7 @@ if (!isset($Sedes->return)) {
                                     <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" maxlength="50" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   ></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">Teléfono 2</td>
+                                    <td style="text-align:center">Teléfono Adicional</td>
                                     <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 04168674789"  ></td>
                                 </tr>
                                 <tr>
@@ -148,12 +148,16 @@ if (!isset($Sedes->return)) {
                                    
                                 </select></td>
                                 </tr>
+                              <tr>
+                                    <td style="text-align:center">Cargo</td>
+                                    <td style="text-align:center"><input type="text" name="cargo" id="cargo" autocomplete="off" maxlength="150" size="30" title="Ingrese su cargo" placeholder="Ej. Analista"  required></td>
+                                </tr>
                                 <tr>
-                                    <td style="text-align:center" >Dirección 1</td>
+                                    <td style="text-align:center" >Dirección</td>
                                     <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1" maxlength="2000"  style="width:800px" ></textarea></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center" >Dirección 2</td>
+                                    <td style="text-align:center" >Dirección de oficina</td>
                                     <td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2" maxlength="2000"  style="width:800px"></textarea></td>
                                 </tr>
 
