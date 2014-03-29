@@ -11,6 +11,9 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../pages/create_user.php");
 }
 
+$_SESSION["paqueteDos"] = "";
+$_SESSION["codigoDos"] = "";
+
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
@@ -20,7 +23,8 @@ $SedeRol = $client->consultarSedeRol($UsuarioRol);
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
 $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
-
+//$idPaq = $_GET["id"];
+$idPaq = '2';
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
@@ -42,24 +46,35 @@ try {
         $client = new SOAPClient($wsdl_url);
         $client->decode_utf8 = false;
 
-        $idUsu = array('idUsuario' => $idUsuario);
-        $resultadoConsultarUltimoPaquete = $client->ultimoPaqueteXOrigen($idUsu);
+        $idPaquete = array('idPaquete' => $idPaq);
+        $resultadoConsultarPaquete = $client->consultarPaqueteXId($idPaquete);
 
         $idSede = array('idSede' => $ideSede);
-        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+        $resultadoConsultarSede = $client->consultarSedeXId($idSede);	
 
-        $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
-        guardarImagen($idpaq);
+		$codigoSede = $resultadoConsultarSede->return->codigosed;		
+		$fecha = date("Y");
+		$idpaq = $resultadoConsultarPaquete->return->idpaq;
+		
+		$codigoTotal=$codigoSede.$fecha.$idpaq;
+		guardarImagen($codigoTotal);
+				
+		$_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
+		$_SESSION["codigoDos"] = $codigoTotal;
 
-        llenarLog(6, "Comprobante de Correspondencia Externa", $usuarioBitacora, $ideSede);
-        /* echo"<script language='javascript'>window.location='../pages/inbox.php';</script>"; */
+        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
+		
+		/*echo"<script>window.open('../pdf/proof_of_correspondence.php');</script>";*/
+		iraURL('../pdf/proof_of_correspondence_package.php');
+        
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
-        iraURL('../pages/send_correspondence.php');
+        iraURL('../pages/inbox.php');
     }
-    include("../pdf/proof_of_external_correspondence.php");
+	/*echo"<script language='javascript'>window.location='../pages/inbox.php';</script>";*/
+	
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
-    iraURL('../pages/send_correspondence.php');
+    iraURL('../pages/inbox.php');
 }
 ?>

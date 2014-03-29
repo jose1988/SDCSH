@@ -5,116 +5,72 @@
         <link rel="stylesheet" href="../recursos/estilosPdf.css" type="text/css" />
     </head>
     <body>
+        <?php $ruta = "../images/codigoBarras/" . $codigo . ".png"; ?>
+        <div>
+            <img style="top:auto" src="../images/header-top-left.png" width="250" height="40">
+        </div>
+        <div align="right">
+            <strong id="titulo">Código de la Valija:  </strong><img style="top:auto" src=<?php echo $ruta ?>>
+        </div>
+        <div align="center">	
+            <h2 align="center">Sistema de Correspondencia</h2>
+            <h3 align="center">Comprobante de Valija</h3>
+            <table align="center" width="500" border="1" rules="all">
+                <tr>
+                    <td colspan="2"><strong id="titulo">Datos del Origen:</strong></td>
+                </tr> 		
+                <tr>
+                    <td><strong>Nombre: </strong><?php echo $nombreOrig ?></td>
+                    <td><strong>Télefono: </strong><?php echo $telefonoOrig ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Dirección: </strong><?php echo $direccionOrig ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong id="titulo">Datos del Destino:</strong></td>
+                </tr>  
+                <tr>
+                    <td><strong>Nombre: </strong><?php echo $nombreDest ?></td>
+                    <td><strong>Télefono: </strong><?php echo $telefonoDest ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Dirección: </strong><?php echo $direccionDest ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong id="titulo">Datos de la Valija:</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Número de la Valija: </strong><?php echo $idVal ?></td>
+                    <td><strong>Asunto: </strong><?php echo $asunto ?></td>
+                </tr>
+                 <tr>
+                    <td><strong>Fecha: </strong><?php echo date("d/m/Y", strtotime(substr($fecha, 0, 10))) ?></td>
+                    <td><strong>Sede: </strong><?php echo $sede ?></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <table align="center" width="500" border="0">
+                <tr>
+                    <td align="center"><strong>________________</strong></td>
+                    <td align="center"><strong>________________</strong></td>
+                </tr>
+                <tr>
+                    <td align="center"><strong>Usuario Valija</strong></td>
+                    <td align="center"><strong>Recepción</strong></td>
+                </tr>
+            </table>
+        </div>
         <br>
-        <?php $ruta = "../images/codigoBarras/" . $idval . ".png"; ?>
-        <table align="center" width="500" border="0" >
-            <tr>
-                <td>
-                    <img src="../images/header-top-left.png" width="300" height="50">
-                    <h2 align="center">Sistema de Correspondencia</h2>
-                    <h3 align="center">Comprobante de Valija</h3>
-                    <table width="500" border="0">
-                        <tr>
-                            <td><strong>Sede: </strong><?php echo $sede ?></td>
-                            <td align="center"><strong>Valija No: </strong> <img src=<?php echo $ruta ?>> </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Realizado por: </strong><?php echo $nombre . ' ' . $apellido ?></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Nombre: </strong><?php echo $nombredes ?></td>
-                            <td><strong>Dirección: </strong><?php echo $direcciondes ?></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Teléfono: </strong><?php echo $telefonodes ?></td>
-                            <td><strong>Lugar de Envio: </strong><?php echo $sede ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td align="center"><strong>________________</strong></td>
-                            <td align="center"><strong>________________</strong></td>
-                        </tr>
-                        <tr>
-                            <td align="center"><strong>Usuario Valija</strong></td>
-                            <td align="center"><strong>Recepción Zoom</strong></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-
-            <tr>
-                <td><p>&nbsp;</p>
-                    <p>&nbsp;</p></td>
-            </tr>
-            <tr>
-                <td>-------------------------------------------------------------------------------------------------------------------------------------------------------------------</td>
-            </tr>
-            <tr>
-                <td><p>&nbsp;</p>
-                    <p>&nbsp;</p></td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="../images/header-top-left.png" width="300" height="50">
-                    <h2 align="center">Sistema de Correspondencia</h2>
-                    <h3 align="center">Comprobante de Valija</h3>
-                    <table width="500" border="0">
-                        <tr>
-                            <td><strong>Sede: </strong><?php echo $sede ?></td>
-                            <td align="center"><strong>Valija No: </strong> <img src=<?php echo $ruta ?>> </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Realizado por: </strong><?php echo $nombre . ' ' . $apellido ?></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Nombre: </strong><?php echo $nombredes ?></td>
-                            <td><strong>Dirección: </strong><?php echo $direcciondes ?></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Teléfono: </strong><?php echo $telefonodes ?></td>
-                            <td><strong>Lugar de Envio: </strong><?php echo $sede ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td align="center"><strong>________________</strong></td>
-                            <td align="center"><strong>________________</strong></td>
-                        </tr>
-                        <tr>
-                            <td align="center"><strong>Usuario Valija</strong></td>
-                            <td align="center"><strong>Recepción Zoom</strong></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table> 
+        <br>
+        <div align="center">
+            <img style="top:auto" src="../images/todo.png" width="700" height="40">        	
+        </div>
     </body>
 </html>

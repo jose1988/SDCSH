@@ -11,6 +11,9 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../pages/create_user.php");
 }
 
+$_SESSION["paquete"] = "";
+$_SESSION["codigo"] = "";
+
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
@@ -48,16 +51,27 @@ try {
         $idSede = array('idSede' => $ideSede);
         $resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
-        $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
-        guardarImagen($idpaq);
+		$codigoSede = $resultadoConsultarSede->return->codigosed;		
+		$fecha = date("Y");
+		$idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+		
+		$codigoTotal=$codigoSede.$fecha.$idpaq;
+		guardarImagen($codigoTotal);
+				
+		$_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
+		$_SESSION["codigo"] = $codigoTotal;
 
         llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-        /* echo"<script language='javascript'>window.location='../pages/inbox.php';</script>"; */
+		
+		/*echo"<script>window.open('../pdf/proof_of_correspondence.php');</script>";*/
+		iraURL('../pdf/proof_of_correspondence.php');
+        
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');
-    }
-    include("../pdf/proof_of_correspondence.php");
+    }	
+	/*echo"<script language='javascript'>window.location='../pages/inbox.php';</script>";*/
+	
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/send_correspondence.php');

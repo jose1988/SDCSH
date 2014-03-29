@@ -1,15 +1,5 @@
 <?php
 
-if ($usuarioBitacora == "") {
-    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
-}
-
-if (isset($SedeRol->return->idrol->nombrerol)) {
-    $nombreRol = "- " . $SedeRol->return->idrol->nombrerol;
-} else {
-    $nombreRol = "";
-}
-
 if ($contadorPaquetes > 0) {
     ob_start();
     include("../template/proof_operator_level.php");

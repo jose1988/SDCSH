@@ -12,7 +12,12 @@ h2{
 	font-style:italic;	
 }
 
-#borde, #bd{
-	border:1px solid black;
-	border-color:#000;
+#titulo{
+	color:#666;
+	font-size:14px;
+	font-style:italic;	
+}
+
+#codigo{
+	right:auto;
 }

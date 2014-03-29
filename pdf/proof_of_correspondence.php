@@ -1,50 +1,112 @@
 <?php
+session_start();
+$resultadoConsultarUltimoPaquete = $_SESSION["paquete"];
+$codigo = $_SESSION["codigo"];
 
-if ($usuarioBitacora == "") {
-    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
-}
-$idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+//Datos del Paquete
+$idPaq = $resultadoConsultarUltimoPaquete->return->idpaq;
 
 if (isset($resultadoConsultarUltimoPaquete->return->idpaqres->idpaq)) {
-    $idpaqres = $resultadoConsultarUltimoPaquete->return->idpaqres->idpaq;
+    $idPaqRes = $resultadoConsultarUltimoPaquete->return->idpaqres->idpaq;
 } else {
-    $idpaqres = "";
+    $idPaqRes = "";
 }
-
-if (isset($resultadoConsultarUltimoPaquete->return->origenpaq->idusu->nombreusu)) {
-    $nombre = $resultadoConsultarUltimoPaquete->return->origenpaq->idusu->nombreusu;
+if (isset($resultadoConsultarUltimoPaquete->return->asuntopaq)) {
+    $asunto = $resultadoConsultarUltimoPaquete->return->asuntopaq;
 } else {
-    $nombre = "";
+    $asunto = "";
 }
-
-if (isset($resultadoConsultarUltimoPaquete->return->origenpaq->idusu->apellidousu)) {
-    $apellido = $resultadoConsultarUltimoPaquete->return->origenpaq->idusu->apellidousu;
+if (isset($resultadoConsultarUltimoPaquete->return->textopaq)) {
+    $texto = $resultadoConsultarUltimoPaquete->return->textopaq;
 } else {
-    $apellido = "";
+    $texto = "";
 }
-
-if (isset($resultadoConsultarUltimoPaquete->return->destinopaq->idusu->nombreusu)) {
-    $nombredes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusu->nombreusu;
+if (isset($resultadoConsultarUltimoPaquete->return->iddoc->nombredoc)) {
+    $documento = $resultadoConsultarUltimoPaquete->return->iddoc->nombredoc;
 } else {
-    $nombredes = "";
+    $documento = "";
 }
-
-if (isset($resultadoConsultarUltimoPaquete->return->destinopaq->idusu->direccionusu)) {
-    $direcciondes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusu->direccionusu;
+if (isset($resultadoConsultarUltimoPaquete->return->idpri->nombrepri)) {
+    $prioridad = $resultadoConsultarUltimoPaquete->return->idpri->nombrepri;
 } else {
-    $direcciondes = "";
+    $prioridad = "";
 }
-
-if (isset($resultadoConsultarUltimoPaquete->return->destinopaq->idusu->telefonousu)) {
-    $telefonodes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusu->telefonousu;
+if (isset($resultadoConsultarUltimoPaquete->return->fechapaq)) {
+    $fecha = $resultadoConsultarUltimoPaquete->return->fechapaq;
 } else {
-    $telefonodes = "";
+    $fecha = "";
 }
-
-if (isset($resultadoConsultarSede->return->nombresed)) {
-    $sede = $resultadoConsultarSede->return->nombresed;
+if (isset($resultadoConsultarUltimoPaquete->return->idsed->nombresed)) {
+    $sede = $resultadoConsultarUltimoPaquete->return->idsed->nombresed;
 } else {
     $sede = "";
+}
+if (isset($resultadoConsultarUltimoPaquete->return->fragilpaq)) {
+  	if($resultadoConsultarUltimoPaquete->return->fragilpaq=="0"){
+		$fragil = "No";  
+	}
+	else{
+		$fragil = "Si";
+	}
+} else {
+    $fragil = "";
+}
+if (isset($resultadoConsultarUltimoPaquete->return->respaq)) {
+  	if($resultadoConsultarUltimoPaquete->return->respaq=="0"){
+		$resp = "No";  
+	}
+	else{
+		$resp = "Si";
+	}
+} else {
+    $resp = "";
+}
+
+
+//Datos del Origen
+if (isset($resultadoConsultarUltimoPaquete->return->origenpaq->nombrebuz)) {
+    $nombreOrig = $resultadoConsultarUltimoPaquete->return->origenpaq->nombrebuz;
+} else {
+    $nombreOrig = "";
+}
+if (isset($resultadoConsultarUltimoPaquete->return->origenpaq->direccionbuz)) {
+    $direccionOrig = $resultadoConsultarUltimoPaquete->return->origenpaq->direccionbuz;
+} else {
+    $direccionOrig = "";
+}
+if (isset($resultadoConsultarUltimoPaquete->return->origenpaq->telefonobuz)) {
+    $telefonoOrig = $resultadoConsultarUltimoPaquete->return->origenpaq->telefonobuz;
+} else {
+    $telefonoOrig = "";
+}
+
+//Datos del Destino
+if (isset($resultadoConsultarUltimoPaquete->return->destinopaq->nombrebuz)) {
+    $nombreDest = $resultadoConsultarUltimoPaquete->return->destinopaq->nombrebuz;
+} else {
+    $nombreDest = "";
+}
+if (isset($resultadoConsultarUltimoPaquete->return->destinopaq->direccionbuz)) {
+    $direccionDest = $resultadoConsultarUltimoPaquete->return->destinopaq->direccionbuz;
+} else {
+    $direccionDest = "";
+}
+if (isset($resultadoConsultarUltimoPaquete->return->destinopaq->telefonobuz)) {
+    $telefonoDest = $resultadoConsultarUltimoPaquete->return->destinopaq->telefonobuz;
+} else {
+    $telefonoDest = "";
+}
+
+//Tipo de Buzón
+if (isset($resultadoConsultarUltimoPaquete->return->destinopaq->tipobuz)) {
+	if($resultadoConsultarUltimoPaquete->return->destinopaq->tipobuz=="0"){
+		$tipoBuzon = "";  
+	}
+	else{
+		$tipoBuzon = "Externo";
+	}
+} else {
+    $tipoBuzon = "";
 }
 
 if (isset($resultadoConsultarUltimoPaquete->return)) {
@@ -66,7 +128,8 @@ if (isset($resultadoConsultarUltimoPaquete->return)) {
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de Correspondencia Numero ' . $idpaq . '.pdf';
+    $nom = 'Comprobante de Correspondencia Numero '.$idpaq.'.pdf';
     $dompdf->stream($nom);
+	
 }//Fin del IF general
 ?>

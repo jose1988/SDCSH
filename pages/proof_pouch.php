@@ -11,19 +11,23 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../pages/create_user.php");
 }
 
+$_SESSION["valija"] = "";
+$_SESSION["codigo"] = "";
+$_SESSION["origen"] = "";
+
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
 
-if (isset($SedeRol->return)) {
+/*if (isset($SedeRol->return)) {
     if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "5") {
         iraURL('../pages/inbox.php');
     }
 } else {
     iraURL('../pages/inbox.php');
-}
+}*/
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
 $ideSede = $_SESSION["Sede"]->return->idsed;
@@ -55,17 +59,31 @@ try {
 
         $idSede = array('idSede' => $ideSede);
         $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+		
+		$idOrigen = array('idSede' => $resultadoConsultarUltimaValija->return->origenval);
+		$resultadoOrigen = $client->consultarSedeXId($idOrigen);
 
-        $idval = $resultadoConsultarUltimaValija->return->idval;
-        guardarImagen($idval);
+		$idval = $resultadoConsultarUltimaValija->return->idval;
+        $codigoSede = $resultadoConsultarSede->return->codigosed;		
+		$fecha = date("Y");
+		
+		$codigoTotal=$codigoSede.$fecha.$idval;
+		guardarImagen($codigoTotal);
+				
+		$_SESSION["valija"] = $resultadoConsultarUltimaValija;
+		$_SESSION["codigo"] = $codigoTotal;
+		$_SESSION["origen"] = $resultadoOrigen;
 
         llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
-        /* echo"<script language='javascript'>window.location='../pages/create_valise.php';</script>"; */
+		/*echo"<script>window.open('../pdf/proof_pouch.php');</script>";*/
+		iraURL('../pdf/proof_pouch.php');
+       
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/create_valise.php');
     }
-    include("../pdf/proof_pouch.php");
+	/*echo"<script language='javascript'>window.location='../pages/create_valise.php';</script>";*/
+	
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/create_valise.php');
