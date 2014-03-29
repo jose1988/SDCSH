@@ -13,24 +13,37 @@
             <h3 align="center">Comprobante de Paquetes Confirmados</h3>
             <table align="center" width="500" border="1" rules="all">
             <tr>
-                <td style="text-align:center"><strong>Código</strong></td>
-                <td style="text-align:center"><strong>No</strong></td>
+                <td style="text-align:center"><strong>Código Paquete</strong></td>
+                <td style="text-align:center"><strong>No Paquete</strong></td>
                 <td style="text-align:center"><strong>Origen</strong></td>
                 <td style="text-align:center"><strong>Destino</strong></td>
                 <td style="text-align:center"><strong>Sede</strong></td>
-                <td style="text-align:center"><strong>Área</strong></td>
             </tr>
             <?php
             for ($i = 0; $i < $contadorPaquetes; $i++) {
-                $ruta[$i] = "../images/codigoBarras/" . $codigo[$i] . ".png";
+                $ruta[$i] = "../images/codigoBarras/" . $codigos[$i] . ".png";
                 ?>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                	<td align="center"><img style="top:auto" src=<?php echo $ruta[$i] ?>></td>
+                    <td align="center"><?php echo $paquetesTotales[$i]->idpaq ?></td>
+                    <?php if($paquetesTotales[$i]->origenpaq->nombrebuz=="") {?>
+                    	<td><?php echo "" ?></td>
+                    <?php }
+					else{?>
+                    	<td align="center"><?php echo $paquetesTotales[$i]->origenpaq->nombrebuz ?></td>
+                    <?php }
+					if($paquetesTotales[$i]->destinopaq->nombrebuz=="") {?>
+                    	<td><?php echo "" ?></td>
+                    <?php }
+					else{?>
+                    	<td align="center"><?php echo $paquetesTotales[$i]->destinopaq->nombrebuz ?></td>
+                    <?php }
+					if($paquetesTotales[$i]->idsed=="") {?>
+                    	<td><?php echo "" ?></td>
+                    <?php }
+					else{?>
+                    	<td align="center"><?php echo $paquetesTotales[$i]->idsed->nombresed ?></td>
+                   	<?php }?>
                 </tr>
             <?php } ?>
         </table>

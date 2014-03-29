@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("../recursos/funciones.php");
+include("../recursos/codigoBarrasPdf.php");
 require_once('../lib/nusoap.php');
 
 if (!isset($_SESSION["Usuario"])) {
@@ -24,8 +25,10 @@ if (isset($SedeRol->return)) {
 }
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
+$ideSede = $_SESSION["Sede"]->return->idsed;
 $_SESSION["paquetesConfirmados"] = "";
 $_SESSION["paquetes"] = "";
+$_SESSION["codigos"] = "";
 
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
@@ -47,12 +50,11 @@ try {
         $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
         $client = new SOAPClient($wsdl_url);
         $client->decode_utf8 = false;
-
-     
-	  $usu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
-       $sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
-   $parametros = array('idUsuario' => $usu,'sede'=>$sede);
-   $resultadoPaquetesConfirmados = $client->consultarPaquetesXUsuarioProcesadasAlDia($parametros);
+		     
+	  	$usu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
+       	$sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
+   		$parametros = array('idUsuario' => $usu,'sede'=>$sede);
+   		$resultadoPaquetesConfirmados = $client->consultarPaquetesXUsuarioProcesadasAlDia($parametros);
 
         if (!isset($resultadoPaquetesConfirmados->return)) {
             $paquetes = 0;
@@ -69,9 +71,23 @@ try {
         if (isset($_POST["ide"])) {
 
             $imprimirPaquetes = $_POST["ide"];
+			$idSede = array('idSede' => $ideSede);
+        	$resultadoConsultarSede = $client->consultarSedeXId($idSede);
+			$codigoSede = $resultadoConsultarSede->return->codigosed;		
+			$fecha = date("Y");
+			
+			for($i=0; $i<count($imprimirPaquetes);$i++){
+				$idPaquete = array('idPaquete' => $imprimirPaquetes[$i]);
+            	$resultadoPaquete = $client->consultarPaqueteXId($idPaquete);
+				$idpaq[$i] = $resultadoPaquete->return->idpaq;
+				$codigoTotal[$i]=$codigoSede.$fecha.$idpaq[$i];
+				guardarImagen($codigoTotal[$i]);
+				$_SESSION["codigos"][$i]=$codigoTotal[$i];
+			}
+			
             $_SESSION["paquetesConfirmados"] = $resultadoPaquetesConfirmados;
             $_SESSION["paquetes"] = $imprimirPaquetes;
-            echo"<script>window.open('../pages/proof_operator_level.php');</script>";
+            iraURL('../pages/proof_operator_level.php');
         } else {
             javaalert("Debe seleccionar al menos un paquete, por favor verifique");
         }

@@ -223,6 +223,9 @@ if ($usuarioBitacora == "") {
                                                             $formato = 'pm';
                                                         } elseif ($hora == '24') {
                                                             $horaDoce = '12';
+                                                            $formato = 'am';
+                                                        } elseif ($hora == '12') {
+                                                            $horaDoce = '12';
                                                             $formato = 'pm';
                                                         } else {
                                                             $horaDoce = $hora;
@@ -274,10 +277,13 @@ if ($usuarioBitacora == "") {
                                                         $horaDoce = '11';
                                                         $formato = 'pm';
                                                     } elseif ($hora == '24') {
-                                                        $horaDoce = '12';
+                                                    	$horaDoce = '12';
+                                                        $formato = 'am';
+                                                    } elseif ($hora == '12') {
+                                                    	$horaDoce = '12';
                                                         $formato = 'pm';
                                                     } else {
-                                                        $horaDoce = $hora;
+                                                    	$horaDoce = $hora;
                                                         $formato = 'am';
                                                     }
                                                     ?>

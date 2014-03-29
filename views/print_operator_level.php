@@ -165,11 +165,12 @@ if ($nomUsuario == "") {
                             //Si existen registros muestro la tabla
                             else {?>
                                 <form class="form-search" id="formulario" method="post">                   
-                                    <strong> <h2 align="center">Comprobante de correspondencia que ha recibido hoy</h2> </strong>
+                                    <strong> <h2 align="center">Comprobante de Correspondencia Recibida</h2> </strong>
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>
                                         <thead bgcolor='#FF0000'>
                                             <tr>
-                                                <th style="text-align:center">Origen</th>
+                                                <th style="text-align:center">Paquete</th>
+                                                <th style="text-align:center" data-sort-ignore="true">Origen</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Destino</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Tipo</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>
@@ -181,6 +182,7 @@ if ($nomUsuario == "") {
                                             if ($paquetes > 1) {
                                                 for ($i = 0; $i < $paquetes; $i++) {?>
                                                     <tr>
+                                                    	<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->idpaq ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->iddoc->nombredoc ?></td>
@@ -197,6 +199,7 @@ if ($nomUsuario == "") {
                                                 }
                                             } else { ?>
                                                 <tr>
+                                                	<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->idpaq ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->origenpaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return->origenpaq->idusu->apellidousu ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return->destinopaq->idusu->apellidousu ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->iddoc->nombredoc ?></td>

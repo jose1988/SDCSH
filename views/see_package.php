@@ -22,13 +22,12 @@ if ($idPaquete == "" || $usuario == "") {
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-
-        <!-- styles -->
+      <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-
-
+       
+       
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-
+       
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -48,7 +47,6 @@ if ($idPaquete == "" || $usuario == "") {
         <link href="../css/footable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
-
     </head>
 
     <body class="appBg">
@@ -83,7 +81,8 @@ if ($idPaquete == "" || $usuario == "") {
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/view_user.php">Cuenta</a></li>
                                             <li class="divider"></li>
-                                            <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
+                                            <?php 
+                                            if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
                                                 <li><a href="../pages/administration.php">Administracion</a></li>
                                                 <li class="divider"></li>
                                             <?php } ?>
@@ -97,28 +96,24 @@ if ($idPaquete == "" || $usuario == "") {
                                     <div class="btn-group  pull-right">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <?php if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
+                                            <?php 
+                                            if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
                                                 <li><a href="operator_level.php" > Recibir Paquete</a></li>
                                                 <li class="divider"></li>
-                                                <?php
-                                            }
-                                            if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") {
-                                                ?>
+                                            <?php }
+                                            if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") { ?>
                                                 <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
                                                 <li class="divider"></li>
-                                                <?php
-                                            }
-                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
-                                                ?>
+                                            <?php }
+                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
                                                 <li><a href="create_valise.php" > Crear Valija</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
                                                 <li class="divider"></li>
-                                            <?php } ?>
+                                            <?php }?>
                                             <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-
                                         </ul>
                                     </div>
                                     <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
@@ -128,15 +123,15 @@ if ($idPaquete == "" || $usuario == "") {
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                            <li class="divider"></li>
-                                               <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
+                                           
+                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
 												 if($SedeRol->return->idrol->idrol=="5"){ ?>
                                                   <li class="divider"></li>
                                             <?php } ?>
                                            
                                             <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
+                                            <li><a href="../pages/suitcase_overdue_destination.php">Valijas Recibidas </a></li>
                                             <?php } ?>
                                         </ul>
                                     </div>
@@ -148,7 +143,7 @@ if ($idPaquete == "" || $usuario == "") {
 
                 <!--Caso pantalla uno-->
                 <div class="row-fluid">
-                    <div class="span2">
+                    <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
                                 <a href="../pages/inbox.php">
@@ -157,194 +152,221 @@ if ($idPaquete == "" || $usuario == "") {
                             </li>
                         </ul>
                     </div>
-
-                    <div class="span10" align="center">
-                        <div class="tab-content" id="lista" align="center">
+                    <div class="span10">
+                        <div class="tab-content" id="bandeja">
                             <?php
                             //Verificando que este vacio o sea null
                             if (!isset($resultadoPaquete->return)) {
                                 echo '<div class="alert alert-block" align="center">';
                                 echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
-                                echo '<h4 align="center">No Existen Registros del Paquete</h4>';
+                                echo '<h4 align="center">No Existen Registros de Seguimiento para este Paquete</h4>';
                                 echo '</div>';
                             }
                             //Si existen registros muestro la tabla
-                            else {
-                                ?>               
-                                <h2> Datos del Paquete </h2> 
-                                <table class='footable table table-striped table-bordered'>
-                                    <tr>			 
-                                        <td style="text-align:center"><b>Destino</b></td>
-                                        <?php if ($resultadoPaquete->return->destinopaq->tipobuz == '0') { ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquete->return->destinopaq->idusu->apellidousu ?></td>
+                            else {?>
+                                <form class="form-search" id="formulario" method="post">                   
+                                    <strong> <h2 align="center">Registro de Seguimiento del Paquete</h2> </strong>
+                                    <table class='footable table table-striped table-bordered' data-page-size='10'>
+                                        <thead bgcolor='#FF0000'>
+                                            <tr>
+                                            	<th style="text-align:center">Seguimiento</th>
+                                                <th style="text-align:center" data-sort-ignore="true">Usuario</th>
+                                                <th style="text-align:center" data-sort-ignore="true">Sede</th>
+                                                <th style="text-align:center" data-sort-ignore="true">Fecha - Hora</th>
+                                                <th style="text-align:center" data-sort-ignore="true">Status</th>
+                                                <th style="text-align:center" data-sort-ignore="true">Tipo</th>
+                                                <th style="text-align:center" data-sort-ignore="true">Nivel</th>                       
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <?php
-                                        }
-                                        if ($resultadoPaquete->return->destinopaq->tipobuz == '1') { ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->destinopaq->idusu->nombrebuz ?></td>
-                                        <?php } ?>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Asunto</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->asuntopaq)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->asuntopaq ?></td>
-                                        <?php } ?>		
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Texto</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->textopaq)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->textopaq ?></td>
-                                        <?php } ?>		
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Fecha Paquete</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->fechapaq)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoPaquete->return->fechapaq, 0, 10))) ?></td>
-                                        <?php } ?>		
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Fecha Envio Paquete</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->fechaenviopaq)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoPaquete->return->fechaenviopaq, 0, 10))) ?></td>
-                                        <?php } ?>		
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Fecha Alerta Paquete</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->fechaapaq)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoPaquete->return->fechaapaq, 0, 10))) ?></td>
-                                        <?php } ?>		
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Status</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->statuspaq)) { ?>
-                                            <td style="text-align:center"><?php echo "" ?></td>
-                                            <?php
-                                        } else {
-                                            if ($resultadoPaquete->return->statuspaq == "0") {
-                                                $statusPaquete = "En Proceso";
-                                            } elseif ($resultadoPaquete->return->statuspaq == "1") {
-                                                $statusPaquete = "Entregado";
-                                            } elseif ($resultadoPaquete->return->statuspaq == "2") {
-                                                $statusPaquete = "No Permitido";
-                                            } elseif ($resultadoPaquete->return->statuspaq == "3") {
-                                                $statusPaquete = "Reenviado";
-                                            } elseif ($resultadoPaquete->return->statuspaq == "4") {
-                                                $statusPaquete = "Ausente";
-                                            }
-                                            ?>
-                                            <td style="text-align:center"><?php echo $statusPaquete ?></td>
-                                        <?php } ?>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Localización</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->localizacionpaq)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->localizacionpaq ?></td>
-                                        <?php } ?>
-                                    </tr>                                    
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Prioridad</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->idpri)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->idpri->nombrepri ?></td>
-                                        <?php } ?>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Mensaje</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->idmen)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->idmen->nombremen ?></td>
-                                        <?php } ?>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Documento</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->iddoc)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->iddoc->nombredoc ?></td>
-                                        <?php } ?>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Asunto Valija</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->idval)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->idval->asuntoval ?></td>
-                                        <?php } ?>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Con Respuesta</b></td>
-                                        <?php if ($resultadoPaquete->return->respaq == '0') { ?>
-                                            <td style="text-align:center"><?php echo "No" ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo "Si" ?></td>
-                                        <?php } ?>		
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Sede</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->idsed)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->idsed->nombresed ?></td>
-                                        <?php } ?>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Respuesta al Paquete</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->idpaqres)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->idpaqres->idpaq ?></td>
-                                        <?php } ?>
-                                    </tr>                                    
-                                    <tr>
-                                        <td style="text-align:center" width="50%"><b>Imagen del Paquete</b></td>
-                                        <?php if (!isset($resultadoAdjunto->return)) { ?>
-                                            <td style="text-align:center"><?php echo ""; ?></td>
-                                        <?php } else {
-                                            ?>
-                                            <td style="text-align:center"><img src="<?php echo $resultadoAdjunto->return->urladj ?>" height="190" width="270"></td>
-                                            <?php } ?>	
-                                    </tr>
-                                </table>
+                                            if ($segumientoPaquete > 1) {
+                                                for ($i = 0; $i < $segumientoPaquete; $i++) {?>
+                                                    <tr>
+                                                    	<td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->idseg ?></td>
+                                                    	<td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu ?></td>
+                                                        <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->iduse->idsed->nombresed ?></td>
+                                                        <?php
+                                                        $horaTotal = substr($resultadoPaquete->return[$i]->fechaseg, 11, 8);
+                                                        $hora = substr($horaTotal, 0, 2);
+                                                        if ($hora == '13') {
+                                                            $horaDoce = '01';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '14') {
+                                                            $horaDoce = '02';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '15') {
+                                                            $horaDoce = '03';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '16') {
+                                                            $horaDoce = '04';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '17') {
+                                                            $horaDoce = '05';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '18') {
+                                                            $horaDoce = '06';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '19') {
+                                                            $horaDoce = '07';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '20') {
+                                                            $horaDoce = '08';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '21') {
+                                                            $horaDoce = '09';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '22') {
+                                                            $horaDoce = '10';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '23') {
+                                                            $horaDoce = '11';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '24') {
+                                                            $horaDoce = '12';
+                                                            $formato = 'am';
+                                                        } elseif ($hora == '12') {
+                                                            $horaDoce = '12';
+                                                            $formato = 'pm';
+                                                        } else {
+                                                            $horaDoce = $hora;
+                                                            $formato = 'am';
+                                                        }
+                                                        ?>
+                                                        <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoPaquete->return[$i]->fechaseg, 0, 10))) . ' ' . '-' . ' ' . $horaDoce . substr($resultadoPaquete->return[$i]->fechaseg, 13, 6) . ' ' . $formato ?></td>
+                                                        <?php 
+														if($resultadoPaquete->return[$i]->statusseg=="0"){
+															$status="En Proceso";
+														}elseif($resultadoPaquete->return[$i]->statusseg=="1"){
+															$status="Entregado";
+														}elseif($resultadoPaquete->return[$i]->statusseg=="2"){
+															$status="Reenviado";
+														}
+														?>
+                                                        <td style="text-align:center"><?php echo $status ?></td>
+                                                        <?php 
+														if($resultadoPaquete->return[$i]->tiposeg=="0"){
+															$tipo="Origen";
+														}elseif($resultadoPaquete->return[$i]->tiposeg=="1"){
+															$tipo="Destino";
+														}
+														?>
+                                                        <td style="text-align:center"><?php echo $tipo ?></td>
+                                                        <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->nivelseg ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            } else { ?>
+                                                	<tr>
+                                                        <td style="text-align:center"><?php echo $resultadoPaquete->return->idseg ?></td>
+                                                    	<td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu ?></td>
+                                                        <td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idsed->nombresed ?></td>
+                                                        <?php
+                                                        $horaTotal = substr($resultadoPaquete->return->fechaseg, 11, 8);
+                                                        $hora = substr($horaTotal, 0, 2);
+                                                        if ($hora == '13') {
+                                                            $horaDoce = '01';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '14') {
+                                                            $horaDoce = '02';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '15') {
+                                                            $horaDoce = '03';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '16') {
+                                                            $horaDoce = '04';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '17') {
+                                                            $horaDoce = '05';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '18') {
+                                                            $horaDoce = '06';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '19') {
+                                                            $horaDoce = '07';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '20') {
+                                                            $horaDoce = '08';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '21') {
+                                                            $horaDoce = '09';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '22') {
+                                                            $horaDoce = '10';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '23') {
+                                                            $horaDoce = '11';
+                                                            $formato = 'pm';
+                                                        } elseif ($hora == '24') {
+                                                            $horaDoce = '12';
+                                                            $formato = 'am';
+                                                        } elseif ($hora == '12') {
+                                                            $horaDoce = '12';
+                                                            $formato = 'pm';
+                                                        } else {
+                                                            $horaDoce = $hora;
+                                                            $formato = 'am';
+                                                        }
+                                                        ?>
+                                                        <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoPaquete->return->fechaseg, 0, 10))) . ' ' . '-' . ' ' . $horaDoce . substr($resultadoPaquete->return->fechaseg, 13, 6) . ' ' . $formato ?></td>
+                                                        <?php 
+														if($resultadoPaquete->return->statusseg=="0"){
+															$status="En Proceso";
+														}elseif($resultadoPaquete->return->statusseg=="1"){
+															$status="Entregado";
+														}elseif($resultadoPaquete->return->statusseg=="2"){
+															$status="Reenviado";
+														}
+														?>
+                                                        <td style="text-align:center"><?php echo $status ?></td>
+                                                        <?php 
+														if($resultadoPaquete->return->tiposeg=="0"){
+															$tipo="Origen";
+														}elseif($resultadoPaquete->return->tiposeg=="1"){
+															$tipo="Destino";
+														}
+														?>
+                                                        <td style="text-align:center"><?php echo $tipo ?></td>
+                                                        <td style="text-align:center"><?php echo $resultadoPaquete->return->nivelseg ?></td>
+                                                    </tr>
+                                            <?php } ?>                                    
+                                        </tbody>
+                                    </table>                            
+                                    <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
                             <?php } ?>
+                            	</form>
+                            	<br>
+                                <div align="right">
+                            		<a href='../pages/proof_of_correspondence_package.php?id=<?php echo $idPaquete?>'><button type="submit" class="btn" id="imprimir" name="imprimir">Imprimir Comprobante</button></a>
+                            	</div>                          	
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <script>
-            window.onload = function() {
-                killerSession();
-            }
-            function killerSession() {
-                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-            }
-        </script>    
-    </body>
+        <!-- /container -->
+        <div id="footer" class="container">    	
+        </div>
+    </div>   
+
+    <script>
+        window.onload = function() {
+            killerSession();
+        }
+        function killerSession() {
+            setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+        }
+    </script>
+
+    <script src="../js/footable.js" type="text/javascript"></script>
+    <script src="../js/footable.paginate.js" type="text/javascript"></script>
+    <script src="../js/footable.sortable.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('table').footable();
+        });
+    </script>		 
+</body>
 </html>

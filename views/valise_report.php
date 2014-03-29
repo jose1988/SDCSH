@@ -162,7 +162,14 @@ if ($usuarioBitacora == "") {
                                 <strong> <h2 align="center">Paquete Excedente</h2> </strong>                
                                 <div align="center">
                                     Código de Correspondencia:  
-                                    <input type="text" id="cPaquete" name="cPaquete" class="input-medium search-query" placeholder="Ej. 4246" title="Ingrese el código de Correspondencia" autocomplete="off" pattern="[0-9]{1,38}">
+                                    <input type="text" id="cPaquete" name="cPaquete" class="input-medium search-query" placeholder="Ej. 4246" title="Ingrese el código de Correspondencia" autocomplete="off" pattern="[0-9]{1,38}"> 
+                                    <br>
+                                    <br>                           
+                                    Por favor detalle el error del Paquete.
+                                    <br>
+                                    <textarea rows="5" cols="5" id="datosPaquete" name="datosPaquete" style="width:600px"></textarea>
+                                    <br>
+                                    <br>
                                     <button type="submit" class="btn" id="reportarPaqExc" name="reportarPaqExc" onclick="return confirm('¿Esta seguro que desea reportar la Correspondencia?')">Reenviar</button>
                                     <h6>(El paquete será reenviado a su destino)</h6>
                                 </div>               
@@ -172,6 +179,13 @@ if ($usuarioBitacora == "") {
                                 <div align="center">
                                     Código de Valija:  
                                     <input type="text" id="cValija" name="cValija" class="input-medium search-query" placeholder="Ej. 4246" title="Ingrese el código de la Valija" autocomplete="off" pattern="[0-9]{1,38}">
+                                    <br>
+                                    <br>
+                                    Por favor detalle el error de la Valija.
+                                    <br>
+                                    <textarea rows="5" cols="5" id="datosValija" name="datosValija" style="width:600px"></textarea>
+                                    <br>
+                                    <br>
                                     <button type="submit" class="btn" id="reportarValija" name="reportarValija" onclick="return confirm('¿Esta seguro que desea reportar la Valija?')">Reenviar</button>
                                     <h6>(La valija será reenviada a su destino)</h6>
                                 </div>               

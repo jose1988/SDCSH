@@ -15,13 +15,13 @@ $client->decode_utf8 = false;
 $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
 $SedeRol=$client->consultarSedeRol($UsuarioRol);
 
-if(isset($SedeRol->return)){
+/*if(isset($SedeRol->return)){
 	if($SedeRol->return->idrol->idrol!="4" && $SedeRol->return->idrol->idrol!="5"){
    		iraURL('../pages/inbox.php');
    	}
 }else{
 	iraURL('../pages/inbox.php');
-}
+}*/
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
@@ -46,11 +46,13 @@ try {
 
 	if(isset($_POST["reportarPaqExc"])){
 				
-		if(isset($_POST["cPaquete"]) && $_POST["cPaquete"]!=""){
+		if(isset($_POST["cPaquete"]) && $_POST["cPaquete"]!="" && isset($_POST["datosPaquete"]) && $_POST["datosPaquete"] != ""){
 			
 			try{
 				$parametros = array('registroPaquete' => $_POST["cPaquete"],
-									'registroUsuario' => $idUsuario);
+									'registroUsuario' => $idUsuario,
+									'registroSede' => $sede,
+									'datosPaquete' => $_POST["datosPaquete"]);
 				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 				$client = new SOAPClient($wsdl_url);
 				$client->decode_utf8 = false;
@@ -71,17 +73,19 @@ try {
 				iraURL('../pages/create_valise.php');
 			}
 		}else{
-			javaalert("Debe agregar el codigo de paquete, por favor verifique");
+			javaalert("Debe agregar todos los campos, por favor verifique");
 		}
 	}
 	
 	if(isset($_POST["reportarValija"])){
 				
-		if(isset($_POST["cValija"]) && $_POST["cValija"]!=""){
+		if(isset($_POST["cValija"]) && $_POST["cValija"]!="" && isset($_POST["datosValija"]) && $_POST["datosValija"] != ""){
 			
 			try{
 				$parametros = array('registroValija' => $_POST["cValija"],
-									'registroUsuario' => $idUsuario);
+									'registroUsuario' => $idUsuario,
+									'registroSede' => $sede,
+									'datosValija' => $_POST["datosValija"]);
 				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 				$client = new SOAPClient($wsdl_url);
 				$client->decode_utf8 = false;
@@ -103,7 +107,7 @@ try {
 			}
 			
 		}else{
-			javaalert("Debe agregar el codigo de valija, por favor verifique");
+			javaalert("Debe agregar todos los campos, por favor verifique");
 		}
 	}
 

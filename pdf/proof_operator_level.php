@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+$paquetesTotales = $_SESSION["paquetesTotales"];
+$codigos = $_SESSION["codigos"];
+$contadorPaquetes = count($paquetesTotales);
+
 if ($contadorPaquetes > 0) {
     ob_start();
     include("../template/proof_operator_level.php");
@@ -15,7 +20,7 @@ if ($contadorPaquetes > 0) {
     //Obtenemos el código html de la página web que nos interesa
     $dompdf = new DOMPDF();
     //Creamos una instancia a la clase
-    $dompdf->load_html($html);
+    $dompdf->load_html($page);
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();

@@ -23,12 +23,12 @@ if ($usuarioBitacora == "") {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -84,8 +84,7 @@ if ($usuarioBitacora == "") {
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/view_user.php">Cuenta</a></li>
                                             <li class="divider"></li>
-                                            <?php 
-                                            if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
+                                            <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
                                                 <li><a href="../pages/administration.php">Administracion</a></li>
                                                 <li class="divider"></li>
                                             <?php } ?>
@@ -99,23 +98,24 @@ if ($usuarioBitacora == "") {
                                     <div class="btn-group  pull-right">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <?php 
-                                            if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
+                                            <?php if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
                                                 <li><a href="operator_level.php" > Recibir Paquete</a></li>
                                                 <li class="divider"></li>
-                                            <?php }
-                                            if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") { ?>
+<?php }
+if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") {
+    ?>
                                                 <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
                                                 <li class="divider"></li>
                                             <?php }
-                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
+                                                ?>
                                                 <li><a href="create_valise.php" > Crear Valija</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
                                                 <li class="divider"></li>
-                                            <?php }?>
+                                            <?php } ?>
                                             <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
                                         </ul>
                                     </div>
@@ -126,16 +126,17 @@ if ($usuarioBitacora == "") {
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                           
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
-												 if($SedeRol->return->idrol->idrol=="5"){ ?>
-                                                  <li class="divider"></li>
-                                            <?php } ?>
-                                           
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <?php } ?>
+
+                                            <?php if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
+                                                if ($SedeRol->return->idrol->idrol == "5") {
+                                                    ?>
+                                                    <li class="divider"></li>
+    <?php } ?>
+
+                                                <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
+<?php } ?>
                                         </ul>
                                     </div>
                                 </h3>
@@ -148,7 +149,7 @@ if ($usuarioBitacora == "") {
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
                                 <a href="../pages/create_valise.php">
-                                    <?php echo "Atrás" ?>         
+<?php echo "Atrás" ?>         
                                 </a>
                             </li>
                         </ul>
@@ -163,9 +164,26 @@ if ($usuarioBitacora == "") {
                                     <div class="span3" align="left">
                                         <input type="text" class="input-block-level" name="cValija" id="cValija" placeholder="Ej. 4246" title="Ingrese el código de la Valija" autocomplete="off" pattern="[0-9]{1,38}" autofocus required>
                                     </div>
-                                    <div class="span5" align="right">Código de Zoom:</div>
+                                    <div class="span5" align="right">Proveedor: </div>
                                     <div class="span3" align="left">
-                                        <input type="text" class="input-block-level" name="cZoom" id="cZoom" placeholder="Ej. a3Y4" title="Ingrese el código de Zoom" autocomplete="off" pattern="[0-9,a-z,A-Z]{1,38}" required>
+                                        <select name='proveedor' id='proveedor' required  title='Seleccione el Proveedor'>
+                                            <option value='' style='display:none'>Seleccionar:</option>
+                                            <?php
+                                            if ($proveedor > 1) {
+                                                $i = 0;
+                                                while ($proveedor > $i) {
+                                                    echo "<option value='" . $resultadoProveedor->return[$i]->idpro . "' >" . $resultadoProveedor->return[$i]->nombrepro . "</option>";
+                                                    $i++;
+                                                }
+                                            } else {
+                                                echo "<option value='" . $resultadoProveedor->return->idpro . "' >" . $resultadoProveedor->return->nombrepro . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="span5" align="right">Código del Proveedor:</div>
+                                    <div class="span3" align="left">
+                                        <input type="text" class="input-block-level" name="cProveedor" id="cProveedor" placeholder="Ej. a3Y4" title="Ingrese el código de Zoom" autocomplete="off" pattern="[0-9,a-z,A-Z]{1,38}" required>
                                     </div>
                                 </div>
                                 <button class="btn" type="submit" id="confirmar" name="confirmar" onclick="return confirm('¿Esta seguro que desea confirmar la Valija?')">Confirmar</button>
@@ -181,12 +199,12 @@ if ($usuarioBitacora == "") {
         </div>
 
         <script>
-            window.onload = function() {
-            	killerSession();
-            }
-            function killerSession() {
-            	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-            }
+			window.onload = function() {
+				killerSession();
+			}
+			function killerSession() {
+				setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+			}
         </script>
 
         <script src="../js/footable.js" type="text/javascript"></script>
