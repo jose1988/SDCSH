@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -9,6 +8,7 @@ if (!isset($_SESSION["Usuario"])) {
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
 } 
+
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
@@ -16,20 +16,23 @@ try {
     $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
     if (isset($SedeRol->return)) {
-        if ($SedeRol->return->idrol->idrol != "2" && $SedeRol->return->idrol->idrol != "5") {
+        if ($SedeRol->return->idrol->idrol != "1" && $SedeRol->return->idrol->idrol != "2" && $SedeRol->return->idrol->idrol != "3") {
             iraURL('../pages/inbox.php');
         }
     } else {
         iraURL('../pages/inbox.php');
     }
-    $idsed = array('idsed' => $_SESSION["Sede"]->return->idsed);
-    $parametros = array('registroSede' => $idsed);
-    $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXSedeAlDia($parametros);
+    
+	$usuSede = array('iduse' =>$SedeRol->return->iduse,
+					'idrol' =>$SedeRol->return->idrol,
+					'idsed' =>$SedeRol->return->idsed);
+    $parametros = array('idUsuarioSede' => $usuSede);
+    $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXRol($parametros);
 //echo '<pre>';
 //print_R($PaquetesConfirmados);
-    include("../views/headquarters_operator.php");
+    include("../views/confirm_package.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>

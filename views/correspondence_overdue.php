@@ -124,13 +124,13 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                          
+                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>                                          
 <?php if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
-  <li class="divider"></li>
+                                                <li class="divider"></li>	                                           
                                                 <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
+                                             
 <?php } ?>
                                         </ul>
                                     </div>                               
@@ -153,76 +153,73 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
-                                <h2>Valijas que no han Llegado </h2>
+                                <h2>Correspondencia que no ha sido entregada con tiempo vencido</h2>
 <?php
-if (isset($Valijas->return)) {
+if (isset($PaquetesDestino->return)) {
 
     echo "<br>";
     ?>
+
+
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                         <thead bgcolor='#FF0000'>
                                             <tr>	
-                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
+                                                <th style='width:7%; text-align:center'>Origen</th>
+												<th style='width:7%; text-align:center'>Destino</th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
-                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha del Envio</th>
-                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Límite </th>
+                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
+                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Emisión</th>
                                             </tr>
                                         </thead>
                                         <tbody>
     <?php
-    if (count($Valijas->return) == 1) {
-        if (isset($Valijas->return->asuntoval)) {
-            if (strlen($Valijas->return->asuntoval) > 10) {
-                $asunto = substr($Valijas->return->asuntoval, 0, 10) . "...";
-            } else {
-                $asunto = $Valijas->return->asuntoval;
-            }
+    if (count($PaquetesDestino->return) == 1) {
+        if (strlen($PaquetesDestino->return->asuntopaq) > 10) {
+            $asunto = substr($PaquetesDestino->return->asuntopaq, 0, 10) . "...";
         } else {
-            $asunto = "";
+            $asunto = $PaquetesDestino->return->asuntopaq;
         }
         ?>
                                                 <tr>     
-                                                    <td style='text-align:center'><?php echo $Valijas->return->origenval; ?></td>
+                                                    <td  style='text-align:center'><?php echo $PaquetesDestino->return->origenpaq->idusu->nombreusu . " " . $PaquetesDestino->return->origenpaq->idusu->apellidousu; ?></td>
+                                                    <td  style='text-align:center'><?php echo $PaquetesDestino->return->destinopaq->idusu->nombreusu . " " . $PaquetesDestino->return->destinopaq->idusu->apellidousu; ?></td>
                                                     <td style='text-align:center'><?php echo $asunto; ?></td>
-                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return->fechaval, 0, 10))); ?></td>
-                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return->fechaalerval, 0, 10))); ?></td>
+                                                    <td style='text-align:center'><?php echo $PaquetesDestino->return->iddoc->nombredoc; ?></td>
+                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesDestino->return->fechapaq, 0, 10))); ?></td>
                                                 </tr>   
-                                                <?php
-                                            } else {
-                                                for ($i = 0; $i < count($Valijas->return); $i++) {
-                                                    if (isset($Valijas->return[$i]->asuntoval)) {
-                                                        if (strlen($Valijas->return[$i]->asuntoval) > 10) {
-                                                            $asunto = substr($Valijas->return[$i]->asuntoval, 0, 10) . "...";
-                                                        } else {
-                                                            $asunto = $Valijas->return[$i]->asuntoval;
-                                                        }
-                                                    } else {
-                                                        $asunto = "";
-                                                    }
-                                                    ?>
+        <?php
+    } else {
+        for ($i = 0; $i < count($PaquetesDestino->return); $i++) {
+            if (strlen($PaquetesDestino->return[$i]->asuntopaq) > 10) {
+                $asunto = substr($PaquetesDestino->return[$i]->asuntopaq, 0, 10) . "...";
+            } else {
+                $asunto = $PaquetesDestino->return[$i]->asuntopaq;
+            }
+            ?>
                                                     <tr>     
-                                                        <td style='text-align:center'><?php echo $Valijas->return[$i]->origenval; ?></td>
+                                                        <td  style='text-align:center'><?php echo $PaquetesDestino->return[$i]->origenpaq->idusu->nombreusu . " " . $PaquetesDestino->return[$i]->origenpaq->idusu->apellidousu; ?></td>
+                                                        <td  style='text-align:center'><?php echo $PaquetesDestino->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesDestino->return[$i]->destinopaq->idusu->apellidousu; ?></td>
                                                         <td style='text-align:center'><?php echo $asunto; ?></td>
-                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return[$i]->fechaval, 0, 10))); ?></td>
-                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return[$i]->fechaalerval, 0, 10))); ?></td>
+                                                        <td style='text-align:center'><?php echo $PaquetesDestino->return[$i]->iddoc->nombredoc; ?></td>
+                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesDestino->return[$i]->fechapaq, 0, 10))); ?></td>
                                                     </tr>   
-                                                    <?php
-                                                }
-                                            }//fin else
-                                            ?>  
+            <?php
+        }
+    }//fin else
+    ?>  
                                         </tbody>
                                     </table>
                                     <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
 
-                                    <?php
-                                } else {
-                                    echo "<br>";
-                                    echo"<div class='alert alert-block' align='center'>
+    <?php
+} else {
+    echo "<br>";
+    echo"<div class='alert alert-block' align='center'>
 			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No hay Paquetes con Fechas Vencidas en estos Momentos  </h4>
+			<h4 align='center'>No hay Correspondencia con Tiempos Vencidos en estos Momentos  </h4>
 		</div> ";
-                                }
-                                ?>			  
+}
+?>			  
 
 
                             </form>

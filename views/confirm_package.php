@@ -79,7 +79,7 @@ if (!isset($SedeRol->return)) {
                                     <div class="btn-group  pull-right">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
+                                            <li><a href="#">Cuenta</a></li>
                                             <li class="divider"></li>
                                             <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
                                                 <li><a href="../pages/administration.php">Administracion</a></li>
@@ -125,12 +125,13 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                            
+
 <?php if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
-<li class="divider"></li>
+                                                <li class="divider"></li>                                           
                                                 <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
+                                             
 <?php } ?>
                                         </ul>
                                     </div>                               
@@ -148,107 +149,168 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                             <li>   
                                 <a href="inbox.php">Atrás</a>
                             </li>
+                            <li>   
+                                <a href="personal.php">Personal</a>
+                            </li>
+							<li>   
+                                <a href="print_operator_level.php">Imprimir</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
-                                <h2>Valijas que no han sido Entregadas al Destino</h2>
+                                <h2>Recibir paquete</h2>
+                                Código de Correspondencia:  <input type="text" placeholder="Ej. 4246" title="Ingrese el código de correspondencia" autocomplete="off" style="width:140px ;height:28px" onkeypress="return isNumberKey(event)" pattern="[0-9]{1,38}" id="idpaq" name="idpaq"  required>
+                                <button type="button" class="btn" onClick="Paquete();">Recibir Paquete</button>
+                                <div id="data">
 <?php
-if (isset($Valijas->return)) {
+if (isset($PaquetesConfirmados->return)) {
 
     echo "<br>";
     ?>
 
-
-                                    <table class='footable table table-striped table-bordered' data-page-size='10'>    
-                                        <thead bgcolor='#FF0000'>
-                                            <tr>	
-                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
-                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
-                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha del Envio</th>
-                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Límite </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                        <h2>Correspondencia que ha sido confirmada</h2>
+                                        <table class='footable table table-striped table-bordered' data-page-size='10'>    
+                                            <thead bgcolor='#FF0000'>
+                                                <tr>	
+                                                    <th style='width:7%; text-align:center'>Origen</th>
+                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
+                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
+                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
+                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Contenido</th>
+                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Con Respuesta</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
     <?php
-    if (count($Valijas->return) == 1) {
-        if (isset($Valijas->return->asuntoval)) {
-            if (strlen($Valijas->return->asuntoval) > 10) {
-                $asunto = substr($Valijas->return->asuntoval, 0, 10) . "...";
-            } else {
-                $asunto = $Valijas->return->asuntoval;
-            }
+    if (count($PaquetesConfirmados->return) == 1) {
+        if ($PaquetesConfirmados->return->respaq == "0") {
+            $rta = "No";
         } else {
-            $asunto = "";
+            $rta = "Si";
+        }
+        if (strlen($PaquetesConfirmados->return->textopaq) > 10) {
+            $contenido = substr($PaquetesConfirmados->return->textopaq, 0, 10) . "...";
+        } else {
+            $contenido = $PaquetesConfirmados->return->textopaq;
+        }
+        if (strlen($PaquetesConfirmados->return->asuntopaq) > 10) {
+            $asunto = substr($PaquetesConfirmados->return->asuntopaq, 0, 10) . "...";
+        } else {
+            $asunto = $PaquetesConfirmados->return->asuntopaq;
         }
         ?>
-                                                <tr>     
-                                                    <td style='text-align:center'><?php echo $Valijas->return->destinoval->nombresed; ?></td>
-                                                    <td style='text-align:center'><?php echo $asunto; ?></td>
-                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return->fechaval, 0, 10))); ?></td>
-                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return->fechaalerval, 0, 10))); ?></td>
-                                                </tr>   
-                                                <?php
-                                            } else {
-                                                for ($i = 0; $i < count($Valijas->return); $i++) {
-                                                    if (isset($Valijas->return[$i]->asuntoval)) {
-                                                        if (strlen($Valijas->return[$i]->asuntoval) > 10) {
-                                                            $asunto = substr($Valijas->return[$i]->asuntoval, 0, 10) . "...";
-                                                        } else {
-                                                            $asunto = $Valijas->return[$i]->asuntoval;
-                                                        }
-                                                    } else {
-                                                        $asunto = "";
-                                                    }
-                                                    ?>
                                                     <tr>     
-                                                        <td style='text-align:center'><?php echo $Valijas->return[$i]->destinoval->nombresed; ?></td>
+                                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->origenpaq->idusu->apellidousu; ?></td>
+                                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusu->apellidousu; ?></td>
                                                         <td style='text-align:center'><?php echo $asunto; ?></td>
-                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return[$i]->fechaval, 0, 10))); ?></td>
-                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return[$i]->fechaalerval, 0, 10))); ?></td>
+                                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc; ?></td>
+                                                        <td style='text-align:center'><?php echo $contenido; ?></td>
+                                                        <td style='text-align:center'><?php echo $rta; ?></td>  
                                                     </tr>   
-                                                    <?php
-                                                }
-                                            }//fin else
-                                            ?>  
-                                        </tbody>
-                                    </table>
-                                    <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
+        <?php
+    } else {
+        for ($i = 0; $i < count($PaquetesConfirmados->return); $i++) {
+            if ($PaquetesConfirmados->return[$i]->respaq == "0") {
+                $rta = "No";
+            } else {
+                $rta = "Si";
+            }
+            if (strlen($PaquetesConfirmados->return[$i]->textopaq) > 25) {
+                $contenido = substr($PaquetesConfirmados->return[$i]->textopaq, 0, 23) . "...";
+            } else {
+                $contenido = $PaquetesConfirmados->return[$i]->textopaq;
+            }
+            if (strlen($PaquetesConfirmados->return[$i]->asuntopaq) > 10) {
+                $asunto = substr($PaquetesConfirmados->return[$i]->asuntopaq, 0, 10) . "...";
+            } else {
+                $asunto = $PaquetesConfirmados->return[$i]->asuntopaq;
+            }
+            ?>
+                                                        <tr>     
+                                                            <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu . " " . $PaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu; ?></td>
+                                                            <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu; ?></td>
+                                                            <td style='text-align:center'><?php echo $asunto; ?></td>
+                                                            <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc; ?></td>
+                                                            <td style='text-align:center'><?php echo $contenido; ?></td>
+                                                            <td style='text-align:center'><?php echo $rta; ?></td>  
+                                                        </tr>   
+            <?php
+        }
+    }//fin else
+    ?>  
+                                            </tbody>
+                                        </table>
+                                        <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
 
-                                    <?php
-                                } else {
-                                    echo "<br>";
-                                    echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No hay Paquetes con Fechas Vencidas en estos Momentos  </h4>
-		</div> ";
-                                }
-                                ?>			  
+    <?php
+}
+?>
 
+
+                                </div>  
 
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+			</div>
 
             <!-- /container -->
             <div id="footer" class="container">    	
             </div>
-        </div>
+   
+        <script>
+                                    window.onload = function() {
+                                        killerSession();
+                                    }
+                                    function killerSession() {
+                                        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+                                    }
+                                    function isNumberKey(evt)
+                                    {
+                                        var charCode = (evt.which) ? evt.which : event.keyCode
+                                        if (charCode == 13) {
+                                            Paquete();
+                                        }
+                                        if (charCode > 31 && (charCode < 48 || charCode > 57))
+                                            return false;
 
+                                        return true;
+                                    }
+        </script>
+        <script>
+
+            function Paquete() {
+
+                if (idpaq = document.forms.formulario.idpaq.value != "") {
+                    var idpaq = document.forms.formulario.idpaq.value;
+                    var parametros = {
+                        "idpaq": idpaq
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "../ajax/view_package.php",
+                        data: parametros,
+                        dataType: "text",
+                        success: function(response) {
+                            $("#data").html(response);
+                        }
+                    });
+                    document.forms.formulario.idpaq.value = "";
+                } else {
+                    alert("Por favor agregue el código de correspondencia")
+                }
+
+            }
+
+        </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
-        <script>
-            window.onload = function() {
-                killerSession();
-            }
-            function killerSession() {
-                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-            }
-        </script>
+
         <script type="text/javascript">
             $(function() {
                 $('table').footable();

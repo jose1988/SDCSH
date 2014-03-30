@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -15,20 +14,14 @@ try {
     $client->decode_utf8 = false;
     $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
-    if (isset($SedeRol->return)) {
-        if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "5") {
-            iraURL('../pages/inbox.php');
-        }
-    } else {
-        iraURL('../pages/inbox.php');
-    }
-    $parametros = array('idSede' => $_SESSION["Sede"]->return->idsed);
-    $Valijas = $client->valijasXFechaVencidaXUsuarioOrigen($parametros);
-//   echo '<pre>';
-//print_r($Valijas);
-    include("../views/suitcase_overdue_origin.php");
+    $usu = array('iduse' =>  $SedeRol->return->iduse);
+    $parametros = array('usuarioSede' => $usu);
+    $PaquetesDestino = $client->paquetesVencidosXSeguimiento($parametros);
+//echo '<pre>';
+//print_R($PaquetesConfirmados);
+    include("../views/tracing_overdue.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>

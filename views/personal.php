@@ -79,7 +79,7 @@ if (!isset($SedeRol->return)) {
                                     <div class="btn-group  pull-right">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
+                                            <li><a href="#">Cuenta</a></li>
                                             <li class="divider"></li>
                                             <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
                                                 <li><a href="../pages/administration.php">Administracion</a></li>
@@ -125,12 +125,13 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
+
 <?php if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
-                                                <li class="divider"></li>
+                                                <li class="divider"></li>                                           
                                                 <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            
+                                             
 <?php } ?>
                                         </ul>
                                     </div>                               
@@ -148,22 +149,19 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                             <li>   
                                 <a href="inbox.php">Atrás</a>
                             </li>
+
                         </ul>
                     </div>
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
-                                <h2>Recibir paquete</h2>
-                                Código de Correspondencia:  <input type="text" onkeypress="return isNumberKey(event)" placeholder="Ej. 4246" title="Ingrese el código de correspondencia" autocomplete="off" pattern="[0-9]{1,38}" style="width:140px ;height:28px" id="idpaq" name="idpaq"  required>
-                                <button type="button" class="btn" onClick="Paquete();">Recibir Paquete</button>
                                 <div id="data">
 <?php
 if (isset($PaquetesConfirmados->return)) {
 
     echo "<br>";
     ?>
-
-                                        <h2> Correspondencia hoy en la Sede</h2>
+                                        <h2>Correspondencia que ha sido confirmada por usted</h2>
                                         <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                             <thead bgcolor='#FF0000'>
                                                 <tr>	
@@ -237,10 +235,16 @@ if (isset($PaquetesConfirmados->return)) {
                                         </table>
                                         <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
 
-                                                <?php
-                                            }
-                                            ?>
+    <?php
+}else{
 
+  echo "<br>";
+		echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>No tiene paquetes confirmados </h4>
+		</div> ";
+}
+?>
 
                                 </div>  
 
@@ -249,59 +253,32 @@ if (isset($PaquetesConfirmados->return)) {
                     </div>
                 </div>
             </div>
+			</div>
 
             <!-- /container -->
             <div id="footer" class="container">    	
             </div>
-        </div>
+   
         <script>
-
                                     window.onload = function() {
                                         killerSession();
                                     }
                                     function killerSession() {
                                         setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
                                     }
-
                                     function isNumberKey(evt)
                                     {
                                         var charCode = (evt.which) ? evt.which : event.keyCode
                                         if (charCode == 13) {
                                             Paquete();
                                         }
-                                        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                        if (charCode > 31 && (charCode < 48 || charCode > 57))
                                             return false;
-                                        }
 
                                         return true;
                                     }
         </script>
-        <script>
 
-            function Paquete() {
-                if (idpaq = document.forms.formulario.idpaq.value != "") {
-                    var idpaq = document.forms.formulario.idpaq.value;
-                    var parametros = {
-                        "idpaq": idpaq
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "../ajax/view_package_headquarters.php",
-                        data: parametros,
-                        dataType: "text",
-                        success: function(response) {
-                            $("#data").html(response);
-                        }
-                    });
-                    document.forms.formulario.idpaq.value = "";
-                } else {
-                    alert("Por favor agregue el código de correspondencia")
-                }
-
-
-            }
-
-        </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
@@ -310,7 +287,6 @@ if (isset($PaquetesConfirmados->return)) {
             $(function() {
                 $('table').footable();
             });
-
         </script>
 
     </body>

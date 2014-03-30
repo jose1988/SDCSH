@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -17,14 +16,16 @@ try {
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
     $usu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
     $sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
+
     $parametros = array('registroUsuario' => $usu,
         'registroSede' => $sede);
-    $PaquetesConfirmados = $client->paquetesVencidosXOrigen($parametros);
+    $PaquetesDestino = $client->paquetesVencidosXDestino($parametros);
+	$PaquetesOrigen = $client->paquetesVencidosXOrigen($parametros);
 //echo '<pre>';
 //print_R($PaquetesConfirmados);
-    include("../views/package_overdue_origin.php");
+    include("../views/correspondence_overdue.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>

@@ -9,17 +9,61 @@ if (!isset($_SESSION["Usuario"])) {
 }  elseif (!isset($_POST['idpaq'])) {
     iraURL("../pages/inbox.php");
 }
+  
   try{
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $idPaquete= array('idPaquete' => $_POST['idpaq']);
-  $rowPaquete = $client->ConsultarPaqueteXId($idPaquete); 
-$idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
-  $parametros=array('registroSede' => $idsed);
-   $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXSedeAlDia($parametros); 
- // echo '<pre>';
-  //print_r($rowPaquete);
+  $Paquete = $client->ConsultarPaqueteXId($idPaquete); 
+   $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
+  if(isset($Paquete->return)){
+     $idPaquete= array('idpaq' => $_POST['idpaq']);
+	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
+	$parametros=array('registroPaquete' => $idPaquete,
+						'registroUsuario'=>$usu,					
+						'registroSede'=>$sede);
+					//	echo '<pre>';print_r($parametros);
+  $seg = $client->registroSeguimiento($parametros);
+   if($seg->return==0){
+       echo "<br>";
+		echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>El paquete ya fue confirmado </h4>
+		</div> ";
+	}elseif($seg->return==2){
+	 echo "<br>";
+		echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>Paquete con seguimiento errado ,consulte con el administrador </h4>
+		</div> ";
+	}elseif($seg->return==1){
+	javaalert("Se ha confirmado el paquete exitósamente");
+	}
+  }else{
+  echo "<br>";
+		echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>No hay Correspondencia con ese código  </h4>
+		</div> ";
+  
+  }
+$UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
+$SedeRol = $client->consultarSedeRol($UsuarioRol);
+    if (isset($SedeRol->return)) {
+        if ($SedeRol->return->idrol->idrol != "1" && $SedeRol->return->idrol->idrol != "2" && $SedeRol->return->idrol->idrol != "3") {
+            iraURL('../pages/inbox.php');
+        }
+    } else {
+        iraURL('../pages/inbox.php');
+    }
+    
+	$usuSede = array('iduse' =>$SedeRol->return->iduse,
+					'idrol' =>$SedeRol->return->idrol,
+					'idsed' =>$SedeRol->return->idsed);
+    $parametros = array('idUsuarioSede' => $usuSede);
+    $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXRol($parametros);
+ //echo '<pre>';print_r($PaquetesConfirmados);
 	?>
 	
 	<!-- styles -->
@@ -46,66 +90,14 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 	<link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
 	<link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
 
-<div id="data">
-	 <?php		
-   if(isset($rowPaquete->return)){        
-           		  if($rowPaquete->return->respaq=="0"){
-				  $rta="No";
-				  }else{
-				  $rta="Si";
-				  }
-				  if(strlen ($rowPaquete->return->textopaq)>10){
-								$contenido=substr($rowPaquete->return->textopaq,0,10)."...";
-								}else{
-									$contenido=$rowPaquete->return->textopaq;
-								}
-								if(strlen ($rowPaquete->return->asuntopaq)>10){
-								$asunto=substr($rowPaquete->return->asuntopaq,0,10)."...";
-								}else{
-									$asunto=$rowPaquete->return->asuntopaq;
-								}
-		 
-       echo "<br>";
-	?><table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
-                                <thead bgcolor='#FF0000'>
-                                    <tr>	
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Contenido</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Con Respuesta</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>     
-                                        <td  style='text-align:center'><?php echo $rowPaquete->return->origenpaq->idusu->nombreusu." ".$rowPaquete->return->origenpaq->idusu->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $rowPaquete->return->destinopaq->idusu->nombreusu." ".$rowPaquete->return->destinopaq->idusu->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $asunto;?></td>
-                                        <td style='text-align:center'><?php echo $rowPaquete->return->iddoc->nombredoc;?></td>
-                                        <td style='text-align:center'><?php echo $contenido;?></td>
-                                        <td style='text-align:center'><?php echo $rta;?></td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-							<h3></h3><h3></h3>
-                                <div align="center"><button type="button" class="btn" onClick="pregunta();" name="confirma" >Confirmar</button></div>
 
-			 <?php		
-			 
-			 }else {
-		echo "<br>";
-		echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No existen Paquetes con ese código </h4>
-		</div> ";
-	}
-     if(isset($PaquetesConfirmados->return)){        
+	 <?php		
+if(isset($PaquetesConfirmados->return)){        
    
        echo "<br>";
 	?>
 	
-         <h2> Correspondencia hoy en la Sede</h2>
+                                        <h2>Correspondencia que ha sido confirmada</h2>
                             <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                 <thead bgcolor='#FF0000'>
                                     <tr>	
@@ -183,37 +175,12 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 	<?php				
 	}
 	?>
-				
- 	</div>
+ 
 
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>
 <script src="../js/footable.sortable.js" type="text/javascript"></script>
-<script>
-function pregunta(){ 
-confirmar=confirm("¿Esta seguro que desea confirmar el paquete?"); 
-if (confirmar) 
-Confirma();
-} 
- 	function Confirma(){
-			var idpaq= '<?=$_POST['idpaq']?>'; 
-			 var parametros = {
-                "idpaq" : idpaq
-       		 };
-			$.ajax({
-           	type: "POST",
-           	url: "../ajax/confirmed_headquarters.php",
-           	data: parametros,
-           	dataType: "text",
-			success:  function (response) {
-            	$("#data").html(response);
-			}
-		
-	    }); 
-		
-		
-	}
-	</script>
+ 
   <script type="text/javascript">
     $(function() {
       $('table').footable();
