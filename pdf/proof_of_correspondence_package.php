@@ -129,7 +129,6 @@ if (isset($resultadoConsultarPaquete->return)) {
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
     $nom = 'Comprobante de Correspondencia Numero '.$idPaq.'.pdf';
-    $dompdf->stream($nom);
-	
+    $dompdf->stream($nom);	
 }//Fin del IF general
 ?>

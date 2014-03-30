@@ -61,16 +61,15 @@ try {
 		$_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
 		$_SESSION["codigo"] = $codigoTotal;
 
-        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-		
-		/*echo"<script>window.open('../pdf/proof_of_correspondence.php');</script>";*/
-		iraURL('../pdf/proof_of_correspondence.php');
+        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);		
+		echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
+		//iraURL('../pdf/proof_of_correspondence.php');
         
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');
     }	
-	/*echo"<script language='javascript'>window.location='../pages/inbox.php';</script>";*/
+	//iraURL('../pages/inbox.php');
 	
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

@@ -146,7 +146,7 @@ if ($nomUsuario == "") {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/operator_level.php">
+                                <a href="../pages/confirm_package.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>

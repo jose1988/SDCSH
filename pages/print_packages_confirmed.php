@@ -63,7 +63,7 @@ try {
         }
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
-        iraURL('../pages/operator_level.php');
+        iraURL('../pages/confirm_package.php');
     }
 
     if (isset($_POST["imprimir"])) {
@@ -87,15 +87,15 @@ try {
 			
             $_SESSION["paquetesConfirmados"] = $resultadoPaquetesConfirmados;
             $_SESSION["paquetes"] = $imprimirPaquetes;
-            iraURL('../pages/proof_operator_level.php');
+            iraURL('../pages/proof_package_confirmed.php');
         } else {
             javaalert("Debe seleccionar al menos un paquete, por favor verifique");
         }
     }
-    include("../views/print_operator_level.php");
+    include("../views/print_packages_confirmed.php");
     
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
-    iraURL('../pages/operator_level.php');
+    iraURL('../pages/confirm_package.php');
 }
 ?>

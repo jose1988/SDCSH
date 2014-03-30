@@ -66,16 +66,16 @@ else {
 			$_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
 			$_SESSION["codigoDos"] = $codigoTotal;
 
-        	llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-		
+        	llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);		
 			echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
+			//iraURL('../pdf/proof_of_correspondence_package.php');
         
     	} catch (Exception $e) {
         	javaalert('Lo sentimos no hay conexion');
         	iraURL('../pages/inbox.php');
-    	}
-		echo"<script language='javascript'>window.location='../pages/inbox.php';</script>";
-	
+    	}	
+		//iraURL('../pages/inbox.php');
+		
 	} catch (Exception $e) {
     	javaalert('Lo sentimos no hay conexion');
     	iraURL('../pages/inbox.php');

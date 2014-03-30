@@ -53,15 +53,16 @@ try {
 
     if ($paquetesTotales != "") {
         $contadorPaquetes = count($paquetesTotales);
-        llenarLog(6, "Comprobante Nivel 1", $usuarioBitacora, $sede);		
-        echo"<script>window.open('../pdf/proof_operator_level.php');</script>";
+        llenarLog(6, "Comprobante de Paquetes Confirmados", $usuarioBitacora, $sede);		
+        echo"<script>window.open('../pdf/proof_package_confirmed.php');</script>";
+		//iraURL('../pdf/proof_package_confirmed.php');
     } else {
         $contadorPaquetes = 0;
     }
-    echo"<script language='javascript'>window.location='../pages/print_operator_level.php';</script>";
+    //iraURL('../pages/print_packages_confirmed.php');
 	
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
-    iraURL('../pages/print_operator_level.php');
+    iraURL('../pages/print_packages_confirmed.php');
 }
 ?>

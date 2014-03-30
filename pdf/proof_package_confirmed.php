@@ -7,7 +7,7 @@ $contadorPaquetes = count($paquetesTotales);
 
 if ($contadorPaquetes > 0) {
     ob_start();
-    include("../template/proof_operator_level.php");
+    include("../template/proof_package_confirmed.php");
 
     //Almacenar el resultado de la salida en una variable
     $page = ob_get_contents();

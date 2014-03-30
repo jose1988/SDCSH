@@ -337,7 +337,7 @@ if ($idPaquete == "" || $usuario == "") {
                             	</form>
                             	<br>
                                 <div align="right">
-                            		<a href='../pages/proof_of_correspondence_package.php?id=<?php echo $idPaquete?>'><button type="submit" class="btn" id="imprimir" name="imprimir">Imprimir Comprobante</button></a>
+                            		<a href='../pages/proof_of_correspondence_package.php?id=<?php echo $idPaquete?>' target="new"><button type="submit" class="btn" id="imprimir" name="imprimir">Imprimir Comprobante</button></a>
                             	</div>                          	
                         </div>
                     </div>
