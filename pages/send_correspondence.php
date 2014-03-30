@@ -56,6 +56,14 @@ try {
 			$rta = "0";
 			}
 			
+			
+			if($_POST["fragil"]){
+			    $fra = "1";
+            } else {
+                $fra = "0";
+            }
+			
+			
                 $destinopaq = array('idbuz' => $idbuz);
                 $prioridad = array('idpri' => $_POST["prioridad"]);
                 $documento = array('iddoc' => $_POST["doc"]);
@@ -66,12 +74,11 @@ try {
                     'asuntopaq' => $_POST["asunto"],
                     'textopaq' => $_POST["elmsg"],
                     'fechapaq' => date("Y-m-d"),
-                    'fechaenviopaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"]))),
-                    'fechaapaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))),
                     'statuspaq' => "0",
                     'localizacionpaq' => $_SESSION["Usuario"]->return->userusu,
                     'idpri' => $prioridad,
                     'iddoc' => $documento,
+					'fragilpaq' => $fra,
                     'respaq' => $rta,
                     'idsed' => $sede);
                 $registro = array('registroPaquete' => $paquete);

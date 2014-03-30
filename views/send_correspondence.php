@@ -227,10 +227,7 @@
                                             </select><br></td>
                                     </tr>
                                     <tr>
-                                        <td></td><td>
-                                            Fecha de alerta:<input type="text" id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de alerta" required/> 
-                                            Fecha de límite:<input type="text" id="datepickerf" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha límite" required/>
-                                            <br></td>
+                                     <td> Fragil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es fragil"></td>
                                     </tr>
                                     <tr>
                                         <td>Imagen del paquete(opcional):</td><td>
@@ -241,7 +238,7 @@
                                         <td>Comentario del paquete: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="1999"  style="width:800px" title="Ingrese un comentario" required>...</textarea><br></td>
                                     </tr>
                                     <tr>
-                                        <td>Desea recibir respuesta de este paquete: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta" checked="checked"></td>
+                                        <td>Desea recibir respuesta de este paquete: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta"></td>
                                     </tr>
 
                                         <tr>          
