@@ -211,19 +211,34 @@
                                     <tr>
                                         <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="199"  size="100" style="width:800px" title="Ingrese el asunto" autocomplete="off"  required><br></td>
                                     </tr>
-                                    <tr>
+                                   <tr>
                                         <td>Tipo Doc:</td><td><select name="doc" required  title="Seleccione el tipo de documento">
                                                 <option value="" style="display:none">Seleccionar:</option>
 
-  <option value="1">Documento</option>
-
+<?php
+if (count($rowDocumentos->return) == 1) {
+    echo '<option value="' . $rowDocumentos->return->iddoc . '">' . $rowDocumentos->return->nombredoc . '</option>';
+} else {
+    for ($i = 0; $i < count($rowDocumentos->return); $i++) {
+        echo '<option value="' . $rowDocumentos->return[$i]->iddoc . '">' . $rowDocumentos->return[$i]->nombredoc . '</option>';
+    }
+}
+?>
 
                                             </select><br></td>
                                     </tr>
                                     <tr>
                                         <td>Prioridad:</td><td><select name="prioridad" required  title="Seleccione la prioridad">
                                                 <option value="" style="display:none">Seleccionar:</option>                                  
-                                               <option value="1">Urgente</option>
+                                                <?php
+                                                if (count($rowPrioridad->return) == 1) {
+                                                    echo '<option value="' . $rowPrioridad->return->idpri . '">' . $rowPrioridad->return->nombrepri . '</option>';
+                                                } else {
+                                                    for ($i = 0; $i < count($rowPrioridad->return); $i++) {
+                                                        echo '<option value="' . $rowPrioridad->return[$i]->idpri . '">' . $rowPrioridad->return[$i]->nombrepri . '</option>';
+                                                    }
+                                                }
+                                                ?>
                                             </select><br></td>
                                     </tr>
                                     <tr>

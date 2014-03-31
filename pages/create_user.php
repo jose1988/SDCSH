@@ -20,7 +20,7 @@ try {
     $Sedes = $client->listarSedes();
     if (!isset($Sedes->return)) {
         javaalert("Lo sentimos no se puede crear el usuario porque no hay sedes registradas,Consulte con el Administrador");
-        iraURL('../inbox.php');
+        iraURL('../pages/inbox.php');
     }
 
     if (isset($_POST["crear"])) {
@@ -59,7 +59,8 @@ try {
                             'tipousu' => "0",
 							'cargousu' => $cargo,
                             'userusu' => $usernuevo,
-                            'statususu' => "1");
+                            'statususu' => "1",
+							'borradousu' => "0");
                 $parametros = array('registroUsuario' => $Usuario);
                 $client->insertarUsuario($parametros);
                 $sede = array('idsed' => $_POST["sede"]);

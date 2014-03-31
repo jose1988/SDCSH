@@ -28,7 +28,7 @@ if (isset($_POST["Biniciar"])) {
   if(isset( $Sedes->return) && count($Sedes->return)==1){
   $_SESSION["Sede"]=$Sedes;
 // echo '<pre>'; print_r($_SESSION["Sede"]); 
-  iraURL("inbox.php");
+  iraURL("./pages/inbox.php");
   }else  if(isset( $Sedes->return)){
   $_SESSION["Sedes"]=$Sedes;
   iraURL("pages/headquarters.php");

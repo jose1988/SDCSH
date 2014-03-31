@@ -62,11 +62,16 @@ echo "<th  text-align:center' data-sort-ignore='true'>Apellido </th>";
 				$j=0;
 				if($reg>1){
 				while($j<$reg){ 
-				
-								
+			
+					if( $Buz->return[$j]->tipobuz=="1"){
+						echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return[$j]->nombrebuz."</th>";			
+				echo "<td style='text-align:center'> Externo</td>";
+				echo "<td style='text-align:center'>".$Buz->return[$j]->nombrebuz."</td>";
+					}else{
 				echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return[$j]->idusu->nombreusu."</th>";			
 				echo "<td style='text-align:center'>".$Buz->return[$j]->idusu->apellidousu."</td>";
 				echo "<td style='text-align:center'>".$Buz->return[$j]->nombrebuz."</td>";
+					}
 				?>
 				<th  'text-align:center' > 
                 
@@ -80,10 +85,15 @@ echo "<th  text-align:center' data-sort-ignore='true'>Apellido </th>";
 					$j++;
 				} 
 			 }else{
-				 
+				 if( $Buz->return->tipobuz=="1"){
+						echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return->nombrebuz."</th>";			
+				echo "<td style='text-align:center'> Externo</td>";
+				echo "<td style='text-align:center'>".$Buz->return->nombrebuz."</td>";
+					}else{
 				echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return->idusu->nombreusu."</th>";			
 				echo "<td style='text-align:center'>".$Buz->return->idusu->apellidousu."</td>";
 				echo "<td style='text-align:center'>".$Buz->return->nombrebuz."</td>";
+			        }
 				?>
 				<th  'text-align:center' > 
                 

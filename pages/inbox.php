@@ -31,7 +31,7 @@ if (!isset($_SESSION["Usuario"])) {
 	  }
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
-	iraURL('./index.php');	
+	iraURL('index.php');	
 	}
  //echo'<pre>';
 // print_r( $_SESSION["Usuario"]);
