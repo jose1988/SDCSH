@@ -24,12 +24,12 @@ if ($nomUsuario == "") {
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -75,78 +75,9 @@ if ($nomUsuario == "") {
 
         <div id="middle">
             <div class="container app-container">
-                <div>
-                    <ul class="nav nav-pills">
-                        <li class="pull-left">
-                            <div class="modal-header" style="width:1135px;">
-                                <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
-                                            <li class="divider"></li>
-                                            <?php 
-                                            if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
-                                                <li><a href="../pages/administration.php">Administracion</a></li>
-                                                <li class="divider"></li>
-                                            <?php } ?>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Ayuda</a></li>
-                                        </ul>
-                                    </div>   
-
-                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <?php 
-                                            if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
-                                                <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                                <li class="divider"></li>
-                                            <?php }
-                                            if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") { ?>
-                                                <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                                <li class="divider"></li>
-                                            <?php }
-                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
-                                                <li><a href="create_valise.php" > Crear Valija</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                                <li class="divider"></li>
-                                            <?php } ?>
-                                            <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-                                        </ul>
-                                    </div>
-                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                           
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
-												 if($SedeRol->return->idrol->idrol=="5"){ ?>
-                                                  <li class="divider"></li>
-                                            <?php } ?>
-                                           
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <?php } ?>
-                                        </ul>
-                                    </div>
-                                </h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!--Caso pantalla uno-->
+                <?php
+                Menu($SedeRol);
+                ?>
                 <div class="row-fluid">
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
@@ -169,7 +100,8 @@ if ($nomUsuario == "") {
                                 echo '</div>';
                             }
                             //Si existen registros muestro la tabla
-                            else {?>                        
+                            else {
+                                ?>                        
                                 <strong> <h2 align="center">Reporte Enviados Hoy</h2> </strong>
                                 <table class='footable table table-striped table-bordered' data-page-size='5'>
                                     <thead bgcolor='#FF0000'>
@@ -184,47 +116,55 @@ if ($nomUsuario == "") {
                                     <tbody>
                                         <?php
                                         if ($paquetes > 1) {
-                                            for ($i = 0; $i < $paquetes; $i++) { ?>
+                                            for ($i = 0; $i < $paquetes; $i++) {
+                                                ?>
                                                 <tr>
                                                     <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->destinopaq->idusu->nombreusu . ' ' . $resultadoConsultarPaquetes->return[$i]->destinopaq->idusu->apellidousu ?></td>
-                                                    <?php
-                                                    if (!isset($resultadoConsultarPaquetes->return[$i]->asuntopaq)) { ?>
+                                                    <?php if (!isset($resultadoConsultarPaquetes->return[$i]->asuntopaq)) { ?>
                                                         <td style="text-align:center"><?php echo "" ?></td>
-                                                    <?php } 
-													else {
+                                                        <?php
+                                                    } else {
                                                         if (strlen($resultadoConsultarPaquetes->return[$i]->asuntopaq) > 10) {
                                                             $asunto = substr($resultadoConsultarPaquetes->return[$i]->asuntopaq, 0, 10) . "...";
                                                         } else {
                                                             $asunto = $resultadoConsultarPaquetes->return[$i]->asuntopaq;
-                                                        }?>
+                                                        }
+                                                        ?>
                                                         <td style="text-align:center"><?php echo $asunto ?></td>
-                                                    <?php }
-                                                    if (!isset($resultadoConsultarPaquetes->return[$i]->localizacionpaq)) { ?>
+                                                        <?php
+                                                    }
+                                                    if (!isset($resultadoConsultarPaquetes->return[$i]->localizacionpaq)) {
+                                                        ?>
                                                         <td style="text-align:center"><?php echo "" ?></td>
-                                                    <?php } else {?>
-                                                        <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->localizacionpaq ?></td>												<?php }
-                                    				if (!isset($resultadoConsultarPaquetes->return[$i]->fechaenviopaq)) { ?>
+                                                    <?php } else { ?>
+                                                        <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->localizacionpaq ?></td>												<?php
+                                                    }
+                                                    if (!isset($resultadoConsultarPaquetes->return[$i]->fechaenviopaq)) {
+                                                        ?>
                                                         <td style="text-align:center"><?php echo "" ?></td>
-                                                    <?php } 
-													else { ?>
+                                                    <?php } else {
+                                                        ?>
                                                         <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoConsultarPaquetes->return[$i]->fechaenviopaq, 0, 10))) ?></td>
-                                                    <?php }
-                                                    if ($resultadoConsultarPaquetes->return[$i]->respaq == '0') { ?>
+                                                        <?php
+                                                    }
+                                                    if ($resultadoConsultarPaquetes->return[$i]->respaq == '0') {
+                                                        ?>
                                                         <td style="text-align:center"><?php echo "No" ?></td>
-                                                    <?php } 
-													else { ?>
+                                                    <?php } else {
+                                                        ?>
                                                         <td style="text-align:center"><?php echo "Si" ?></td>
                                                     <?php } ?>
                                                 </tr>
-                                                <?php }
-                                        } else { ?>
+                                                <?php
+                                            }
+                                        } else {
+                                            ?>
                                             <tr>
                                                 <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->destinopaq->idusu->nombreusu . ' ' . $resultadoConsultarPaquetes->return->destinopaq->idusu->apellidousu ?></td>
-                                                <?php
-                                                if (!isset($resultadoConsultarPaquetes->return->asuntopaq)) { ?>
+                                                <?php if (!isset($resultadoConsultarPaquetes->return->asuntopaq)) { ?>
                                                     <td style="text-align:center"><?php echo "" ?></td>
-                                                <?php }
-												else {
+                                                    <?php
+                                                } else {
                                                     if (strlen($resultadoConsultarPaquetes->return->asuntopaq) > 10) {
                                                         $asunto = substr($resultadoConsultarPaquetes->return->asuntopaq, 0, 10) . "...";
                                                     } else {
@@ -234,18 +174,23 @@ if ($nomUsuario == "") {
                                                     <td style="text-align:center"><?php echo $asunto ?></td>
                                                     <?php
                                                 }
-                                                if (!isset($resultadoConsultarPaquetes->return->localizacionpaq)) { ?>
+                                                if (!isset($resultadoConsultarPaquetes->return->localizacionpaq)) {
+                                                    ?>
                                                     <td style="text-align:center"><?php echo "" ?></td>
-                                                <?php } 
-												else { ?>
-                                                    <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->localizacionpaq ?></td>																  												<?php }
-                                    			if (!isset($resultadoConsultarPaquetes->return->fechaenviopaq)) { ?>
+                                                <?php } else {
+                                                    ?>
+                                                    <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->localizacionpaq ?></td>																  												<?php
+                                                }
+                                                if (!isset($resultadoConsultarPaquetes->return->fechaenviopaq)) {
+                                                    ?>
                                                     <td style="text-align:center"><?php echo "" ?></td>
-                                                <?php } 
-												else { ?>
+                                                <?php } else {
+                                                    ?>
                                                     <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoConsultarPaquetes->return->fechaenviopaq, 0, 10))) ?></td>
-                                                    <?php }
-                                                if ($resultadoConsultarPaquetes->return->respaq == '0') { ?>
+                                                    <?php
+                                                }
+                                                if ($resultadoConsultarPaquetes->return->respaq == '0') {
+                                                    ?>
                                                     <td style="text-align:center"><?php echo "No" ?></td>
                                                 <?php } else { ?>
                                                     <td style="text-align:center"><?php echo "Si" ?></td>
@@ -257,12 +202,13 @@ if ($nomUsuario == "") {
                                 <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>                            
                                 <br>
                                 <br>
-                                <?php 
-								if ($procesadosConRespuesta != 0 || $noProcesadosConRespuesta != 0 || $procesadosSinRespuesta != 0 || $noProcesadosSinRespuesta != 0) {?>
-                                	<div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	
-                                	</div>
-                            	<?php  }
-							} ?>
+                                <?php if ($procesadosConRespuesta != 0 || $noProcesadosConRespuesta != 0 || $procesadosSinRespuesta != 0 || $noProcesadosSinRespuesta != 0) { ?>
+                                    <div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -285,7 +231,7 @@ if ($nomUsuario == "") {
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
-		
+
         <script type="text/javascript">
             $(function() {
                 $('table').footable();

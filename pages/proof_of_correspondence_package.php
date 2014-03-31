@@ -27,58 +27,55 @@ $idPaq = $_GET["id"];
 
 if ($idPaq == "") {
     iraURL('../pages/inbox.php');
-} 
-else {
-	try {
-    	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-    	$client = new SOAPClient($wsdl_url);
-    	$client->decode_utf8 = false;
+} else {
+    try {
+        $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+        $client = new SOAPClient($wsdl_url);
+        $client->decode_utf8 = false;
 
-    	$usuario = array('user' => $nomUsuario);
-    	$resultadoConsultarUsuario = $client->consultarUsuarioXUser($usuario);
+        $usuario = array('user' => $nomUsuario);
+        $resultadoConsultarUsuario = $client->consultarUsuarioXUser($usuario);
 
-	    if (!isset($resultadoConsultarUsuario->return)) {
-    	    $usua = 0;
-    	} else {
-        	$usua = $resultadoConsultarUsuario->return;
-    	}
+        if (!isset($resultadoConsultarUsuario->return)) {
+            $usua = 0;
+        } else {
+            $usua = $resultadoConsultarUsuario->return;
+        }
 
-    	$idUsuario = $resultadoConsultarUsuario->return->idusu;
+        $idUsuario = $resultadoConsultarUsuario->return->idusu;
 
-    	try {
-        	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-        	$client = new SOAPClient($wsdl_url);
-        	$client->decode_utf8 = false;
+        try {
+            $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+            $client = new SOAPClient($wsdl_url);
+            $client->decode_utf8 = false;
 
-        	$idPaquete = array('idPaquete' => $idPaq);
-        	$resultadoConsultarPaquete = $client->consultarPaqueteXId($idPaquete);
+            $idPaquete = array('idPaquete' => $idPaq);
+            $resultadoConsultarPaquete = $client->consultarPaqueteXId($idPaquete);
 
-        	$idSede = array('idSede' => $ideSede);
-        	$resultadoConsultarSede = $client->consultarSedeXId($idSede);	
+            $idSede = array('idSede' => $ideSede);
+            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
-			$codigoSede = $resultadoConsultarSede->return->codigosed;		
-			$fecha = date("Y");
-			$idpaq = $resultadoConsultarPaquete->return->idpaq;
-		
-			$codigoTotal=$codigoSede.$fecha.$idpaq;
-			guardarImagen($codigoTotal);
-				
-			$_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
-			$_SESSION["codigoDos"] = $codigoTotal;
+            $codigoSede = $resultadoConsultarSede->return->codigosed;
+            $fecha = date("Y");
+            $idpaq = $resultadoConsultarPaquete->return->idpaq;
 
-        	llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);		
-			echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
-			//iraURL('../pdf/proof_of_correspondence_package.php');
-        
-    	} catch (Exception $e) {
-        	javaalert('Lo sentimos no hay conexion');
-        	iraURL('../pages/inbox.php');
-    	}	
-		//iraURL('../pages/inbox.php');
-		
-	} catch (Exception $e) {
-    	javaalert('Lo sentimos no hay conexion');
-    	iraURL('../pages/inbox.php');
-	}
+            $codigoTotal = $codigoSede . $fecha . $idpaq;
+            guardarImagen($codigoTotal);
+
+            $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
+            $_SESSION["codigoDos"] = $codigoTotal;
+
+            llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
+            echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
+            //iraURL('../pdf/proof_of_correspondence_package.php');
+        } catch (Exception $e) {
+            javaalert('Lo sentimos no hay conexion');
+            iraURL('../pages/inbox.php');
+        }
+        //iraURL('../pages/inbox.php');
+    } catch (Exception $e) {
+        javaalert('Lo sentimos no hay conexion');
+        iraURL('../pages/inbox.php');
+    }
 }
 ?>

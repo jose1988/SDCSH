@@ -49,7 +49,7 @@
                     <td><strong>Número de la Valija: </strong><?php echo $idVal ?></td>
                     <td><strong>Asunto: </strong><?php echo $asunto ?></td>
                 </tr>
-                 <tr>
+                <tr>
                     <td><strong>Fecha: </strong><?php echo date("d/m/Y", strtotime(substr($fecha, 0, 10))) ?></td>
                     <td><strong>Sede: </strong><?php echo $sede ?></td>
                 </tr>

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include("../recursos/funciones.php");
 include("../recursos/codigoBarrasPdf.php");
@@ -8,7 +9,7 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-} 
+}
 
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
@@ -50,11 +51,12 @@ try {
         $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
         $client = new SOAPClient($wsdl_url);
         $client->decode_utf8 = false;
-		     
-	  	$usu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
-       	$sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
-   		$parametros = array('idUsuario' => $usu,'sede'=>$sede);
-   		$resultadoPaquetesConfirmados = $client->consultarPaquetesXUsuarioProcesadasAlDia($parametros);
+
+        $usuSede = array('iduse' => $SedeRol->return->iduse,
+            'idrol' => $SedeRol->return->idrol,
+            'idsed' => $SedeRol->return->idsed);
+        $parametros = array('idUsuarioSede' => $usuSede);
+        $resultadoPaquetesConfirmados = $client->consultarPaquetesConfirmadosXRol($parametros);
 
         if (!isset($resultadoPaquetesConfirmados->return)) {
             $paquetes = 0;
@@ -71,20 +73,20 @@ try {
         if (isset($_POST["ide"])) {
 
             $imprimirPaquetes = $_POST["ide"];
-			$idSede = array('idSede' => $ideSede);
-        	$resultadoConsultarSede = $client->consultarSedeXId($idSede);
-			$codigoSede = $resultadoConsultarSede->return->codigosed;		
-			$fecha = date("Y");
-			
-			for($i=0; $i<count($imprimirPaquetes);$i++){
-				$idPaquete = array('idPaquete' => $imprimirPaquetes[$i]);
-            	$resultadoPaquete = $client->consultarPaqueteXId($idPaquete);
-				$idpaq[$i] = $resultadoPaquete->return->idpaq;
-				$codigoTotal[$i]=$codigoSede.$fecha.$idpaq[$i];
-				guardarImagen($codigoTotal[$i]);
-				$_SESSION["codigos"][$i]=$codigoTotal[$i];
-			}
-			
+            $idSede = array('idSede' => $ideSede);
+            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+            $codigoSede = $resultadoConsultarSede->return->codigosed;
+            $fecha = date("Y");
+
+            for ($i = 0; $i < count($imprimirPaquetes); $i++) {
+                $idPaquete = array('idPaquete' => $imprimirPaquetes[$i]);
+                $resultadoPaquete = $client->consultarPaqueteXId($idPaquete);
+                $idpaq[$i] = $resultadoPaquete->return->idpaq;
+                $codigoTotal[$i] = $codigoSede . $fecha . $idpaq[$i];
+                guardarImagen($codigoTotal[$i]);
+                $_SESSION["codigos"][$i] = $codigoTotal[$i];
+            }
+
             $_SESSION["paquetesConfirmados"] = $resultadoPaquetesConfirmados;
             $_SESSION["paquetes"] = $imprimirPaquetes;
             iraURL('../pages/proof_package_confirmed.php');
@@ -93,7 +95,6 @@ try {
         }
     }
     include("../views/print_packages_confirmed.php");
-    
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/confirm_package.php');

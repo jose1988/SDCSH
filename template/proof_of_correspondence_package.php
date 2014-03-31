@@ -26,7 +26,7 @@
                 <tr>
                     <td colspan="2"><strong>Dirección: </strong><?php echo $direccionOrig ?></td>
                 </tr>
-       
+
                 <tr>
                     <td colspan="2"><strong id="titulo">Datos del Destino:</strong></td>
                 </tr>  
@@ -37,7 +37,7 @@
                 <tr>
                     <td colspan="2"><strong>Dirección: </strong><?php echo $direccionDest ?></td>
                 </tr>
-                
+
                 <tr>
                     <td colspan="2"><strong id="titulo">Datos del Paquete:</strong></td>
                 </tr>
@@ -67,7 +67,7 @@
                 <?php } ?>
             </table>
             <br>
-        	<br>
+            <br>
             <table align="center" width="500" border="0">
                 <tr>
                     <td align="center"><strong>________________</strong></td>

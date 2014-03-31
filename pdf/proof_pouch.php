@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 $resultadoConsultarUltimaValija = $_SESSION["valija"];
 $codigo = $_SESSION["codigo"];
@@ -76,7 +77,7 @@ if (isset($resultadoConsultarUltimaValija->return)) {
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de Valija Numero '.$idVal.'.pdf';
+    $nom = 'Comprobante de Valija Numero ' . $idVal . '.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>

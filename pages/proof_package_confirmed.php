@@ -36,14 +36,14 @@ try {
     $i = 0;
     $contadorPaq = 0;
     $paquetesTotales = "";
-	
+
     for ($j = 0; $j < count($paquetesConfirmados->return); $j++) {
         if (isset($paquetes[$j])) {
             $idPaquete = array('idPaquete' => $paquetes[$j]);
             $resultadoPaquete = $client->consultarPaqueteXId($idPaquete);
             $paquetesTotales[$i] = $resultadoPaquete->return;
-			$_SESSION["paquetesTotales"][$i] = $paquetesTotales[$i];            	
-			$i++;
+            $_SESSION["paquetesTotales"][$i] = $paquetesTotales[$i];
+            $i++;
             $contadorPaq++;
         }
         if ($contadorPaq == count($paquetes)) {
@@ -53,14 +53,14 @@ try {
 
     if ($paquetesTotales != "") {
         $contadorPaquetes = count($paquetesTotales);
-        llenarLog(6, "Comprobante de Paquetes Confirmados", $usuarioBitacora, $sede);		
+		$_SESSION["rol"] = $SedeRol->return->idrol->nombrerol;
+        llenarLog(6, "Comprobante de Paquetes Confirmados", $usuarioBitacora, $sede);
         echo"<script>window.open('../pdf/proof_package_confirmed.php');</script>";
-		//iraURL('../pdf/proof_package_confirmed.php');
+        //iraURL('../pdf/proof_package_confirmed.php');
     } else {
         $contadorPaquetes = 0;
     }
     //iraURL('../pages/print_packages_confirmed.php');
-	
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/print_packages_confirmed.php');

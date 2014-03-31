@@ -51,26 +51,24 @@ try {
         $idSede = array('idSede' => $ideSede);
         $resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
-		$codigoSede = $resultadoConsultarSede->return->codigosed;		
-		$fecha = date("Y");
-		$idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
-		
-		$codigoTotal=$codigoSede.$fecha.$idpaq;
-		guardarImagen($codigoTotal);
-				
-		$_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
-		$_SESSION["codigo"] = $codigoTotal;
+        $codigoSede = $resultadoConsultarSede->return->codigosed;
+        $fecha = date("Y");
+        $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
 
-        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);		
-		echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
-		//iraURL('../pdf/proof_of_correspondence.php');
-        
+        $codigoTotal = $codigoSede . $fecha . $idpaq;
+        guardarImagen($codigoTotal);
+
+        $_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
+        $_SESSION["codigo"] = $codigoTotal;
+
+        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
+        echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
+        //iraURL('../pdf/proof_of_correspondence.php');
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');
-    }	
-	//iraURL('../pages/inbox.php');
-	
+    }
+    //iraURL('../pages/inbox.php');
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/send_correspondence.php');

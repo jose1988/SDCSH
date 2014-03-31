@@ -22,12 +22,12 @@ if ($usuarioBitacora == "") {
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -70,80 +70,9 @@ if ($usuarioBitacora == "") {
 
         <div id="middle">
             <div class="container app-container">
-                <div>
-                    <ul class="nav nav-pills">
-                        <li class="pull-left">
-                            <div class="modal-header" style="width:1135px;">
-                                <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
-                                            <li class="divider"></li>
-                                            <?php 
-                                            if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
-                                                <li><a href="../pages/administration.php">Administracion</a></li>
-                                                <li class="divider"></li>
-                                            <?php } ?>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Ayuda</a></li>
-                                        </ul>
-                                    </div>   
-
-                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <?php 
-                                            if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
-                                                <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                                <li class="divider"></li>
-                                            <?php }
-                                            if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") { ?>
-                                                <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                                <li class="divider"></li>
-                                            <?php }
-                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
-                                                <li><a href="create_valise.php" > Crear Valija</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                                <li class="divider"></li>
-                                            <?php } ?>
-                                            <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-
-                                        </ul>
-                                    </div>
-                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                           
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
-												 if($SedeRol->return->idrol->idrol=="5"){ ?>
-                                                  <li class="divider"></li>
-                                            <?php } ?>
-                                           
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <?php } ?>
-                                        </ul>
-                                    </div>                               
-
-                                </h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!--Caso pantalla uno-->
+                <?php
+                Menu($SedeRol);
+                ?>
                 <div class="row-fluid">
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
@@ -182,7 +111,8 @@ if ($usuarioBitacora == "") {
                                         <tbody>
                                             <?php
                                             if ($bitacora > 1) {
-                                                for ($i = 0; $i < $bitacora; $i++) { ?>
+                                                for ($i = 0; $i < $bitacora; $i++) {
+                                                    ?>
                                                     <tr>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->idbit ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->accionbit ?></td>                                            	<?php
@@ -236,8 +166,10 @@ if ($usuarioBitacora == "") {
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->observacionbit ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->idusu->nombreusu . ' ' . $resultadoListaBitacora->return[$i]->idusu->apellidousu ?></td>
                                                     </tr>
-                                                    <?php }
-                                            } else { ?>
+                                                    <?php
+                                                }
+                                            } else {
+                                                ?>
                                                 <tr>
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->idbit ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->accionbit ?></td>                                            	<?php
@@ -277,13 +209,13 @@ if ($usuarioBitacora == "") {
                                                         $horaDoce = '11';
                                                         $formato = 'pm';
                                                     } elseif ($hora == '24') {
-                                                    	$horaDoce = '12';
+                                                        $horaDoce = '12';
                                                         $formato = 'am';
                                                     } elseif ($hora == '12') {
-                                                    	$horaDoce = '12';
+                                                        $horaDoce = '12';
                                                         $formato = 'pm';
                                                     } else {
-                                                    	$horaDoce = $hora;
+                                                        $horaDoce = $hora;
                                                         $formato = 'am';
                                                     }
                                                     ?>
@@ -316,12 +248,12 @@ if ($usuarioBitacora == "") {
     </div>
 
     <script>
-    	window.onload = function() {
-        	killerSession();
-        }
-        function killerSession() {
-        	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        }
+        	window.onload = function() {
+            	killerSession();
+        	}
+        	function killerSession() {
+            	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+        	}
     </script>
 
     <script src="../js/footable.js" type="text/javascript"></script>

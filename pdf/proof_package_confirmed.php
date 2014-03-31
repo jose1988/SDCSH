@@ -4,6 +4,7 @@ session_start();
 $paquetesTotales = $_SESSION["paquetesTotales"];
 $codigos = $_SESSION["codigos"];
 $contadorPaquetes = count($paquetesTotales);
+$rol = $_SESSION["rol"];
 
 if ($contadorPaquetes > 0) {
     ob_start();

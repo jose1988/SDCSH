@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 $resultadoConsultarPaquete = $_SESSION["paqueteDos"];
 $codigo = $_SESSION["codigoDos"];
@@ -42,22 +43,20 @@ if (isset($resultadoConsultarPaquete->return->idsed->nombresed)) {
     $sede = "";
 }
 if (isset($resultadoConsultarPaquete->return->fragilpaq)) {
-  	if($resultadoConsultarPaquete->return->fragilpaq=="0"){
-		$fragil = "No";  
-	}
-	else{
-		$fragil = "Si";
-	}
+    if ($resultadoConsultarPaquete->return->fragilpaq == "0") {
+        $fragil = "No";
+    } else {
+        $fragil = "Si";
+    }
 } else {
     $fragil = "";
 }
 if (isset($resultadoConsultarPaquete->return->respaq)) {
-  	if($resultadoConsultarPaquete->return->respaq=="0"){
-		$resp = "No";  
-	}
-	else{
-		$resp = "Si";
-	}
+    if ($resultadoConsultarPaquete->return->respaq == "0") {
+        $resp = "No";
+    } else {
+        $resp = "Si";
+    }
 } else {
     $resp = "";
 }
@@ -99,12 +98,11 @@ if (isset($resultadoConsultarPaquete->return->destinopaq->telefonobuz)) {
 
 //Tipo de Buzón
 if (isset($resultadoConsultarPaquete->return->destinopaq->tipobuz)) {
-	if($resultadoConsultarPaquete->return->destinopaq->tipobuz=="0"){
-		$tipoBuzon = "";  
-	}
-	else{
-		$tipoBuzon = "Externo";
-	}
+    if ($resultadoConsultarPaquete->return->destinopaq->tipobuz == "0") {
+        $tipoBuzon = "";
+    } else {
+        $tipoBuzon = "Externo";
+    }
 } else {
     $tipoBuzon = "";
 }
@@ -128,7 +126,7 @@ if (isset($resultadoConsultarPaquete->return)) {
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de Correspondencia Numero '.$idPaq.'.pdf';
-    $dompdf->stream($nom);	
+    $nom = 'Comprobante de Correspondencia Numero ' . $idPaq . '.pdf';
+    $dompdf->stream($nom);
 }//Fin del IF general
 ?>
