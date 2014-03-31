@@ -34,7 +34,7 @@ try {
     }
     
     if (isset($_POST["enviar"])) {
-        if ($_POST["contacto"] != "" && isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["datepicker"]) && $_POST["datepicker"] != "" && isset($_POST["datepickerf"]) && $_POST["datepickerf"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
+        if ($_POST["contacto"] != "" && isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
            
 		 list($idbuz, $nombrebuz) = explode(" ", $_POST["contacto"]);
             $origenbuz = array('idusu' => $_SESSION["Usuario"]->return->idusu,'idsede' => $_SESSION["Sede"]->return->idsed );
