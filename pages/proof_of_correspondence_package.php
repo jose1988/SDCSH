@@ -13,6 +13,7 @@ if (!isset($_SESSION["Usuario"])) {
 
 $_SESSION["paqueteDos"] = "";
 $_SESSION["codigoDos"] = "";
+$_SESSION["fecha"] = "";
 
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
@@ -56,14 +57,21 @@ if ($idPaq == "") {
             $resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
             $codigoSede = $resultadoConsultarSede->return->codigosed;
-            $fecha = date("Y");
+            $fechaCod = date("Y");
             $idpaq = $resultadoConsultarPaquete->return->idpaq;
 
-            $codigoTotal = $codigoSede . $fecha . $idpaq;
+            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
             guardarImagen($codigoTotal);
+			
+			if (isset($resultadoConsultarPaquete->return->fechapaq)) {
+				$fecha = FechaHora($resultadoConsultarPaquete->return->fechapaq);
+			} else {
+    			$fecha = "";
+			}
 
             $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
             $_SESSION["codigoDos"] = $codigoTotal;
+			$_SESSION["fecha"] = $fecha;
 
             llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
             echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";

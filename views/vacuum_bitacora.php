@@ -115,54 +115,9 @@ if ($usuarioBitacora == "") {
                                                     ?>
                                                     <tr>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->idbit ?></td>
-                                                        <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->accionbit ?></td>                                            	<?php
-                                                        $horaTotal = substr($resultadoListaBitacora->return[$i]->fechabit, 11, 8);
-                                                        $hora = substr($horaTotal, 0, 2);
-                                                        if ($hora == '13') {
-                                                            $horaDoce = '01';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '14') {
-                                                            $horaDoce = '02';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '15') {
-                                                            $horaDoce = '03';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '16') {
-                                                            $horaDoce = '04';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '17') {
-                                                            $horaDoce = '05';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '18') {
-                                                            $horaDoce = '06';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '19') {
-                                                            $horaDoce = '07';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '20') {
-                                                            $horaDoce = '08';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '21') {
-                                                            $horaDoce = '09';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '22') {
-                                                            $horaDoce = '10';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '23') {
-                                                            $horaDoce = '11';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '24') {
-                                                            $horaDoce = '12';
-                                                            $formato = 'am';
-                                                        } elseif ($hora == '12') {
-                                                            $horaDoce = '12';
-                                                            $formato = 'pm';
-                                                        } else {
-                                                            $horaDoce = $hora;
-                                                            $formato = 'am';
-                                                        }
-                                                        ?>
-                                                        <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoListaBitacora->return[$i]->fechabit, 0, 10))) . ' ' . '-' . ' ' . $horaDoce . substr($resultadoListaBitacora->return[$i]->fechabit, 13, 6) . ' ' . $formato ?></td>
+                                                        <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->accionbit ?></td>
+                                                        <?php $fecha[$i] = FechaHora($resultadoListaBitacora->return[$i]->fechabit); ?>
+                                                    	<td style="text-align:center"><?php echo $fecha[$i] ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->observacionbit ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->idusu->nombreusu . ' ' . $resultadoListaBitacora->return[$i]->idusu->apellidousu ?></td>
                                                     </tr>
@@ -172,54 +127,9 @@ if ($usuarioBitacora == "") {
                                                 ?>
                                                 <tr>
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->idbit ?></td>
-                                                    <td style="text-align:center"><?php echo $resultadoListaBitacora->return->accionbit ?></td>                                            	<?php
-                                                    $horaTotal = substr($resultadoListaBitacora->return->fechabit, 11, 8);
-                                                    $hora = substr($horaTotal, 0, 2);
-                                                    if ($hora == '13') {
-                                                        $horaDoce = '01';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '14') {
-                                                        $horaDoce = '02';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '15') {
-                                                        $horaDoce = '03';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '16') {
-                                                        $horaDoce = '04';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '17') {
-                                                        $horaDoce = '05';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '18') {
-                                                        $horaDoce = '06';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '19') {
-                                                        $horaDoce = '07';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '20') {
-                                                        $horaDoce = '08';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '21') {
-                                                        $horaDoce = '09';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '22') {
-                                                        $horaDoce = '10';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '23') {
-                                                        $horaDoce = '11';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '24') {
-                                                        $horaDoce = '12';
-                                                        $formato = 'am';
-                                                    } elseif ($hora == '12') {
-                                                        $horaDoce = '12';
-                                                        $formato = 'pm';
-                                                    } else {
-                                                        $horaDoce = $hora;
-                                                        $formato = 'am';
-                                                    }
-                                                    ?>
-                                                    <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoListaBitacora->return->fechabit, 0, 10))) . ' ' . '-' . ' ' . $horaDoce . substr($resultadoListaBitacora->return->fechabit, 13, 6) . ' ' . $formato ?></td>
+                                                    <td style="text-align:center"><?php echo $resultadoListaBitacora->return->accionbit ?></td>
+                                                    <?php $fecha = FechaHora($resultadoListaBitacora->return->fechabit); ?>
+                                                    <td style="text-align:center"><?php echo $fecha?></td>
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->observacionbit ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->idusu->nombreusu . ' ' . $resultadoListaBitacora->return->idusu->apellidousu ?></td>
                                                 </tr>

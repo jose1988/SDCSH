@@ -119,54 +119,8 @@ if ($idPaquete == "" || $usuario == "") {
                                                         <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->idseg ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->iduse->idsed->nombresed ?></td>
-                                                        <?php
-                                                        $horaTotal = substr($resultadoPaquete->return[$i]->fechaseg, 11, 8);
-                                                        $hora = substr($horaTotal, 0, 2);
-                                                        if ($hora == '13') {
-                                                            $horaDoce = '01';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '14') {
-                                                            $horaDoce = '02';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '15') {
-                                                            $horaDoce = '03';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '16') {
-                                                            $horaDoce = '04';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '17') {
-                                                            $horaDoce = '05';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '18') {
-                                                            $horaDoce = '06';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '19') {
-                                                            $horaDoce = '07';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '20') {
-                                                            $horaDoce = '08';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '21') {
-                                                            $horaDoce = '09';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '22') {
-                                                            $horaDoce = '10';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '23') {
-                                                            $horaDoce = '11';
-                                                            $formato = 'pm';
-                                                        } elseif ($hora == '24') {
-                                                            $horaDoce = '12';
-                                                            $formato = 'am';
-                                                        } elseif ($hora == '12') {
-                                                            $horaDoce = '12';
-                                                            $formato = 'pm';
-                                                        } else {
-                                                            $horaDoce = $hora;
-                                                            $formato = 'am';
-                                                        }
-                                                        ?>
-                                                        <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoPaquete->return[$i]->fechaseg, 0, 10))) . ' ' . '-' . ' ' . $horaDoce . substr($resultadoPaquete->return[$i]->fechaseg, 13, 6) . ' ' . $formato ?></td>
+                                                       <?php $fecha[$i] = FechaHora($resultadoPaquete->return[$i]->fechaseg); ?>
+                                                    	<td style="text-align:center"><?php echo $fecha[$i]?></td>
                                                         <?php
                                                         if ($resultadoPaquete->return[$i]->statusseg == "0") {
                                                             $status = "En Proceso";
@@ -194,55 +148,9 @@ if ($idPaquete == "" || $usuario == "") {
                                                 <tr>
                                                     <td style="text-align:center"><?php echo $resultadoPaquete->return->idseg ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu ?></td>
-                                                    <td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idsed->nombresed ?></td>
-                                                    <?php
-                                                    $horaTotal = substr($resultadoPaquete->return->fechaseg, 11, 8);
-                                                    $hora = substr($horaTotal, 0, 2);
-                                                    if ($hora == '13') {
-                                                        $horaDoce = '01';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '14') {
-                                                        $horaDoce = '02';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '15') {
-                                                        $horaDoce = '03';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '16') {
-                                                        $horaDoce = '04';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '17') {
-                                                        $horaDoce = '05';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '18') {
-                                                        $horaDoce = '06';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '19') {
-                                                        $horaDoce = '07';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '20') {
-                                                        $horaDoce = '08';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '21') {
-                                                        $horaDoce = '09';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '22') {
-                                                        $horaDoce = '10';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '23') {
-                                                        $horaDoce = '11';
-                                                        $formato = 'pm';
-                                                    } elseif ($hora == '24') {
-                                                        $horaDoce = '12';
-                                                        $formato = 'am';
-                                                    } elseif ($hora == '12') {
-                                                        $horaDoce = '12';
-                                                        $formato = 'pm';
-                                                    } else {
-                                                        $horaDoce = $hora;
-                                                        $formato = 'am';
-                                                    }
-                                                    ?>
-                                                    <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoPaquete->return->fechaseg, 0, 10))) . ' ' . '-' . ' ' . $horaDoce . substr($resultadoPaquete->return->fechaseg, 13, 6) . ' ' . $formato ?></td>
+                                                    <td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idsed->nombresed ?></td>                                                  
+                                                    <?php $fecha = FechaHora($resultadoPaquete->return->fechaseg); ?>
+                                                    <td style="text-align:center"><?php echo $fecha?></td>
                                                     <?php
                                                     if ($resultadoPaquete->return->statusseg == "0") {
                                                         $status = "En Proceso";
