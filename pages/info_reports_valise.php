@@ -30,21 +30,5 @@ if (isset($SedeRol->return)) {
 $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
-$resultadoSedes = $client->listarSedes();
-if (!isset($resultadoSedes->return)) {
-    $sedes = 0;
-} else {
-    $sedes = count($resultadoSedes->return);
-}
-
-if (isset($_POST["cosultar"])) {
-
-    if (isset($_POST["reporte"]) && $_POST["reporte"] != "" && isset($_POST["sede"]) && $_POST["sede"] != "" && isset($_POST["opcion"]) && $_POST["opcion"] != "") {
-        
-    } else {
-        javaalert("Debe agregar todos los campos, por favor verifique");
-    }
-}
-
-include("../views/reports_valise.php");
+include("../views/info_reports_valise.php");
 ?>

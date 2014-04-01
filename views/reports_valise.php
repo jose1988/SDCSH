@@ -81,54 +81,95 @@
                     </div>
 
                     <div class="span10" align="center">
-
                         <div class="tab-content" id="lista" align="center">
-                            <h2> <strong>Estadísticas de Valijas</strong> </h2>                    
-                            <h2>                            
-                                <form class="form-Dvalija" method="post" id="fval">
-                                    Fecha de Inicio:<input type="text" id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de alerta" required/>
-                                    Fecha de Fin:<input type="text" id="datepickerf" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha límite" required/>
-                                    <button type="button" onClick="Editar();" class="btn">Buscar</button>
-                                </form>
-                            </h2>
-                            <div id="datos">                            
+                            <h2> <strong>Consultar Valijas</strong> </h2>
+                            <br>
+                            <form class="form-Dvalija" method="post" id="fval">
+                                <div class="span12">
+                                    <div class="span6" align="center">
+                                        <strong>Seleccionar Reporte</strong>
+                                        <br>
+                                        <select name='reporte' id='reporte' required  title='Seleccione la Sede'>
+                                            <option value='' style='display:none'>Seleccionar:</option>
+                                            <option value='1'>Total de Valijas Enviadas</option>
+                                            <option value='2'>Total de Valijas Recibidas</option>
+                                            <option value='3'>Total de Valijas con Errores</option>
+                                            <option value='4'>Total de Valijas Anuladas</option>
+                                        </select>
+                                        <br>
+                                    </div>                                	
+                                    <div class="span6" align="center">
+                                        <strong>Seleccionar Sede</strong>
+                                        <br>
+                                        <select name='sede' id='sede' required  title='Seleccione la Sede'>
+                                            <option value='' style='display:none'>Seleccionar:</option>
+                                            <?php
+                                            if ($sedes > 1) {
+                                                $i = 0;
+                                                while ($sedes > $i) {
+                                                    echo "<option value='" . $resultadoSedes->return[$i]->idsed . "' >" . $resultadoSedes->return[$i]->nombresed . "</option>";
+                                                    $i++;
+                                                }
+                                            } else {
+                                                echo "<option value='" . $resultadoProveedor->return->idsed . "' >" . $resultadoProveedor->return->nombresed . "</option>";
+                                            }
+                                            ?>
+                                            <option value=''>Todas las Sedes</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                </div>
+                                <h4>&nbsp;</h4>
+                                <h4 align="center">Rango de Fechas <br>_____________________________________________________________</h4>
                                 <br>
-                            </div>
-                            <div class="span11" align="center"></div>
-                            <br>                      
+                                <div class="span3"></div>
+                                <div class="span6" align="center">
+                                    <div class="span1"></div>
+                                    <div class="span2">
+                                        <strong>Día</strong> <input id="opcion" name="opcion" value="dia" type="radio" checked>
+                                    </div>
+                                    <div class="span1"></div>
+                                    <div class="span2">
+                                        <strong>Mes</strong> <input id="opcion" name="opcion" value="mes" type="radio">
+                                    </div>
+                                    <div class="span1"></div>
+                                    <div class="span2">
+                                        <strong>Año</strong> <input id="opcion" name="opcion" value="ano" type="radio">
+                                    </div>
+                                </div>
+                                <div class="span2"></div>
+                                <br>
+                                <br>
+                                <div class="span2"></div>
+                                <div class="span8">
+                                    <div class="span5">
+                                        <strong>Fecha de Inicio: </strong>
+                                        <input type="text" id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la Fecha de Inicio" required/>
+                                    </div>
+                                    <div class="span1"></div>
+                                    <div class="span5">
+                                        <strong>Fecha de Fin: </strong>
+                                        <input type="text" id="datepickerf" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la Fecha de Fin" required/>
+                                    </div>
+                                </div>
+                                <div class="span2"></div>
+                                <br>
+                                <div align="center" class="span11">
+                                    <button class="btn" type="submit" id="consultar" name="consultar">Consultar</button>
+                                </div>
+                            </form>                    
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <script>
-        	window.onload = function() {
-            	killerSession();
-        	}
-        	function killerSession() {
-            	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        	}
-    	</script>
-
-        <script>
-            function Editar() {
-                var fechaInicio = document.forms.fval.datepicker.value;
-                var fechaFin = document.forms.fval.datepickerf.value;
-                var parametros = {
-                    "fechaInicio": fechaInicio,
-                    "fechaFin": fechaFin
-                };
-                $.ajax({
-                    type: "POST",
-                    url: "../ajax/reports_valise.php",
-                    data: parametros,
-                    dataType: "text",
-                    success: function(response) {
-                        $("#datos").html(response);
-                    }
-                });
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
             }
         </script>
-
     </body>
 </html>

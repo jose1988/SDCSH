@@ -27,7 +27,9 @@ if (isset($SedeRol->return)) {
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
 $sede = $_SESSION["Sede"]->return->idsed;
 
-$resultadoProveedor = $client->consultarProveedor();
+$idsede= array('idsed' => $sede);
+$sedeP= array('sede' => $idsede);
+$resultadoProveedor = $client->consultarProveedorXSede($sedeP);
 if (!isset($resultadoProveedor->return)) {
     $proveedor = 0;
 } else {

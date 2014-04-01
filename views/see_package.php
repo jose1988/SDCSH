@@ -119,19 +119,23 @@ if ($idPaquete == "" || $usuario == "") {
                                                         <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->idseg ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->iduse->idsed->nombresed ?></td>
-                                                       <?php $fecha[$i] = FechaHora($resultadoPaquete->return[$i]->fechaseg); ?>
-                                                    	<td style="text-align:center"><?php echo $fecha[$i]?></td>
+                                                        <?php $fecha[$i] = FechaHora($resultadoPaquete->return[$i]->fechaseg); ?>
+                                                        <td style="text-align:center"><?php echo $fecha[$i] ?></td>
                                                         <?php
+                                                        $status = "";
                                                         if ($resultadoPaquete->return[$i]->statusseg == "0") {
                                                             $status = "En Proceso";
                                                         } elseif ($resultadoPaquete->return[$i]->statusseg == "1") {
                                                             $status = "Entregado";
                                                         } elseif ($resultadoPaquete->return[$i]->statusseg == "2") {
                                                             $status = "Reenviado";
+                                                        } elseif ($resultadoPaquete->return[$i]->statusseg == "3") {
+                                                            $status = "Extraviado";
                                                         }
                                                         ?>
                                                         <td style="text-align:center"><?php echo $status ?></td>
                                                         <?php
+                                                        $tipo = "";
                                                         if ($resultadoPaquete->return[$i]->tiposeg == "0") {
                                                             $tipo = "Origen";
                                                         } elseif ($resultadoPaquete->return[$i]->tiposeg == "1") {
@@ -150,18 +154,22 @@ if ($idPaquete == "" || $usuario == "") {
                                                     <td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idsed->nombresed ?></td>                                                  
                                                     <?php $fecha = FechaHora($resultadoPaquete->return->fechaseg); ?>
-                                                    <td style="text-align:center"><?php echo $fecha?></td>
+                                                    <td style="text-align:center"><?php echo $fecha ?></td>
                                                     <?php
+                                                    $status = "";
                                                     if ($resultadoPaquete->return->statusseg == "0") {
                                                         $status = "En Proceso";
                                                     } elseif ($resultadoPaquete->return->statusseg == "1") {
                                                         $status = "Entregado";
                                                     } elseif ($resultadoPaquete->return->statusseg == "2") {
                                                         $status = "Reenviado";
+                                                    } elseif ($resultadoPaquete->return->statusseg == "3") {
+                                                        $status = "Extraviado";
                                                     }
                                                     ?>
                                                     <td style="text-align:center"><?php echo $status ?></td>
                                                     <?php
+                                                    $tipo = "";
                                                     if ($resultadoPaquete->return->tiposeg == "0") {
                                                         $tipo = "Origen";
                                                     } elseif ($resultadoPaquete->return->tiposeg == "1") {
@@ -175,12 +183,22 @@ if ($idPaquete == "" || $usuario == "") {
                                         </tbody>
                                     </table>                            
                                     <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
-                                <?php } ?>
-                            </form>
-                            <br>
-                            <div align="right">
-                                <a href='../pages/proof_of_correspondence_package.php?id=<?php echo $idPaquete ?>' target="new"><button type="submit" class="btn" id="imprimir" name="imprimir">Imprimir Comprobante</button></a>
-                            </div>                          	
+                                    <br>
+                                </form>
+                                <div class="span6" align="center">
+                                    <a href='../pages/proof_of_traking_package.php?id=<?php echo $idPaquete ?>' target="new"><button type="submit" class="btn" id="imprimirT" name="imprimirT"> <span class="add-on"><i class="icon-print"></i> </span> Traking del Paquete</button></a>
+                                </div>
+                                <div class="span5" align="center">
+                                    <a href='../pages/proof_of_correspondence_package.php?id=<?php echo $idPaquete ?>' target="new"><button type="submit" class="btn" id="imprimirP" name="imprimirP"> <span class="add-on"><i class="icon-print"></i> </span> Comprobante del Paquete</button></a>
+                                </div>
+                                <?php
+                            }
+                            if (!isset($resultadoPaquete->return)) {
+                                ?>
+                                <div align="right">
+                                    <a href='../pages/proof_of_correspondence_package.php?id=<?php echo $idPaquete ?>' target="new"><button type="submit" class="btn" id="imprimirP" name="imprimirP"> <span class="add-on"><i class="icon-print"></i> </span> Comprobante del Paquete</button></a>
+                                </div>
+                            <?php } ?>                                                      	
                         </div>
                     </div>
                 </div>
