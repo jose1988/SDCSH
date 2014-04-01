@@ -51,7 +51,7 @@ if (!isset($_SESSION["Usuario"])) {
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
     if (isset($SedeRol->return)) {
-        if ($SedeRol->return->idrol->idrol != "1" && $SedeRol->return->idrol->idrol != "2" && $SedeRol->return->idrol->idrol != "3") {
+        if ($SedeRol->return->idrol->idrol != "1" && $SedeRol->return->idrol->idrol != "2" && $SedeRol->return->idrol->idrol != "3" && $SedeRol->return->idrol->idrol != "5") {
             iraURL('../pages/inbox.php');
         }
     } else {
@@ -127,10 +127,15 @@ if(isset($PaquetesConfirmados->return)){
 								}else{
 									$asunto=$PaquetesConfirmados->return->asuntopaq;
 								}
+								if($PaquetesConfirmados->return->destinopaq->tipobuz==0){
+		$nombrebuz=$PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;
+		}else{
+		$nombrebuz=$PaquetesConfirmados->return->destinopaq->nombrebuz;
+		}
 								?>
                                     <tr>     
                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->idusu->nombreusu." ".$PaquetesConfirmados->return->origenpaq->idusu->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusu->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusu->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $nombrebuz;?></td>
                                         <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $contenido;?></td>
@@ -154,11 +159,16 @@ if(isset($PaquetesConfirmados->return)){
 								}else{
 									$asunto=$PaquetesConfirmados->return[$i]->asuntopaq;
 								}
+								if($PaquetesConfirmados->return[$i]->destinopaq->tipobuz==0){
+			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;
+			}else{
+			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->nombrebuz;
+			}
 								
 								?>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $nombrebuz;?></td>
                                         <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $contenido;?></td>
