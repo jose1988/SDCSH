@@ -18,7 +18,6 @@ if (!isset($Usuario->return)) {
         <script type='text/javascript' src="../js/bootstrap-transition.js"></script>
         <script type='text/javascript' src="../js/bootstrap-tooltip.js"></script>
         <script type='text/javascript' src="../js/modernizr.min.js"></script>
-<!--<script type='text/javascript' src="../js/togglesidebar.js"></script>-->	
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
@@ -135,8 +134,6 @@ if (!isset($Usuario->return)) {
                                         <td style="text-align:center"><input type="text" name="usuario" id="usuario"  value="<?php echo $Usuario->return->userusu; ?>" size="30"   disabled>
                                         </td>		
                                     </tr>
-                                    <tr>
-
 
                                     <tr>
 
@@ -153,11 +150,7 @@ if (!isset($Usuario->return)) {
                                         <td style="text-align:center">Dirección 1</td>
                                         <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1"  maxlength="2000" style="width:800px"><?php echo $direccion1; ?></textarea></td>
                                     </tr>
-                                    <tr>
-
-                                        <td style="text-align:center">Dirección 2</td>
-                                        <td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2" maxlength="2000" style="width:800px"><?php echo $direccion2; ?></textarea></td>
-                                    </tr>
+    
 
                                 </table><br>
                                 <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" onclick="return confirm('¿Esta seguro que desea guardar los cambios?')" type="submit">Guardar</button></div>

@@ -128,7 +128,7 @@ if (!isset($Sedes->return)) {
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Sede</td>
-                                    <td style="text-align:center"><select onChange="areas();" id="sede" name="sede" required  title="Seleccione la Sede a la que pertenece">
+                                    <td style="text-align:center"><select onChange="areas();direccion();" id="sede" name="sede" required  title="Seleccione la Sede a la que pertenece">
                                             <option value="" style="display:none">Seleccionar:</option>                                  
                                             <?php
                                             if (count($Sedes->return) == 1) {
@@ -142,7 +142,7 @@ if (!isset($Sedes->return)) {
                                         </select></td>
                                 </tr>
                                  <tr>
-                                    <td style="text-align:center">Area de Trabajo</td>
+                                    <td style="text-align:center">Área de Trabajo</td>
                                     <td style="text-align:center"><select id="area" name="area"  required  title="Seleccione la Area de trabajo a la que pertenece">
                               <option value="" style="display:none">Seleccionar:</option>  
                                    
@@ -154,11 +154,7 @@ if (!isset($Sedes->return)) {
                                 </tr>
                                 <tr>
                                     <td style="text-align:center" >Dirección</td>
-                                    <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1" maxlength="2000"  style="width:800px" ></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center" >Dirección de oficina</td>
-                                    <td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2" maxlength="2000"  style="width:800px"></textarea></td>
+                                    <td style="text-align:center"><textarea  style="width:500px;"   id="direccion1" name="direccion1" maxlength="2000"  style="width:800px" ></textarea></td>
                                 </tr>
 
                             </table>
@@ -197,6 +193,9 @@ if (!isset($Sedes->return)) {
 	    }); 
 		
 		
+	}
+	function direccion(){
+	document.forms.formulario.direccion1.value=document.forms.formulario.sede.value;
 	}
 		</script>
         <script src="../js/footable.js" type="text/javascript"></script>

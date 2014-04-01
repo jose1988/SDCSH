@@ -84,9 +84,15 @@ if (!isset($SedeRol->return)) {
                             <li>   
                                 <a href="personal.php">Personal</a>
                             </li>
+							<?php
+							if($SedeRol->return->idrol->idrol==1 || $SedeRol->return->idrol->idrol==3){
+							?>
 							<li>   
-                                <a href="print_operator_level.php">Imprimir</a>
+                                <a href="print_packages_confirmed.php">Imprimir</a>
                             </li>
+							<?php
+							}
+							?>
                         </ul>
                     </div>
                     <div class="span10">
@@ -132,10 +138,15 @@ if (isset($PaquetesConfirmados->return)) {
         } else {
             $asunto = $PaquetesConfirmados->return->asuntopaq;
         }
+		if($PaquetesConfirmados->return->destinopaq->tipobuz==0){
+		$nombrebuz=$PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;
+		}else{
+		$nombrebuz=$PaquetesConfirmados->return->destinopaq->nombrebuz;
+		}
         ?>
                                                     <tr>     
                                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->origenpaq->idusu->apellidousu; ?></td>
-                                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusu->apellidousu; ?></td>
+                                                        <td style='text-align:center'><?php echo $nombrebuz; ?></td>
                                                         <td style='text-align:center'><?php echo $asunto; ?></td>
                                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc; ?></td>
                                                         <td style='text-align:center'><?php echo $contenido; ?></td>
@@ -159,10 +170,16 @@ if (isset($PaquetesConfirmados->return)) {
             } else {
                 $asunto = $PaquetesConfirmados->return[$i]->asuntopaq;
             }
+			if($PaquetesConfirmados->return[$i]->destinopaq->tipobuz==0){
+			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;
+			}else{
+			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->nombrebuz;
+			}
+		
             ?>
                                                         <tr>     
                                                             <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu . " " . $PaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu; ?></td>
-                                                            <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu; ?></td>
+                                                            <td style='text-align:center'><?php echo $nombrebuz; ?></td>
                                                             <td style='text-align:center'><?php echo $asunto; ?></td>
                                                             <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc; ?></td>
                                                             <td style='text-align:center'><?php echo $contenido; ?></td>

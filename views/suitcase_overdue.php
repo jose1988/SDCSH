@@ -118,10 +118,10 @@ if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
         }
         ?>
                                                 <tr class="success">     
-                                                    <td style='text-align:center'><?php echo $ValijasDestino->return->origenval; ?></td>
+                                                    <td style='text-align:center'><?php echo $ValijasDestino->return->origenval->nombresed; ?></td>
+													<td style='text-align:center'><?php echo $ValijasDestino->return->destinoval->nombresed; ?></td>
                                                     <td style='text-align:center'><?php echo $asunto; ?></td>
                                                     <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return->fechaval, 0, 10))); ?></td>
-                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return->fechaalerval, 0, 10))); ?></td>
                                                 </tr>   
                                                 <?php
                                             } else {
@@ -137,10 +137,10 @@ if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
                                                     }
                                                     ?>
                                                     <tr class="success">     
-                                                        <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->origenval; ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->origenval->nombresed; ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->destinoval->nombresed; ?></td>
                                                         <td style='text-align:center'><?php echo $asunto; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return[$i]->fechaval, 0, 10))); ?></td>
-                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return[$i]->fechaalerval, 0, 10))); ?></td>
                                                     </tr>   
                                                     <?php
                                                 }
@@ -159,7 +159,7 @@ if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
         }
         ?>
                                                 <tr class="info">     
-												    <td style='text-align:center'><?php echo $ValijasOrigen->return->destinoval->nombresed; ?></td>
+												    <td style='text-align:center'><?php echo $ValijasOrigen->return->origenval->nombresed; ?></td>
                                                     <td style='text-align:center'><?php echo $ValijasOrigen->return->destinoval->nombresed; ?></td>
                                                     <td style='text-align:center'><?php echo $asunto; ?></td>
                                                     <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return->fechaval, 0, 10))); ?></td>
@@ -178,7 +178,7 @@ if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
                                                     }
                                                     ?>
                                                     <tr class="info">     
-											  <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->destinoval->nombresed; ?></td>
+											  <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->origenval->nombresed; ?></td>
                                                         <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->destinoval->nombresed; ?></td>
                                                         <td style='text-align:center'><?php echo $asunto; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return[$i]->fechaval, 0, 10))); ?></td>
