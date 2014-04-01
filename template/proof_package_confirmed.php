@@ -59,7 +59,7 @@
                     <td align="center"><strong>________________</strong></td>
                 </tr>
                 <tr>
-                    <td align="center"><strong>Usuario</strong></td>
+                    <td align="center"><strong>Usuario <?php echo $rol?></strong></td>
                     <td align="center"><strong>Recepción</strong></td>
                 </tr>
             </table>

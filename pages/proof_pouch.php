@@ -14,6 +14,7 @@ if (!isset($_SESSION["Usuario"])) {
 $_SESSION["valija"] = "";
 $_SESSION["codigo"] = "";
 $_SESSION["origen"] = "";
+$_SESSION["fecha"] = "";
 
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
@@ -64,14 +65,21 @@ try {
 
         $idval = $resultadoConsultarUltimaValija->return->idval;
         $codigoSede = $resultadoConsultarSede->return->codigosed;
-        $fecha = date("Y");
+        $fechaCod = date("Y");
 
-        $codigoTotal = $codigoSede . $fecha . $idval;
+        $codigoTotal = $codigoSede . $fechaCod . $idval;
         guardarImagen($codigoTotal);
+		
+		if (isset($resultadoConsultarUltimaValija->return->fechaval)) {
+    		$fecha = FechaHora($resultadoConsultarUltimaValija->return->fechaval);
+		} else {
+    		$fecha = "";
+		}
 
         $_SESSION["valija"] = $resultadoConsultarUltimaValija;
         $_SESSION["codigo"] = $codigoTotal;
         $_SESSION["origen"] = $resultadoOrigen;
+		$_SESSION["fecha"] = $fecha;
 
         llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
         echo"<script>window.open('../pdf/proof_pouch.php');</script>";

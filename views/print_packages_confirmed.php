@@ -117,7 +117,13 @@ if ($nomUsuario == "") {
                                                     <tr>
                                                         <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->idpaq ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu ?></td>
-                                                        <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu ?></td>
+                                                        <?php if ($resultadoPaquetesConfirmados->return[$i]->destinopaq->tipobuz == '0') { ?>
+                                            				<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu ?></td>
+                                            			<?php
+                                        				}
+                                        				if ($resultadoPaquetesConfirmados->return[$i]->tipobuz == '1') { ?>
+                                            				<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->nombrebuz ?></td>
+                                        				<?php } ?>                                                        
                                                         <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->iddoc->nombredoc ?></td>
                                                         <?php if ($resultadoPaquetesConfirmados->return[$i]->respaq == '0') { ?>
                                                             <td style="text-align:center"><?php echo "No" ?></td>
@@ -134,7 +140,13 @@ if ($nomUsuario == "") {
                                                 <tr>
                                                     <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->idpaq ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->origenpaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return->origenpaq->idusu->apellidousu ?></td>
-                                                    <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return->destinopaq->idusu->apellidousu ?></td>
+                                                    <?php if ($resultadoPaquetesConfirmados->return->destinopaq->tipobuz == '0') { ?>
+                                            				<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return->destinopaq->idusu->apellidousu ?></td>
+                                            		<?php
+                                        			}
+                                        			if ($resultadoPaquetesConfirmados->return->tipobuz == '1') { ?>
+                                            			<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->nombrebuz ?></td>
+                                        			<?php } ?>
                                                     <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->iddoc->nombredoc ?></td>
                                                     <?php if ($resultadoPaquetesConfirmados->return->respaq == '0') { ?>
                                                         <td style="text-align:center"><?php echo "No" ?></td>

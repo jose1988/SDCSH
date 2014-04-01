@@ -3,6 +3,7 @@
 session_start();
 $resultadoConsultarPaquete = $_SESSION["paqueteDos"];
 $codigo = $_SESSION["codigoDos"];
+$fecha = $_SESSION["fecha"];
 
 //Datos del Paquete
 $idPaq = $resultadoConsultarPaquete->return->idpaq;
@@ -32,11 +33,6 @@ if (isset($resultadoConsultarPaquete->return->idpri->nombrepri)) {
 } else {
     $prioridad = "";
 }
-if (isset($resultadoConsultarPaquete->return->fechapaq)) {
-    $fecha = $resultadoConsultarPaquete->return->fechapaq;
-} else {
-    $fecha = "";
-}
 if (isset($resultadoConsultarPaquete->return->idsed->nombresed)) {
     $sede = $resultadoConsultarPaquete->return->idsed->nombresed;
 } else {
@@ -63,46 +59,76 @@ if (isset($resultadoConsultarPaquete->return->respaq)) {
 
 
 //Datos del Origen
-if (isset($resultadoConsultarPaquete->return->origenpaq->nombrebuz)) {
-    $nombreOrig = $resultadoConsultarPaquete->return->origenpaq->nombrebuz;
+if (isset($resultadoConsultarPaquete->return->origenpaq->idusu->nombreusu)) {
+    $nombreOrig = $resultadoConsultarPaquete->return->origenpaq->idusu->nombreusu;
 } else {
     $nombreOrig = "";
 }
-if (isset($resultadoConsultarPaquete->return->origenpaq->direccionbuz)) {
-    $direccionOrig = $resultadoConsultarPaquete->return->origenpaq->direccionbuz;
+if (isset($resultadoConsultarPaquete->return->origenpaq->idusu->direccionusu)) {
+    $direccionOrig = $resultadoConsultarPaquete->return->origenpaq->idusu->direccionusu;
 } else {
     $direccionOrig = "";
 }
-if (isset($resultadoConsultarPaquete->return->origenpaq->telefonobuz)) {
-    $telefonoOrig = $resultadoConsultarPaquete->return->origenpaq->telefonobuz;
+if (isset($resultadoConsultarPaquete->return->origenpaq->idusu->telefonousu)) {
+    $telefonoOrig = $resultadoConsultarPaquete->return->origenpaq->idusu->telefonousu;
 } else {
     $telefonoOrig = "";
 }
 
 //Datos del Destino
-if (isset($resultadoConsultarPaquete->return->destinopaq->nombrebuz)) {
-    $nombreDest = $resultadoConsultarPaquete->return->destinopaq->nombrebuz;
-} else {
-    $nombreDest = "";
-}
-if (isset($resultadoConsultarPaquete->return->destinopaq->direccionbuz)) {
-    $direccionDest = $resultadoConsultarPaquete->return->destinopaq->direccionbuz;
-} else {
-    $direccionDest = "";
-}
-if (isset($resultadoConsultarPaquete->return->destinopaq->telefonobuz)) {
-    $telefonoDest = $resultadoConsultarPaquete->return->destinopaq->telefonobuz;
-} else {
-    $telefonoDest = "";
-}
-
-//Tipo de Buzón
 if (isset($resultadoConsultarPaquete->return->destinopaq->tipobuz)) {
-    if ($resultadoConsultarPaquete->return->destinopaq->tipobuz == "0") {
-        $tipoBuzon = "";
-    } else {
-        $tipoBuzon = "Externo";
-    }
+	
+	if($resultadoConsultarPaquete->return->destinopaq->tipobuz=="0"){
+	
+		if (isset($resultadoConsultarPaquete->return->destinopaq->idusu->nombreusu)) {
+    		$nombreDest = $resultadoConsultarPaquete->return->destinopaq->idusu->nombreusu;
+		} else {
+    		$nombreDest = "";
+		}
+		if (isset($resultadoConsultarPaquete->return->destinopaq->idusu->direccionusu)) {
+    		$direccionDest = $resultadoConsultarPaquete->return->destinopaq->idusu->direccionusu;
+		} else {
+    		$direccionDest = "";
+		}
+		if (isset($resultadoConsultarPaquete->return->destinopaq->idusu->telefonousuz)) {
+    		$telefonoDest = $resultadoConsultarPaquete->return->destinopaq->idusu->telefonousu;
+		} else {
+    		$telefonoDest = "";
+		}
+		$buzon = 0;
+		$tipoBuzon = "";
+	}
+	
+	if($resultadoConsultarPaquete->return->destinopaq->tipobuz=="1"){
+		
+		if (isset($resultadoConsultarPaquete->return->destinopaq->nombrebuz)) {
+    		$nombreDest = $resultadoConsultarPaquete->return->destinopaq->nombrebuz;
+		} else {
+    		$nombreDest = "";
+		}
+		if (isset($resultadoConsultarPaquete->return->destinopaq->direccionbuz)) {
+    		$direccionDest = $resultadoConsultarPaquete->return->destinopaq->direccionbuz;
+		} else {
+    		$direccionDest = "";
+		}
+		if (isset($resultadoConsultarPaquete->return->destinopaq->telefonobuz)) {
+    		$telefonoDest = $resultadoConsultarPaquete->return->destinopaq->telefonobuz;
+		} else {
+    		$telefonoDest = "";
+		}
+		if (isset($resultadoConsultarPaquete->return->destinopaq->correobuz)) {
+    		$correoDest = $resultadoConsultarPaquete->return->destinopaq->correobuz;
+		} else {
+    		$correoDest = "";
+		}
+		if (isset($resultadoConsultarPaquete->return->destinopaq->identificacionbuz)) {
+    		$identDest = $resultadoConsultarPaquete->return->destinopaq->identificacionbuz;
+		} else {
+    		$identDest = "";
+		}
+		$buzon = 1;
+		$tipoBuzon = "Externo";
+	}
 } else {
     $tipoBuzon = "";
 }

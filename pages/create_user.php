@@ -12,7 +12,10 @@ try {
     $usuario = array('user' => $_GET["user"]);
 	 $usernuevo=$_GET["user"];
     
-    /* 	if(isset($Usuario)){
+    /* 
+					$Usuario= array('user' =>$usernuevo);
+					$UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
+	if(isset($UsuarioLogIn->return)){
       javaalert("Lo sentimos no se puede guardar los datos del usuario porque el nombre de usuario ya existe,Consulte con el Administrador");
       iraURL('../index.php');   //ojo necesito el index
       } */    //importante:implementar cuando se tenga el index 
@@ -20,7 +23,7 @@ try {
     $Sedes = $client->listarSedes();
     if (!isset($Sedes->return)) {
         javaalert("Lo sentimos no se puede crear el usuario porque no hay sedes registradas,Consulte con el Administrador");
-        iraURL('../pages/inbox.php');
+        iraURL('../index.php');
     }
 
     if (isset($_POST["crear"])) {
@@ -31,7 +34,6 @@ try {
                 $telefono1 = "";
                 $telefono2 = "";
                 $direccion1 = "";
-                $direccion2 = "";
                 if (isset($_POST["telefono1"])) {
                     $telefono1 = $_POST["telefono1"];
                 }
@@ -44,16 +46,13 @@ try {
                 if (isset($_POST["direccion1"])) {
                     $direccion1 = $_POST["direccion1"];
                 }
-                if (isset($_POST["direccion2"])) {
-                    $direccion2 = $_POST["direccion2"];
-                }
+
                 $Usuario =
                         array(
                             'nombreusu' => $_POST["nombre"],
                             'apellidousu' => $_POST["apellido"],
                             'correousu' => $correo,
                             'direccionusu' => $direccion1,
-                            'direccion2usu' => $direccion2,
                             'telefonousu' => $telefono1,
                             'telefono2usu' => $telefono2,
                             'tipousu' => "0",
@@ -76,10 +75,11 @@ try {
                     javaalert("No se han Guardado los datos del Usuario, Consulte con el Admininistrador");
 					
                 } else {
-					
+					  $Usuario= array('user' =>$usernuevo);
+					$UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
+					$_SESSION["Usuario"]=$UsuarioLogIn;
                     javaalert("Se han Guardado los datos del Usuario");
                     llenarLog(1, "Inserción de Usuario", $_SESSION["Usuario"]->return->idusu, $_POST["sede"]);
-					iraURL("./index.php");
                 }
                 iraURL('../pages/inbox.php');
             } else {

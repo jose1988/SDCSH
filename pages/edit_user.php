@@ -24,7 +24,6 @@ try {
             $telefono1 = "";
             $telefono2 = "";
             $direccion1 = "";
-            $direccion2 = "";
             if (isset($_POST["telefono1"])) {
                 $telefono1 = $_POST["telefono1"];
             }
@@ -34,9 +33,7 @@ try {
             if (isset($_POST["direccion1"])) {
                 $direccion1 = $_POST["direccion1"];
             }
-            if (isset($_POST["direccion2"])) {
-                $direccion2 = $_POST["direccion2"];
-            }
+
             if (preg_match('{^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$}', $_POST["correo"])) {
                 $correo = $_POST["correo"];
                 $registroUsu =
@@ -46,7 +43,6 @@ try {
                             'apellidousu' => $_POST["apellido"],
                             'correousu' => $correo,
                             'direccionusu' => $direccion1,
-                            'direccion2usu' => $direccion2,
                             'telefonousu' => $telefono1,
                             'telefono2usu' => $telefono2,
                             'userusu' => $Usuario->return->userusu);
@@ -66,7 +62,7 @@ try {
     }
     include("../views/edit_user.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>

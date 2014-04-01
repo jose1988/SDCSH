@@ -4,6 +4,7 @@ session_start();
 $resultadoConsultarUltimaValija = $_SESSION["valija"];
 $codigo = $_SESSION["codigo"];
 $resultadoOrigen = $_SESSION["origen"];
+$fecha = $_SESSION["fecha"];
 
 //Datos de la Valija
 $idVal = $resultadoConsultarUltimaValija->return->idval;
@@ -13,15 +14,15 @@ if (isset($resultadoConsultarUltimaValija->return->asuntoval)) {
 } else {
     $asunto = "";
 }
-if (isset($resultadoConsultarUltimaValija->return->fechaval)) {
-    $fecha = $resultadoConsultarUltimaValija->return->fechaval;
-} else {
-    $fecha = "";
-}
 if (isset($resultadoConsultarUltimaValija->return->iduse->idsed->nombresed)) {
     $sede = $resultadoConsultarUltimaValija->return->iduse->idsed->nombresed;
 } else {
     $sede = "";
+}
+if (isset($resultadoConsultarUltimaValija->return->tipoval)) {
+    $tipo = $resultadoConsultarUltimaValija->return->tipoval;
+} else {
+    $tipo = "";
 }
 
 //Datos del Origen

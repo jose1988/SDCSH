@@ -19,7 +19,7 @@ try {
     $Usuario = $client->consultarUsuarioXUser($usuario);
     include("../views/view_user.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>

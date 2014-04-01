@@ -33,11 +33,16 @@
                 <tr>
                     <td><strong>Nombre: </strong><?php echo $nombreDest ?></td>
                     <td><strong>Télefono: </strong><?php echo $telefonoDest ?></td>
-                </tr>
+                </tr>                
+                <?php if ($buzon==1) {?>
+                	<tr>
+                    	<td><strong>C.I o RIF: </strong><?php echo $identDest ?></td>
+                    	<td><strong>Correo: </strong><?php echo $correoDest ?></td>
+                	</tr>
+                <?php } ?>
                 <tr>
                     <td colspan="2"><strong>Dirección: </strong><?php echo $direccionDest ?></td>
                 </tr>
-
                 <tr>
                     <td colspan="2"><strong id="titulo">Datos del Paquete:</strong></td>
                 </tr>
@@ -46,7 +51,7 @@
                     <td><strong>Asunto: </strong><?php echo $asunto ?></td>
                 </tr>
                 <tr>
-                    <td><strong>Fecha: </strong><?php echo date("d/m/Y", strtotime(substr($fecha, 0, 10))) ?></td>
+                    <td><strong>Fecha - Hora: </strong><?php echo $fecha ?></td>
                     <td><strong>Sede: </strong><?php echo $sede ?></td>
                 </tr>
                 <tr>
@@ -60,7 +65,7 @@
                     <td><strong>Fragil: </strong><?php echo $fragil ?></td>
                     <td><strong>Con Respuesta: </strong><?php echo $resp ?></td>
                 </tr>
-                <?php if ($idPaqRes != "") { ?>
+				<?php if ($idPaqRes != "") { ?>
                     <tr>
                         <td colspan="2"><strong>Respuesta al Paquete: </strong><?php echo $idPaqRes ?></td>
                     </tr>

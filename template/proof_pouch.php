@@ -50,8 +50,11 @@
                     <td><strong>Asunto: </strong><?php echo $asunto ?></td>
                 </tr>
                 <tr>
-                    <td><strong>Fecha: </strong><?php echo date("d/m/Y", strtotime(substr($fecha, 0, 10))) ?></td>
+                    <td><strong>Fecha - Hora: </strong><?php echo $fecha ?></td>
                     <td><strong>Sede: </strong><?php echo $sede ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Tipo: </strong><?php echo $tipo ?></td>
                 </tr>
             </table>
             <br>
