@@ -143,13 +143,17 @@ echo "<th style='width:7%; text-align:center' data-sort-ignore='true'>Codigo </t
 									$asunto=$Bandeja->return->asuntopaq;
 								}
 					 echo "<td  style='text-align:center'>".$Bandeja->return->destinopaq->idusu->nombreusu."</td>";
-					 echo "<td  style='text-align:center'>".$asunto."</td>";
+					if($aux!="Por Recibir"){	
+					echo "<td  style='text-align:center'>".$asunto."</td>";
+							}else{
+					echo "<th style='width:7%; text-align:center' data-sort-ignore='true'>".$Bandeja->return->idpaq."</th>";								
+							}
 					echo "<td style='text-align:center'>".$Bandeja->return->iddoc->nombredoc."</td>";
 					if($Bandeja->return->respaq==1 || $Bandeja->return->respaq==2){
 					echo "<td style='text-align:center'> Si </td>";}else{
 						echo "<td style='text-align:center'> No </td>";
 					}
-                    echo "<td style='text-align:center'>".date("d/m/Y", strtotime(substr($Bandeja->return->fechaenviopaq, 0, 10)))."</td>";  
+                    echo "<td style='text-align:center'>".date("d/m/Y", strtotime(substr($Bandeja->return->fechapaq, 0, 10)))."</td>";  
 					if($aux!="Recibidas"){  
 					echo "<td style='text-align:center'>".$Bandeja->return->localizacionpaq."</td>";
 						}echo "<td style='text-align:center'><a href='../pages/see_package.php?id=".$Bandeja->return->idpaq."'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";    

@@ -1,10 +1,4 @@
-<?php
-include("../recursos/funciones.php");
-if (isset($_POST["crear"])) {
-    javaalert("Se ha guardado con exito");
-    iraURL("inbox.php");
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -114,10 +108,7 @@ if (isset($_POST["crear"])) {
                                         <td style="text-align:center" >Nombre</td>
                                         <td style="text-align:center"><input type="text" name="nombre" id="nombre" maxlength="19" size="30" title="Ingrese el primer nombre" placeholder="Ej. Jose" autofocus required></td>
                                     </tr>
-                                    <tr>
-                                        <td style="text-align:center">Apellido</td>
-                                        <td style="text-align:center"><input type="text" name="apellido" id="apellido" maxlength="19" size="30" title="Ingrese el  apellido" placeholder="Ej. Fuentes"  ></td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td style="text-align:center" width="50%">Cédula o Rif</td>
                                         <td style="text-align:center"><input type="text" name="cedularif" id="cedularif" maxlength="19" size="30" title="Ingrese el número de cédula o Rif" placeholder="Ej.   " required>
@@ -130,13 +121,10 @@ if (isset($_POST["crear"])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align:center">Telefono 1</td>
-                                        <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" maxlength="19" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   required></td>
+                                        <td style="text-align:center">Telefono</td>
+                                        <td style="text-align:center"><input type="tel" name="telefono" id="telefono" maxlength="19" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   required></td>
                                     </tr>
-                                    <tr>
-                                        <td style="text-align:center">Telefono 2</td>
-                                        <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" maxlength="19" size="30" placeholder="Ej. 04168674789"  ></td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td style="text-align:center">Dirección</td>
                                         <td style="text-align:center"><textarea id="direccion" name="direccion" style="width:500px"></textarea></td>		 

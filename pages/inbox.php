@@ -21,7 +21,7 @@ if (!isset($_SESSION["Usuario"])) {
   $Usuario= array('user' => $_SESSION["Usuario"]->return->idusu,'ban' =>    $BandejaUsu->return[$i]->nombreiba);
  
   $Ban= array('ban' =>$BandejaUsu->return[$i]->nombreiba);
-  $Bandeja=$client->consultarPaquetesXBandeja($Usuario);
+ 
   $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
   $SedeRol=$client->consultarSedeRol($UsuarioRol); 
   $reg=0;
@@ -31,7 +31,7 @@ if (!isset($_SESSION["Usuario"])) {
 	  }
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
-	iraURL('index.php');	
+	iraURL('../index.php');	
 	}
  //echo'<pre>';
 // print_r( $_SESSION["Usuario"]);
