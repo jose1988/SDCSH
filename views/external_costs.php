@@ -84,18 +84,17 @@
                     </div>
 
                     <div class="span10" align="center">
-                        <form class="form-signin" method="post">
+                        <form class="form-signin" method="post" name="formulario" id="formulario">
                             <div class="tab-content">
                                 <div class="row-fluid">
-                                  
-                                    <div class="span5" align="right">Paquetes: </div>
+                                  <div id="data">
                                        <?php
 if (isset($PaquetesExternos->return)) {
 
     echo "<br>";
     ?>
 
-                                        <h2>Correspondencia que ha sido confirmada</h2>
+                                        <h2>Envio de Correspondencia Externa</h2>
                                         <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                             <thead bgcolor='#FF0000'>
                                                 <tr>	
@@ -127,7 +126,7 @@ if (isset($PaquetesExternos->return)) {
                                                         <td style='text-align:center'><?php echo $asunto; ?></td>
                                                         <td style='text-align:center'><?php echo $rta; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesExternos->return->fechapaq, 0, 10))); ?></td>
-                                                        <td style='text-align:center'><input type="radio" name='ide' id='ide' value='<?php echo $PaquetesExternos->return->idpaq; ?>'></td>  
+                                                        <td style='text-align:center'><input type="radio" name="ide" id="ide" value="<?php echo $PaquetesExternos->return->idpaq; ?>"></td>  
                                                     </tr>   
         <?php
     } else {
@@ -150,7 +149,7 @@ if (isset($PaquetesExternos->return)) {
                                                             <td style='text-align:center'><?php echo $asunto; ?></td>
                                                             <td style='text-align:center'><?php echo $rta; ?></td>
                                                             <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesExternos->return[$i]->fechapaq, 0, 10))); ?></td>
-                                                            <td style='text-align:center'><input type="radio" name='ide['<?php echo $i; ?>']' id=' ide['<?php echo $i; ?>']' value='<?php echo $PaquetesExternos->return[$i]->idpaq; ?>'></td>  
+                                                            <td style='text-align:center'><input type="radio" name="ide" id="ide" value="<?php echo $PaquetesExternos->return[$i]->idpaq; ?>"></td>  
                                                         </tr>   
             <?php
         }
@@ -163,10 +162,10 @@ if (isset($PaquetesExternos->return)) {
     <?php
 }
 ?>
+                                <button class="btn" type="button" id="enviar" name="enviar" onClick="Paquete();">Seleccionar</button>
 
-                              
+                              </div>
                                 </div>
-                                <button class="btn" type="button" id="enviar" name="enviar" >Enviar<</button>
                             </div>
                         </form>
                     </div>
@@ -186,7 +185,39 @@ if (isset($PaquetesExternos->return)) {
             	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
         	}
     	</script>
+<script>
 
+            function Paquete() {
+			 elementos = document.getElementById("formulario").elements;
+     longitud = document.getElementById("formulario").length;
+     var selecciono=0;
+     for (var i = 0; i < longitud; i++){
+         if(elementos[i].type == "radio" && elementos[i].checked == true){
+             var idpaq = elementos[i].value;
+selecciono=1;break;
+         }
+     }
+                if (selecciono==1) {
+                   
+                    var parametros = {
+                        "idpaq": idpaq
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "../ajax/external_costs.php",
+                        data: parametros,
+                        dataType: "text",
+                        success: function(response) {
+                            $("#data").html(response);
+                        }
+                    });
+                } else {
+                    alert("Por favor seleccione un paquete")
+                }
+
+            }
+
+        </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
