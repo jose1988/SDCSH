@@ -12,6 +12,7 @@ if (!isset($_SESSION["Usuario"])) {
 }
 
 $_SESSION["trakingPaquete"] = "";
+$_SESSION["fecha"] = "";
 
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);

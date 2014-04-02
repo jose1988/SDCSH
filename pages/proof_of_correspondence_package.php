@@ -34,56 +34,36 @@ if ($idPaq == "") {
         $client = new SOAPClient($wsdl_url);
         $client->decode_utf8 = false;
 
-        $usuario = array('user' => $nomUsuario);
-        $resultadoConsultarUsuario = $client->consultarUsuarioXUser($usuario);
+        $idPaquete = array('idPaquete' => $idPaq);
+        $resultadoConsultarPaquete = $client->consultarPaqueteXId($idPaquete);
 
-        if (!isset($resultadoConsultarUsuario->return)) {
-            $usua = 0;
+        $idSede = array('idSede' => $ideSede);
+        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+
+        $codigoSede = $resultadoConsultarSede->return->codigosed;
+        $fechaCod = date("Y");
+        $idpaq = $resultadoConsultarPaquete->return->idpaq;
+
+        $codigoTotal = $codigoSede . $fechaCod . $idpaq;
+        guardarImagen($codigoTotal);
+
+        if (isset($resultadoConsultarPaquete->return->fechapaq)) {
+            $fecha = FechaHora($resultadoConsultarPaquete->return->fechapaq);
         } else {
-            $usua = $resultadoConsultarUsuario->return;
+            $fecha = "";
         }
 
-        $idUsuario = $resultadoConsultarUsuario->return->idusu;
+        $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
+        $_SESSION["codigoDos"] = $codigoTotal;
+        $_SESSION["fecha"] = $fecha;
 
-        try {
-            $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-            $client = new SOAPClient($wsdl_url);
-            $client->decode_utf8 = false;
-
-            $idPaquete = array('idPaquete' => $idPaq);
-            $resultadoConsultarPaquete = $client->consultarPaqueteXId($idPaquete);
-
-            $idSede = array('idSede' => $ideSede);
-            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
-
-            $codigoSede = $resultadoConsultarSede->return->codigosed;
-            $fechaCod = date("Y");
-            $idpaq = $resultadoConsultarPaquete->return->idpaq;
-
-            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
-            guardarImagen($codigoTotal);
-			
-			if (isset($resultadoConsultarPaquete->return->fechapaq)) {
-				$fecha = FechaHora($resultadoConsultarPaquete->return->fechapaq);
-			} else {
-    			$fecha = "";
-			}
-
-            $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
-            $_SESSION["codigoDos"] = $codigoTotal;
-			$_SESSION["fecha"] = $fecha;
-
-            llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-            echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
-            //iraURL('../pdf/proof_of_correspondence_package.php');
-        } catch (Exception $e) {
-            javaalert('Lo sentimos no hay conexion');
-            iraURL('../pages/inbox.php');
-        }
-        //iraURL('../pages/inbox.php');
+        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
+        echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
+        //iraURL('../pdf/proof_of_correspondence_package.php');
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/inbox.php');
     }
+    //iraURL('../pages/inbox.php');
 }
 ?>

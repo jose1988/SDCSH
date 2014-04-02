@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Comprobante de Paquetes Confirmados</title>
+        <title>Comprobante de Traking del Paquete</title>
         <link rel="stylesheet" href="../recursos/estilosPdf.css" type="text/css" />
     </head>
     <body>
@@ -13,14 +13,14 @@
             <h3 align="center">Paquete o Correspondencia</h3>
             <table align="center" width="400" border="1" rules="all">
                 <tr>
-                    <td style="text-align:center"><strong>No Paquete</strong></td>
-                    <td style="text-align:center"><strong>Origen</strong></td>
-                    <td style="text-align:center"><strong>De</strong></td>
-                    <td style="text-align:center"><strong>Para</strong></td>
-                    <td style="text-align:center"><strong>Destino</strong></td>
+                    <td align="center"><strong>No Paquete</strong></td>
+                    <td align="center"><strong>Origen</strong></td>
+                    <td align="center"><strong>De</strong></td>
+                    <td align="center"><strong>Para</strong></td>
+                    <td align="center"><strong>Destino</strong></td>
                 </tr>
                 <tr>
-                    <td style="text-align:center"><?php echo $idPaq ?></td>
+                    <td align="center"><?php echo $idPaq ?></td>
                     <td><?php echo $origen ?></td>
                     <td><?php echo $deNombre ?></td>
                     <td><?php echo $paraNombre ?></td>

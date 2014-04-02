@@ -5,6 +5,7 @@ $resultadoPaquete = $_SESSION["trakingPaquete"];
 $contadorPaquete = count($resultadoPaquete);
 $fecha = $_SESSION["fecha"];
 
+//Datos del Paquete
 $idPaq = $resultadoPaquete->return->idpaq->idpaq;
 
 if (isset($resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed)) {

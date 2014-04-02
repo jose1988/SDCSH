@@ -115,7 +115,7 @@ if ($usuarioBitacora == "") {
                                     </div>
                                     <div class="span5" align="right">Código del Proveedor:</div>
                                     <div class="span3" align="left">
-                                        <input type="text" class="input-block-level" name="cProveedor" id="cProveedor" placeholder="Ej. a3Y4" title="Ingrese el código de Zoom" autocomplete="off" pattern="[0-9,a-z,A-Z]{1,38}" required>
+                                        <input type="text" class="input-block-level" name="cProveedor" id="cProveedor" placeholder="Ej. 1234" title="Ingrese el código de Guía" autocomplete="off" required>
                                     </div>
                                 </div>
                                 <button class="btn" type="submit" id="confirmar" name="confirmar" onclick="return confirm('¿Esta seguro que desea confirmar la Valija?')">Confirmar</button>
