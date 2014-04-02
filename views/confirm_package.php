@@ -82,7 +82,7 @@ if (!isset($SedeRol->return)) {
                                 <a href="inbox.php">Atrás</a>
                             </li>
                             <li>   
-                                <a href="personal.php">Personal</a>
+                                <a href="confirmed_user.php">Procesados</a>
                             </li>
 							<?php
 							if($SedeRol->return->idrol->idrol==1 || $SedeRol->return->idrol->idrol==3){
@@ -139,7 +139,7 @@ if (isset($PaquetesConfirmados->return)) {
             $asunto = $PaquetesConfirmados->return->asuntopaq;
         }
 		if($PaquetesConfirmados->return->destinopaq->tipobuz==0){
-		$nombrebuz=$PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;
+		$nombrebuz=$PaquetesConfirmados->return->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusu->apellidousu;
 		}else{
 		$nombrebuz=$PaquetesConfirmados->return->destinopaq->nombrebuz;
 		}

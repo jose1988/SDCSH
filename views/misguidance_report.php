@@ -101,7 +101,7 @@ if ($usuarioBitacora == "") {
                                     <textarea rows="5" cols="5" id="datosPaquete" name="datosPaquete" style="width:600px"></textarea>
                                     <br>
                                     <br>
-                                    <button type="submit" class="btn" id="reportarPaqExc" name="reportarPaqExc" onclick="return confirm('¿Esta seguro que desea reportar por extravió la Correspondencia?')">Reenviar</button>
+                                    <button type="submit" class="btn" id="reportarPaqExc" name="reportarPaqExc" onclick="return confirm('¿Esta seguro que desea reportar por extravió la Correspondencia?')">Reportar</button>
                                     <h6>(se recomienda realizar el acta correspondiente)</h6>
                                 </div>               
                             </div>
@@ -117,7 +117,7 @@ if ($usuarioBitacora == "") {
                                     <textarea rows="5" cols="5" id="datosValija" name="datosValija" style="width:600px"></textarea>
                                     <br>
                                     <br>
-                                    <button type="submit" class="btn" id="reportarValija" name="reportarValija" onclick="return confirm('¿Esta seguro que desea reportar por extravió la Valija?')">Reenviar</button>
+                                    <button type="submit" class="btn" id="reportarValija" name="reportarValija" onclick="return confirm('¿Esta seguro que desea reportar por extravió la Valija?')">Reportar</button>
                                     <h6>(se recomienda realizar el acta correspondiente)</h6>
                                 </div>               
                             </div>	  

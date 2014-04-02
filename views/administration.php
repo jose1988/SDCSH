@@ -213,10 +213,13 @@
        <li>   
       <a href="../pages/inbox.php"> Atrás </a>
            </li> 
-       
+         <li>   
+      <a href="../pages/misguidance_report.php"> Repotar Extravió  </a>
+           </li>
          <li>   
       <a href="../pages/assign_headquarters.php"> Buzon Adicional </a>
            </li>
+           
            
            <li>   
       <a href="../pages/create_headquarters.php"> Crear Sede</a>

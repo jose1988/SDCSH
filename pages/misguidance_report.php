@@ -61,15 +61,15 @@ try {
 
                 if ($reportarPaqExc->return == 1) {
                     javaalert('Paquete dado de baja por extravió');
-                    llenarLog(7, "Paquete Excedente", $usuarioBitacora, $sede);
-                    iraURL('../pages/create_valise.php');
+                    llenarLog(7, "Paquete Extraviado", $usuarioBitacora, $sede);
+                    iraURL('../pages/administration.php');
                 } else {
                     javaalert('no se pudo dar de baja el paquete, verifique la información o consulte con el administrador');
-                    iraURL('../pages/create_valise.php');
+                    iraURL('../pages/administration.php');
                 }
             } catch (Exception $e) {
                 javaalert('Lo sentimos no hay conexión');
-                iraURL('../pages/create_valise.php');
+                iraURL('../pages/administration.php');
             }
         } else {
             javaalert("Debe agregar todos los campos, por favor verifique");
@@ -92,15 +92,15 @@ try {
 
                 if ($reportarValija->return == 1) {
                     javaalert('Valija dada de baja por extravió');
-                    llenarLog(7, "Valija Erronea", $usuarioBitacora, $sede);
-                    iraURL('../pages/create_valise.php');
+                    llenarLog(7, "Valija Extraviada", $usuarioBitacora, $sede);
+                    iraURL('../pages/administration.php');
                 } else {
                     javaalert('no se pudo dar de baja la Valija, verifique la información o consulte con el administrador');
-                    iraURL('../pages/create_valise.php');
+                    iraURL('../pages/administration.php');
                 }
             } catch (Exception $e) {
                 javaalert('Lo sentimos no hay conexion');
-                iraURL('../pages/create_valise.php');
+                iraURL('../pages/administratione.php');
             }
         } else {
             javaalert("Debe agregar todos los campos, por favor verifique");
@@ -110,6 +110,6 @@ try {
     include("../views/misguidance_report.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
-    iraURL('../pages/create_valise.php');
+    iraURL('../pages/administration.php');
 }
 ?>

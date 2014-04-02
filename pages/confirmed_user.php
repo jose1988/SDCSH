@@ -27,7 +27,7 @@ try {
     $parametros = array('idUsuarioSede' => $usuSede);
     $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXUsuarioSede($parametros);
 
-    include("../views/personal.php");
+    include("../views/confirmed_user.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');

@@ -9,8 +9,6 @@ try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
-    $usuario = array('user' => $_GET["user"]);
-	 $usernuevo=$_GET["user"];
     
     /* 	if(isset($Usuario)){
       javaalert("Lo sentimos no se puede guardar los datos del usuario porque el nombre de usuario ya existe,Consulte con el Administrador");
@@ -29,7 +27,7 @@ try {
                 }
 				
                 if (isset($_POST["direccion"])) {
-                    $direccion = $_POST["direccion1"];
+                    $direccion = $_POST["direccion"];
                 }
                
                 $Buzon =
@@ -41,7 +39,7 @@ try {
                             'telefonobuz' => $telefono,
                             'tipobuz' => "1",
 							'borradousu' => "0");
-                $parametros = array('registroBuzon' => $Buzon);
+                $parametros = array('registroBuzon' => $Buzon );
                 $guardo=$client->insertarBuzonExterno($parametros);
                
 				

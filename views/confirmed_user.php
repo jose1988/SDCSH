@@ -93,7 +93,7 @@ if (isset($PaquetesConfirmados->return)) {
 
     echo "<br>";
     ?>
-                                        <h2>Correspondencia que ha sido confirmada por usted</h2>
+                                        <h2>Correspondencia que has confirmado</h2>
                                         <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                             <thead bgcolor='#FF0000'>
                                                 <tr>	
