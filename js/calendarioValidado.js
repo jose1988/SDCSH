@@ -26,22 +26,14 @@ $(function() {
         constrainInput: true,
         beforeShowDay: noFinesDeSemanaNiFestivos,
     });
-	//aqui valido dia : si es jueves o viernes debo sumar 5 días para que se cumpla minimo 3 dias laborables para envio
-var dia;
-    var diaActual = new Date();
-        if (diaActual.getDay() == 4 || diaActual.getDay() == 5) {
-                    dia=5;
-        } else {
-                     dia=3;
-        }
+
     $("#datepicker").datepicker({
-        minDate: dia,
         constrainInput: true,
         beforeShowDay: noFinesDeSemanaNiFestivos,
         onClose: function(selectedDate) {
             var date = $(this).datepicker('getDate');
             if (date) {
-                date.setDate(date.getDate() + 1);
+                date.setDate(date.getDate());
             }
 
             $("#datepickerf").datepicker("option", "minDate", date);
