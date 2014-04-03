@@ -30,5 +30,57 @@ if (isset($SedeRol->return)) {
 $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
-include("../views/info_reports_valise.php");
+try{
+	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+	$client = new SOAPClient($wsdl_url);
+	$client->decode_utf8 = false;
+	$resultadoConsultarValijas = $client->listarValijas();
+	
+	if (isset($resultadoConsultarValijas->return)) {
+		$valijas = count($resultadoConsultarValijas->return);
+	} else{
+		$valijas = 0;
+	}
+	
+	$_SESSION["valijas"] = $resultadoConsultarValijas;
+		
+	if($valijas > 0){	
+		if($valijas > 1) {	
+			for($i=0; $i<$valijas; $i++){
+				$nombreSede = "";
+				$idSed = $resultadoConsultarValijas->return[$i]->origenval;
+				$idSede = array('idSede' => $idSed);
+				$resultadoConsultarSede = $client->consultarSedeXId($idSede);				
+				if(isset($resultadoConsultarSede->return[$i]->nombresed)){
+					$nombreSede = $resultadoConsultarSede->return[$i]->nombresed;
+				}
+				else{
+					$nombreSede = "";
+				}
+				$_SESSION["nombreSede"][$i] = $nombreSede;
+			}
+		}else{
+			$idSed = $resultadoConsultarValijas->return->origenval;
+			$idSede = array('idSede' => $idSed);
+			$resultadoConsultarSede = $client->consultarSedeXId($idSede);
+			if(isset($resultadoConsultarSede->return->nombresed)){
+				$nombreSede = $resultadoConsultarSede->return->nombresed;
+			}
+			else{
+				$nombreSede = "";
+			}
+			$_SESSION["nombreSede"] = $nombreSede;
+		}
+	}
+	
+	if(isset($_POST["imprimir"])){
+		echo"<script>window.open('../pages/proof_of_bags_report.php');</script>";
+	}
+	
+	include("../views/info_reports_valise.php");
+	
+} catch (Exception $e) {
+	javaalert('Lo sentimos no hay conexion');
+	iraURL('../pages/reports_valise.php');
+}
 ?>
