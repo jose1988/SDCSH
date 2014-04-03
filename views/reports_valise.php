@@ -101,7 +101,7 @@
                                     <div class="span6" align="center">
                                         <strong>Seleccionar Sede</strong>
                                         <br>
-                                        <select name='sede' id='sede' required  title='Seleccione la Sede'>
+                                        <select name='osede' id='osede' required  title='Seleccione la Sede'>
                                             <option value='' style='display:none'>Seleccionar:</option>
                                             <?php
                                             if ($sedes > 1) {
@@ -114,7 +114,7 @@
                                                 echo "<option value='" . $resultadoProveedor->return->idsed . "' >" . $resultadoProveedor->return->nombresed . "</option>";
                                             }
                                             ?>
-                                            <option value=''>Todas las Sedes</option>
+                                            <option value='0'>Todas las Sedes</option>
                                         </select>
                                         <br>
                                     </div>

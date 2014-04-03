@@ -141,49 +141,9 @@
 
         <div id="middle">
             <div class="container app-container">
-                <div>
-                    <ul class="nav nav-pills">
-                        <li class="pull-left">
-                            <div class="modal-header" style="width:1135px;">
-                                <h3> Correspondencia    
-                                    <span>SH</span><?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Ayuda</a></li>
-                                        </ul>
-                                    </div>   
-
-                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                           
-                                            <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-
-                                        </ul>
-                                    </div>
-                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                    <div class="btn-group  pull-right">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-
-
-                                        </ul>
-                                    </div>                               
-
-                                </h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                 <?php
+                Menu($SedeRol);
+                ?>
                 <!--Caso pantalla uno-->
                 <form method="post" ENCTYPE="multipart/form-data" id="formu">
                     <div class="row-fluid">

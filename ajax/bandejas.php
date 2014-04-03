@@ -115,7 +115,7 @@ echo "<th style='width:7%; text-align:center' data-sort-ignore='true'>Codigo </t
 					echo "<td style='text-align:center'> Si </td>";}else{
 						echo "<td style='text-align:center'> No </td>";
 					}
-                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Bandeja->return[$j]->fechaenviopaq, 0, 10)))."</td>";
+                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Bandeja->return[$j]->fechapaq, 0, 10)))."</td>";
 						if($aux!="Recibidas"){  
 					echo "<td style='text-align:center'>".$Bandeja->return[$j]->localizacionpaq."</td>";
 						}

@@ -37,9 +37,17 @@ if (!isset($resultadoSedes->return)) {
     $sedes = count($resultadoSedes->return);
 }
 
-if (isset($_POST["cosultar"])) {
+if (isset($_POST["consultar"])) {
 
-    if (isset($_POST["reporte"]) && $_POST["reporte"] != "" && isset($_POST["sede"]) && $_POST["sede"] != "" && isset($_POST["opcion"]) && $_POST["opcion"] != "") {
+    if (isset($_POST["reporte"]) && $_POST["reporte"] != "" && isset($_POST["osede"]) && $_POST["osede"] != "" && isset($_POST["opcion"]) && $_POST["opcion"] != "") {
+		
+		 $_SESSION["Reporte"]=$_POST["reporte"];
+		 $_SESSION["Osede"]=$_POST["osede"];
+		 $_SESSION["Opcion"]=$_POST["opcion"];
+		 $_SESSION["Fechaini"]=$_POST["datepicker"];
+		 $_SESSION["Fechafin"]=$_POST["datepickerf"];
+		 
+		 iraURL("../pages/info_reports_valise.php");
         
     } else {
         javaalert("Debe agregar todos los campos, por favor verifique");

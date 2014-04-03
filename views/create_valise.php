@@ -13,12 +13,13 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
   $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
 			for($j=0; $j<$_SESSION["reg"]; $j++){
 			    if(isset($registrosAValija[$j])){
-				$datosAct = array('localizacion' => "Valija", 'idpaq'=> $registrosAValija[$j],'idval'=>$idValija->return);
+				$datosAct = array('idpaq'=> $registrosAValija[$j],'idval'=>$idValija->return);
+					$client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
 					$idPaquete= array('idpaq' => $registrosAValija[$j] );
 					$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede);
 					$seg = $client->registroSeguimiento($parametros);
 					
-				$client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
+			
 				
 								
 				

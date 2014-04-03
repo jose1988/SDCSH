@@ -81,7 +81,7 @@ try {
                     javaalert("Se han Guardado los datos del Usuario");
                     llenarLog(1, "Inserción de Usuario", $_SESSION["Usuario"]->return->idusu, $_POST["sede"]);
                 }
-                iraURL('../pages/inbox.php');
+                iraURL('../index.php');
             } else {
                 javaalert("El formato del correo es incorrecto, por favor verifique");
             }

@@ -122,7 +122,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					echo "<td style='text-align:center'> No </td>";}else{
 						echo "<td style='text-align:center'> Si </td>";
 					}
-                    echo "<td style='text-align:center'>".date("d/m/Y", strtotime(substr($Registro->return->fechaenviopaq, 0, 10)))."</td>";  
+                    echo "<td style='text-align:center'>".date("d/m/Y", strtotime(substr($Registro->return->fechapaq, 0, 10)))."</td>";  
 					
 					       
 				echo '<td style="text-align:center" width="15%"> <input type="checkbox" name="ide[0]" id="ide[0]" value='.$Registro->return->idpaq.'></td>';                                 

@@ -34,7 +34,8 @@ try{
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 	$client = new SOAPClient($wsdl_url);
 	$client->decode_utf8 = false;
-	$resultadoConsultarValijas = $client->listarValijas();
+	$Con = array('fechaInicio' => $_SESSION["Fechaini"], 'fechaFinal' => $_SESSION["Fechafin"], 'consulta' => $_SESSION["Reporte"], 'idsede' => $_SESSION["Osede"]);
+	$resultadoConsultarValijas = $client->consultarEstadisticas($Con );
 	
 	if (isset($resultadoConsultarValijas->return)) {
 		$valijas = count($resultadoConsultarValijas->return);
@@ -51,8 +52,8 @@ try{
 				$idSed = $resultadoConsultarValijas->return[$i]->origenval;
 				$idSede = array('idSede' => $idSed);
 				$resultadoConsultarSede = $client->consultarSedeXId($idSede);				
-				if(isset($resultadoConsultarSede->return[$i]->nombresed)){
-					$nombreSede = $resultadoConsultarSede->return[$i]->nombresed;
+				if(isset($resultadoConsultarSede->return->nombresed)){
+					$nombreSede = $resultadoConsultarSede->return->nombresed;
 				}
 				else{
 					$nombreSede = "";

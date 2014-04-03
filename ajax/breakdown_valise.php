@@ -120,7 +120,7 @@ require_once('../lib/nusoap.php');
 					echo "<td style='text-align:center'> No </td>";}else{
 						echo "<td style='text-align:center'> Si </td>";
 					}
-                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Valija->return[$j]->fechaenviopaq, 0, 10)))."</td>";  
+                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Valija->return[$j]->fechapaq, 0, 10)))."</td>";  
 					echo "
 					<td style='text-align:center' onmousedown='Rep(".$j.");'  width='15%'><input type='checkbox'  ' name='idc[".$j."]' id='idc[".$j."]' value='".$Valija->return[$j]->idpaq."' /></td>";                     
 					echo " 
@@ -145,7 +145,7 @@ require_once('../lib/nusoap.php');
 					echo "<td style='text-align:center'> No </td>";}else{
 						echo "<td style='text-align:center'> Si </td>";
 					}
-                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Valija->return->fechaenviopaq, 0, 10)))."</td>";  
+                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Valija->return->fechapaq, 0, 10)))."</td>";  
 					echo "
 					<td style='text-align:center' width='15%'><input type='checkbox' name='idc[0]' id='idc[0]' value='".$Valija->return->idpaq."'></td>";                     
 					echo " 

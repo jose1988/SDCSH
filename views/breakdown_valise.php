@@ -3,12 +3,15 @@
 
 if(isset($_POST["guardar"])){
 		try{
-		
+		 
+		 if(isset($_POST["idc"])){
 			$registrosAValijaC=$_POST["idc"];
-			
 			$registrosC=count($_POST["idc"]);
+		 }
+			 if(isset($_POST["idr"])){
 			$registrosAValijaR=$_POST["idr"];
 			$registrosR=count($_POST["idr"]);
+			 }
 			$contadorEliminados=0;
 			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
