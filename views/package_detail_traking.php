@@ -140,7 +140,8 @@ if ($idPaquete == "" || $usuario == "") {
                                                     <?php } else {
                                                         ?>
                                                         <td><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu ?></td>
-                                                    <?php }
+                                                        <?php
+                                                    }
                                                     $fecha[$i] = FechaHora($resultadoPaquete->return[$i]->fechaseg);
                                                     ?>
                                                     <td style="text-align:center"><?php echo $fecha[$i] ?></td>
@@ -178,7 +179,8 @@ if ($idPaquete == "" || $usuario == "") {
                                                 <?php } else {
                                                     ?>
                                                     <td><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu ?></td>
-                                                <?php }
+                                                    <?php
+                                                }
                                                 $fecha = FechaHora($resultadoPaquete->return->fechaseg);
                                                 ?>
                                                 <td style="text-align:center"><?php echo $fecha ?></td>
@@ -211,7 +213,7 @@ if ($idPaquete == "" || $usuario == "") {
                                 </table>                            
                                 <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
                                 <br>
-								<br>
+                                <br>
                                 <div align="center">
                                     <a href='../pages/proof_of_traking_package.php?id=<?php echo $idPaquete ?>' target="new"><button type="submit" class="btn" id="imprimirT" name="imprimirT">Imprimir</button></a>
                                 </div>
@@ -223,25 +225,24 @@ if ($idPaquete == "" || $usuario == "") {
                 </div>
             </div>
         </div>
-    </div>   
 
-    <script>
-        window.onload = function() {
-            killerSession();
-        }
-        function killerSession() {
-            setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        }
-    </script>
+        <script>
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        </script>
 
-    <script src="../js/footable.js" type="text/javascript"></script>
-    <script src="../js/footable.paginate.js" type="text/javascript"></script>
-    <script src="../js/footable.sortable.js" type="text/javascript"></script>
+        <script src="../js/footable.js" type="text/javascript"></script>
+        <script src="../js/footable.paginate.js" type="text/javascript"></script>
+        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
-    <script type="text/javascript">
-        $(function() {
-            $('table').footable();
-        });
-    </script>		 
-</body>
+        <script type="text/javascript">
+            $(function() {
+                $('table').footable();
+            });
+        </script>		 
+    </body>
 </html>

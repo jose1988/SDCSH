@@ -97,11 +97,11 @@
                                 ?>
                                 <div align="center" id="graficoHorizontal" style="min-width: 100px; max-width: 600px; height: <?php echo $tama ?>px; margin: 0 auto">   	
                                 </div>
-                            <?php
-                            } else { ?>
+                                <?php } else {
+                                ?>
                                 <div align="center" id="graficoVertical" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto">   	
                                 </div>
-							<?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

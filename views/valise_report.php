@@ -21,8 +21,6 @@ if ($usuarioBitacora == "") {
 <!--<script type='text/javascript' src="../js/togglesidebar.js"></script>-->	
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
-        <script src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
         <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
@@ -126,18 +124,15 @@ if ($usuarioBitacora == "") {
                 </div>
             </div>
         </div>
-        <!-- /container -->
-        <div id="footer" class="container">    	
-        </div>
 
         <script>
-        	window.onload = function() {
-            	killerSession();
-        	}
-        	function killerSession() {
-            	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        	}
-    	</script>
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        </script>
 
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>

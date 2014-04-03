@@ -117,7 +117,7 @@ if ($usuarioBitacora == "") {
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->idbit ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->accionbit ?></td>
                                                         <?php $fecha[$i] = FechaHora($resultadoListaBitacora->return[$i]->fechabit); ?>
-                                                    	<td style="text-align:center"><?php echo $fecha[$i] ?></td>
+                                                        <td style="text-align:center"><?php echo $fecha[$i] ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->observacionbit ?></td>
                                                         <td style="text-align:center"><?php echo $resultadoListaBitacora->return[$i]->idusu->nombreusu . ' ' . $resultadoListaBitacora->return[$i]->idusu->apellidousu ?></td>
                                                     </tr>
@@ -129,7 +129,7 @@ if ($usuarioBitacora == "") {
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->idbit ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->accionbit ?></td>
                                                     <?php $fecha = FechaHora($resultadoListaBitacora->return->fechabit); ?>
-                                                    <td style="text-align:center"><?php echo $fecha?></td>
+                                                    <td style="text-align:center"><?php echo $fecha ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->observacionbit ?></td>
                                                     <td style="text-align:center"><?php echo $resultadoListaBitacora->return->idusu->nombreusu . ' ' . $resultadoListaBitacora->return->idusu->apellidousu ?></td>
                                                 </tr>
@@ -152,28 +152,23 @@ if ($usuarioBitacora == "") {
             </div>
         </div>
 
-        <!-- /container -->
-        <div id="footer" class="container">    	
-        </div>
-    </div>
+        <script>
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        </script>
 
-    <script>
-        	window.onload = function() {
-            	killerSession();
-        	}
-        	function killerSession() {
-            	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        	}
-    </script>
+        <script src="../js/footable.js" type="text/javascript"></script>
+        <script src="../js/footable.paginate.js" type="text/javascript"></script>
+        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
-    <script src="../js/footable.js" type="text/javascript"></script>
-    <script src="../js/footable.paginate.js" type="text/javascript"></script>
-    <script src="../js/footable.sortable.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        $(function() {
-            $('table').footable();
-        });
-    </script>
-</body>
+        <script type="text/javascript">
+            $(function() {
+                $('table').footable();
+            });
+        </script>
+    </body>
 </html>
