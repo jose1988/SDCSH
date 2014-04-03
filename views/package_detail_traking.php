@@ -118,7 +118,6 @@ if ($idPaquete == "" || $usuario == "") {
                                     </tbody>
                                 </table>
                                 <br>
-                                <br>
                                 <strong> <h2 align="center">Traking del Paquete</h2> </strong>
                                 <table class='footable table table-striped table-bordered' data-page-size='5'>
                                     <thead bgcolor='#FF0000'>
@@ -212,7 +211,7 @@ if ($idPaquete == "" || $usuario == "") {
                                 </table>                            
                                 <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
                                 <br>
-
+								<br>
                                 <div align="center">
                                     <a href='../pages/proof_of_traking_package.php?id=<?php echo $idPaquete ?>' target="new"><button type="submit" class="btn" id="imprimirT" name="imprimirT">Imprimir</button></a>
                                 </div>
@@ -223,10 +222,6 @@ if ($idPaquete == "" || $usuario == "") {
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- /container -->
-        <div id="footer" class="container">    	
         </div>
     </div>   
 

@@ -59,10 +59,12 @@ if ($idPaquete == "") {
             $_SESSION["fecha"] = $fecha;
         }
         $_SESSION["trakingPaquete"] = $resultadoPaquete;
-
-        llenarLog(6, "Comprobante de Traking de Paquete", $usuarioBitacora, $ideSede);
-        echo"<script>window.open('../pdf/proof_of_traking_package.php');</script>";
-        //iraURL('../pdf/proof_of_traking_package.php');
+		
+		if(isset($resultadoPaquete->return)){
+        	llenarLog(6, "Comprobante de Traking de Paquete", $usuarioBitacora, $ideSede);
+        	echo"<script>window.open('../pdf/proof_of_traking_package.php');</script>";
+        	//iraURL('../pdf/proof_of_traking_package.php');
+		}
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/inbox.php');

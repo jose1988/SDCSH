@@ -80,10 +80,12 @@ try {
         $_SESSION["codigo"] = $codigoTotal;
         $_SESSION["origen"] = $resultadoOrigen;
 		$_SESSION["fecha"] = $fecha;
-
-        llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
-        echo"<script>window.open('../pdf/proof_pouch.php');</script>";
-        //iraURL('../pdf/proof_pouch.php');
+		
+		if(isset($resultadoConsultarUltimaValija->return)){
+        	llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
+        	echo"<script>window.open('../pdf/proof_pouch.php');</script>";
+        	//iraURL('../pdf/proof_pouch.php');
+		}
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/create_valise.php');
