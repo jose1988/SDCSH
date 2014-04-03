@@ -63,7 +63,7 @@ if ($idValija == "") {
             } else {
                 $fechaRecibido = "";
             }
-        } else {
+        } elseif($paquetesXValija==1) {
             $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return->idval->origenval);
             $resultadoOrigen = $client->consultarSedeXId($idOrigen);
 

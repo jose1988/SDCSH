@@ -38,7 +38,6 @@ if ($idPaquete == "") {
         } else {
             $segumientoPaquete = count($resultadoPaquete->return);
         }
-
         if ($segumientoPaquete > 1) {
 			$idPaq = $resultadoPaquete->return[0]->idpaq->idpaq;
             if (isset($resultadoPaquete->return[0]->idpaq->origenpaq->idatr->idsed->nombresed)) {
@@ -90,7 +89,7 @@ if ($idPaquete == "") {
                     }
                 }
             }            
-        } else {
+        } elseif($segumientoPaquete==1) {
             $idPaq = $resultadoPaquete->return->idpaq->idpaq;
             if (isset($resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed)) {
                 $origen = $resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed;

@@ -57,7 +57,7 @@ if ($contadorPaquete > 1) {
             }
         }
     }
-} else {
+} elseif($contadorPaquete==1) {
     $idPaq = $resultadoPaquete->return->idpaq->idpaq;
     if (isset($resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed)) {
         $origen = $resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed;

@@ -50,7 +50,7 @@ if ($idPaquete == "") {
                 }
                 $_SESSION["fecha"][$i] = $fecha[$i];
             }
-        } else {
+        } elseif($segumientoPaquete==1) {
             if (isset($resultadoPaquete->return->fechaseg)) {
                 $fecha = FechaHora($resultadoPaquete->return->fechaseg);
             } else {

@@ -120,7 +120,7 @@ if ($idPaquete == "" || $usuario == "") {
                                 <br>
                                 <br>
                                 <strong> <h2 align="center">Traking del Paquete</h2> </strong>
-                                <table class='footable table table-striped table-bordered' data-page-size='10'>
+                                <table class='footable table table-striped table-bordered' data-page-size='5'>
                                     <thead bgcolor='#FF0000'>
                                         <tr>
                                             <th style="text-align:center" data-sort-ignore="true">Usuario</th>

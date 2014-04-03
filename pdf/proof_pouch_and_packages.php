@@ -31,7 +31,7 @@ if ($contadorPaquetes > 1) {
     } else {
         $destino = "";
     }
-} else {
+} elseif($contadorPaquetes==1) {
     $idVal = $resultadoPaquetesPorValija->return->idval->idval;
     if (isset($resultadoPaquetesPorValija->return->idval->codproveedorval)) {
         $guia = $resultadoPaquetesPorValija->return->idval->codproveedorval;
