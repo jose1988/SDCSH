@@ -9,7 +9,7 @@ if (!isset($_SESSION["Usuario"])) {
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
 }
-
+try{
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
@@ -27,6 +27,10 @@ if (isset($SedeRol->return)) {
 $sede = array( 'idsed' => $_SESSION["Sede"]->return->idsed);
 $parametros = array( 'sede' => $sede);
 $PaquetesExternos = $client->consultarPaquetesExternosXEnviar($parametros);
-///echo '<pre>'; print_r($PaquetesExternos);
+
 include("../views/external_costs.php");
+ } catch (Exception $e) {
+					javaalert('Lo sentimos no hay conexion');
+					iraURL('../pages/inbox.php');
+}
 ?>

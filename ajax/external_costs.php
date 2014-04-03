@@ -71,8 +71,8 @@ if (!isset($_SESSION["Usuario"])) {
                                         <table class='footable table table-striped table-bordered'>    
                                             <thead bgcolor='#FF0000'>
                                                 <tr>	
-													 <th style='width:7%; text-align:center'>Código</th> 
-													 <th style='width:7%; text-align:center'>Origen</th>
+													 <th style='width:7%; text-align:center' data-sort-ignore="true">Código</th> 
+													 <th style='width:7%; text-align:center' data-sort-ignore="true" >Origen</th>
                                                     <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
                                                     <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                                                     <th style='width:7%; text-align:center' data-sort-ignore="true">C/R</th>
@@ -102,9 +102,8 @@ if (!isset($_SESSION["Usuario"])) {
                                                     </tr>   
 							 </tbody>
                                         </table>
-										 <div class="span5" align="right">Proveedor: </div>
-										 <div class="span3" align="left">
-                              
+										 <div class="span4" align="right"><b>Proveedor:</b> </div>
+                                <div class="span3" align="left">
 										<select name='proveedor' id='proveedor' required  title='Seleccione el Proveedor'>
                                             <option value='' style='display:none'>Seleccionar:</option>
                                             <?php
@@ -119,15 +118,16 @@ if (!isset($_SESSION["Usuario"])) {
                                             }
                                             ?>
                                         </select>
-                                    </div>
-                                    <div class="span5" align="right">Código del Proveedor:</div>
+										</div>
+									<br><br><br>
+                                    <div class="span4" align="right"><b>Código del Proveedor:</b></div>
                                     <div class="span3" align="left">
-                                        <input type="text" class="input-block-level" name="cProveedor" id="cProveedor" placeholder="Ej. a3Y4" title="Ingrese el código de Zoom" autocomplete="off" pattern="[0-9,a-z,A-Z]{1,38}" required>
+                                        <input type="text" class="input-block-level" style="width:220px ;height:22px" name="cProveedor" id="cProveedor" placeholder="Ej. a3Y4" title="Ingrese el código de Zoom" autocomplete="off" required>
                                     </div>
 							 
-							 
+							 <br><br><br>
 							
-                                <div align="center"><button type="button" class="btn" onClick="pregunta();" name="confirma" >Enviar</button></div>
+                                <div align="center"><button type="button" class="btn" onClick="pregunta();" name="confirma" >Enviar Correspondencia</button></div>
 
 			 <?php		
 			 }else {
@@ -146,7 +146,7 @@ if (!isset($_SESSION["Usuario"])) {
 <script language="JavaScript" type="text/javascript">
 
 function pregunta(){ 
-confirmar=confirm("¿Esta seguro que desea confirmar el paquete?"); 
+confirmar=confirm("¿Esta seguro que desea enviar el paquete?"); 
 if (confirmar) 
 Confirma();
 } 

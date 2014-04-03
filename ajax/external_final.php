@@ -16,7 +16,7 @@ if (!isset($_SESSION["Usuario"])) {
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
     if (isset($SedeRol->return)) {
-        if ($SedeRol->return->idrol->idrol != "2" && $SedeRol->return->idrol->idrol != "5" && $SedeRol->return->idrol->idrol != "3") {
+        if ($SedeRol->return->idrol->idrol != "2" && $SedeRol->return->idrol->idrol != "5") {
             iraURL('../pages/inbox.php');
         }
     } else {
