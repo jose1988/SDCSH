@@ -33,7 +33,7 @@
             </table>
             <br>
             <h3 align="center">Detalle de Valija</h3>
-            <table align="center" width="400" border="1" rules="all">
+            <table align="center" width="450" border="1" rules="all">
                 <tr>
                     <td align="center"><strong>No de Paquete</strong></td>
                     <td align="center"><strong>Origen</strong></td>
@@ -58,23 +58,34 @@
                             <td><?php echo $nomOrigen ?></td>
                             <?php
                             $deOrigen = "";
+                            $apellidoOrigen = "";
                             if (isset($resultadoPaquetesPorValija->return[$i]->origenpaq->idusu->nombreusu)) {
                                 $deOrigen = $resultadoPaquetesPorValija->return[$i]->origenpaq->idusu->nombreusu;
                             } else {
                                 $deOrigen = "";
                             }
+                            if (isset($resultadoPaquetesPorValija->return[$i]->origenpaq->idusu->apellidousu)) {
+                                $apellidoOrigen = $resultadoPaquetesPorValija->return[$i]->origenpaq->idusu->apellidousu;
+                            } else {
+                                $apellidoOrigen = "";
+                            }
                             ?>
-                            <td><?php echo $deOrigen ?></td>
+                            <td><?php echo $deOrigen . ' ' . $apellidoOrigen ?></td>
                             <?php
                             $paraDestino = "";
+                            $apellidoDestino = "";
                             $nomDestino = "";
                             if (isset($resultadoPaquetesPorValija->return[$i]->destinopaq->tipobuz)) {
                                 if ($resultadoPaquetesPorValija->return[$i]->destinopaq->tipobuz == "0") {
-
                                     if (isset($resultadoPaquetesPorValija->return[$i]->destinopaq->idusu->nombreusu)) {
                                         $paraDestino = $resultadoPaquetesPorValija->return[$i]->destinopaq->idusu->nombreusu;
                                     } else {
                                         $paraDestino = "";
+                                    }
+                                    if (isset($resultadoPaquetesPorValija->return[$i]->destinopaq->idusu->apellidousu)) {
+                                        $apellidoDestino = $resultadoPaquetesPorValija->return[$i]->destinopaq->idusu->apellidousu;
+                                    } else {
+                                        $apellidoDestino = "";
                                     }
                                     if (isset($resultadoPaquetesPorValija->return[$i]->destinopaq->idatr->idsed->nombresed)) {
                                         $nomDestino = $resultadoPaquetesPorValija->return[$i]->destinopaq->idatr->idsed->nombresed;
@@ -96,7 +107,7 @@
                                 }
                             }
                             ?>                            
-                            <td><?php echo $paraDestino ?></td>
+                            <td><?php echo $paraDestino . ' ' . $apellidoDestino ?></td>
                             <td><?php echo $nomDestino ?></td>
                         </tr>
                         <?php
@@ -107,6 +118,7 @@
                         <td align="center"><?php echo $resultadoPaquetesPorValija->return->idpaq ?></td>
                         <?php
                         $nomOrigen = "";
+                        $apellidoOrigen = "";
                         if (isset($resultadoPaquetesPorValija->return->origenpaq->idatr->idsed->nombresed)) {
                             $nomOrigen = $resultadoPaquetesPorValija->return->origenpaq->idatr->idsed->nombresed;
                         } else {
@@ -121,10 +133,16 @@
                         } else {
                             $deOrigen = "";
                         }
+                        if (isset($resultadoPaquetesPorValija->return->origenpaq->idusu->apellidousu)) {
+                            $apellidoOrigen = $resultadoPaquetesPorValija->return->origenpaq->idusu->apellidousu;
+                        } else {
+                            $apellidoOrigen = "";
+                        }
                         ?>
-                        <td><?php echo $deOrigen ?></td>
+                        <td><?php echo $deOrigen . ' ' . $apellidoOrigen ?></td>
                         <?php
                         $paraDestino = "";
+                        $apellidoDestino = "";
                         $nomDestino = "";
                         if (isset($resultadoPaquetesPorValija->return->destinopaq->tipobuz)) {
                             if ($resultadoPaquetesPorValija->return->destinopaq->tipobuz == "0") {
@@ -133,6 +151,11 @@
                                     $paraDestino = $resultadoPaquetesPorValija->return->idpaq->destinopaq->idusu->nombreusu;
                                 } else {
                                     $paraDestino = "";
+                                }
+                                if (isset($resultadoPaquetesPorValija->return->destinopaq->idusu->apellidousu)) {
+                                    $apellidoDestino = $resultadoPaquetesPorValija->return->destinopaq->idusu->apellidousu;
+                                } else {
+                                    $apellidoDestino = "";
                                 }
                                 if (isset($resultadoPaquetesPorValija->return->destinopaq->idatr->idsed->nombresed)) {
                                     $nomDestino = $resultadoPaquetesPorValija->return->destinopaq->idatr->idsed->nombresed;
@@ -154,7 +177,7 @@
                             }
                         }
                         ?>                            
-                        <td><?php echo $paraDestino ?></td>
+                        <td><?php echo $paraDestino . ' ' . $apellidoDestino ?></td>
                         <td><?php echo $nomDestino ?></td>
                     </tr>
                 <?php }

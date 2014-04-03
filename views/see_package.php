@@ -90,20 +90,18 @@ if ($idPaquete == "" || $usuario == "") {
                             if (!isset($resultadoPaquete->return)) {
                                 echo '<div class="alert alert-block" align="center">';
                                 echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
-                                echo '<h4 align="center">No Existen Registros de Seguimiento para este Paquete</h4>';
+                                echo '<h4 align="center">No Existen Registros de Traking del Paquete</h4>';
                                 echo '</div>';
                             }
                             //Si existen registros muestro la tabla
                             else {
                                 ?>
                                 <form class="form-search" id="formulario" method="post">                   
-                                    <strong> <h2 align="center">Registro de Seguimiento del Paquete</h2> </strong>
+                                    <strong> <h2 align="center">Traking del Paquete</h2> </strong>
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>
                                         <thead bgcolor='#FF0000'>
                                             <tr>
-                                                <th style="text-align:center">Seguimiento</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Usuario</th>
-                                                <th style="text-align:center" data-sort-ignore="true">Sede</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Fecha - Hora</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Status</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Tipo</th>
@@ -116,10 +114,14 @@ if ($idPaquete == "" || $usuario == "") {
                                                 for ($i = 0; $i < $segumientoPaquete; $i++) {
                                                     ?>
                                                     <tr>
-                                                        <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->idseg ?></td>
-                                                        <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu ?></td>
-                                                        <td style="text-align:center"><?php echo $resultadoPaquete->return[$i]->iduse->idsed->nombresed ?></td>
-                                                        <?php $fecha[$i] = FechaHora($resultadoPaquete->return[$i]->fechaseg); ?>
+                                                        <?php if (isset($resultadoPaquete->return[$i]->iduse->idusu->apellidousu)) { ?>
+                                                            <td><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu . ' ' . $resultadoPaquete->return[$i]->iduse->idusu->apellidousu ?></td>
+                                                        <?php } else {
+                                                            ?>
+                                                            <td><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu ?></td>
+                                                        <?php }
+                                                        $fecha[$i] = FechaHora($resultadoPaquete->return[$i]->fechaseg);
+                                                        ?>
                                                         <td style="text-align:center"><?php echo $fecha[$i] ?></td>
                                                         <?php
                                                         $status = "";
@@ -150,10 +152,14 @@ if ($idPaquete == "" || $usuario == "") {
                                             } else {
                                                 ?>
                                                 <tr>
-                                                    <td style="text-align:center"><?php echo $resultadoPaquete->return->idseg ?></td>
-                                                    <td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu ?></td>
-                                                    <td style="text-align:center"><?php echo $resultadoPaquete->return->iduse->idsed->nombresed ?></td>                                                  
-                                                    <?php $fecha = FechaHora($resultadoPaquete->return->fechaseg); ?>
+                                                    <?php if (isset($resultadoPaquete->return->iduse->idusu->apellidousu)) { ?>
+                                                        <td><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu . ' ' . $resultadoPaquete->return->iduse->idusu->apellidousu ?></td>
+                                                    <?php } else {
+                                                        ?>
+                                                        <td><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu ?></td>
+                                                    <?php }
+                                                    $fecha = FechaHora($resultadoPaquete->return->fechaseg);
+                                                    ?>
                                                     <td style="text-align:center"><?php echo $fecha ?></td>
                                                     <?php
                                                     $status = "";

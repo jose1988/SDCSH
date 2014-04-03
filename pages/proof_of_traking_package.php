@@ -43,8 +43,8 @@ if ($idPaquete == "") {
 
         if ($segumientoPaquete > 1) {
             for ($i = 0; $i < $segumientoPaquete; $i++) {
-                if (isset($resultadoPaquete->return->fechaseg)) {
-                    $fecha[$i] = FechaHora($resultadoPaquete->return->fechaseg);
+                if (isset($resultadoPaquete->return[$i]->fechaseg)) {
+                    $fecha[$i] = FechaHora($resultadoPaquete->return[$i]->fechaseg);
                 } else {
                     $fecha[$i] = "";
                 }

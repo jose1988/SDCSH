@@ -116,10 +116,22 @@ if ($nomUsuario == "") {
                                                     ?>
                                                     <tr>
                                                         <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->idpaq ?></td>
-                                                        <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu ?></td>
-                                                        <?php if ($resultadoPaquetesConfirmados->return[$i]->destinopaq->tipobuz == '0') { ?>
+                                                        <?php 
+														if(isset($resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu)){?>
+                                                    		<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu ?></td>
+                                                    	<?php }
+														else{?>
+                                                    		<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu ?></td>                                                    
+                                                    	<?php } 
+														if ($resultadoPaquetesConfirmados->return[$i]->destinopaq->tipobuz == '0') { 
+															if(isset($resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu)){
+														?>
                                             				<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu ?></td>
                                             			<?php
+															}
+															else{ ?>
+                                                            <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu ?></td>																
+															<?php }
                                         				}
                                         				if ($resultadoPaquetesConfirmados->return[$i]->tipobuz == '1') { ?>
                                             				<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->nombrebuz ?></td>
@@ -139,11 +151,23 @@ if ($nomUsuario == "") {
                                                 ?>
                                                 <tr>
                                                     <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->idpaq ?></td>
-                                                    <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->origenpaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return->origenpaq->idusu->apellidousu ?></td>
-                                                    <?php if ($resultadoPaquetesConfirmados->return->destinopaq->tipobuz == '0') { ?>
+                                                    <?php 
+													if(isset($resultadoPaquetesConfirmados->return->origenpaq->idusu->apellidousu)){?>
+                                                    	<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->origenpaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return->origenpaq->idusu->apellidousu ?></td>
+                                                    <?php }
+													else{?>
+                                                    	<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->origenpaq->idusu->nombreusu ?></td>                                                    
+                                                    <?php } 
+														if ($resultadoPaquetesConfirmados->return->destinopaq->tipobuz == '0') { 
+															if(isset($resultadoPaquetesConfirmados->return->destinopaq->idusu->apellidousu)){
+														?>
                                             				<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->idusu->nombreusu . ' ' . $resultadoPaquetesConfirmados->return->destinopaq->idusu->apellidousu ?></td>
-                                            		<?php
-                                        			}
+                                            			<?php
+															}
+															else{ ?>
+                                                            <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->idusu->nombreusu ?></td>																
+															<?php }
+                                        				}
                                         			if ($resultadoPaquetesConfirmados->return->tipobuz == '1') { ?>
                                             			<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->nombrebuz ?></td>
                                         			<?php } ?>

@@ -9,27 +9,45 @@ $resultadoOrigen = $_SESSION["origenValija"];
 $contadorPaquetes = count($resultadoPaquetesPorValija->return);
 
 //Datos de la Valija
-$idVal = $resultadoPaquetesPorValija->return->idval->idval;
-
 if (isset($resultadoOrigen->return->nombresed)) {
     $origen = $resultadoOrigen->return->nombresed;
 } else {
     $origen = "";
 }
-if (isset($resultadoPaquetesPorValija->return->idval->codproveedorval)) {
-    $guia = $resultadoPaquetesPorValija->return->idval->codproveedorval;
+if ($contadorPaquetes > 1) {
+    $idVal = $resultadoPaquetesPorValija->return[0]->idval->idval;
+    if (isset($resultadoPaquetesPorValija->return[0]->idval->codproveedorval)) {
+        $guia = $resultadoPaquetesPorValija->return[0]->idval->codproveedorval;
+    } else {
+        $guia = "";
+    }
+    if (isset($resultadoPaquetesPorValija->return[0]->idval->tipoval)) {
+        $tipo = $resultadoPaquetesPorValija->return[0]->idval->tipoval;
+    } else {
+        $tipo = "";
+    }
+    if (isset($resultadoPaquetesPorValija->return[0]->idval->destinoval->nombresed)) {
+        $destino = $resultadoPaquetesPorValija->return[0]->idval->destinoval->nombresed;
+    } else {
+        $destino = "";
+    }
 } else {
-    $guia = "";
-}
-if (isset($resultadoPaquetesPorValija->return->idval->tipoval)) {
-    $tipo = $resultadoPaquetesPorValija->return->idval->tipoval;
-} else {
-    $tipo = "";
-}
-if (isset($resultadoPaquetesPorValija->return->idval->destinoval->nombresed)) {
-    $destino = $resultadoPaquetesPorValija->return->idval->destinoval->nombresed;
-} else {
-    $destino = "";
+    $idVal = $resultadoPaquetesPorValija->return->idval->idval;
+    if (isset($resultadoPaquetesPorValija->return->idval->codproveedorval)) {
+        $guia = $resultadoPaquetesPorValija->return->idval->codproveedorval;
+    } else {
+        $guia = "";
+    }
+    if (isset($resultadoPaquetesPorValija->return->idval->tipoval)) {
+        $tipo = $resultadoPaquetesPorValija->return->idval->tipoval;
+    } else {
+        $tipo = "";
+    }
+    if (isset($resultadoPaquetesPorValija->return->idval->destinoval->nombresed)) {
+        $destino = $resultadoPaquetesPorValija->return->idval->destinoval->nombresed;
+    } else {
+        $destino = "";
+    }
 }
 
 if ($contadorPaquetes > 0) {
@@ -51,7 +69,7 @@ if ($contadorPaquetes > 0) {
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de Detalle de Valija No' . $idVal . '.pdf';
+    $nom = 'Comprobante de Detalle de Valija No ' . $idVal . '.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>

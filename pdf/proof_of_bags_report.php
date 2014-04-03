@@ -27,7 +27,7 @@ if ($valijas > 0) {
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de Valijas' . $valijas . '.pdf';
+    $nom = 'Comprobante de ' . $valijas . ' Valijas.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>

@@ -43,25 +43,41 @@ if ($idValija == "") {
         $client->decode_utf8 = false;
         $resultadoPaquetesPorValija = $client->ConsultarPaquetesXValija($parametros);
 
-        $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return->idval->origenval);
-        $resultadoOrigen = $client->consultarSedeXId($idOrigen);
-
         if (!isset($resultadoPaquetesPorValija->return)) {
             $paquetesXValija = 0;
         } else {
             $paquetesXValija = count($resultadoPaquetesPorValija->return);
         }
 
-        if (isset($resultadoPaquetesPorValija->return->idval->fechaval)) {
-            $fechaEnvio = FechaHora($resultadoPaquetesPorValija->return->idval->fechaval);
-        } else {
-            $fechaEnvio = "";
-        }
+        if ($paquetesXValija > 1) {
+            $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return[0]->idval->origenval);
+            $resultadoOrigen = $client->consultarSedeXId($idOrigen);
 
-        if (isset($resultadoPaquetesPorValija->return->idval->fecharval)) {
-            $fechaRecibido = FechaHora($resultadoPaquetesPorValija->return->idval->fecharval);
+            if (isset($resultadoPaquetesPorValija->return[0]->idval->fechaval)) {
+                $fechaEnvio = FechaHora($resultadoPaquetesPorValija->return[0]->idval->fechaval);
+            } else {
+                $fechaEnvio = "";
+            }
+            if (isset($resultadoPaquetesPorValija->return[0]->idval->fecharval)) {
+                $fechaRecibido = FechaHora($resultadoPaquetesPorValija->return[0]->idval->fecharval);
+            } else {
+                $fechaRecibido = "";
+            }
         } else {
-            $fechaRecibido = "";
+            $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return->idval->origenval);
+            $resultadoOrigen = $client->consultarSedeXId($idOrigen);
+
+            if (isset($resultadoPaquetesPorValija->return->idval->fechaval)) {
+                $fechaEnvio = FechaHora($resultadoPaquetesPorValija->return->idval->fechaval);
+            } else {
+                $fechaEnvio = "";
+            }
+
+            if (isset($resultadoPaquetesPorValija->return->idval->fecharval)) {
+                $fechaRecibido = FechaHora($resultadoPaquetesPorValija->return->idval->fecharval);
+            } else {
+                $fechaRecibido = "";
+            }
         }
 
         $_SESSION["fechaEnvio"] = $fechaEnvio;

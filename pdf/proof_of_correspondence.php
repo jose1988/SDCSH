@@ -151,7 +151,7 @@ if (isset($resultadoConsultarUltimoPaquete->return)) {
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de Correspondencia Numero ' . $idPaq . '.pdf';
+    $nom = 'Comprobante de Correspondencia No ' . $idPaq . '.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>
