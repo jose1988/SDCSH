@@ -22,7 +22,8 @@ if (!isset($_SESSION["Usuario"])) {
 	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
 	$parametros=array('registroPaquete' => $idPaquete,
 						'registroUsuario'=>$usu,					
-						'registroSede'=>$sede);
+						'registroSede'=>$sede,
+						'Caso'=>"Confirmar");
 					//	echo '<pre>';print_r($parametros);
   $seg = $client->registroSeguimiento($parametros);
    if($seg->return==0){
@@ -128,7 +129,7 @@ if(isset($PaquetesConfirmados->return)){
 									$asunto=$PaquetesConfirmados->return->asuntopaq;
 								}
 								if($PaquetesConfirmados->return->destinopaq->tipobuz==0){
-		$nombrebuz=$PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;
+		$nombrebuz=$PaquetesConfirmados->return->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusu->apellidousu;
 		}else{
 		$nombrebuz=$PaquetesConfirmados->return->destinopaq->nombrebuz;
 		}
@@ -160,7 +161,7 @@ if(isset($PaquetesConfirmados->return)){
 									$asunto=$PaquetesConfirmados->return[$i]->asuntopaq;
 								}
 								if($PaquetesConfirmados->return[$i]->destinopaq->tipobuz==0){
-			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;
+			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu;
 			}else{
 			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->nombrebuz;
 			}

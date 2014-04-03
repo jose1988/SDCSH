@@ -55,20 +55,15 @@ try {
 			}else{
 			$rta = "0";
 			}
-			
-			
-			if($_POST["fragil"]){
+			if(isset($_POST["fragil"])){
 			    $fra = "1";
             } else {
                 $fra = "0";
             }
-			
-			
                 $destinopaq = array('idbuz' => $idbuz);
                 $prioridad = array('idpri' => $_POST["prioridad"]);
                 $documento = array('iddoc' => $_POST["doc"]);
                 $sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
-
                 $paquete = array('origenpaq' => $origenpaq,
                     'destinopaq' => $destinopaq,
                     'asuntopaq' => $_POST["asunto"],
@@ -124,7 +119,12 @@ try {
 						}else{
 						 javaalert("La correspondencia ha sido enviada");
 						}
-                       
+					   $usuario = array('idusu' => $_SESSION["Usuario"]->return->idusu);
+                       $parametros=array('registroPaquete' => $paq,
+						'registroUsuario'=>$usuario,					
+						'registroSede'=>$sede,
+						'Caso'=>"Envio");
+						$seg = $client->registroSeguimiento($parametros);
                         llenarLog(1, "Envio de Correspondencia", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
                         if($tipobuz==0){
 						echo"<script>window.open('../pages/proof_of_correspondence.php');</script>";

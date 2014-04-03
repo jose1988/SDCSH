@@ -81,26 +81,13 @@ if (!isset($SedeRol->return)) {
                             <li>   
                                 <a href="inbox.php">Atrás</a>
                             </li>
-                            <li>   
-                                <a href="confirmed_user.php">Procesados</a>
-                            </li>
-							<?php
-							if($SedeRol->return->idrol->idrol==1 || $SedeRol->return->idrol->idrol==3){
-							?>
-							<li>   
-                                <a href="print_packages_confirmed.php">Imprimir</a>
-                            </li>
-							<?php
-							}
-							?>
+
                         </ul>
                     </div>
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
-                                <h2>Recibir paquete</h2>
-                                Código de Correspondencia:  <input type="text" placeholder="Ej. 4246" title="Ingrese el código de correspondencia" autocomplete="off" style="width:140px ;height:28px" onkeypress="return isNumberKey(event)" pattern="[0-9]{1,38}" id="idpaq" name="idpaq"  required>
-                                <button type="button" class="btn" onClick="Paquete();">Recibir Paquete</button>
+
                                 <div id="data">
 <?php
 if (isset($PaquetesConfirmados->return)) {
@@ -108,7 +95,7 @@ if (isset($PaquetesConfirmados->return)) {
     echo "<br>";
     ?>
 
-                                        <h2>Correspondencia que ha sido confirmada</h2>
+                                        <h2>Correspondencia enviada a Externos</h2>
                                         <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                             <thead bgcolor='#FF0000'>
                                                 <tr>	
@@ -117,17 +104,13 @@ if (isset($PaquetesConfirmados->return)) {
                                                     <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                                                     <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
                                                     <th style='width:7%; text-align:center' data-sort-ignore="true">Contenido</th>
-                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Con Respuesta</th>
+                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Confirmar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
     <?php
     if (count($PaquetesConfirmados->return) == 1) {
-        if ($PaquetesConfirmados->return->respaq == "0") {
-            $rta = "No";
-        } else {
-            $rta = "Si";
-        }
+
         if (strlen($PaquetesConfirmados->return->textopaq) > 10) {
             $contenido = substr($PaquetesConfirmados->return->textopaq, 0, 10) . "...";
         } else {
@@ -150,16 +133,12 @@ if (isset($PaquetesConfirmados->return)) {
                                                         <td style='text-align:center'><?php echo $asunto; ?></td>
                                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc; ?></td>
                                                         <td style='text-align:center'><?php echo $contenido; ?></td>
-                                                        <td style='text-align:center'><?php echo $rta; ?></td>  
+                                                        <td style='text-align:center'> <button type='button' class='btn btn-info btn-primary' onClick="">  Confirmar </button></td>  
                                                     </tr>   
         <?php
     } else {
         for ($i = 0; $i < count($PaquetesConfirmados->return); $i++) {
-            if ($PaquetesConfirmados->return[$i]->respaq == "0") {
-                $rta = "No";
-            } else {
-                $rta = "Si";
-            }
+
             if (strlen($PaquetesConfirmados->return[$i]->textopaq) > 25) {
                 $contenido = substr($PaquetesConfirmados->return[$i]->textopaq, 0, 23) . "...";
             } else {
@@ -183,7 +162,7 @@ if (isset($PaquetesConfirmados->return)) {
                                                             <td style='text-align:center'><?php echo $asunto; ?></td>
                                                             <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc; ?></td>
                                                             <td style='text-align:center'><?php echo $contenido; ?></td>
-                                                            <td style='text-align:center'><?php echo $rta; ?></td>  
+                                                        <td style='text-align:center'> <button type='button' class='btn btn-info btn-primary' onClick="">  Confirmar </button></td>  
                                                         </tr>   
             <?php
         }
@@ -218,44 +197,8 @@ if (isset($PaquetesConfirmados->return)) {
                                     function killerSession() {
                                         setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
                                     }
-                                    function isNumberKey(evt)
-                                    {
-                                        var charCode = (evt.which) ? evt.which : event.keyCode
-                                        if (charCode == 13) {
-                                            Paquete();
-                                        }
-                                        if (charCode > 31 && (charCode < 48 || charCode > 57))
-                                            return false;
-
-                                        return true;
-                                    }
         </script>
-        <script>
 
-            function Paquete() {
-
-                if (idpaq = document.forms.formulario.idpaq.value != "") {
-                    var idpaq = document.forms.formulario.idpaq.value;
-                    var parametros = {
-                        "idpaq": idpaq
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "../ajax/view_package.php",
-                        data: parametros,
-                        dataType: "text",
-                        success: function(response) {
-                            $("#data").html(response);
-                        }
-                    });
-                    document.forms.formulario.idpaq.value = "";
-                } else {
-                    alert("Por favor agregue el código de correspondencia")
-                }
-
-            }
-
-        </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
