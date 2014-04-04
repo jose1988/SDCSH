@@ -45,11 +45,11 @@ if ($reporte == '1') {
 } elseif ($reporte == '4') {
     $nombreReporte = "Valijas Anuladas";
 }
-
-if ($sede == "") {
-    $opcionSede = "";
-    $contadorSedes = 0;
+$contadorSedes = 0;
+$opcionSede = "";
+if ($sede == '0') {
     try {
+		echo "Entro";
         $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
         $client = new SOAPClient($wsdl_url);
         $client->decode_utf8 = false;
@@ -59,13 +59,13 @@ if ($sede == "") {
         } else {
             $contadorSedes = 0;
         }
+		
+		include("../graphics/reports_valise_horizontally.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_valise.php');
     }
 } else {
-    $opcionSede = "";
-    $contadorSedes = 0;
     try {
         $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
         $client = new SOAPClient($wsdl_url);
@@ -77,11 +77,11 @@ if ($sede == "") {
         } else {
             $cpcionSede = "";
         }
+		
+		include("../graphics/reports_valise_vertical.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_valise.php');
     }
 }
-
-include("../views/graphics_reports_valise.php");
 ?>

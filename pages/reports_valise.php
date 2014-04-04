@@ -37,6 +37,12 @@ if (!isset($resultadoSedes->return)) {
     $sedes = count($resultadoSedes->return);
 }
 
+$_SESSION["Reporte"] = "";
+$_SESSION["Osede"] = "";
+$_SESSION["Opcion"] = "";
+$_SESSION["Fechaini"] = "";
+$_SESSION["Fechafin"] = "";
+
 if (isset($_POST["consultar"])) {
 
     if (isset($_POST["reporte"]) && $_POST["reporte"] != "" && isset($_POST["osede"]) && $_POST["osede"] != "" && isset($_POST["opcion"]) && $_POST["opcion"] != "") {
