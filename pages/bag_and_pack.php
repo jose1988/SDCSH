@@ -20,8 +20,11 @@ try {
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
     $nomUsuario = $_SESSION["Usuario"]->return->userusu;
     $ideSede = $_SESSION["Sede"]->return->idsed;
-    $idValija = $_GET["id"];
-    if ($idValija == "") {
+    if (!isset($_GET["id"])) {
+        iraURL('../pages/inbox.php');
+    }
+	$idValija = $_GET["id"];
+	if ($idValija =="") {
         iraURL('../pages/inbox.php');
     }
     $parametros = array('registroValija' => $idValija,

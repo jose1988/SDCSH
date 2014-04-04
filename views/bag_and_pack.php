@@ -120,8 +120,22 @@ if (!isset($SedeRol->return)) {
                                             <td style='text-align:center'><?php echo $fechaRecibido ?></td>
                                         </tr>
                                     </tbody>
-                                </table>
-                                <br>
+                                </table>                             
+                          
+                                <div class="span3">
+                                </div> 
+                                <div class="span6">
+                                    <table class='footable table table-striped table-bordered'>
+                                        <tr>
+                                            <td style='text-align:center'><strong>Número de Paquetes o Correspondencia</strong></td>
+                                            <td style='text-align:center' width="100"><?php echo $contadorPaquetes ?></td>
+                                        </tr>
+                                    </table>
+                                </div> 	
+								 <div class="span3">
+                                </div> 
+								<br><br><br>
+								
                                 <strong> <h2 align="center">Detalle de la Valija</h2> </strong>
                                 <table class='footable table table-striped table-bordered' data-page-size='5'> 
                                     <thead bgcolor='#FF0000'>
@@ -189,46 +203,40 @@ if (!isset($SedeRol->return)) {
                                     </tbody>
                                 </table>
                                 <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>	
-                                <br>
-                                <br>
-                                <br>   
-                                <div class="span3">
-                                </div> 
-                                <div class="span6">
-                                    <table class='footable table table-striped table-bordered'>
-                                        <tr>
-                                            <td style='text-align:center'><strong>Número de Paquetes o Correspondencia</strong></td>
-                                            <td style='text-align:center' width="100"><?php echo $contadorPaquetes ?></td>
-                                        </tr>
-                                    </table>
-                                </div> 	
+                         
                                 <br><br><br><br>
                                 <div align="center">
                                     <a href='../pages/proof_pouch_and_packages.php?id=<?php echo $idVal ?>' target="new"><button type="submit" class="btn" id="imprimirT" name="imprimirT">Imprimir</button></a>
                                 </div>
-                            <?php } ?>    
+                            <?php } ?>                                 	
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <script>
-            window.onload = function() {
-                killerSession();
-            }
-            function killerSession() {
-                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-            }
-        </script>
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
-        <script type="text/javascript">
-            $(function() {
-                $('table').footable();
-            });
-        </script>
-    </body>
+        <!-- /container -->
+        <div id="footer" class="container">    	
+        </div>
+    </div>   
+
+    <script>
+        window.onload = function() {
+            killerSession();
+        }
+        function killerSession() {
+            setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+        }
+    </script>
+
+    <script src="../js/footable.js" type="text/javascript"></script>
+    <script src="../js/footable.paginate.js" type="text/javascript"></script>
+    <script src="../js/footable.sortable.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('table').footable();
+        });
+    </script>		 
+</body>
 </html>

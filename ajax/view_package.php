@@ -76,8 +76,13 @@ $SedeRol = $client->consultarSedeRol($UsuarioRol);
 								}else{
 									$asunto=$rowPaquete->return->asuntopaq;
 								}
+								if($rowPaquete->return->destinopaq->tipobuz==0){
+		$nombrebuz=$rowPaquete->return->destinopaq->idusu->nombreusu . " " . $rowPaquete->return->destinopaq->idusu->apellidousu;
+		}else{
+		$nombrebuz=$rowPaquete->return->destinopaq->nombrebuz;
+		}
        echo "<br>";
-	?><table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
+	?><table class='footable table table-striped table-bordered' align='center' >
                                 <thead bgcolor='#FF0000'>
                                     <tr>	
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
@@ -91,7 +96,7 @@ $SedeRol = $client->consultarSedeRol($UsuarioRol);
                                 <tbody>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $rowPaquete->return->origenpaq->idusu->nombreusu." ".$rowPaquete->return->origenpaq->idusu->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $rowPaquete->return->destinopaq->idusu->nombreusu." ".$rowPaquete->return->destinopaq->idusu->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $nombrebuz;?></td>
                                         <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $rowPaquete->return->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $contenido;?></td>
