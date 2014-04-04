@@ -53,6 +53,5 @@ if (isset($_POST["consultar"])) {
         javaalert("Debe agregar todos los campos, por favor verifique");
     }
 }
-
 include("../views/reports_valise.php");
 ?>

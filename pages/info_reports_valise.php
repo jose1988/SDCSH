@@ -78,9 +78,10 @@ try{
 		echo"<script>window.open('../pages/proof_of_bags_report.php');</script>";
 	}
 	
-	include("../views/info_reports_valise.php");
+	include("../views/info_reports_valise.php"); 
 	
 } catch (Exception $e) {
+
 	javaalert('Lo sentimos no hay conexion');
 	iraURL('../pages/reports_valise.php');
 }
