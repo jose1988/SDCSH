@@ -77,7 +77,7 @@ if ($idPaquete == "" || $usuario == "") {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/reports_valise.php">
+                                <a href="../pages/info_reports_valise.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
