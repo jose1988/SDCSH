@@ -30,8 +30,58 @@ if (isset($SedeRol->return)) {
 $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
-$opcionSede="Caracas";
-$contadorSede = 10;
+$resultadoConsultarValijas = $_SESSION["valijas"];
+$reporte = $_SESSION["Reporte"];
+$sede = $_SESSION["Osede"];
 
-include("../views/graphics_reports_valise.php");
+$contadorValijas = count($resultadoConsultarValijas->return);
+
+if ($reporte == '1') {
+    $nombreReporte = "Valijas Enviadas";
+} elseif ($reporte == '2') {
+    $nombreReporte = "Valijas Recibidas";
+} elseif ($reporte == '3') {
+    $nombreReporte = "Valijas con Errores";
+} elseif ($reporte == '4') {
+    $nombreReporte = "Valijas Anuladas";
+}
+$contadorSedes = 0;
+$opcionSede = "";
+if ($sede == '0') {
+    try {
+		echo "Entro";
+        $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+        $client = new SOAPClient($wsdl_url);
+        $client->decode_utf8 = false;
+        $resultadoSedes = $client->listarSedes();
+        if (isset($resultadoSedes->return)) {
+            $contadorSedes = count($resultadoSedes->return);
+        } else {
+            $contadorSedes = 0;
+        }
+		
+		include("../graphics/reports_valise_horizontally.php");
+    } catch (Exception $e) {
+        javaalert('Lo sentimos no hay conexion');
+        iraURL('../pages/reports_valise.php');
+    }
+} else {
+    try {
+        $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+        $client = new SOAPClient($wsdl_url);
+        $client->decode_utf8 = false;
+        $idSede = array('idSede' => $sede);
+        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+        if (isset($resultadoConsultarSede->return)) {
+            $opcionSede = $resultadoConsultarSede->return->nombresed;
+        } else {
+            $cpcionSede = "";
+        }
+		
+		include("../graphics/reports_valise_vertical.php");
+    } catch (Exception $e) {
+        javaalert('Lo sentimos no hay conexion');
+        iraURL('../pages/reports_valise.php');
+    }
+}
 ?>

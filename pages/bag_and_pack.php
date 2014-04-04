@@ -30,9 +30,11 @@ try {
     $parametros = array('registroValija' => $idValija,
         'sede' => $ideSede);
     $resultadoPaquetesPorValija = $client->ConsultarPaquetesXValija($parametros);
-    if (!isset($resultadoPaquetesPorValija->return)) {
+	//echo '<pre>';print_r($resultadoPaquetesPorValija);
+   if (!isset($resultadoPaquetesPorValija->return)) {
         iraURL('../pages/inbox.php');
     }
+	
     if (!isset($resultadoPaquetesPorValija->return)) {
         $paquetesXValija = 0;
     } else {
@@ -84,7 +86,6 @@ try {
 
     $resultadoOrigen = $client->consultarSedeXId($idOrigen);
     $contadorPaquetes = $paquetesXValija;
-
     if (isset($resultadoOrigen->return->nombresed)) {
         $origen = $resultadoOrigen->return->nombresed;
     } else {

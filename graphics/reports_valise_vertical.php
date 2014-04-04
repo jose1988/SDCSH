@@ -75,38 +75,42 @@
                 <div class="row-fluid">
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
-                            <li> <a href="../pages/reports_valise.php">Atrás</a> <li>
+                            <li>   
+                                <a href="../pages/info_reports_valise.php">
+                                    <?php echo "Atrás" ?>         
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
                     <div class="span10" align="center">
                         <div class="tab-content" id="lista" align="center">
-                            <h2> <strong>Gráfico de Valijas</strong> </h2>
-                            <br>                            
                             <?php
-                            if ($opcionSede == "") {
-                                if ($contadorSede <= 10) {
-                                    $tama = 300;
-                                } elseif ($contadorSede > 10 && $contadorSede <= 20) {
-                                    $tama = 400;
-                                } elseif ($contadorSede > 20 && $contadorSede <= 30) {
-                                    $tama = 500;
-                                } elseif ($contadorSede > 30 && $contadorSede <= 40) {
-                                    $tama = 600;
-                                }
+                            //Verificando que este vacio o sea null
+                            if (!isset($resultadoConsultarValijas->return)) {
+                                echo '<div class="alert alert-block" align="center">';
+                                echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
+                                echo '<h4 align="center">No Existen Registros de Valijas</h4>';
+                                echo '</div>';
+                            }
+                            //Si existen registros muestro el gráfico
+                            else {
                                 ?>
-                                <div align="center" id="graficoHorizontal" style="min-width: 100px; max-width: 600px; height: <?php echo $tama ?>px; margin: 0 auto">   	
-                                </div>
-                                <?php } else {
-                                ?>
-                                <div align="center" id="graficoVertical" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto">   	
-                                </div>
-                            <?php } ?>
+                                <h2> <strong>Gráfico de <?php echo $nombreReporte ?></strong> </h2>
+                                <br>                            
+                                <?php
+                                if ($sede != '0') { ?>
+                                    <div align="center" id="graficoVertical" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto">   	
+                                    </div>
+                                <?php }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         <script>
             window.onload = function() {
                 killerSession();
@@ -115,6 +119,7 @@
                 setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
             }
         </script>
+        
         <script>
             /*Gráfico vertical para las valijas de una sede*/
             $(function() {
@@ -127,7 +132,7 @@
                     },
                     xAxis: {
                         categories: [
-                            'Nombre de la Sede'
+                            '<?php echo $opcionSede ?>'
                         ]
                     },
                     yAxis: {
@@ -152,66 +157,8 @@
                     },
                     series: [{
                             name: 'Valijas',
-                            data: [100]
+                            data: [<?php echo $contadorValijas ?>]
 
-                        }]
-                });
-            });
-        </script>
-
-        <script>
-            /*Gráfico horizontal para todas las sedes*/
-            $(function() {
-                $('#graficoHorizontal').highcharts({
-                    chart: {
-                        type: 'bar'
-                    },
-                    title: {
-                        text: 'Estradísticas de Valijas'
-                    },
-                    xAxis: {
-                        categories: ['San Cristóbal', 'Caracas', 'Mérida', 'Maracaibo', 'San Fernando de Apure', 'Barinas', 'Margarita', 'Valencia', 'Valera', 'Maracay'],
-                        title: {
-                            text: null
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Cantidad Total',
-                            align: 'high'
-                        },
-                        labels: {
-                            overflow: 'justify'
-                        }
-                    },
-                    tooltip: {
-                        valueSuffix: 'Valijas'
-                    },
-                    plotOptions: {
-                        bar: {
-                            dataLabels: {
-                                enabled: true
-                            }
-                        }
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x: -40,
-                        y: 0,
-                        floating: true,
-                        borderWidth: 1,
-                        backgroundColor: '#FFFFFF',
-                        shadow: true
-                    },
-                    credits: {
-                        enabled: false
-                    },
-                    series: [{
-                            name: 'Valijas',
-                            data: [107, 31, 635, 203, 2, 20, 100, 400, 30, 500]
                         }]
                 });
             });

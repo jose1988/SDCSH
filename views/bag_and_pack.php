@@ -132,19 +132,18 @@ if (!isset($SedeRol->return)) {
                                         </tr>
                                     </table>
                                 </div> 	
-								 <div class="span3">
-                                </div> 
-								<br><br><br>
+							
+								<br></br><br></br>
 								
                                 <strong> <h2 align="center">Detalle de la Valija</h2> </strong>
                                 <table class='footable table table-striped table-bordered' data-page-size='5'> 
                                     <thead bgcolor='#FF0000'>
                                         <tr>
-                                            <th style="text-align:center" data-sort-ignore="true">Nro. de Paquete</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Origen</th>
-                                            <th style="text-align:center" data-sort-ignore="true">De</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Para</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Destino</th>
+                                            <th style="text-align:center" >Nro. de Paquete</th>
+                                            <th style="text-align:center" >Origen</th>
+                                            <th style="text-align:center" >De</th>
+                                            <th style="text-align:center" >Para</th>
+                                            <th style="text-align:center" >Destino</th>
                                             <th style="text-align:center" data-sort-ignore="true">Ver más</th>
                                         </tr>
                                     </thead>
@@ -185,7 +184,7 @@ if (!isset($SedeRol->return)) {
                                                 $nomDestino = "";
                                                 if (isset($resultadoPaquetesPorValija->return->destinopaq->tipobuz)) {
                                                     if ($resultadoPaquetesPorValija->return->destinopaq->tipobuz == "0") {
-                                                        $paraDestino = $resultadoPaquetesPorValija->return->idpaq->destinopaq->idusu->nombreusu . " " . $resultadoPaquetesPorValija->return->idpaq->destinopaq->idusu->apellidousu;
+                                                        $paraDestino = $resultadoPaquetesPorValija->return->destinopaq->idusu->nombreusu . " " . $resultadoPaquetesPorValija->return->destinopaq->idusu->apellidousu;
                                                         $nomDestino = $resultadoPaquetesPorValija->return->destinopaq->idatr->idsed->nombresed;
                                                     } else {
                                                         $paraDestino = $resultadoPaquetesPorValija->return->destinopaq->nombrebuz;
