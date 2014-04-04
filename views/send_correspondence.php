@@ -96,14 +96,11 @@
 		
 	}
 	function seleccionar(id,nombre)
-	{
-		
+	{		
 		$('#myModal').modal('hide');
-		$('#contacto').val(id+" "+nombre);
-		
-		
-		
-		
+		$('#contacto').val(nombre);
+		$('#id').val(id);
+	
 	}
 	
 	function limpiar(){     
@@ -164,8 +161,10 @@
 </button>
 
                                             </td><td>
-                                                <input id="contacto" name="contacto" type="text"  list="suggests" maxlength="199" style="width:800px ;height:28px" size="100"  autocomplete="off"  required>								
-                                            </td>
+                                                <input id="contacto" disabled name="contacto" type="text"  maxlength="199" style="width:800px ;height:28px" size="100"  autocomplete="off"  required>								
+												<input type="hidden" name="id" id="id">							
+
+											</td>
                                         </tr>
                    
                                     <tr>
@@ -262,9 +261,9 @@ if (count($rowDocumentos->return) == 1) {
                                                 ?>
                                             </select><br>
               </td>
-                <td>Areas:</td>
+                <td>Áreas:</td>
               <td><select name="area" id="area"   title="Seleccione Area">
-                        <option value="">Seleccione Area</option> 
+                        <option value="">Seleccione Área</option> 
 	                      
                                             </select><br>
               </td>

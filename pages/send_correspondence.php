@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -36,7 +35,7 @@ try {
     if (isset($_POST["enviar"])) {
         if ($_POST["contacto"] != "" && isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
            
-		 list($idbuz, $nombrebuz) = explode(" ", $_POST["contacto"]);
+		 $idbuz=$_POST["id"];
             $origenbuz = array('idusu' => $_SESSION["Usuario"]->return->idusu,'idsede' => $_SESSION["Sede"]->return->idsed );
            $propioBuzon = $client->consultarBuzonXUsuarioSede($origenbuz);
 		   $origenpaq = array('idbuz' => $propioBuzon->return->idbuz);
@@ -147,7 +146,7 @@ try {
     }
     include("../views/send_correspondence.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>
