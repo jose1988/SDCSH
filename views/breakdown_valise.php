@@ -46,7 +46,7 @@ if(isset($_POST["guardar"])){
 				
 				$client->actualizacionLocalizacionRecibidoValija($datosAct);
 				$idPaquete= array('idpaq'=> $registrosAValijaC[$j]);
-				$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede);
+				$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede, 'Caso'=> "0");
 				$seg = $client->registroSeguimiento($parametros);
 
 			  }	

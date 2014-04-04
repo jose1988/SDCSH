@@ -16,7 +16,7 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 				$datosAct = array('idpaq'=> $registrosAValija[$j],'idval'=>$idValija->return);
 					$client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
 					$idPaquete= array('idpaq' => $registrosAValija[$j] );
-					$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede);
+					$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede, 'Caso'=> "0");
 					$seg = $client->registroSeguimiento($parametros);
 					
 			
@@ -158,8 +158,7 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
                             </div> 
 
                             <div class="span6" >
-                              Fecha de envio:<input type="text" id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de envio" required/>
-
+                             
                                 
                              
                             </div>

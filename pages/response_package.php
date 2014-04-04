@@ -45,7 +45,7 @@ if (!isset($rowPrioridad->return)) {
 if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';		
 //echo '<br>'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))).'Lados___'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"])));
 //echo $_POST["contacto"].'_'.$_POST["asunto"].'_'.$_POST["doc"].'_'.$_POST["prioridad"].'_'.$_POST["datepicker"].'_'.$_POST["datepickerf"].'_'.$_POST["elmsg"];
-    if (isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["datepicker"]) && $_POST["datepicker"] != "" && isset($_POST["datepickerf"]) && $_POST["datepickerf"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
+    if (isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
         $origenpaq = array('idusu' => $Paquete->return->destinopaq->idusu->idusu);
         $Parametros = array('userUsu' => $Paquete->return->origenpaq->userusu,
             'idUsuario' => $origenpaq);

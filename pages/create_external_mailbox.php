@@ -23,7 +23,7 @@ try {
                 $correo = $_POST["correo"];
                 
                 if (isset($_POST["telefono"])) {
-                    $telefono = $_POST["telefono1"];
+                    $telefono = $_POST["telefono"];
                 }
 				
                 if (isset($_POST["direccion"])) {
@@ -38,8 +38,9 @@ try {
                             'direccionbuz' => $direccion,
                             'telefonobuz' => $telefono,
                             'tipobuz' => "1",
-							'borradousu' => "0");
-                $parametros = array('registroBuzon' => $Buzon );
+							'borradobuz' => "0");
+                $parametros = array('buzon' => $Buzon,'idusu'=> $_SESSION["Usuario"]->return->idusu,'idsed' => $_SESSION["Sede"]->return->idsed);
+				
                 $guardo=$client->insertarBuzonExterno($parametros);
                
 				
@@ -49,7 +50,7 @@ try {
                 } else {
 					
                     javaalert("Se han Guardado los datos del Buzón externo");
-                    llenarLog(1, "creacion de buzon externo", $_SESSION["Usuario"]->return->idusu, $_POST["sede"]);
+                    llenarLog(1, "creacion de buzon externo", $_SESSION["Usuario"]->return->idusu, $_POST["Sede"]);
 					iraURL("../pages/inbox.php");
                 }
                 iraURL('../pages/inbox.php');
@@ -62,7 +63,7 @@ try {
     }
     include("../views/create_external_mailbox.php");
 } catch (Exception $e) {
-    javaalert('Error al crear el usuario');
+    javaalert('Error al crear el Buzón externo');
     iraURL('../index.php');
 }
 ?>
