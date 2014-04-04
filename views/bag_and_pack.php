@@ -77,7 +77,7 @@ if (!isset($SedeRol->return)) {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/reports_valise.php">
+                                <a href="../pages/info_reports_valise.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -101,8 +101,8 @@ if (!isset($SedeRol->return)) {
                                     <thead bgcolor='#FF0000'>
                                         <tr>
                                             <th style='text-align:center' data-sort-ignore="true">Fecha y Hora de Envio</th>
-                                            <th style='text-align:center' data-sort-ignore="true">Nro. de Valija</th>
-                                            <th style='text-align:center' data-sort-ignore="true">Nro. de Guía</th>
+                                            <th style='text-align:center' data-sort-ignore="true">Nro de Valija</th>
+                                            <th style='text-align:center' data-sort-ignore="true">Nro de Guía</th>
                                             <th style='text-align:center' data-sort-ignore="true">Origen</th>
                                             <th style='text-align:center' data-sort-ignore="true">Tipo</th>
                                             <th style='text-align:center' data-sort-ignore="true">Destino</th>
@@ -121,7 +121,7 @@ if (!isset($SedeRol->return)) {
                                         </tr>
                                     </tbody>
                                 </table>                             
-                          
+                          		<br>
                                 <div class="span3">
                                 </div> 
                                 <div class="span6">
@@ -139,11 +139,11 @@ if (!isset($SedeRol->return)) {
                                 <table class='footable table table-striped table-bordered' data-page-size='5'> 
                                     <thead bgcolor='#FF0000'>
                                         <tr>
-                                            <th style="text-align:center" >Nro. de Paquete</th>
-                                            <th style="text-align:center" >Origen</th>
-                                            <th style="text-align:center" >De</th>
-                                            <th style="text-align:center" >Para</th>
-                                            <th style="text-align:center" >Destino</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Nro de Paquete</th>
+                                            <th style="text-align:center">Origen</th>
+                                            <th style="text-align:center">De</th>
+                                            <th style="text-align:center">Para</th>
+                                            <th style="text-align:center">Destino</th>
                                             <th style="text-align:center" data-sort-ignore="true">Ver más</th>
                                         </tr>
                                     </thead>
@@ -201,9 +201,10 @@ if (!isset($SedeRol->return)) {
                                         ?>
                                     </tbody>
                                 </table>
-                                <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>	
-                         
-                                <br><br><br><br>
+                                <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>                         
+                                <br>
+                                <br>
+                                <br>
                                 <div align="center">
                                     <a href='../pages/proof_pouch_and_packages.php?id=<?php echo $idVal ?>' target="new"><button type="submit" class="btn" id="imprimirT" name="imprimirT">Imprimir</button></a>
                                 </div>
@@ -212,12 +213,7 @@ if (!isset($SedeRol->return)) {
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- /container -->
-        <div id="footer" class="container">    	
-        </div>
-    </div>   
+        </div>   
 
     <script>
         window.onload = function() {

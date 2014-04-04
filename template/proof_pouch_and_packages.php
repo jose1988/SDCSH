@@ -14,8 +14,8 @@
             <table align="center" width="500" border="1" rules="all">
                 <tr>
                     <td align="center"><strong>Fecha y Hora de Envio</strong></td>
-                    <td align="center"><strong>No de Valija</strong></td>
-                    <td align="center"><strong>No de Guía</strong></td>
+                    <td align="center"><strong>Nro de Valija</strong></td>
+                    <td align="center"><strong>Nro de Guía</strong></td>
                     <td align="center"><strong>Origen</strong></td>
                     <td align="center"><strong>Tipo</strong></td>
                     <td align="center"><strong>Destino</strong></td>
@@ -35,7 +35,7 @@
             <h3 align="center">Detalle de Valija</h3>
             <table align="center" width="450" border="1" rules="all">
                 <tr>
-                    <td align="center"><strong>No de Paquete</strong></td>
+                    <td align="center"><strong>Nro de Paquete</strong></td>
                     <td align="center"><strong>Origen</strong></td>
                     <td align="center"><strong>De</strong></td>
                     <td align="center"><strong>Para</strong></td>

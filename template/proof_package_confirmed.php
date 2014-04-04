@@ -14,7 +14,7 @@
             <table align="center" width="500" border="1" rules="all">
                 <tr>
                     <td style="text-align:center"><strong>Código Paquete</strong></td>
-                    <td style="text-align:center"><strong>No Paquete</strong></td>
+                    <td style="text-align:center"><strong>Nro de Paquete</strong></td>
                     <td style="text-align:center"><strong>Origen</strong></td>
                     <td style="text-align:center"><strong>Destino</strong></td>
                     <td style="text-align:center"><strong>Sede</strong></td>

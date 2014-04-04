@@ -100,7 +100,7 @@ if ($idPaquete == "" || $usuario == "") {
                                 <table class='footable table table-striped table-bordered'>
                                     <thead bgcolor='#FF0000'>
                                         <tr>
-                                            <th style="text-align:center" data-sort-ignore="true">No Paquete</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Nro de Paquete</th>
                                             <th style="text-align:center" data-sort-ignore="true">Origen</th>
                                             <th style="text-align:center" data-sort-ignore="true">De</th>
                                             <th style="text-align:center" data-sort-ignore="true">Para</th>

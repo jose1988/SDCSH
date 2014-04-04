@@ -1,3 +1,8 @@
+<?php
+if ($usuario == "") {
+    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

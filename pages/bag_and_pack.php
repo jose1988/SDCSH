@@ -25,13 +25,12 @@ try {
     }
 	$idValija = $_GET["id"];
 	if ($idValija =="") {
-        iraURL('../pages/inbox.php');
+        iraURL('../pages/reports_valise.php');
     }
     $parametros = array('registroValija' => $idValija,
         'sede' => $ideSede);
     $resultadoPaquetesPorValija = $client->ConsultarPaquetesXValija($parametros);
-	//echo '<pre>';print_r($resultadoPaquetesPorValija);
-   if (!isset($resultadoPaquetesPorValija->return)) {
+   	if (!isset($resultadoPaquetesPorValija->return)) {
         iraURL('../pages/inbox.php');
     }
 	

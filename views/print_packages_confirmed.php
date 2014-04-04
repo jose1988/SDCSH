@@ -101,7 +101,7 @@ if ($nomUsuario == "") {
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>
                                         <thead bgcolor='#FF0000'>
                                             <tr>
-                                                <th style="text-align:center">Paquete</th>
+                                                <th style="text-align:center">Nro de Paquete</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Origen</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Destino</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Tipo</th>
