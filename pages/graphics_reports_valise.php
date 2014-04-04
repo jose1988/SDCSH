@@ -9,28 +9,29 @@ if (!isset($_SESSION["Usuario"])) {
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
 }
-try{
+
+if ($_SESSION["Usuario"]->return->tipousu != "1" && $_SESSION["Usuario"]->return->tipousu != "2") {
+    iraURL('../pages/inbox.php');
+}
+
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
-
 if (isset($SedeRol->return)) {
-    if ($SedeRol->return->idrol->idrol != "2" && $SedeRol->return->idrol->idrol != "5") {
-        iraURL('../pages/inbox.php');
+    if ($SedeRol->return->idrol->idrol == 0) {
+        iraURL("../pages/inbox.php");
     }
 } else {
-    iraURL('../pages/inbox.php');
+    iraURL("../pages/index.php");
 }
 
-$sede = array( 'idsed' => $_SESSION["Sede"]->return->idsed);
-$parametros = array( 'sede' => $sede);
-$PaquetesExternos = $client->consultarPaquetesExternosXEnviar($parametros);
+$ideSede = $_SESSION["Sede"]->return->idsed;
+$usuario = $_SESSION["Usuario"]->return->idusu;
 
-include("../views/external_costs.php");
- } catch (Exception $e) {
-					javaalert('Lo sentimos no hay conexion');
-					iraURL('../pages/inbox.php');
-}
+$opcionSede="Caracas";
+$contadorSede = 10;
+
+include("../views/graphics_reports_valise.php");
 ?>

@@ -43,35 +43,50 @@ if ($idValija == "") {
         $client->decode_utf8 = false;
         $resultadoPaquetesPorValija = $client->ConsultarPaquetesXValija($parametros);
 
-        $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return->idval->origenval);
-        $resultadoOrigen = $client->consultarSedeXId($idOrigen);
-
         if (!isset($resultadoPaquetesPorValija->return)) {
             $paquetesXValija = 0;
         } else {
             $paquetesXValija = count($resultadoPaquetesPorValija->return);
         }
 
-        if (isset($resultadoPaquetesPorValija->return->idval->fechaval)) {
-            $fechaEnvio = FechaHora($resultadoPaquetesPorValija->return->idval->fechaval);
-        } else {
-            $fechaEnvio = "";
-        }
-
-        if (isset($resultadoPaquetesPorValija->return->idval->fecharval)) {
-            $fechaRecibido = FechaHora($resultadoPaquetesPorValija->return->idval->fecharval);
-        } else {
-            $fechaRecibido = "";
+        if ($paquetesXValija > 1) {
+            $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return[0]->idval->origenval);
+            $resultadoOrigen = $client->consultarSedeXId($idOrigen);
+            if (isset($resultadoPaquetesPorValija->return[0]->idval->fechaval)) {
+                $fechaEnvio = FechaHora($resultadoPaquetesPorValija->return[0]->idval->fechaval);
+            } else {
+                $fechaEnvio = "";
+            }
+            if (isset($resultadoPaquetesPorValija->return[0]->idval->fecharval)) {
+                $fechaRecibido = FechaHora($resultadoPaquetesPorValija->return[0]->idval->fecharval);
+            } else {
+                $fechaRecibido = "";
+            }
+        } elseif($paquetesXValija==1) {
+            $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return->idval->origenval);
+            $resultadoOrigen = $client->consultarSedeXId($idOrigen);
+            if (isset($resultadoPaquetesPorValija->return->idval->fechaval)) {
+                $fechaEnvio = FechaHora($resultadoPaquetesPorValija->return->idval->fechaval);
+            } else {
+                $fechaEnvio = "";
+            }
+            if (isset($resultadoPaquetesPorValija->return->idval->fecharval)) {
+                $fechaRecibido = FechaHora($resultadoPaquetesPorValija->return->idval->fecharval);
+            } else {
+                $fechaRecibido = "";
+            }
         }
 
         $_SESSION["fechaEnvio"] = $fechaEnvio;
         $_SESSION["fechaRecibido"] = $fechaRecibido;
         $_SESSION["paquetesXValija"] = $resultadoPaquetesPorValija;
         $_SESSION["origenValija"] = $resultadoOrigen;
-
-        llenarLog(6, "Comprobante de Detalle de Valija", $usuarioBitacora, $ideSede);
-        echo"<script>window.open('../pdf/proof_pouch_and_packages.php');</script>";
-        //iraURL('../pdf/proof_pouch_and_packages.php');
+		
+		if(isset($resultadoPaquetesPorValija->return)){
+        	llenarLog(6, "Comprobante de Detalle de Valija", $usuarioBitacora, $ideSede);
+        	echo"<script>window.open('../pdf/proof_pouch_and_packages.php');</script>";
+        	//iraURL('../pdf/proof_pouch_and_packages.php');
+		}
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_valise.php');

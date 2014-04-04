@@ -68,10 +68,12 @@ try {
         $_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
         $_SESSION["codigo"] = $codigoTotal;
 		$_SESSION["fecha"] = $fecha;
-
-        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-        echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
-        //iraURL('../pdf/proof_of_correspondence.php');
+		
+		if(isset($resultadoConsultarUltimoPaquete->return)){
+        	llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
+        	echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
+        	//iraURL('../pdf/proof_of_correspondence.php');
+		}
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');

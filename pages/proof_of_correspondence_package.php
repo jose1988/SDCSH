@@ -56,10 +56,12 @@ if ($idPaq == "") {
         $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
         $_SESSION["codigoDos"] = $codigoTotal;
         $_SESSION["fecha"] = $fecha;
-
-        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-        echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
-        //iraURL('../pdf/proof_of_correspondence_package.php');
+		
+		if(isset($resultadoConsultarPaquete->return)){		
+        	llenarLog(6, "Comprobante de Paquete", $usuarioBitacora, $ideSede);
+        	echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
+        	//iraURL('../pdf/proof_of_correspondence_package.php');
+		}
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/inbox.php');

@@ -43,14 +43,14 @@ if ($idPaquete == "") {
 
         if ($segumientoPaquete > 1) {
             for ($i = 0; $i < $segumientoPaquete; $i++) {
-                if (isset($resultadoPaquete->return->fechaseg)) {
-                    $fecha[$i] = FechaHora($resultadoPaquete->return->fechaseg);
+                if (isset($resultadoPaquete->return[$i]->fechaseg)) {
+                    $fecha[$i] = FechaHora($resultadoPaquete->return[$i]->fechaseg);
                 } else {
                     $fecha[$i] = "";
                 }
                 $_SESSION["fecha"][$i] = $fecha[$i];
             }
-        } else {
+        } elseif($segumientoPaquete==1) {
             if (isset($resultadoPaquete->return->fechaseg)) {
                 $fecha = FechaHora($resultadoPaquete->return->fechaseg);
             } else {
@@ -59,10 +59,12 @@ if ($idPaquete == "") {
             $_SESSION["fecha"] = $fecha;
         }
         $_SESSION["trakingPaquete"] = $resultadoPaquete;
-
-        llenarLog(6, "Comprobante de Traking de Paquete", $usuarioBitacora, $ideSede);
-        echo"<script>window.open('../pdf/proof_of_traking_package.php');</script>";
-        //iraURL('../pdf/proof_of_traking_package.php');
+		
+		if(isset($resultadoPaquete->return)){
+        	llenarLog(6, "Comprobante de Traking de Paquete", $usuarioBitacora, $ideSede);
+        	echo"<script>window.open('../pdf/proof_of_traking_package.php');</script>";
+        	//iraURL('../pdf/proof_of_traking_package.php');
+		}
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/inbox.php');

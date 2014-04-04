@@ -11,7 +11,7 @@
         <div align="center">	
             <h2 align="center">Sistema de Correspondencia</h2>
             <h3 align="center">Paquete o Correspondencia</h3>
-            <table align="center" width="400" border="1" rules="all">
+            <table align="center" width="450" border="1" rules="all">
                 <tr>
                     <td align="center"><strong>No Paquete</strong></td>
                     <td align="center"><strong>Origen</strong></td>
@@ -22,8 +22,8 @@
                 <tr>
                     <td align="center"><?php echo $idPaq ?></td>
                     <td><?php echo $origen ?></td>
-                    <td><?php echo $deNombre ?></td>
-                    <td><?php echo $paraNombre ?></td>
+                    <td><?php echo $deNombre . ' ' . $deApellido ?></td>
+                    <td><?php echo $paraNombre . ' ' . $paraApellido ?></td>
                     <td><?php echo $destino ?></td>
                 </tr>
             </table>
@@ -42,8 +42,13 @@
                     for ($i = 0; $i < $contadorPaquete; $i++) {
                         ?>
                         <tr>
-                            <td><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu ?></td>
-                            <td><?php echo $fecha[$i] ?></td>
+                            <?php if (isset($resultadoPaquete->return[$i]->iduse->idusu->apellidousu)) { ?>
+                                <td><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu . ' ' . $resultadoPaquete->return[$i]->iduse->idusu->apellidousu ?></td>
+                            <?php } else {
+                                ?>
+                                <td><?php echo $resultadoPaquete->return[$i]->iduse->idusu->nombreusu ?></td>
+                            <?php } ?>
+                            <td align="center"><?php echo $fecha[$i] ?></td>
                             <?php
                             $status = "";
                             if ($resultadoPaquete->return[$i]->statusseg == "0") {
@@ -56,7 +61,7 @@
                                 $status = "Extraviado";
                             }
                             ?>
-                            <td><?php echo $status ?></td>
+                            <td align="center"><?php echo $status ?></td>
                             <?php
                             $tipo = "";
                             if ($resultadoPaquete->return[$i]->tiposeg == "0") {
@@ -65,16 +70,21 @@
                                 $tipo = "Destino";
                             }
                             ?>
-                            <td><?php echo $tipo ?></td>
-                            <td><?php echo $resultadoPaquete->return[$i]->nivelseg ?></td>
+                            <td align="center"><?php echo $tipo ?></td>
+                            <td align="center"><?php echo $resultadoPaquete->return[$i]->nivelseg ?></td>
                         </tr>
-                    <?php
+                        <?php
                     }
                 } else {
                     ?>
                     <tr>
-                        <td><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu ?></td>
-                        <td><?php echo $fecha ?></td>
+                        <?php if (isset($resultadoPaquete->return->iduse->idusu->apellidousu)) { ?>
+                            <td><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu . ' ' . $resultadoPaquete->return->iduse->idusu->apellidousu ?></td>
+                        <?php } else {
+                            ?>
+                            <td><?php echo $resultadoPaquete->return->iduse->idusu->nombreusu ?></td>
+                        <?php } ?>
+                        <td align="center"><?php echo $fecha ?></td>
                         <?php
                         $status = "";
                         if ($resultadoPaquete->return->statusseg == "0") {
@@ -87,7 +97,7 @@
                             $status = "Extraviado";
                         }
                         ?>
-                        <td><?php echo $status ?></td>
+                        <td align="center"><?php echo $status ?></td>
                         <?php
                         $tipo = "";
                         if ($resultadoPaquete->return->tiposeg == "0") {
@@ -96,8 +106,8 @@
                             $tipo = "Destino";
                         }
                         ?>
-                        <td><?php echo $tipo ?></td>
-                        <td><?php echo $resultadoPaquete->return->nivelseg ?></td>
+                        <td align="center"><?php echo $tipo ?></td>
+                        <td align="center"><?php echo $resultadoPaquete->return->nivelseg ?></td>
                     </tr>
                 <?php }
                 ?>

@@ -68,8 +68,11 @@ if ($valijas > 0) {
         $_SESSION["fechaRecibido"] = $fechaRecibido;
     }
 }
-llenarLog(6, "Comprobante de Valijas", $usuarioBitacora, $ideSede);
-echo"<script>window.open('../pdf/proof_of_bags_report.php');</script>";
-//iraURL('../pdf/proof_of_bags_report.php');
+
+if (isset($resultadoConsultarValijas->return)) {
+	llenarLog(6, "Comprobante de Valijas", $usuarioBitacora, $ideSede);
+	echo"<script>window.open('../pdf/proof_of_bags_report.php');</script>";
+	//iraURL('../pdf/proof_of_bags_report.php');
+}
 //iraURL('../pages/reports_valise.php');
 ?>
