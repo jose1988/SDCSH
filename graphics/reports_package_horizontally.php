@@ -81,7 +81,7 @@ if ($usuario == "") {
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/info_reports_valise.php">
+                                <a href="../pages/info_reports_package.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -92,10 +92,10 @@ if ($usuario == "") {
                         <div class="tab-content" id="lista" align="center">
                             <?php
                             //Verificando que este vacio o sea null
-                            if (!isset($resultadoConsultarValijas->return)) {
+                            if (!isset($resultadoConsultarPaquetes->return)) {
                                 echo '<div class="alert alert-block" align="center">';
                                 echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
-                                echo '<h4 align="center">No Existen Registros de Valijas</h4>';
+                                echo '<h4 align="center">No Existen Registros de Paquetes</h4>';
                                 echo '</div>';
                             }
                             //Si existen registros muestro el gráfico
@@ -142,7 +142,7 @@ if ($usuario == "") {
                         type: 'bar'
                     },
                     title: {
-                        text: 'Estradísticas de Valijas'
+                        text: 'Estradísticas de Paquetes'
                     },
                     xAxis: {
                         categories: ['San Cristóbal', 'Caracas', 'Mérida', 'Maracaibo', 'San Fernando de Apure', 'Barinas', 'Margarita', 'Valencia', 'Valera', 'Maracay'],
@@ -161,7 +161,7 @@ if ($usuario == "") {
                         }
                     },
                     tooltip: {
-                        valueSuffix: 'Valijas'
+                        valueSuffix: 'Paquetes'
                     },
                     plotOptions: {
                         bar: {

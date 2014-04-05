@@ -31,7 +31,7 @@ if ($usuario == "") {
 
         <link rel="shortcut icon" href="../images/faviconsh.ico">
 
-        <link href="../views/css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
@@ -81,7 +81,7 @@ if ($usuario == "") {
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/info_reports_valise.php">
+                                <a href="../pages/info_reports_package.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -92,10 +92,10 @@ if ($usuario == "") {
                         <div class="tab-content" id="lista" align="center">
                             <?php
                             //Verificando que este vacio o sea null
-                            if (!isset($resultadoConsultarValijas->return)) {
+                            if (!isset($resultadoConsultarPaquetes->return)) {
                                 echo '<div class="alert alert-block" align="center">';
                                 echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
-                                echo '<h4 align="center">No Existen Registros de Valijas</h4>';
+                                echo '<h4 align="center">No Existen Registros de Paquetes</h4>';
                                 echo '</div>';
                             }
                             //Si existen registros muestro el gráfico
@@ -104,21 +104,12 @@ if ($usuario == "") {
                                 <h2> <strong>Gráfica de <?php echo $nombreReporte ?></strong> </h2>
                                 <br>                            
                                 <?php
-                                if ($sede == '0') {
-                                    if ($contadorSedes <= 10) {
-                                        $tama = 300;
-                                    } elseif ($contadorSedes > 10 && $contadorSedes <= 20) {
-                                        $tama = 400;
-                                    } elseif ($contadorSedes > 20 && $contadorSedes <= 30) {
-                                        $tama = 500;
-                                    } elseif ($contadorSedes > 30 && $contadorSedes <= 40) {
-                                        $tama = 600;
-                                    }
-                                    ?>
-                                    <div align="center" id="graficoHorizontal" style="min-width: 100px; max-width: 600px; height: <?php echo $tama ?>px; margin: 0 auto">   	
+                                if ($sede != '0') { ?>
+                                    <div align="center" id="graficoVertical" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto">   	
                                     </div>
                                 <?php }
-							} ?>
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -135,58 +126,44 @@ if ($usuario == "") {
         </script>
         
         <script>
-            /*Gráfico horizontal para todas las sedes*/
+            /*Gráfico vertical para las valijas de una sede*/
             $(function() {
-                $('#graficoHorizontal').highcharts({
+                $('#graficoVertical').highcharts({
                     chart: {
-                        type: 'bar'
+                        type: 'column'
                     },
                     title: {
-                        text: 'Estradísticas de Valijas'
+                        text: 'Estadísticas de Paquetes'
                     },
                     xAxis: {
-                        categories: ['San Cristóbal', 'Caracas', 'Mérida', 'Maracaibo', 'San Fernando de Apure', 'Barinas', 'Margarita', 'Valencia', 'Valera', 'Maracay'],
-                        title: {
-                            text: null
-                        }
+                        categories: [
+                            '<?php echo $opcionSede ?>'
+                        ]
                     },
                     yAxis: {
                         min: 0,
                         title: {
                             text: 'Cantidad Total de <?php echo $nombreReporte ?>',
-                            align: 'high'
-                        },
-                        labels: {
-                            overflow: 'justify'
                         }
                     },
                     tooltip: {
-                        valueSuffix: 'Valijas'
+                        headerFormat: '<span style="font-size:8px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
                     },
                     plotOptions: {
-                        bar: {
-                            dataLabels: {
-                                enabled: true
-                            }
+                        column: {
+                            pointPadding: 0.01,
+                            borderWidth: 0
                         }
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'left',
-                        verticalAlign: 'top',
-                        x: 0,
-                        y: 0,
-                        floating: true,
-                        borderWidth: 1,
-                        backgroundColor: '#FFFFFF',
-                        shadow: true
-                    },
-                    credits: {
-                        enabled: false
                     },
                     series: [{
                             name: '<?php echo $nombreReporte ?>',
-                            data: [107, 31, 635, 203, 2, 20, 100, 400, 30, 500]
+                            data: [<?php echo $contadorPaquetes ?>]
+
                         }]
                 });
             });
