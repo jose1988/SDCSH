@@ -24,7 +24,7 @@ $idPaquete = $_GET["id"];
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
 if ($idPaquete == "") {
-    iraURL('../pages/inbox.php');
+    iraURL('../pages/reports_valise.php');
 } else {
     try {
         $paquete = array('idPaquete' => $idPaquete);

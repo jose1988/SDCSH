@@ -10,12 +10,12 @@
         </div>
         <div align="center">	
             <h2 align="center">Sistema de Correspondencia</h2>
-            <h3 align="center">Valija</h3>
+            <h3 align="center"><?php echo $nombreReporte ?></h3>
             <table align="center" width="500" border="1" rules="all">
                 <tr>
                     <td align="center"><strong>Fecha y Hora de Envio</strong></td>
-                    <td align="center"><strong>No de Valija</strong></td>
-                    <td align="center"><strong>No de Guía</strong></td>
+                    <td align="center"><strong>Nro de Valija</strong></td>
+                    <td align="center"><strong>Nro de Guía</strong></td>
                     <td align="center"><strong>Origen</strong></td>
                     <td align="center"><strong>Realizado por</strong></td>
                     <td align="center"><strong>Tipo</strong></td>
@@ -111,7 +111,7 @@
             <br>
             <table align="center" width="300" border="1" rules="all">
                 <tr>
-                    <td align="center"><strong>Total de Valijas</strong></td>
+                    <td align="center"><strong>Total de <?php echo $nombreReporte ?></strong></td>
                     <td align="center" width="100"><?php echo $valijas ?></td>
                 </tr>
             </table>

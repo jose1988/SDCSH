@@ -98,18 +98,35 @@ if ($usuario == "") {
                             else {
                                 ?>                        
                                 <strong> <h2 align="center"><?php echo $nombreReporte ?></h2> </strong>
-                                <table class='footable table table-striped table-bordered' data-page-size='10'>
+                                <br>
+                                <div class="span11">
+                                    <div class="span3"></div>
+                                    <div class="span6" align="center">
+                                        <table align="center" width="300" class='footable table table-striped table-bordered'>
+                                            <tr>
+                                                <td style="text-align:center"><strong>Total de <?php echo $nombreReporte ?></strong></td>
+                                                <td style="text-align:center" width="100"><?php echo $valijas ?></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="span3"></div>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <table class='footable table table-striped table-bordered' data-page-size='5'>
                                     <thead bgcolor='#FF0000'>
                                         <tr>
                                             <th style="text-align:center">Fecha y Hora de Envio</th>
-                                            <th style="text-align:center" data-sort-ignore="true">No de Valija</th>
-                                            <th style="text-align:center" data-sort-ignore="true">No de Guía</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Origen</th>
+                                            <th style="text-align:center">Nro de Valija</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Nro de Guía</th>
+                                            <th style="text-align:center">Origen</th>
                                             <th style="text-align:center" data-sort-ignore="true">Realizado por</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Tipo</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Destino</th>
+                                            <th style="text-align:center">Tipo</th>
+                                            <th style="text-align:center">Destino</th>
                                             <th style="text-align:center" data-sort-ignore="true">Fecha y Hora de Recibido</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Ver Detalles</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Ver más</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -229,20 +246,6 @@ if ($usuario == "") {
                                     </tbody>
                                 </table>
                                 <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>                                
-                                <br>
-                                <br>
-                                <div class="span11">
-                                    <div class="span3"></div>
-                                    <div class="span6" align="center">
-                                        <table align="center" width="300" class='footable table table-striped table-bordered'>
-                                            <tr>
-                                                <td style="text-align:center"><strong>Total de Valijas</strong></td>
-                                                <td style="text-align:center" width="100"><?php echo $valijas ?></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="span3"></div>
-                                </div>
                                 <br>
                                 <br>
                                 <br>

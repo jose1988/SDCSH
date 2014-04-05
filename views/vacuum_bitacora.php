@@ -90,18 +90,18 @@ if ($usuarioBitacora == "") {
                             if (!isset($resultadoListaBitacora->return)) {
                                 echo '<div class="alert alert-block" align="center">';
                                 echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
-                                echo '<h4 align="center">No Existen Registros en Bitacora</h4>';
+                                echo '<h4 align="center">No Existen Registros en Bitácora</h4>';
                                 echo '</div>';
                             }
                             //Si existen registros muestro la tabla
                             else {
                                 ?>
                                 <form class="form-search" id="formulario" method="post">                   
-                                    <strong> <h2 align="center">Bitacora</h2> </strong>
+                                    <strong> <h2 align="center">Bitácora</h2> </strong>
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>
                                         <thead bgcolor='#FF0000'>
                                             <tr>
-                                                <th style="text-align:center">Bitacora</th>
+                                                <th style="text-align:center">Nro de Bitácora</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Acción</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Fecha - Hora</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Observación</th>
@@ -140,7 +140,7 @@ if ($usuarioBitacora == "") {
                                     <br>
                                     <?php if ($_SESSION["Usuario"]->return->tipousu == "2") { ?>
                                         <div align="right">                      
-                                            <button type="submit" class="btn" id="vaciar" name="vaciar" onclick="return confirm('¿Esta seguro que desea vaciar la Bitacora?')">Vaciar Bitacora</button>
+                                            <button type="submit" class="btn" id="vaciar" name="vaciar" onclick="return confirm('¿Esta seguro que desea vaciar la Bitacora?')">Vaciar Bitácora</button>
 
                                         </div>
                                     <?php } ?>

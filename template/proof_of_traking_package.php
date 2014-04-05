@@ -13,7 +13,7 @@
             <h3 align="center">Paquete o Correspondencia</h3>
             <table align="center" width="450" border="1" rules="all">
                 <tr>
-                    <td align="center"><strong>No Paquete</strong></td>
+                    <td align="center"><strong>Nro de Paquete</strong></td>
                     <td align="center"><strong>Origen</strong></td>
                     <td align="center"><strong>De</strong></td>
                     <td align="center"><strong>Para</strong></td>

@@ -7,6 +7,17 @@ $fechaRecibido = $_SESSION["fechaRecibido"];
 $resultadoConsultarValijas = $_SESSION["valijas"];
 $nombreSede = $_SESSION["nombreSede"];
 $valijas = count($resultadoConsultarValijas->return);
+$reporte = $_SESSION["Reporte"];
+
+if ($reporte == '1') {
+    $nombreReporte = "Valijas Enviadas";
+} elseif ($reporte == '2') {
+    $nombreReporte = "Valijas Recibidas";
+} elseif ($reporte == '3') {
+    $nombreReporte = "Valijas con Errores";
+} elseif ($reporte == '4') {
+    $nombreReporte = "Valijas Anuladas";
+}
 
 if ($valijas > 0) {
     ob_start();
@@ -27,7 +38,7 @@ if ($valijas > 0) {
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de ' . $valijas . ' Valijas.pdf';
+    $nom = 'Comprobante de ' . $valijas . ' '.$nombreReporte.'.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>

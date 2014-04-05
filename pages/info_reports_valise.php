@@ -64,16 +64,15 @@ try {
         }
         if ($valijas > 1) {
             for ($i = 0; $i < $valijas; $i++) {
-                $nombreSede = "";
                 $idSed = $resultadoConsultarValijas->return[$i]->origenval;
                 $idSede = array('idSede' => $idSed);
                 $resultadoConsultarSede = $client->consultarSedeXId($idSede);
                 if (isset($resultadoConsultarSede->return->nombresed)) {
-                    $nombreSede = $resultadoConsultarSede->return->nombresed;
+                    $nombreSede[$i] = $resultadoConsultarSede->return->nombresed;
                 } else {
-                    $nombreSede = "";
+                    $nombreSede[$i] = "";
                 }
-                $_SESSION["nombreSede"][$i] = $nombreSede;
+                $_SESSION["nombreSede"][$i] = $nombreSede[$i];
             }
         } else {
             $idSed = $resultadoConsultarValijas->return->origenval;
