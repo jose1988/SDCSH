@@ -29,9 +29,11 @@ try {
 			
 			$result=0;
 			try{
-			$datos = array('sede' => $_POST["nombre"]);
-			$Sedes = $client->consultarProveedorXNombre($datos);
-			$result=$Sedes->return;
+			$datos = array('nombre' => $_POST["nombre"]);
+			$pro = $client->consultarProveedorXNombre($datos);
+			if(isset($pro->return)){
+			$result=1;
+			}
 			}catch (Exception $e) {
 				
 			}
