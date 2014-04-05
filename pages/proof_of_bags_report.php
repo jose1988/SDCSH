@@ -74,4 +74,5 @@ if (isset($resultadoConsultarValijas->return)) {
     echo"<script>window.open('../pdf/proof_of_bags_report.php');</script>";
     //iraURL('../pdf/proof_of_bags_report.php');
 }
+echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 ?>

@@ -39,22 +39,28 @@ if ($idPaq == "") {
 
         if (isset($resultadoConsultarPaquete->return)) {
 
-            $sedPaq = $resultadoConsultarPaquete->return->idsed->idsed;
-            $idSede = array('idSede' => $sedPaq);
-            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
-
-            $codigoSede = $resultadoConsultarSede->return->codigosed;
-            $fechaCod = date("Y");
-            $idpaq = $resultadoConsultarPaquete->return->idpaq;
-
-            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
-            guardarImagen($codigoTotal);
-
             if (isset($resultadoConsultarPaquete->return->fechapaq)) {
                 $fecha = FechaHora($resultadoConsultarPaquete->return->fechapaq);
             } else {
                 $fecha = "";
             }
+            //Año de envio del paquete
+            $fechaCod = (substr($fecha, 6, 4));
+
+            $sedPaq = $resultadoConsultarPaquete->return->idsed->idsed;
+            $idSede = array('idSede' => $sedPaq);
+            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+            $codigoSede = $resultadoConsultarSede->return->codigosed;
+
+            $idpaq = $resultadoConsultarPaquete->return->idpaq;
+
+            //Código total codigosede+añopaquete+idpaquete
+            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
+            guardarImagen($codigoTotal);
+
+            echo $fecha . ' ';
+            echo $fechaCod . ' ';
+            echo $codigoTotal;
 
             $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
             $_SESSION["codigoDos"] = $codigoTotal;
@@ -68,6 +74,6 @@ if ($idPaq == "") {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/inbox.php');
     }
-    iraURL('../pages/inbox.php');
+    echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 }
 ?>

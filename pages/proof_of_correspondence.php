@@ -51,21 +51,24 @@ try {
 
         if (isset($resultadoConsultarUltimoPaquete->return)) {
 
-            $idSede = array('idSede' => $ideSede);
-            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
-
-            $codigoSede = $resultadoConsultarSede->return->codigosed;
-            $fechaCod = date("Y");
-            $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
-
-            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
-            guardarImagen($codigoTotal);
-
             if (isset($resultadoConsultarUltimoPaquete->return->fechapaq)) {
                 $fecha = FechaHora($resultadoConsultarUltimoPaquete->return->fechapaq);
             } else {
                 $fecha = "";
             }
+            //Año de envio del paquete
+            $fechaCod = (substr($fecha, 6, 4));
+
+            $sedPaq = $resultadoConsultarUltimoPaquete->return->idsed->idsed;
+            $idSede = array('idSede' => $sedPaq);
+            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+            $codigoSede = $resultadoConsultarSede->return->codigosed;
+
+            $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+
+            //Código total codigosede+añopaquete+idpaquete
+            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
+            guardarImagen($codigoTotal);
 
             $_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
             $_SESSION["codigo"] = $codigoTotal;

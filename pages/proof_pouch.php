@@ -59,24 +59,24 @@ try {
 
         if (isset($resultadoConsultarUltimaValija->return)) {
 
-            $idSede = array('idSede' => $ideSede);
-            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
-
-            $idOrigen = array('idSede' => $resultadoConsultarUltimaValija->return->origenval);
-            $resultadoOrigen = $client->consultarSedeXId($idOrigen);
-
-            $idval = $resultadoConsultarUltimaValija->return->idval;
-            $codigoSede = $resultadoConsultarSede->return->codigosed;
-            $fechaCod = date("Y");
-
-            $codigoTotal = $codigoSede . $fechaCod . $idval;
-            guardarImagen($codigoTotal);
-
             if (isset($resultadoConsultarUltimaValija->return->fechaval)) {
                 $fecha = FechaHora($resultadoConsultarUltimaValija->return->fechaval);
             } else {
                 $fecha = "";
             }
+            //Año de envio del paquete
+            $fechaCod = (substr($fecha, 6, 4));
+
+            $sedOrigen = $resultadoConsultarUltimaValija->return->origenval;
+            $idOrigen = array('idSede' => $sedOrigen);
+            $resultadoOrigen = $client->consultarSedeXId($idOrigen);
+            $codigoSede = $resultadoOrigen->return->codigosed;
+
+            $idval = $resultadoConsultarUltimaValija->return->idval;
+
+            //Código total codigosede+añovalija+idvalija
+            $codigoTotal = $codigoSede . $fechaCod . $idval;
+            guardarImagen($codigoTotal);
 
             $_SESSION["valija"] = $resultadoConsultarUltimaValija;
             $_SESSION["codigo"] = $codigoTotal;

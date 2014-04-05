@@ -91,5 +91,6 @@ if ($idValija == "") {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_valise.php');
     }
+	echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 }
 ?>

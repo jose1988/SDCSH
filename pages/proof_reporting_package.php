@@ -60,4 +60,5 @@ if (isset($resultadoConsultarPaquetes->return)) {
     echo"<script>window.open('../pdf/proof_reporting_package.php');</script>";
     //iraURL('../pdf/proof_reporting_package.php');
 }
+echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 ?>
