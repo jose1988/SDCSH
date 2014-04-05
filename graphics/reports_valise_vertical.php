@@ -101,7 +101,7 @@ if ($usuario == "") {
                             //Si existen registros muestro el gráfico
                             else {
                                 ?>
-                                <h2> <strong>Gráfico de <?php echo $nombreReporte ?></strong> </h2>
+                                <h2> <strong>Gráfica de <?php echo $nombreReporte ?></strong> </h2>
                                 <br>                            
                                 <?php
                                 if ($sede != '0') { ?>
@@ -143,7 +143,7 @@ if ($usuario == "") {
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Cantidad Total'
+                            text: 'Cantidad Total de <?php echo $nombreReporte ?>',
                         }
                     },
                     tooltip: {
@@ -161,7 +161,7 @@ if ($usuario == "") {
                         }
                     },
                     series: [{
-                            name: 'Valijas',
+                            name: '<?php echo $nombreReporte ?>',
                             data: [<?php echo $contadorValijas ?>]
 
                         }]

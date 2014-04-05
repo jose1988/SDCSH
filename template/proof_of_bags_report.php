@@ -115,12 +115,11 @@
                     <td align="center" width="100"><?php echo $valijas ?></td>
                 </tr>
             </table>
-        </table>
-    </div>
-    <br>
-    <br>
-    <div align="center">
-        <img style="top:auto" src="../images/todo.png" width="700" height="40">        	
-    </div>
-</body>
+        </div>
+        <br>
+        <br>
+        <div align="center">
+            <img style="top:auto" src="../images/todo.png" width="700" height="40">        	
+        </div>
+    </body>
 </html>

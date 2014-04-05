@@ -82,7 +82,7 @@
 
                     <div class="span10" align="center">
                         <div class="tab-content" id="lista" align="center">
-                            <h2> <strong>Consultar Valijas</strong> </h2>
+                            <h2> <strong>Consultar Paquetes</strong> </h2>
                             <br>
                             <form class="form-Dvalija" method="post" id="fval">
                                 <div class="span12">
@@ -91,10 +91,9 @@
                                         <br>
                                         <select name='reporte' id='reporte' required  title='Seleccione la Sede'>
                                             <option value='' style='display:none'>Seleccionar:</option>
-                                            <option value='1'>Total de Valijas Enviadas</option>
-                                            <option value='2'>Total de Valijas Recibidas</option>
-                                            <option value='3'>Total de Valijas con Errores</option>
-                                            <option value='4'>Total de Valijas Anuladas</option>
+                                            <option value='1'>Total de Paquetes Enviados</option>
+                                            <option value='2'>Total de Paquetes Recibidos</option>
+                                            <option value='3'>Total de Paquetes por Entregar</option>
                                         </select>
                                         <br>
                                     </div>                                	

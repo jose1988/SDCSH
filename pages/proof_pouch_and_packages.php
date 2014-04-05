@@ -91,6 +91,5 @@ if ($idValija == "") {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_valise.php');
     }
-    //iraURL('../pages/reports_valise.php');
 }
 ?>

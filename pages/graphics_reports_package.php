@@ -30,21 +30,22 @@ if (isset($SedeRol->return)) {
 $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
-$resultadoConsultarValijas = $_SESSION["valijas"];
-$reporte = $_SESSION["Reporte"];
-$sede = $_SESSION["Osede"];
+$resultadoConsultarPaquetes = $_SESSION["paquetes"];
+//$reporte = $_SESSION["Reporte"];
+//$sede = $_SESSION["Osede"];
 
-$contadorValijas = count($resultadoConsultarValijas->return);
+$reporte='1';
+$sede='0';
 
+$contadorPaquetes = count($resultadoConsultarPaquetes->return);
 if ($reporte == '1') {
-    $nombreReporte = "Valijas Enviadas";
+	$nombreReporte = "Paquetes Enviados";
 } elseif ($reporte == '2') {
-    $nombreReporte = "Valijas Recibidas";
+	$nombreReporte = "Paquetes Recibidos";
 } elseif ($reporte == '3') {
-    $nombreReporte = "Valijas con Errores";
-} elseif ($reporte == '4') {
-    $nombreReporte = "Valijas Anuladas";
+	$nombreReporte = "Paquetes por Entregar";
 }
+
 $contadorSedes = 0;
 $opcionSede = "";
 if ($sede == '0') {
@@ -59,10 +60,10 @@ if ($sede == '0') {
             $contadorSedes = 0;
         }
 		
-		include("../graphics/reports_valise_horizontally.php");
+		include("../graphics/reports_package_horizontally.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
-        iraURL('../pages/reports_valise.php');
+        iraURL('../pages/reports_package.php');
     }
 } else {
     try {
@@ -77,10 +78,10 @@ if ($sede == '0') {
             $cpcionSede = "";
         }
 		
-		include("../graphics/reports_valise_vertical.php");
+		include("../graphics/reports_package_vertical.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
-        iraURL('../pages/reports_valise.php');
+        iraURL('../pages/reports_package.php');
     }
 }
 ?>

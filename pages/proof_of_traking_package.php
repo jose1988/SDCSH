@@ -69,6 +69,5 @@ if ($idPaquete == "") {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/inbox.php');
     }
-    //iraURL('../pages/inbox.php');
 }
 ?>
