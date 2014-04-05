@@ -129,10 +129,10 @@ if (!isset($org->return)) {
                                             <option value="" style="display:none">Seleccionar:</option>                                  
                                             <?php
                                             if (count($org->return) == 1) {
-                                                echo '<option value="' . $org->return->idorg . '">' . $org->return->nombreorg . '</option>';
+                                                echo '<option value="' . $org->return->idsed . '">' . $org->return->nombresed . '</option>';
                                             } else {
                                                 for ($i = 0; $i < count($org->return); $i++) {
-                                                    echo '<option value="' . $org->return[$i]->idorg . '">' . $org->return[$i]->nombreorg . '</option>';
+                                                    echo '<option value="' . $org->return[$i]->idsed . '">' . $org->return[$i]->nombresed . '</option>';
                                                 }
                                             }
                                             ?>
