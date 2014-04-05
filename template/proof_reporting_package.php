@@ -16,6 +16,8 @@
                     <td align="center"><strong>Fecha y Hora de Envio</strong></td>
                     <td align="center"><strong>Nro de Paquete</strong></td>
                     <td align="center"><strong>Origen</strong></td>
+                    <td align="center"><strong>De</strong></td>
+                    <td align="center"><strong>Para</strong></td>
                     <td align="center"><strong>Priordad</strong></td>
                     <td align="center"><strong>Tipo</strong></td>
                     <td align="center"><strong>Destino</strong></td>
@@ -27,6 +29,15 @@
                         <tr>
                             <td align="center"><?php echo $fechaEnvio[$i] ?></td>
                             <td align="center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq ?></td>
+                            <?php
+                            $nomOrigen = "";
+                            if (isset($resultadoConsultarPaquetes->return[$i]->origenpaq->idatr->idsed->nombresed)) {
+                                $nomOrigen = $resultadoConsultarPaquetes->return[$i]->origenpaq->idatr->idsed->nombresed;
+                            } else {
+                                $nomOrigen = "";
+                            }
+                            ?>
+                            <td><?php echo $nomOrigen ?></td>
                             <?php
                             $deOrigen = "";
                             $apellidoOrigen = "";
@@ -42,11 +53,10 @@
                             }
                             ?>
                             <td><?php echo $deOrigen . ' ' . $apellidoOrigen ?></td>
-                            <td align="center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpri->nombrepri ?></td>
-                            <td align="center"><?php echo $resultadoConsultarPaquetes->return[$i]->iddoc->nombredoc ?></td>
                             <?php
                             $paraDestino = "";
                             $apellidoDestino = "";
+                            $nomDestino = "";
                             if (isset($resultadoConsultarPaquetes->return[$i]->destinopaq->tipobuz)) {
                                 if ($resultadoConsultarPaquetes->return[$i]->destinopaq->tipobuz == "0") {
                                     if (isset($resultadoConsultarPaquetes->return[$i]->destinopaq->idusu->nombreusu)) {
@@ -59,6 +69,11 @@
                                     } else {
                                         $apellidoDestino = "";
                                     }
+                                    if (isset($resultadoConsultarPaquetes->return[$i]->destinopaq->idatr->idsed->nombresed)) {
+                                        $nomDestino = $resultadoConsultarPaquetes->return[$i]->destinopaq->idatr->idsed->nombresed;
+                                    } else {
+                                        $nomDestino = "";
+                                    }
                                 }
                                 if ($resultadoConsultarPaquetes->return[$i]->destinopaq->tipobuz == "1") {
                                     if (isset($resultadoConsultarPaquetes->return[$i]->destinopaq->nombrebuz)) {
@@ -66,10 +81,18 @@
                                     } else {
                                         $paraDestino = "";
                                     }
+                                    if (isset($resultadoConsultarPaquetes->return[$i]->destinopaq->direccionbuz)) {
+                                        $nomDestino = $resultadoConsultarPaquetes->return[$i]->destinopaq->direccionbuz;
+                                    } else {
+                                        $nomDestino = "";
+                                    }
                                 }
                             }
                             ?>                            
                             <td><?php echo $paraDestino . ' ' . $apellidoDestino ?></td>
+                            <td align="center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpri->nombrepri ?></td>
+                            <td align="center"><?php echo $resultadoConsultarPaquetes->return[$i]->iddoc->nombredoc ?></td>
+                            <td><?php echo $nomDestino ?></td>
                         </tr>
                         <?php
                     }
@@ -78,6 +101,15 @@
                     <tr>
                         <td align="center"><?php echo $fechaEnvio ?></td>
                         <td align="center"><?php echo $resultadoConsultarPaquetes->return->idpaq ?></td>
+                        <?php
+                        $nomOrigen = "";
+                        if (isset($resultadoConsultarPaquetes->return->origenpaq->idatr->idsed->nombresed)) {
+                            $nomOrigen = $resultadoConsultarPaquetes->return->origenpaq->idatr->idsed->nombresed;
+                        } else {
+                            $nomOrigen = "";
+                        }
+                        ?>
+                        <td><?php echo $nomOrigen ?></td>
                         <?php
                         $deOrigen = "";
                         $apellidoOrigen = "";
@@ -93,11 +125,10 @@
                         }
                         ?>
                         <td><?php echo $deOrigen . ' ' . $apellidoOrigen ?></td>
-                        <td align="center"><?php echo $resultadoConsultarPaquetes->return->idpri->nombrepri ?></td>
-                        <td align="center"><?php echo $resultadoConsultarPaquetes->return->iddoc->nombredoc ?></td>
                         <?php
                         $paraDestino = "";
                         $apellidoDestino = "";
+                        $nomDestino = "";
                         if (isset($resultadoConsultarPaquetes->return->destinopaq->tipobuz)) {
                             if ($resultadoConsultarPaquetes->return->destinopaq->tipobuz == "0") {
                                 if (isset($resultadoConsultarPaquetes->return->destinopaq->idusu->nombreusu)) {
@@ -110,6 +141,11 @@
                                 } else {
                                     $apellidoDestino = "";
                                 }
+                                if (isset($resultadoConsultarPaquetes->return->destinopaq->idatr->idsed->nombresed)) {
+                                    $nomDestino = $resultadoConsultarPaquetes->return->destinopaq->idatr->idsed->nombresed;
+                                } else {
+                                    $nomDestino = "";
+                                }
                             }
                             if ($resultadoConsultarPaquetes->return->destinopaq->tipobuz == "1") {
                                 if (isset($resultadoConsultarPaquetes->return->destinopaq->nombrebuz)) {
@@ -117,10 +153,18 @@
                                 } else {
                                     $paraDestino = "";
                                 }
+                                if (isset($resultadoConsultarPaquetes->return->destinopaq->direccionbuz)) {
+                                    $nomDestino = $resultadoConsultarPaquetes->return->destinopaq->direccionbuz;
+                                } else {
+                                    $nomDestino = "";
+                                }
                             }
                         }
                         ?>                            
                         <td><?php echo $paraDestino . ' ' . $apellidoDestino ?></td>
+                        <td align="center"><?php echo $resultadoConsultarPaquetes->return->idpri->nombrepri ?></td>
+                        <td align="center"><?php echo $resultadoConsultarPaquetes->return->iddoc->nombredoc ?></td>
+                        <td><?php echo $nomDestino ?></td>
                     </tr>                    
                 <?php }
                 ?>

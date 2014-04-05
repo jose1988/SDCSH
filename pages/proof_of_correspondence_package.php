@@ -36,28 +36,29 @@ if ($idPaq == "") {
 
         $idPaquete = array('idPaquete' => $idPaq);
         $resultadoConsultarPaquete = $client->consultarPaqueteXId($idPaquete);
-
-        $idSede = array('idSede' => $ideSede);
-        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
-
-        $codigoSede = $resultadoConsultarSede->return->codigosed;
-        $fechaCod = date("Y");
-        $idpaq = $resultadoConsultarPaquete->return->idpaq;
-
-        $codigoTotal = $codigoSede . $fechaCod . $idpaq;
-        guardarImagen($codigoTotal);
-
-        if (isset($resultadoConsultarPaquete->return->fechapaq)) {
-            $fecha = FechaHora($resultadoConsultarPaquete->return->fechapaq);
-        } else {
-            $fecha = "";
-        }
-
-        $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
-        $_SESSION["codigoDos"] = $codigoTotal;
-        $_SESSION["fecha"] = $fecha;
 		
-		if(isset($resultadoConsultarPaquete->return)){		
+		if(isset($resultadoConsultarPaquete->return)){
+					
+			$idSede = array('idSede' => $ideSede);
+        	$resultadoConsultarSede = $client->consultarSedeXId($idSede);
+
+        	$codigoSede = $resultadoConsultarSede->return->codigosed;
+        	$fechaCod = date("Y");
+        	$idpaq = $resultadoConsultarPaquete->return->idpaq;
+
+        	$codigoTotal = $codigoSede . $fechaCod . $idpaq;
+        	guardarImagen($codigoTotal);
+
+        	if (isset($resultadoConsultarPaquete->return->fechapaq)) {
+            	$fecha = FechaHora($resultadoConsultarPaquete->return->fechapaq);
+        	} else {
+            	$fecha = "";
+        	}
+
+        	$_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
+        	$_SESSION["codigoDos"] = $codigoTotal;
+        	$_SESSION["fecha"] = $fecha;
+				
         	llenarLog(6, "Comprobante de Paquete", $usuarioBitacora, $ideSede);
         	echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
         	//iraURL('../pdf/proof_of_correspondence_package.php');

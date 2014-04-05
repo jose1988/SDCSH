@@ -56,32 +56,33 @@ try {
 
         $idUsu = array('idUsuario' => $idUsuario);
         $resultadoConsultarUltimaValija = $client->ultimaValijaXUsuario($idUsu);
-
-        $idSede = array('idSede' => $ideSede);
-        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
-
-        $idOrigen = array('idSede' => $resultadoConsultarUltimaValija->return->origenval);
-        $resultadoOrigen = $client->consultarSedeXId($idOrigen);
-
-        $idval = $resultadoConsultarUltimaValija->return->idval;
-        $codigoSede = $resultadoConsultarSede->return->codigosed;
-        $fechaCod = date("Y");
-
-        $codigoTotal = $codigoSede . $fechaCod . $idval;
-        guardarImagen($codigoTotal);
-		
-		if (isset($resultadoConsultarUltimaValija->return->fechaval)) {
-    		$fecha = FechaHora($resultadoConsultarUltimaValija->return->fechaval);
-		} else {
-    		$fecha = "";
-		}
-
-        $_SESSION["valija"] = $resultadoConsultarUltimaValija;
-        $_SESSION["codigo"] = $codigoTotal;
-        $_SESSION["origen"] = $resultadoOrigen;
-		$_SESSION["fecha"] = $fecha;
 		
 		if(isset($resultadoConsultarUltimaValija->return)){
+			
+        	$idSede = array('idSede' => $ideSede);
+        	$resultadoConsultarSede = $client->consultarSedeXId($idSede);
+
+        	$idOrigen = array('idSede' => $resultadoConsultarUltimaValija->return->origenval);
+        	$resultadoOrigen = $client->consultarSedeXId($idOrigen);
+
+        	$idval = $resultadoConsultarUltimaValija->return->idval;
+        	$codigoSede = $resultadoConsultarSede->return->codigosed;
+        	$fechaCod = date("Y");
+
+        	$codigoTotal = $codigoSede . $fechaCod . $idval;
+        	guardarImagen($codigoTotal);
+		
+			if (isset($resultadoConsultarUltimaValija->return->fechaval)) {
+    			$fecha = FechaHora($resultadoConsultarUltimaValija->return->fechaval);
+			} else {
+    			$fecha = "";
+			}
+
+        	$_SESSION["valija"] = $resultadoConsultarUltimaValija;
+        	$_SESSION["codigo"] = $codigoTotal;
+        	$_SESSION["origen"] = $resultadoOrigen;
+			$_SESSION["fecha"] = $fecha;
+		
         	llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
         	echo"<script>window.open('../pdf/proof_pouch.php');</script>";
         	//iraURL('../pdf/proof_pouch.php');
