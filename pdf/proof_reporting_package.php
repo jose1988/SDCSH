@@ -5,9 +5,8 @@ session_start();
 $fechaEnvio = $_SESSION["fechaEnvio"];
 $resultadoConsultarPaquetes = $_SESSION["paquetes"];
 $contadorPaquetes = count($resultadoConsultarPaquetes->return);
-//$reporte = $_SESSION["Reporte"];
+$reporte = $_SESSION["Reporte"];
 
-$reporte = '1';
 if ($reporte == '1') {
     $nombreReporte = "Paquetes Enviados";
 } elseif ($reporte == '2') {

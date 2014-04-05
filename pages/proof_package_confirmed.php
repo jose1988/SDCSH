@@ -60,7 +60,7 @@ try {
     } else {
         $contadorPaquetes = 0;
     }
-    //iraURL('../pages/print_packages_confirmed.php');
+    iraURL('../pages/print_packages_confirmed.php');
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/print_packages_confirmed.php');

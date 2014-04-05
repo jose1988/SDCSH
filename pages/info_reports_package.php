@@ -36,7 +36,11 @@ try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
-    $resultadoConsultarPaquetes = $client->listarPaquetes();
+    $Con = array('fechaInicio' => $_SESSION["Fechaini"],
+        'fechaFinal' => $_SESSION["Fechafin"],
+        'consulta' => $_SESSION["Reporte"],
+        'idsede' => $_SESSION["Osede"]);
+    $resultadoConsultarPaquetes= $client->consultarEstadisticasPaquetes($Con);
 
     if (isset($resultadoConsultarPaquetes->return)) {
         $paquetes = count($resultadoConsultarPaquetes->return);
@@ -47,8 +51,7 @@ try {
     $_SESSION["paquetes"] = $resultadoConsultarPaquetes;
 
     if ($paquetes > 0) {
-        //$reporte = $_SESSION["Reporte"];
-        $reporte = '1';
+        $reporte = $_SESSION["Reporte"];
         if ($reporte == '1') {
             $nombreReporte = "Paquetes Enviados";
         } elseif ($reporte == '2') {

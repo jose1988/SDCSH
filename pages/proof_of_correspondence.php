@@ -78,7 +78,7 @@ try {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');
     }
-    //iraURL('../pages/inbox.php');
+    iraURL('../pages/inbox.php');
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/send_correspondence.php');

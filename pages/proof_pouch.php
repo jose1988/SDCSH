@@ -90,7 +90,7 @@ try {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/create_valise.php');
     }
-    //iraURL('../pages/create_valise.php');
+    iraURL('../pages/create_valise.php');
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/create_valise.php');

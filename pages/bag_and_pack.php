@@ -30,14 +30,18 @@ try {
     $parametros = array('registroValija' => $idValija,
         'sede' => $ideSede);
     $resultadoPaquetesPorValija = $client->ConsultarPaquetesXValija($parametros);
-   	if (!isset($resultadoPaquetesPorValija->return)) {
-        iraURL('../pages/inbox.php');
-    }
 	
     if (!isset($resultadoPaquetesPorValija->return)) {
         $paquetesXValija = 0;
     } else {
         $paquetesXValija = count($resultadoPaquetesPorValija->return);
+		$resultadoOrigen = $client->consultarSedeXId($idOrigen);
+    	if (isset($resultadoOrigen->return->nombresed)) {
+        	$origen = $resultadoOrigen->return->nombresed;
+    	} else {
+        	$origen = "";
+    	}
+		$contadorPaquetes = $paquetesXValija;
     }
     $fechaEnvio = "";
     $fechaRecibido = "";
@@ -81,14 +85,6 @@ try {
             $destino = $resultadoPaquetesPorValija->return[0]->idval->destinoval->nombresed;
         }
         $idVal = $resultadoPaquetesPorValija->return[0]->idval->idval;
-    }
-
-    $resultadoOrigen = $client->consultarSedeXId($idOrigen);
-    $contadorPaquetes = $paquetesXValija;
-    if (isset($resultadoOrigen->return->nombresed)) {
-        $origen = $resultadoOrigen->return->nombresed;
-    } else {
-        $origen = "";
     }
 
     include("../views/bag_and_pack.php");

@@ -82,7 +82,7 @@
                         $deOrigen = "";
                         $apellidoOrigen = "";
                         if (isset($resultadoConsultarPaquetes->return->origenpaq->idusu->nombreusu)) {
-                            $deOrigen = $resultadoConsultarPaquetes->return[$i]->origenpaq->idusu->nombreusu;
+                            $deOrigen = $resultadoConsultarPaquetes->return->origenpaq->idusu->nombreusu;
                         } else {
                             $deOrigen = "";
                         }
