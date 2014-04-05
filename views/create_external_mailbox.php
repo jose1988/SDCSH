@@ -87,23 +87,23 @@
                                 <table class='footable table table-striped table-bordered'>
                                     <tr>
                                         <td style="text-align:center" >Nombre</td>
-                                        <td style="text-align:center"><input type="text" name="nombre" id="nombre" maxlength="19" size="30" title="Ingrese el primer nombre" placeholder="Ej. Jose" autofocus required></td>
+                                        <td style="text-align:center"><input type="text" name="nombre" id="nombre" maxlength="19" size="30" title="Ingrese el primer nombre" placeholder="Ej. Jose" autofocus autocomplete="off" required></td>
                                     </tr>
                                     
                                     <tr>
                                         <td style="text-align:center" width="50%">Cédula o Rif</td>
-                                        <td style="text-align:center"><input type="text" name="cedularif" id="cedularif" maxlength="19" size="30" title="Ingrese el número de cédula o Rif" placeholder="Ej.   " required>
+                                        <td style="text-align:center"><input type="text" name="cedularif" id="cedularif" maxlength="19" size="30" title="Ingrese el número de cédula o Rif" placeholder="Ej. V-18.876.543 " autocomplete="off" required>
                                         </td>		
                                     </tr>
                                     <tr>
                                         <td style="text-align:center" width="50%">Correo</td>
-                                        <td style="text-align:center"><input type="text" name="correo" id="correo" maxlength="100" size="50" title="Ingrese un correo" placeholder="Ej. josefuentes@gmail.com">
+                                        <td style="text-align:center"><input type="email" name="correo" id="correo" maxlength="100" size="50" title="Ingrese un correo" autocomplete="off" placeholder="Ej. josefuentes@gmail.com">
                                             <div id="Info2" style="float:right"></div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align:center">Telefono</td>
-                                        <td style="text-align:center"><input type="tel" name="telefono" id="telefono" maxlength="19" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   required></td>
+                                        <td style="text-align:center">Teléfono</td>
+                                        <td style="text-align:center"><input type="tel" name="telefono" id="telefono" maxlength="19" size="30" autocomplete="off" title="Ingrese el número de teléfono" placeholder="Ej. 04269876543"   required></td>
                                     </tr>
                                     
                                     <tr>

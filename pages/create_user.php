@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -9,8 +8,11 @@ try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
-    $usuario = array('user' => $_GET["user"]);
-	 $usernuevo=$_GET["user"];
+	if(!isset($_SESSION["User"])){
+	 iraURL('../index.php');
+	}
+    $usuario = array('user' => $_SESSION["User"]);
+	 $usernuevo=$_SESSION["User"];
     
     /* 
 					$Usuario= array('user' =>$usernuevo);

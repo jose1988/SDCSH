@@ -85,26 +85,20 @@ if (!isset($org->return)) {
                 <div class="span10" align="center">
                     <div class="tab-content" id="lista" align="center"> 
                         <form id="formulario" method="post">
-                            <h2> Datos de la Sede </h2> 
+                            <h2> Datos del Proveedor </h2> 
                             <table class='footable table table-striped table-bordered'>
                                 <tr>
                                     <td style="text-align:center" >Nombre del Proveedor</td>
-                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el nombre la sede"  autofocus required></td>
+                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el nombre del Proveedor" placeholder="Ej. Zoom"  autofocus required></td>
                                 </tr>
                                 
-                                </tr>
-                               
-                                </tr>
-                                
-                               
-                                </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" maxlength="50" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   ></td>
+                                    <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" maxlength="50" size="30" title="Ingrese el número de teléfono" placeholder="Ej. 04269876543"   ></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">Codigo <h6> en caso de mensajero  </h6></td>
-                                    <td style="text-align:center"><input type="text" name="codigo" id="codigo" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 04168674789"  ></td>
+                                    <td style="text-align:center">Código <h6> en caso de mensajero  </h6></td>
+                                    <td style="text-align:center"><input type="text" name="codigo" id="codigo" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 98654"  ></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Sede</td>

@@ -190,7 +190,8 @@ if(isset($_POST["guardar"])){
         <script>
 	
 	function Valija(){
-			var idval= document.forms.fval.idval.value;
+	   if (document.forms.fval.idval.value != "") {
+	   	var idval= document.forms.fval.idval.value;
 			 var parametros = {
                 "idval" : idval
        		 };
@@ -204,6 +205,10 @@ if(isset($_POST["guardar"])){
 			}
 		
 	    }); 
+	   }else{
+	   alert('Debe ingresar el código de la Valija')
+	   }
+		
 		
 		
 	}
