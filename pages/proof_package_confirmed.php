@@ -53,7 +53,7 @@ try {
 
     if ($paquetesTotales != "") {
         $contadorPaquetes = count($paquetesTotales);
-		$_SESSION["rol"] = $SedeRol->return->idrol->nombrerol;
+        $_SESSION["rol"] = $SedeRol->return->idrol->nombrerol;
         llenarLog(6, "Comprobante de Paquetes Confirmados", $usuarioBitacora, $sede);
         echo"<script>window.open('../pdf/proof_package_confirmed.php');</script>";
         //iraURL('../pdf/proof_package_confirmed.php');

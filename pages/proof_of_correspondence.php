@@ -48,33 +48,33 @@ try {
 
         $idUsu = array('idUsuario' => $idUsuario);
         $resultadoConsultarUltimoPaquete = $client->ultimoPaqueteXOrigen($idUsu);
-		
-		if(isset($resultadoConsultarUltimoPaquete->return)){
-			
-        	$idSede = array('idSede' => $ideSede);
-        	$resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
-        	$codigoSede = $resultadoConsultarSede->return->codigosed;
-        	$fechaCod = date("Y");
-        	$idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+        if (isset($resultadoConsultarUltimoPaquete->return)) {
 
-        	$codigoTotal = $codigoSede . $fechaCod . $idpaq;
-        	guardarImagen($codigoTotal);		
-		
-			if (isset($resultadoConsultarUltimoPaquete->return->fechapaq)) {
-				$fecha = FechaHora($resultadoConsultarUltimoPaquete->return->fechapaq);
-			} else {
-    			$fecha = "";
-			}
+            $idSede = array('idSede' => $ideSede);
+            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
-        	$_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
-        	$_SESSION["codigo"] = $codigoTotal;
-			$_SESSION["fecha"] = $fecha;
-		
-        	llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-        	echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
-        	//iraURL('../pdf/proof_of_correspondence.php');
-		}
+            $codigoSede = $resultadoConsultarSede->return->codigosed;
+            $fechaCod = date("Y");
+            $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+
+            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
+            guardarImagen($codigoTotal);
+
+            if (isset($resultadoConsultarUltimoPaquete->return->fechapaq)) {
+                $fecha = FechaHora($resultadoConsultarUltimoPaquete->return->fechapaq);
+            } else {
+                $fecha = "";
+            }
+
+            $_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
+            $_SESSION["codigo"] = $codigoTotal;
+            $_SESSION["fecha"] = $fecha;
+
+            llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
+            echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
+            //iraURL('../pdf/proof_of_correspondence.php');
+        }
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');

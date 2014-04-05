@@ -36,33 +36,34 @@ if ($idPaq == "") {
 
         $idPaquete = array('idPaquete' => $idPaq);
         $resultadoConsultarPaquete = $client->consultarPaqueteXId($idPaquete);
-		
-		if(isset($resultadoConsultarPaquete->return)){
-					
-			$idSede = array('idSede' => $ideSede);
-        	$resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
-        	$codigoSede = $resultadoConsultarSede->return->codigosed;
-        	$fechaCod = date("Y");
-        	$idpaq = $resultadoConsultarPaquete->return->idpaq;
+        if (isset($resultadoConsultarPaquete->return)) {
 
-        	$codigoTotal = $codigoSede . $fechaCod . $idpaq;
-        	guardarImagen($codigoTotal);
+            $sedPaq = $resultadoConsultarPaquete->return->idsed->idsed;
+            $idSede = array('idSede' => $sedPaq);
+            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
-        	if (isset($resultadoConsultarPaquete->return->fechapaq)) {
-            	$fecha = FechaHora($resultadoConsultarPaquete->return->fechapaq);
-        	} else {
-            	$fecha = "";
-        	}
+            $codigoSede = $resultadoConsultarSede->return->codigosed;
+            $fechaCod = date("Y");
+            $idpaq = $resultadoConsultarPaquete->return->idpaq;
 
-        	$_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
-        	$_SESSION["codigoDos"] = $codigoTotal;
-        	$_SESSION["fecha"] = $fecha;
-				
-        	llenarLog(6, "Comprobante de Paquete", $usuarioBitacora, $ideSede);
-        	echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
-        	//iraURL('../pdf/proof_of_correspondence_package.php');
-		}
+            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
+            guardarImagen($codigoTotal);
+
+            if (isset($resultadoConsultarPaquete->return->fechapaq)) {
+                $fecha = FechaHora($resultadoConsultarPaquete->return->fechapaq);
+            } else {
+                $fecha = "";
+            }
+
+            $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
+            $_SESSION["codigoDos"] = $codigoTotal;
+            $_SESSION["fecha"] = $fecha;
+
+            llenarLog(6, "Comprobante de Paquete", $usuarioBitacora, $ideSede);
+            echo"<script>window.open('../pdf/proof_of_correspondence_package.php');</script>";
+            //iraURL('../pdf/proof_of_correspondence_package.php');
+        }
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/inbox.php');

@@ -70,8 +70,8 @@ if ($valijas > 0) {
 }
 
 if (isset($resultadoConsultarValijas->return)) {
-	llenarLog(6, "Comprobante de Valijas", $usuarioBitacora, $ideSede);
-	echo"<script>window.open('../pdf/proof_of_bags_report.php');</script>";
-	//iraURL('../pdf/proof_of_bags_report.php');
+    llenarLog(6, "Comprobante de Valijas", $usuarioBitacora, $ideSede);
+    echo"<script>window.open('../pdf/proof_of_bags_report.php');</script>";
+    //iraURL('../pdf/proof_of_bags_report.php');
 }
 ?>

@@ -73,15 +73,18 @@ try {
         if (isset($_POST["ide"])) {
 
             $imprimirPaquetes = $_POST["ide"];
-            $idSede = array('idSede' => $ideSede);
-            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
-            $codigoSede = $resultadoConsultarSede->return->codigosed;
             $fecha = date("Y");
 
             for ($i = 0; $i < count($imprimirPaquetes); $i++) {
                 $idPaquete = array('idPaquete' => $imprimirPaquetes[$i]);
                 $resultadoPaquete = $client->consultarPaqueteXId($idPaquete);
                 $idpaq[$i] = $resultadoPaquete->return->idpaq;
+
+                $sedPaq = $resultadoPaquete->return->idsed->idsed;
+                $idSede = array('idSede' => $sedPaq);
+                $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+                $codigoSede = $resultadoConsultarSede->return->codigosed;
+
                 $codigoTotal[$i] = $codigoSede . $fecha . $idpaq[$i];
                 guardarImagen($codigoTotal[$i]);
                 $_SESSION["codigos"][$i] = $codigoTotal[$i];
