@@ -67,7 +67,7 @@
   <div class="span2">
     <form method="post" action="../pages/send_correspondence.php">
       <button class="btn btn-danger btn-block btn-small " type="submit">
-      <h6> Registrar Correspondecia</h6>
+      <h6> Registrar Correspondencia</h6>
       </button>
       <ul class="nav nav-pills nav-stacked">
         <?php 

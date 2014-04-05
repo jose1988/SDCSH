@@ -69,137 +69,11 @@
 	<div id="middle">
 	
 	  <div class="container app-container">
-			 
-		
-        <!-- inicio -->
-            
-          
-        <!--fin -->
         
         	 
-	    <div>
-          
-			 	<ul class="nav nav-pills">
-			 		
-			 			<div class="modal-header" style="width:1135px;">
-                        
-                   
-							<h3> Correspondencia    
-                    <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>  
-                      
-               
-                     
-                      <div class="btn-group  pull-right">
-                      					
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                      						<span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span>
-                                        </button>
-                                        
-                      					<ul class="dropdown-menu" role="menu">                                        
-             								
-                        					<li><a href="#">Cuenta</a></li>
-                                            <li class="divider"></li>
-                                         <?php if($_SESSION["Usuario"]->return->tipousu=="1"|| $_SESSION["Usuario"]->return->tipousu=="2"){ ?>   
-                                            <li><a href="../pages/administration.php">Administracion</a></li>
-                                            
-                        					<li class="divider"></li>
-                                            <?php } ?>
-                                            
-                        					<li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                        					<li class="divider"></li>
-                        					<li><a href="#">Ayuda</a></li>
-                      					</ul>
-                                        
-                      				</div>
-                                  
-                                   <span class="divider pull-right" style="color:rgb(255,255,255)">  | </span>
-                                     <div class="btn-group  pull-right">
-                      					
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                      						<span class="icon-th-large" style="color:rgb(255,255,255)">  Operaciones </span>
-                                        </button>
-                                        
-                      					<ul class="dropdown-menu" role="menu">                                       <?php 
-	  
-					   if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
-						   
-						<li><a href="operator_level.php" > Recibir Paquete</a></li>
-                        <li class="divider"></li>
-                        					
-						   
-					  <?php }
-					    if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-							
-						 
-                        <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                        <li class="divider"></li>
-                        					
-						   
-					  <?php }
-					    if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-							
-					 <li><a href="create_valise.php" > Crear Valija</a></li>
-                        					<li class="divider"></li>
-                       <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                             <li class="divider"></li>
-                        <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                         <li class="divider"></li>
-                       
-                        					
-						  
-					 <?php  }
-					 
-	  
-					  
-					   ?>
-                        <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-                        </li>
-                        					
-                      
-             								
-                        					
-                        					
-                      					</ul>
-                                        
-                      				</div>
-                                    
-                                   <span class="divider pull-right" style="color:rgb(255,255,255)">  | </span>
-                                    
-                               <div class="btn-group  pull-right">
-                      					
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                      						<span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span>
-                                        </button>
-                                        
-                      					<ul class="dropdown-menu" role="menu">                                        
-             								
-                        					<li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                            <li class="divider"></li>
-                                         <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>   
-                                            
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            
-                        					<li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            
-                        					<li class="divider"></li>
-                                            <?php } ?>
-                                            
-                        					
-                      					</ul>
-                                        
-                      				</div>    
-                                
-                                     </h3>
-            				</div>
-           			
-                     
-           	 </ul>
-             
-          </div>
-        
+	    <?php
+                Menu($SedeRol);
+                ?>
          
               
 		<!--Caso pantalla uno-->
@@ -234,10 +108,10 @@
       <a href="../pages/user_role.php"> Editar Rol </a>
            </li>
             <li>   
-      <a href="../pages/edit_user.php"> Editar Usuario </a>
+      <a href="../pages/create_provider.php"> Crear Proveedor </a>
            </li>
          <li>   
-      <a href="../pages/vacuum_bitacora.php"> Bitacora  </a>
+      <a href="../pages/vacuum_bitacora.php"> Bitácora  </a>
            </li>  
 
          <?php 

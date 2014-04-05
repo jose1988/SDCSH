@@ -101,7 +101,7 @@ function Menu($SedeRol) {
                                 <li><a href="../pages/view_user.php">Cuenta</a></li>
                                 <li class="divider"></li>
                                 <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
-                                    <li><a href="../pages/administration.php">Administracion</a></li>
+                                    <li><a href="../pages/administration.php">Administración</a></li>
                                     <li class="divider"></li>
                                 <?php } ?>
                                 <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
@@ -124,11 +124,11 @@ function Menu($SedeRol) {
                                     <li class="divider"></li>
                                     <li><a href="breakdown_valise.php">Recibir Valija</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="reports_valise.php">Estadisticas Valija</a></li>
+                                    <li><a href="reports_valise.php">Estadísticas de Valija</a></li>
                                     <li class="divider"></li>
                                 <?php }
                                 ?>
-                                <li><a href="reports_user.php">Estadisticas Usuario</a></li>
+                                <li><a href="reports_package.php">Estadísticas de Paquete</a></li>
                             </ul>
                         </div>
                         <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
