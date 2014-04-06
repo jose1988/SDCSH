@@ -3,6 +3,11 @@
 session_start();
 include("../recursos/funciones.php");
 require_once("../lib/nusoap.php");
+if (!isset($_SESSION["Usuario"])) {
+    iraURL("../index.php");
+} elseif (!usuarioCreado()) {
+    iraURL("../pages/create_user.php");
+}
 $Sedes = $_SESSION["Sedes"];
 try {
     if (isset($_POST["Biniciar"])) {
@@ -25,7 +30,7 @@ try {
     }
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
-    iraURL('../pages/index2.php');
+    iraURL('../index.php');
 }
 include("../views/headquarters.php");
 ?>

@@ -120,7 +120,7 @@ if (!isset($Sedes->return)) {
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono 1</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" maxlength="50" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   ></td>
+                                    <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" maxlength="50" size="30" title="Ingrese el número de teléfono" placeholder="Ej. 04269876543"   ></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono Adicional</td>
@@ -143,7 +143,7 @@ if (!isset($Sedes->return)) {
                                 </tr>
                                  <tr>
                                     <td style="text-align:center">Área de Trabajo</td>
-                                    <td style="text-align:center"><select id="area" name="area"  required  title="Seleccione la Area de trabajo a la que pertenece">
+                                    <td style="text-align:center"><select id="area" name="area"  required  title="Seleccione el Área de trabajo a la que pertenece">
                               <option value="" style="display:none">Seleccionar:</option>  
                                    
                                 </select></td>
