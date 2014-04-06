@@ -99,12 +99,12 @@ echo "<th style='width:7%; text-align:center' data-sort-ignore='true'>Codigo </t
 								}
 								
 								if($aux=="Por Recibir" || $aux=="Recibidas"){
-			  echo "<td  style='text-align:center'>".$Bandeja->return[$j]->destinopaq->idusu->nombreusu."</td>";
+			  echo "<td  style='text-align:center'>".$Bandeja->return[$j]->origenpaq->idusu->nombreusu."</td>";
 								}else if($aux=="Por Entregar" || $aux=="Entregadas"){
 									if($Bandeja->return[$j]->origenpaq->tipobuz=="1"){
-				  echo "<td  style='text-align:center'>".$Bandeja->return[$j]->origenpaq->nombrebuz."</td>";
+				  echo "<td  style='text-align:center'>".$Bandeja->return[$j]->destinopaq->nombrebuz."</td>";
 									}else{
-					 echo "<td  style='text-align:center'>".$Bandeja->return[$j]->origenpaq->idusu->nombreusu."</td>";
+					 echo "<td  style='text-align:center'>".$Bandeja->return[$j]->destinopaq->idusu->nombreusu."</td>";
 					
 									}
 								}

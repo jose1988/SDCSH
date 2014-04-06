@@ -79,7 +79,7 @@ if ($usu== "") {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/administration.php">
+                                <a href="../pages/inbox.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
