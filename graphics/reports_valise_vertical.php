@@ -103,11 +103,11 @@ if ($usuario == "") {
                                 ?>
                                 <h2> <strong>Gráfica de <?php echo $nombreReporte ?></strong> </h2>
                                 <br>                            
-                                <?php
-                                if ($sede != '0') { ?>
+                                <?php if ($sede != '0') { ?>
                                     <div align="center" id="graficoVertical" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto">   	
                                     </div>
-                                <?php }
+                                <?php
+                                }
                             }
                             ?>
                         </div>
@@ -115,7 +115,7 @@ if ($usuario == "") {
                 </div>
             </div>
         </div>
-        
+
         <script>
             window.onload = function() {
                 killerSession();
@@ -124,7 +124,7 @@ if ($usuario == "") {
                 setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
             }
         </script>
-        
+
         <script>
             /*Gráfico vertical para las valijas de una sede*/
             $(function() {

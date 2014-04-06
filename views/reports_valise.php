@@ -113,8 +113,10 @@
                                             } else {
                                                 echo "<option value='" . $resultadoProveedor->return->idsed . "' >" . $resultadoProveedor->return->nombresed . "</option>";
                                             }
+											if ($_SESSION["Usuario"]->return->tipousu == "2") {
                                             ?>
-                                            <option value='0'>Todas las Sedes</option>
+                                            	<option value='0'>Todas las Sedes</option>
+                                            <?php } ?>
                                         </select>
                                         <br>
                                     </div>

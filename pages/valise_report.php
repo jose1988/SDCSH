@@ -57,12 +57,9 @@ try {
                 $paquete = $_POST["cPaquete"];
                 $idPaquete = array('codigo' => $paquete);
                 $rowPaquete = $client->consultarPaqueteXIdOCodigoBarras($idPaquete);
-                $idPaq = $rowPaquete->return->idpaq;
 
-                $sedPaq = $rowPaquete->return->idsed->idsed;
-
-                if ($sedPaq == $sede) {
-
+                if (isset($rowPaquete->return)) {
+                    $idPaq = $rowPaquete->return->idpaq;
                     $parametros = array('registroPaquete' => $idPaq,
                         'registroUsuario' => $idUsuario,
                         'registroSede' => $sede,

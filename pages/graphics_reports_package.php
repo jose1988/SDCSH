@@ -31,16 +31,19 @@ $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
 $resultadoConsultarPaquetes = $_SESSION["paquetes"];
-$reporte = $_SESSION["Reporte"];
+$contadorPaquetes = count($resultadoConsultarPaquetes->return);
 $sede = $_SESSION["Osede"];
 
-$contadorPaquetes = count($resultadoConsultarPaquetes->return);
+$reporte = $_SESSION["Reporte"];
+$fechaIni = $_SESSION["Fechaini"];
+$fechaFin = $_SESSION["Fechafin"];
+
 if ($reporte == '1') {
-	$nombreReporte = "Paquetes Enviados";
+    $nombreReporte = "Paquetes Enviados";
 } elseif ($reporte == '2') {
-	$nombreReporte = "Paquetes Recibidos";
+    $nombreReporte = "Paquetes Recibidos";
 } elseif ($reporte == '3') {
-	$nombreReporte = "Paquetes por Entregar";
+    $nombreReporte = "Paquetes por Entregar";
 }
 
 $contadorSedes = 0;
@@ -53,11 +56,32 @@ if ($sede == '0') {
         $resultadoSedes = $client->listarSedes();
         if (isset($resultadoSedes->return)) {
             $contadorSedes = count($resultadoSedes->return);
+
+            if ($contadorSedes > 1) {
+                for ($i = 0; $i < $contadorSedes; $i++) {
+                    $nombreSede[$i] = $resultadoSedes->return[$i]->nombresed;
+                    $Con = array('fechaInicio' => $fechaIni,
+                        'fechaFinal' => $fechaFin,
+                        'consulta' => $reporte,
+                        'idsede' => $resultadoSedes->return[$i]->idsed);
+                    $resultadoConsultarPaquetes = $client->consultarEstadisticasPaquetes($Con);
+                    $paquetes[$i] = count($resultadoConsultarPaquetes->return);
+                    echo $paquetes[$i];
+                }
+            } else {
+                $nombreSede = $resultadoSedes->return->nombresed;
+                $Con = array('fechaInicio' => $fechaIni,
+                    'fechaFinal' => $fechaFin,
+                    'consulta' => $reporte,
+                    'idsede' => $resultadoSedes->return->idsed);
+                $resultadoConsultarPaquetes = $client->consultarEstadisticasPaquetes($Con);
+                $paquetes = count($resultadoConsultarPaquetes->return);
+            }
         } else {
             $contadorSedes = 0;
         }
-		
-		include("../graphics/reports_package_horizontally.php");
+
+        include("../graphics/reports_package_horizontally.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_package.php');
@@ -74,8 +98,8 @@ if ($sede == '0') {
         } else {
             $cpcionSede = "";
         }
-		
-		include("../graphics/reports_package_vertical.php");
+
+        //include("../graphics/reports_package_vertical.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_package.php');

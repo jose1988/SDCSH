@@ -31,10 +31,12 @@ $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
 $resultadoConsultarValijas = $_SESSION["valijas"];
-$reporte = $_SESSION["Reporte"];
+$contadorValijas = count($resultadoConsultarValijas->return);
 $sede = $_SESSION["Osede"];
 
-$contadorValijas = count($resultadoConsultarValijas->return);
+$reporte = $_SESSION["Reporte"];
+$fechaIni = $_SESSION["Fechaini"];
+$fechaFin = $_SESSION["Fechafin"];
 
 if ($reporte == '1') {
     $nombreReporte = "Valijas Enviadas";
@@ -55,11 +57,31 @@ if ($sede == '0') {
         $resultadoSedes = $client->listarSedes();
         if (isset($resultadoSedes->return)) {
             $contadorSedes = count($resultadoSedes->return);
+            if ($contadorSedes > 1) {
+                for ($i = 0; $i < $contadorSedes; $i++) {
+                    $nombreSede[$i] = $resultadoSedes->return[$i]->nombresed;
+                    $Con = array('fechaInicio' => $fechaIni,
+                        'fechaFinal' => $fechaFin,
+                        'consulta' => $reporte,
+                        'idsede' => $resultadoSedes->return[$i]->idsed);
+                    $resultadoConsultarValijas = $client->consultarEstadisticasValijas($Con);
+                    $valijas[$i] = count($resultadoConsultarValijas->return);
+                    echo $valijas[$i];
+                }
+            } else {
+                $nombreSede = $resultadoSedes->return->nombresed;
+                $Con = array('fechaInicio' => $fechaIni,
+                    'fechaFinal' => $fechaFin,
+                    'consulta' => $reporte,
+                    'idsede' => $resultadoSedes->return->idsed);
+                $resultadoConsultarValijas = $client->consultarEstadisticasValijas($Con);
+                $valijas = count($resultadoConsultarValijas->return);
+            }
         } else {
             $contadorSedes = 0;
         }
-		
-		include("../graphics/reports_valise_horizontally.php");
+
+        include("../graphics/reports_valise_horizontally.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_valise.php');
@@ -76,8 +98,8 @@ if ($sede == '0') {
         } else {
             $cpcionSede = "";
         }
-		
-		include("../graphics/reports_valise_vertical.php");
+
+        include("../graphics/reports_valise_vertical.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_valise.php');
