@@ -91,12 +91,12 @@ if ($usuarioBitacora == "") {
                         <form class="form-signin" method="post">
                             <div class="tab-content">
                                 <div class="row-fluid">
-                                    <h3 class="form-signin-heading">Confirmar Valija</h3>
-                                    <div class="span5" align="right">Código de Valija:</div>
+                                    <strong> <h2 align="center">Confirmar Valija</h2> </strong>
+                                    <div class="span5" align="right"><strong>Código de Valija: </strong></div>
                                     <div class="span3" align="left">
                                         <input type="text" class="input-block-level" name="cValija" id="cValija" placeholder="Ej. 4246" title="Ingrese el código de la Valija" autocomplete="off" pattern="[0-9]{1,38}" autofocus required>
                                     </div>
-                                    <div class="span5" align="right">Proveedor: </div>
+                                    <div class="span5" align="right"><strong>Proveedor: </strong></div>
                                     <div class="span3" align="left">
                                         <select name='proveedor' id='proveedor' required  title='Seleccione el Proveedor'>
                                             <option value='' style='display:none'>Seleccionar:</option>
@@ -113,7 +113,7 @@ if ($usuarioBitacora == "") {
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="span5" align="right">Código del Proveedor:</div>
+                                    <div class="span5" align="right"><strong>Código del Proveedor:</strong></div>
                                     <div class="span3" align="left">
                                         <input type="text" class="input-block-level" name="cProveedor" id="cProveedor" placeholder="Ej. 1234" title="Ingrese el código de Guía" autocomplete="off" required>
                                     </div>

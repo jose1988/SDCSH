@@ -16,12 +16,12 @@ $client->decode_utf8 = false;
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
 
-if(isset($SedeRol->return)){
-	if($SedeRol->return->idrol->idrol!="4" && $SedeRol->return->idrol->idrol!="5"){
-  		iraURL('../pages/inbox.php');
-  	}
-}else{
-	iraURL('../pages/inbox.php');
+if (isset($SedeRol->return)) {
+    if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "5") {
+        iraURL('../pages/inbox.php');
+    }
+} else {
+    iraURL('../pages/inbox.php');
 }
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
@@ -50,19 +50,30 @@ try {
         if (isset($_POST["cPaquete"]) && $_POST["cPaquete"] != "" && isset($_POST["datosPaquete"]) && $_POST["datosPaquete"] != "") {
 
             try {
-                $parametros = array('registroPaquete' => $_POST["cPaquete"],
-                    'registroUsuario' => $idUsuario,
-                    'registroSede' => $sede,
-                    'datosPaquete' => $_POST["datosPaquete"]);
                 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
                 $client = new SOAPClient($wsdl_url);
                 $client->decode_utf8 = false;
-                $reportarPaqExc = $client->reportarPaqueteExcedente($parametros);
 
-                if ($reportarPaqExc->return == 1) {
-                    javaalert('Paquete Reportado y Reenviado');
-                    llenarLog(7, "Paquete Excedente", $usuarioBitacora, $sede);
-                    iraURL('../pages/create_valise.php');
+                $paquete = $_POST["cPaquete"];
+                $idPaquete = array('codigo' => $paquete);
+                $rowPaquete = $client->consultarPaqueteXIdOCodigoBarras($idPaquete);
+
+                if (isset($rowPaquete->return)) {
+                    $idPaq = $rowPaquete->return->idpaq;
+                    $parametros = array('registroPaquete' => $idPaq,
+                        'registroUsuario' => $idUsuario,
+                        'registroSede' => $sede,
+                        'datosPaquete' => $_POST["datosPaquete"]);
+                    $reportarPaqExc = $client->reportarPaqueteExcedente($parametros);
+
+                    if ($reportarPaqExc->return == 1) {
+                        javaalert('Paquete Reportado y Reenviado');
+                        llenarLog(7, "Paquete Excedente", $usuarioBitacora, $sede);
+                        iraURL('../pages/create_valise.php');
+                    } else {
+                        javaalert('Paquete No Reportado y No Reenviado');
+                        iraURL('../pages/create_valise.php');
+                    }
                 } else {
                     javaalert('Paquete No Reportado y No Reenviado');
                     iraURL('../pages/create_valise.php');
@@ -81,19 +92,31 @@ try {
         if (isset($_POST["cValija"]) && $_POST["cValija"] != "" && isset($_POST["datosValija"]) && $_POST["datosValija"] != "") {
 
             try {
-                $parametros = array('registroValija' => $_POST["cValija"],
-                    'registroUsuario' => $idUsuario,
-                    'registroSede' => $sede,
-                    'datosValija' => $_POST["datosValija"]);
                 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
                 $client = new SOAPClient($wsdl_url);
                 $client->decode_utf8 = false;
-                $reportarValija = $client->reportarValija($parametros);
 
-                if ($reportarValija->return == 1) {
-                    javaalert('Valija Reportada y Reenviada');
-                    llenarLog(7, "Valija Erronea", $usuarioBitacora, $sede);
-                    iraURL('../pages/create_valise.php');
+                $valija = $_POST["cValija"];
+                $Val = array('codigo' => $valija, 'sede' => $_SESSION["Sede"]->return->nombresed);
+                $Valijac = $client->consultarValijaXIdOCodigoBarras($Val);
+
+                if (isset($Valijac->return)) {
+                    $idVal = $Valijac->return->idval;
+
+                    $parametros = array('registroValija' => $idVal,
+                        'registroUsuario' => $idUsuario,
+                        'registroSede' => $sede,
+                        'datosValija' => $_POST["datosValija"]);
+                    $reportarValija = $client->reportarValija($parametros);
+
+                    if ($reportarValija->return == 1) {
+                        javaalert('Valija Reportada y Reenviada');
+                        llenarLog(7, "Valija Erronea", $usuarioBitacora, $sede);
+                        iraURL('../pages/create_valise.php');
+                    } else {
+                        javaalert('Valija No Reportada y No Reenviada');
+                        iraURL('../pages/create_valise.php');
+                    }
                 } else {
                     javaalert('Valija No Reportada y No Reenviada');
                     iraURL('../pages/create_valise.php');

@@ -27,8 +27,8 @@ if (isset($SedeRol->return)) {
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
 $sede = $_SESSION["Sede"]->return->idsed;
 
-$idsede= array('idsed' => $sede);
-$sedeP= array('sede' => $idsede);
+$idsede = array('idsed' => $sede);
+$sedeP = array('sede' => $idsede);
 $resultadoProveedor = $client->consultarProveedorXSede($sedeP);
 if (!isset($resultadoProveedor->return)) {
     $proveedor = 0;
@@ -41,18 +41,29 @@ if (isset($_POST["confirmar"])) {
     if (isset($_POST["cValija"]) && $_POST["cValija"] != "" && isset($_POST["cProveedor"]) && $_POST["cProveedor"] != "" && isset($_POST["proveedor"]) && $_POST["proveedor"] != "") {
 
         try {
-            $parametros = array('idValija' => $_POST["cValija"],
-                'proveedor' => $_POST["proveedor"],
-                'codProveedor' => $_POST["cProveedor"]);
             $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
             $client = new SOAPClient($wsdl_url);
             $client->decode_utf8 = false;
-            $confirmarValija = $client->confirmarValija($parametros);
 
-            if (isset($confirmarValija->return) == 1) {
-                javaalert('Valija Confirmada');
-                llenarLog(2, "Confirmación Valija", $usuarioBitacora, $sede);
-                iraURL('../pages/create_valise.php');
+            $valija = $_POST["cValija"];
+            $Val = array('codigo' => $valija, 'sede' => $_SESSION["Sede"]->return->nombresed);
+            $Valijac = $client->consultarValijaXIdOCodigoBarras($Val);
+
+            if (isset($Valijac->return)) {
+                $idVal = $Valijac->return->idval;
+                $parametros = array('idValija' => $idVal,
+                    'proveedor' => $_POST["proveedor"],
+                    'codProveedor' => $_POST["cProveedor"]);
+                $confirmarValija = $client->confirmarValija($parametros);
+
+                if (isset($confirmarValija->return) == 1) {
+                    javaalert('Valija Confirmada');
+                    llenarLog(2, "Confirmación Valija", $usuarioBitacora, $sede);
+                    iraURL('../pages/create_valise.php');
+                } else {
+                    javaalert('Valija No Confirmada');
+                    iraURL('../pages/create_valise.php');
+                }
             } else {
                 javaalert('Valija No Confirmada');
                 iraURL('../pages/create_valise.php');

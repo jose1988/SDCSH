@@ -11,10 +11,6 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../pages/create_user.php");
 }
 
-if ($_SESSION["Usuario"]->return->tipousu != "1" && $_SESSION["Usuario"]->return->tipousu != "2") {
-    iraURL('../pages/inbox.php');
-}
-
 $_SESSION["fechaEnvio"] = "";
 $_SESSION["fechaRecibido"] = "";
 $resultadoConsultarValijas = $_SESSION["valijas"];
@@ -24,6 +20,16 @@ $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
+
+if (isset($SedeRol->return)) {
+    if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "5") {
+        if ($_SESSION["Usuario"]->return->tipousu != "1" && $_SESSION["Usuario"]->return->tipousu != "2") {
+            iraURL('../pages/inbox.php');
+        }
+    }
+} else {
+    iraURL('../pages/inbox.php');
+}
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
 $ideSede = $_SESSION["Sede"]->return->idsed;

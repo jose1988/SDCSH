@@ -27,8 +27,8 @@ function existeSesion() {
 function eliminarSesion() {
     if (isset($_SESSION["Usuario"]) || isset($_SESSION["User"])) {
         unset($_SESSION["Usuario"]);
-		unset($_SESSION["User"]);
-		unset($_SESSION["Sede"]);
+        unset($_SESSION["User"]);
+        unset($_SESSION["Sede"]);
         session_destroy();
     }
 }
@@ -96,7 +96,7 @@ function Menu($SedeRol) {
             <li class="pull-left">
                 <div class="modal-header" style="width:1135px;">
                     <h3> Correspondencia    
-                        <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
+                        <span>SH</span> <?php echo "- Bienvenido, " . $_SESSION["Usuario"]->return->nombreusu; ?>
                         <div class="btn-group  pull-right">
                             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuración </span> </button>
                             <ul class="dropdown-menu" role="menu">
@@ -111,28 +111,30 @@ function Menu($SedeRol) {
                                 <li><a href="#">Ayuda</a></li>
                             </ul>
                         </div>
-                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                        <div class="btn-group  pull-right">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <?php if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "6") { ?>
-                                    <li><a href="confirm_package.php">Recibir Paquete</a></li>
-                                    <li class="divider"></li>
-                                    <?php
-                                }
-                                if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
+                        <?php if ($SedeRol->return->idrol->idrol != "6") { ?>
+                            <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
+                            <div class="btn-group  pull-right">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?php if ($SedeRol->return->idrol->idrol != "4") { ?>
+                                        <li><a href="confirm_package.php">Recibir Paquete</a></li>
+                                        <li class="divider"></li>
+                                        <?php
+                                    }
+                                    if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
+                                        ?>
+                                        <li><a href="create_valise.php">Crear Valija</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="breakdown_valise.php">Recibir Valija</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="reports_valise.php">Estadísticas de Valijas</a></li>
+                                        <li class="divider"></li>
+                                    <?php }
                                     ?>
-                                    <li><a href="create_valise.php">Crear Valija</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="breakdown_valise.php">Recibir Valija</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="reports_valise.php">Estadísticas de Valija</a></li>
-                                    <li class="divider"></li>
-                                <?php }
-                                ?>
-                                <li><a href="reports_package.php">Estadísticas de Paquete</a></li>
-                            </ul>
-                        </div>
+                                    <li><a href="reports_package.php">Estadísticas de Paquetes</a></li>
+                                </ul>
+                            </div>
+                        <?php } ?>
                         <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
                         <div class="btn-group  pull-right">
                             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
