@@ -118,20 +118,20 @@ function Menu($SedeRol) {
                                 <ul class="dropdown-menu" role="menu">
                                     <?php if ($SedeRol->return->idrol->idrol != "4") { ?>
                                         <li><a href="confirm_package.php">Recibir Paquete</a></li>
-                                        <li class="divider"></li>
                                         <?php
                                     }
                                     if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
-                                        ?>
+                                        if ($SedeRol->return->idrol->idrol == "5") {
+                                            ?>                                        
+                                            <li class="divider"></li>
+                                        <?php } ?>
                                         <li><a href="create_valise.php">Crear Valija</a></li>
                                         <li class="divider"></li>
                                         <li><a href="breakdown_valise.php">Recibir Valija</a></li>
                                         <li class="divider"></li>
                                         <li><a href="reports_valise.php">Estadísticas de Valijas</a></li>
-                                        <li class="divider"></li>
                                     <?php }
                                     ?>
-                                    <li><a href="reports_package.php">Estadísticas de Paquetes</a></li>
                                 </ul>
                             </div>
                         <?php } ?>
@@ -150,8 +150,7 @@ function Menu($SedeRol) {
                                     <li><a href="../pages/suitcase_overdue.php">Valijas</a></li>
                                 <?php } ?>
                             </ul>
-                        </div>                               
-
+                        </div>
                     </h3>
                 </div>
             </li>
