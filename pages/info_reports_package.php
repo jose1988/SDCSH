@@ -24,7 +24,7 @@ if (isset($SedeRol->return)) {
         iraURL("../pages/inbox.php");
     }
 } else {
-    iraURL("../pages/index.php");
+    iraURL('../pages/inbox.php');
 }
 
 $ideSede = $_SESSION["Sede"]->return->idsed;
@@ -40,7 +40,7 @@ try {
         'fechaFinal' => $_SESSION["Fechafin"],
         'consulta' => $_SESSION["Reporte"],
         'idsede' => $_SESSION["Osede"]);
-    $resultadoConsultarPaquetes= $client->consultarEstadisticasPaquetes($Con);
+    $resultadoConsultarPaquetes = $client->consultarEstadisticasPaquetes($Con);
 
     if (isset($resultadoConsultarPaquetes->return)) {
         $paquetes = count($resultadoConsultarPaquetes->return);
@@ -62,7 +62,6 @@ try {
     }
     include("../views/info_reports_package.php");
 } catch (Exception $e) {
-
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/reports_package.php');
 }

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include("../recursos/funciones.php");
@@ -7,7 +8,7 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-} 
+}
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
@@ -23,7 +24,7 @@ try {
     }
     $parametros = array('idSede' => $_SESSION["Sede"]->return->idsed);
     $ValijasOrigen = $client->valijasXFechaVencidaXUsuarioOrigen($parametros);
-	if (isset($ValijasOrigen->return)) {
+    if (isset($ValijasOrigen->return)) {
         if (count($ValijasOrigen->return) == 1) {
             $parametros = array('Id' => $ValijasOrigen->return->origenval);
             $nombreSede = $client->consultaNombreSedeXId($parametros);
@@ -36,7 +37,7 @@ try {
             }
         }
     }
-	$sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
+    $sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
     $parametros = array('registroSede' => $sede);
     $ValijasDestino = $client->valijasXFechaVencidaXUsuarioDestino($parametros);
     if (isset($ValijasDestino->return)) {
@@ -52,8 +53,6 @@ try {
             }
         }
     }
-//   echo '<pre>';
-//print_r($Valijas);
     include("../views/suitcase_overdue.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

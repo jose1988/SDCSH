@@ -39,7 +39,7 @@ if ($idPaquete == "") {
             $segumientoPaquete = count($resultadoPaquete->return);
         }
         if ($segumientoPaquete > 1) {
-			$idPaq = $resultadoPaquete->return[0]->idpaq->idpaq;
+            $idPaq = $resultadoPaquete->return[0]->idpaq->idpaq;
             if (isset($resultadoPaquete->return[0]->idpaq->origenpaq->idatr->idsed->nombresed)) {
                 $origen = $resultadoPaquete->return[0]->idpaq->origenpaq->idatr->idsed->nombresed;
             } else {
@@ -88,8 +88,8 @@ if ($idPaquete == "") {
                         $destino = "";
                     }
                 }
-            }            
-        } elseif($segumientoPaquete==1) {
+            }
+        } elseif ($segumientoPaquete == 1) {
             $idPaq = $resultadoPaquete->return->idpaq->idpaq;
             if (isset($resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed)) {
                 $origen = $resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed;

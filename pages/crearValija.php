@@ -23,13 +23,8 @@
 //	javaalert('Lo sentimos no hay conexión');
 //	iraURL('../pages/index.php');	
 //	}
- //echo'<pre>';
+//echo'<pre>';
 // print_r( $_SESSION["Usuario"]);
 // echo '<pre>';
 include("../views/crearValija.php");
-
-
-
 ?>
- 
-

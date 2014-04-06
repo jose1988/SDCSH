@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include("../recursos/funciones.php");
@@ -7,7 +8,7 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-} 
+}
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
@@ -20,9 +21,7 @@ try {
     $parametros = array('registroUsuario' => $usu,
         'registroSede' => $sede);
     $PaquetesDestino = $client->paquetesVencidosXDestino($parametros);
-	$PaquetesOrigen = $client->paquetesVencidosXOrigen($parametros);
-//echo '<pre>';
-//print_R($PaquetesConfirmados);
+    $PaquetesOrigen = $client->paquetesVencidosXOrigen($parametros);
     include("../views/correspondence_overdue.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

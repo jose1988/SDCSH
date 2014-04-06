@@ -33,8 +33,7 @@ try {
     }
 
     if (isset($_POST["enviar"])) {
-        if ($_POST["contacto"] != "" && isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" 
-		&& isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
+        if ($_POST["contacto"] != "" && isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
 
             $idbuz = $_POST["id"];
             $origenbuz = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'idsede' => $_SESSION["Sede"]->return->idsed);
@@ -128,8 +127,7 @@ try {
             } else {
                 javaalert("La correspondencia no ha podido ser enviada correctamente , por favor consulte con el administrador");
             }
-
-            // iraURL('../pages/inbox.php');
+            //iraURL('../pages/inbox.php');
             /* } else {
 
               javaalert("El buzón al que desea enviar la correspondencia no esta registrado en sus contactos, por favor verifique");

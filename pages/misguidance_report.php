@@ -16,12 +16,12 @@ $client->decode_utf8 = false;
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
 
-if(isset($SedeRol->return)){
-	if($SedeRol->return->idusu->tipousu!="1" && $SedeRol->return->idusu->tipousu!="2"){
-  		iraURL('../pages/inbox.php');
-  	}
-}else{
-	iraURL('../pages/inbox.php');
+if (isset($SedeRol->return)) {
+    if ($SedeRol->return->idusu->tipousu != "1" && $SedeRol->return->idusu->tipousu != "2") {
+        iraURL('../pages/inbox.php');
+    }
+} else {
+    iraURL('../pages/inbox.php');
 }
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
@@ -35,13 +35,11 @@ try {
 
     $usuario = array('user' => $nomUsuario);
     $resultadoConsultarUsuario = $client->consultarUsuarioXUser($usuario);
-
     if (!isset($resultadoConsultarUsuario->return)) {
         $usua = 0;
     } else {
         $usua = $resultadoConsultarUsuario->return;
     }
-
     $idUsuario = $resultadoConsultarUsuario->return->idusu;
 
 
@@ -60,7 +58,7 @@ try {
                 $reportarPaqExc = $client->reportarPaqueteExtravio($parametros);
 
                 if ($reportarPaqExc->return == 1) {
-                    javaalert('Paquete dado de baja por extravió');
+                    javaalert('Paquete dado de baja por extravi�');
                     llenarLog(7, "Paquete Extraviado", $usuarioBitacora, $sede);
                     iraURL('../pages/administration.php');
                 } else {
@@ -68,7 +66,7 @@ try {
                     iraURL('../pages/administration.php');
                 }
             } catch (Exception $e) {
-                javaalert('Lo sentimos no hay conexión');
+                javaalert('Lo sentimos no hay conexion');
                 iraURL('../pages/administration.php');
             }
         } else {
@@ -91,22 +89,21 @@ try {
                 $reportarValija = $client->reportarValijaExtravio($parametros);
 
                 if ($reportarValija->return == 1) {
-                    javaalert('Valija dada de baja por extravió');
+                    javaalert('Valija dada de baja por extravi�');
                     llenarLog(7, "Valija Extraviada", $usuarioBitacora, $sede);
                     iraURL('../pages/administration.php');
                 } else {
-                    javaalert('no se pudo dar de baja la Valija, verifique la información o consulte con el administrador');
+                    javaalert('No se pudo dar de baja la Valija, verifique la informacion o consulte con el administrador');
                     iraURL('../pages/administration.php');
                 }
             } catch (Exception $e) {
                 javaalert('Lo sentimos no hay conexion');
-                iraURL('../pages/administratione.php');
+                iraURL('../pages/administration.php');
             }
         } else {
             javaalert("Debe agregar todos los campos, por favor verifique");
         }
     }
-
     include("../views/misguidance_report.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

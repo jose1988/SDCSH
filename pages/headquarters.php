@@ -1,11 +1,9 @@
 <?php
 
 session_start();
-//try{
 include("../recursos/funciones.php");
 require_once("../lib/nusoap.php");
 $Sedes = $_SESSION["Sedes"];
-// echo '<pre>'; print_r($Sedes); 
 try {
     if (isset($_POST["Biniciar"])) {
         if (isset($_POST["sede"]) && $_POST["sede"] != "") {
@@ -15,23 +13,19 @@ try {
                     break;
                 }
             }
-
             $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
             $client = new SOAPClient($wsdl_url);
             $client->decode_utf8 = false;
             $id = array('idSede' => $_SESSION["Sede"]->idsed);
             $_SESSION["Sede"] = $client->consultarSedeXId($id);
-// echo '<pre>'; print_r($_SESSION["Sede"]); 
             iraURL('../pages/inbox.php');
         } else {
             javaalert('Debe escojer la sede');
         }
     }
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/index2.php');
 }
-
-
 include("../views/headquarters.php");
 ?>

@@ -5,7 +5,6 @@ try {
     include("../recursos/funciones.php");
     require_once('../lib/nusoap.php');
     if (!isset($_SESSION["Usuario"])) {
-
         iraURL("../pages/index.php");
     } elseif (!usuarioCreado()) {
         iraURL("../pages/create_user.php");
@@ -23,7 +22,3 @@ try {
     iraURL('../pages/inbox.php');
 }
 ?>
- 
-
-
-

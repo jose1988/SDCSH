@@ -24,7 +24,7 @@ if (isset($SedeRol->return)) {
         iraURL("../pages/inbox.php");
     }
 } else {
-    iraURL("../pages/index.php");
+    iraURL('../pages/inbox.php');
 }
 
 $ideSede = $_SESSION["Sede"]->return->idsed;
@@ -44,7 +44,6 @@ $_SESSION["Fechaini"] = "";
 $_SESSION["Fechafin"] = "";
 
 if (isset($_POST["consultar"])) {
-
     if (isset($_POST["reporte"]) && $_POST["reporte"] != "" && isset($_POST["osede"]) && $_POST["osede"] != "" && isset($_POST["opcion"]) && $_POST["opcion"] != "") {
 
         $_SESSION["Reporte"] = $_POST["reporte"];

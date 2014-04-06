@@ -87,7 +87,6 @@ try {
     }
     include("../views/info_reports_valise.php");
 } catch (Exception $e) {
-
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/reports_valise.php');
 }

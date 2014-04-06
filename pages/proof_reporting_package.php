@@ -54,7 +54,6 @@ if ($paquetes > 0) {
         $_SESSION["fechaEnvio"] = $fechaEnvio;
     }
 }
-
 if (isset($resultadoConsultarPaquetes->return)) {
     llenarLog(6, "Comprobante de Paquetes", $usuarioBitacora, $ideSede);
     echo"<script>window.open('../pdf/proof_reporting_package.php');</script>";
