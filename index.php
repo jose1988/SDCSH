@@ -35,7 +35,7 @@ if (isset($_POST["Biniciar"])) {
             iraURL("pages/create_user.php");
         }
     } catch (Exception $e) {
-        javaalert('Lo sentimos no hay conexión');
+        javaalert('Lo sentimos no hay conexion');
     }
 }
 include("/views/index.php");
