@@ -62,7 +62,7 @@ if ($idValija == "") {
             } else {
                 $fechaRecibido = "";
             }
-        } elseif($paquetesXValija==1) {
+        } elseif ($paquetesXValija == 1) {
             $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return->idval->origenval);
             $resultadoOrigen = $client->consultarSedeXId($idOrigen);
             if (isset($resultadoPaquetesPorValija->return->idval->fechaval)) {
@@ -81,15 +81,16 @@ if ($idValija == "") {
         $_SESSION["fechaRecibido"] = $fechaRecibido;
         $_SESSION["paquetesXValija"] = $resultadoPaquetesPorValija;
         $_SESSION["origenValija"] = $resultadoOrigen;
-		
-		if(isset($resultadoPaquetesPorValija->return)){
-        	llenarLog(6, "Comprobante de Detalle de Valija", $usuarioBitacora, $ideSede);
-        	echo"<script>window.open('../pdf/proof_pouch_and_packages.php');</script>";
-        	//iraURL('../pdf/proof_pouch_and_packages.php');
-		}
+
+        if (isset($resultadoPaquetesPorValija->return)) {
+            llenarLog(6, "Comprobante de Detalle de Valija", $usuarioBitacora, $ideSede);
+            echo"<script>window.open('../pdf/proof_pouch_and_packages.php');</script>";
+            //iraURL('../pdf/proof_pouch_and_packages.php');
+        }
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_valise.php');
     }
+	echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 }
 ?>

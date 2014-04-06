@@ -54,10 +54,14 @@ require_once('../lib/nusoap.php');
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
-  $Val= array('registroValija' =>$aux , 'sede' => $_SESSION["Sede"]->return->nombresed);
-  $Valijac = $client->ConsultarValija($Val);
+  //$Val= array('registroValija' =>$aux , 'sede' => $_SESSION["Sede"]->return->nombresed);
+  //$Valijac = $client->ConsultarValija($Val);
+  $Val= array('codigo' =>$aux , 'sede' => $_SESSION["Sede"]->return->nombresed);
+  $Valijac = $client->consultarValijaXIdOCodigoBarras($Val);
+  //echo '<pre>';print_r($Valijac);
   $regv=0;
   if(isset($Valijac->return)){
+  $Val= array('registroValija' => $Valijac->return->idval , 'sede' => $_SESSION["Sede"]->return->nombresed);
   $Valija = $client->ConsultarPaquetesXValija($Val);
   $regv=count($Valija->return); 
   }

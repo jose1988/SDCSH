@@ -25,8 +25,10 @@ function existeSesion() {
 
 //Eliminando variable de sesión 
 function eliminarSesion() {
-    if (isset($_SESSION["Usuario"])) {
+    if (isset($_SESSION["Usuario"]) || isset($_SESSION["User"])) {
         unset($_SESSION["Usuario"]);
+		unset($_SESSION["User"]);
+		unset($_SESSION["Sede"]);
         session_destroy();
     }
 }
@@ -96,12 +98,12 @@ function Menu($SedeRol) {
                     <h3> Correspondencia    
                         <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
                         <div class="btn-group  pull-right">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuración </span> </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="../pages/view_user.php">Cuenta</a></li>
                                 <li class="divider"></li>
                                 <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
-                                    <li><a href="../pages/administration.php">Administracion</a></li>
+                                    <li><a href="../pages/administration.php">Administración</a></li>
                                     <li class="divider"></li>
                                 <?php } ?>
                                 <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
@@ -124,11 +126,11 @@ function Menu($SedeRol) {
                                     <li class="divider"></li>
                                     <li><a href="breakdown_valise.php">Recibir Valija</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="reports_valise.php">Estadisticas Valija</a></li>
+                                    <li><a href="reports_valise.php">Estadísticas de Valija</a></li>
                                     <li class="divider"></li>
                                 <?php }
                                 ?>
-                                <li><a href="reports_user.php">Estadisticas Usuario</a></li>
+                                <li><a href="reports_package.php">Estadísticas de Paquete</a></li>
                             </ul>
                         </div>
                         <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>

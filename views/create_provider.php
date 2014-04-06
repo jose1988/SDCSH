@@ -71,57 +71,34 @@ if (!isset($org->return)) {
         </div>
 
         <div class="container app-container">
-            <div>
-                <ul class="nav nav-pills">
-                    <li class="pull-left">
-                        <div class="modal-header" style="width:1135px;">
-                            <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
-                                <div class="btn-group  pull-right">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Ayuda</a></li>
-                                    </ul>
-                                </div>                              
-
-                            </h3>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <?php
+                Menu($SedeRol);
+                ?>
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="../pages/index.php">Atrás</a> </li>
+                        <li> <a href="../pages/administration.php">Atrás</a> </li>
                     </ul>
                 </div>
 
                 <div class="span10" align="center">
                     <div class="tab-content" id="lista" align="center"> 
                         <form id="formulario" method="post">
-                            <h2> Datos de la Sede </h2> 
+                            <h2> Datos del Proveedor </h2> 
                             <table class='footable table table-striped table-bordered'>
                                 <tr>
                                     <td style="text-align:center" >Nombre del Proveedor</td>
-                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el nombre la sede"  autofocus required></td>
+                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el nombre del Proveedor" placeholder="Ej. Zoom"  autofocus required></td>
                                 </tr>
                                 
-                                </tr>
-                               
-                                </tr>
-                                
-                               
-                                </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" maxlength="50" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   ></td>
+                                    <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" maxlength="50" size="30" title="Ingrese el número de teléfono" placeholder="Ej. 04269876543"   ></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">Codigo <h6> en caso de mensajero  </h6></td>
-                                    <td style="text-align:center"><input type="text" name="codigo" id="codigo" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 04168674789"  ></td>
+                                    <td style="text-align:center">Código <h6> en caso de mensajero  </h6></td>
+                                    <td style="text-align:center"><input type="text" name="codigo" id="codigo" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 98654"  ></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Sede</td>

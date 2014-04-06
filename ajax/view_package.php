@@ -13,8 +13,8 @@ if (!isset($_SESSION["Usuario"])) {
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
-  $idPaquete= array('idPaquete' => $_POST['idpaq']);
-  $rowPaquete = $client->ConsultarPaqueteXId($idPaquete); 
+  $idPaquete= array('codigo' => $_POST['idpaq']);
+  $rowPaquete = $client->consultarPaqueteXIdOCodigoBarras($idPaquete); 
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
     if (isset($SedeRol->return)) {

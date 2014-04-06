@@ -40,7 +40,7 @@ try {
         'fechaFinal' => $_SESSION["Fechafin"],
         'consulta' => $_SESSION["Reporte"],
         'idsede' => $_SESSION["Osede"]);
-    $resultadoConsultarValijas = $client->consultarEstadisticas($Con);
+    $resultadoConsultarValijas = $client->consultarEstadisticasValijas($Con);
 
     if (isset($resultadoConsultarValijas->return)) {
         $valijas = count($resultadoConsultarValijas->return);

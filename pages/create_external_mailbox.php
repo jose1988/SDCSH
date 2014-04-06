@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -9,12 +8,8 @@ try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
-    
-    /* 	if(isset($Usuario)){
-      javaalert("Lo sentimos no se puede guardar los datos del usuario porque el nombre de usuario ya existe,Consulte con el Administrador");
-      iraURL('../index.php');   //ojo necesito el index
-      } */    //importante:implementar cuando se tenga el index 
-
+    $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
+    $SedeRol = $client->consultarSedeRol($UsuarioRol);
 
     if (isset($_POST["crear"])) {
         if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["correo"]) && $_POST["correo"] != "" && isset($_POST["cedularif"]) && $_POST["cedularif"] != "" && isset($_POST["telefono"]) && $_POST["telefono"] != "" && isset($_POST["direccion"]) && $_POST["direccion"] != "") {

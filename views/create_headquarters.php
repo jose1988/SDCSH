@@ -70,17 +70,15 @@ if (!isset($org->return)) {
             </div>
         </div>
 
-       
-        <div id="middle">
-            <div class="container app-container"> 
-               <?php
-			 Menu($SedeRol);
-			 ?> 
+        <div class="container app-container">
+            <?php
+                Menu($SedeRol);
+                ?>
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="../pages/index.php">Atrás</a> </li>
+                        <li> <a href="../pages/administration.php">Atrás</a> </li>
                     </ul>
                 </div>
 
@@ -91,7 +89,7 @@ if (!isset($org->return)) {
                             <table class='footable table table-striped table-bordered'>
                                 <tr>
                                     <td style="text-align:center" >Nombre de la Sede</td>
-                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el nombre la sede"  autofocus required></td>
+                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" placeholder="Ej. San Cristóbal" title="Ingrese el nombre la sede"   autofocus required></td>
                                 </tr>
                                 
                                 </tr>
@@ -105,15 +103,15 @@ if (!isset($org->return)) {
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" maxlength="50" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   ></td>
+                                    <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" maxlength="50" size="30" title="Ingrese un número de teléfono" placeholder="Ej. 04269876543"   ></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono Adicional</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 04168674789"  ></td>
+                                    <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" maxlength="50" size="30" title="Ingrese un número de teléfono adicional" placeholder="Ej. 04168674789"  ></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">Organizacion</td>
-                                    <td style="text-align:center"><select  id="organizacion" name="organizacion" required  title="Seleccione la Sede a la que pertenece">
+                                    <td style="text-align:center">Organización</td>
+                                    <td style="text-align:center"><select  id="organizacion" name="organizacion" required  title="Seleccione la Organización a la que pertenece">
                                             <option value="" style="display:none">Seleccionar:</option>                                  
                                             <?php
                                             if (count($org->return) == 1) {

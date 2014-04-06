@@ -234,7 +234,7 @@ if (isset($PaquetesConfirmados->return)) {
 
             function Paquete() {
 
-                if (idpaq = document.forms.formulario.idpaq.value != "") {
+                if (document.forms.formulario.idpaq.value != "") {
                     var idpaq = document.forms.formulario.idpaq.value;
                     var parametros = {
                         "idpaq": idpaq

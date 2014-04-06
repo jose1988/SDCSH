@@ -70,28 +70,26 @@ if (!isset($Sedes->return)) {
             </div>
         </div>
 
-       
-        <div id="middle">
-            <div class="container app-container"> 
-               <?php
-			 Menu($SedeRol);
-			 ?> 
+        <div class="container app-container">
+            <?php
+                Menu($SedeRol);
+                ?>
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="../pages/index.php">Atrás</a> </li>
+                        <li> <a href="../pages/administration.php">Atrás</a> </li>
                     </ul>
                 </div>
 
                 <div class="span10" align="center">
                     <div class="tab-content" id="lista" align="center"> 
                         <form id="formulario" method="post">
-                            <h2> Datos de la Sede </h2> 
+                            <h2> Datos del Área de Trabajo </h2> 
                             <table class='footable table table-striped table-bordered'>
                                 <tr>
-                                    <td style="text-align:center" >Nombre de la Area</td>
-                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el nombre la sede"  autofocus required></td>
+                                    <td style="text-align:center" >Nombre de la Área</td>
+                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" placeholder="Ej. Sistemas" title="Ingrese el nombre del Área"  autofocus required></td>
                                 </tr>
                                
                                 </tr>

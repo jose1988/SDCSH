@@ -49,36 +49,40 @@ try {
         $idUsu = array('idUsuario' => $idUsuario);
         $resultadoConsultarUltimoPaquete = $client->ultimoPaqueteXOrigen($idUsu);
 
-        $idSede = array('idSede' => $ideSede);
-        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+        if (isset($resultadoConsultarUltimoPaquete->return)) {
 
-        $codigoSede = $resultadoConsultarSede->return->codigosed;
-        $fechaCod = date("Y");
-        $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+            if (isset($resultadoConsultarUltimoPaquete->return->fechapaq)) {
+                $fecha = FechaHora($resultadoConsultarUltimoPaquete->return->fechapaq);
+            } else {
+                $fecha = "";
+            }
+            //Año de envio del paquete
+            $fechaCod = (substr($fecha, 6, 4));
 
-        $codigoTotal = $codigoSede . $fechaCod . $idpaq;
-        guardarImagen($codigoTotal);		
-		
-		if (isset($resultadoConsultarUltimoPaquete->return->fechapaq)) {
-			$fecha = FechaHora($resultadoConsultarUltimoPaquete->return->fechapaq);
-		} else {
-    		$fecha = "";
-		}
+            $sedPaq = $resultadoConsultarUltimoPaquete->return->idsed->idsed;
+            $idSede = array('idSede' => $sedPaq);
+            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+            $codigoSede = $resultadoConsultarSede->return->codigosed;
 
-        $_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
-        $_SESSION["codigo"] = $codigoTotal;
-		$_SESSION["fecha"] = $fecha;
-		
-		if(isset($resultadoConsultarUltimoPaquete->return)){
-        	llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-        	echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
-        	//iraURL('../pdf/proof_of_correspondence.php');
-		}
+            $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+
+            //Código total codigosede+añopaquete+idpaquete
+            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
+            guardarImagen($codigoTotal);
+
+            $_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
+            $_SESSION["codigo"] = $codigoTotal;
+            $_SESSION["fecha"] = $fecha;
+
+            llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
+            echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
+            //iraURL('../pdf/proof_of_correspondence.php');
+        }
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');
     }
-    //iraURL('../pages/inbox.php');
+    iraURL('../pages/inbox.php');
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/send_correspondence.php');

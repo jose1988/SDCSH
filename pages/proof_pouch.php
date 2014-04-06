@@ -23,11 +23,11 @@ $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
 
 if (isset($SedeRol->return)) {
-	if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "5") {
-  		iraURL('../pages/inbox.php');
-  	}
+    if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "5") {
+        iraURL('../pages/inbox.php');
+    }
 } else {
-	iraURL('../pages/inbox.php');
+    iraURL('../pages/inbox.php');
 }
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
@@ -57,40 +57,41 @@ try {
         $idUsu = array('idUsuario' => $idUsuario);
         $resultadoConsultarUltimaValija = $client->ultimaValijaXUsuario($idUsu);
 
-        $idSede = array('idSede' => $ideSede);
-        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+        if (isset($resultadoConsultarUltimaValija->return)) {
 
-        $idOrigen = array('idSede' => $resultadoConsultarUltimaValija->return->origenval);
-        $resultadoOrigen = $client->consultarSedeXId($idOrigen);
+            if (isset($resultadoConsultarUltimaValija->return->fechaval)) {
+                $fecha = FechaHora($resultadoConsultarUltimaValija->return->fechaval);
+            } else {
+                $fecha = "";
+            }
+            //Año de envio del paquete
+            $fechaCod = (substr($fecha, 6, 4));
 
-        $idval = $resultadoConsultarUltimaValija->return->idval;
-        $codigoSede = $resultadoConsultarSede->return->codigosed;
-        $fechaCod = date("Y");
+            $sedOrigen = $resultadoConsultarUltimaValija->return->origenval;
+            $idOrigen = array('idSede' => $sedOrigen);
+            $resultadoOrigen = $client->consultarSedeXId($idOrigen);
+            $codigoSede = $resultadoOrigen->return->codigosed;
 
-        $codigoTotal = $codigoSede . $fechaCod . $idval;
-        guardarImagen($codigoTotal);
-		
-		if (isset($resultadoConsultarUltimaValija->return->fechaval)) {
-    		$fecha = FechaHora($resultadoConsultarUltimaValija->return->fechaval);
-		} else {
-    		$fecha = "";
-		}
+            $idval = $resultadoConsultarUltimaValija->return->idval;
 
-        $_SESSION["valija"] = $resultadoConsultarUltimaValija;
-        $_SESSION["codigo"] = $codigoTotal;
-        $_SESSION["origen"] = $resultadoOrigen;
-		$_SESSION["fecha"] = $fecha;
-		
-		if(isset($resultadoConsultarUltimaValija->return)){
-        	llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
-        	echo"<script>window.open('../pdf/proof_pouch.php');</script>";
-        	//iraURL('../pdf/proof_pouch.php');
-		}
+            //Código total codigosede+añovalija+idvalija
+            $codigoTotal = $codigoSede . $fechaCod . $idval;
+            guardarImagen($codigoTotal);
+
+            $_SESSION["valija"] = $resultadoConsultarUltimaValija;
+            $_SESSION["codigo"] = $codigoTotal;
+            $_SESSION["origen"] = $resultadoOrigen;
+            $_SESSION["fecha"] = $fecha;
+
+            llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
+            echo"<script>window.open('../pdf/proof_pouch.php');</script>";
+            //iraURL('../pdf/proof_pouch.php');
+        }
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/create_valise.php');
     }
-    //iraURL('../pages/create_valise.php');
+    iraURL('../pages/create_valise.php');
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/create_valise.php');

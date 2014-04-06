@@ -5,7 +5,7 @@ session_start();
 include("/recursos/funciones.php");
 require_once("/lib/nusoap.php");
 
-if(isset($_SESSION["Usuario"])){
+if(isset($_SESSION["Usuario"]) || isset($_SESSION["User"])){
 	eliminarSesion();
 	}
 
@@ -35,8 +35,8 @@ if (isset($_POST["Biniciar"])) {
 
   }
   }else{
-	  
- iraURL("pages/create_user.php?user=".$_POST["usuario"]);
+	   $_SESSION["User"]=$_POST["usuario"];
+ iraURL("pages/create_user.php");
   }
 	
 
