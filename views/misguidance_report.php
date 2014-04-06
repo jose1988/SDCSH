@@ -80,7 +80,7 @@ if ($usuarioBitacora == "") {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/create_valise.php">
+                                <a href="../pages/inbox.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>

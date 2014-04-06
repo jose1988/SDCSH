@@ -146,7 +146,8 @@ if(isset($_POST["guardar"])){
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
                         <li> <a href="inbox.php">Atrás</a> <li>
-                        <li> <a href="valise_report.php">Reportar Valija</a> <li>
+                        <li> <a href="valise_report.php">Reportar</a> <li>
+                         
                     </ul>
                 </div>
 
