@@ -70,27 +70,12 @@ if (!isset($org->return)) {
             </div>
         </div>
 
-        <div class="container app-container">
-            <div>
-                <ul class="nav nav-pills">
-                    <li class="pull-left">
-                        <div class="modal-header" style="width:1135px;">
-                            <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
-                                <div class="btn-group  pull-right">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Ayuda</a></li>
-                                    </ul>
-                                </div>                              
-
-                            </h3>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+       
+        <div id="middle">
+            <div class="container app-container"> 
+               <?php
+			 Menu($SedeRol);
+			 ?> 
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
