@@ -82,7 +82,7 @@ try {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');
     }
-    iraURL('../pages/inbox.php');
+    echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/send_correspondence.php');

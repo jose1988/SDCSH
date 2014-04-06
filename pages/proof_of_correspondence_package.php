@@ -58,10 +58,6 @@ if ($idPaq == "") {
             $codigoTotal = $codigoSede . $fechaCod . $idpaq;
             guardarImagen($codigoTotal);
 
-            echo $fecha . ' ';
-            echo $fechaCod . ' ';
-            echo $codigoTotal;
-
             $_SESSION["paqueteDos"] = $resultadoConsultarPaquete;
             $_SESSION["codigoDos"] = $codigoTotal;
             $_SESSION["fecha"] = $fecha;
