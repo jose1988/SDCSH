@@ -122,7 +122,7 @@ if (!isset($_SESSION["Usuario"])) {
 									<br><br><br>
                                     <div class="span4" align="right"><b>Código del Proveedor:</b></div>
                                     <div class="span3" align="left">
-                                        <input type="text" class="input-block-level" style="width:220px ;height:22px" name="cProveedor" id="cProveedor" placeholder="Ej. a3Y4" title="Ingrese el código de Zoom" autocomplete="off" required>
+                                        <input type="text" class="input-block-level" name="cProveedor" id="cProveedor" placeholder="Ej. 1234" title="Ingrese el código de Guía" autocomplete="off" required>
                                     </div>
 							 
 							 <br><br><br>
