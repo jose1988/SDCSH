@@ -66,7 +66,6 @@ if ($sede == '0') {
                         'idsede' => $resultadoSedes->return[$i]->idsed);
                     $resultadoConsultarPaquetes = $client->consultarEstadisticasPaquetes($Con);
                     $paquetes[$i] = count($resultadoConsultarPaquetes->return);
-                    echo $paquetes[$i];
                 }
             } else {
                 $nombreSede = $resultadoSedes->return->nombresed;
@@ -80,7 +79,6 @@ if ($sede == '0') {
         } else {
             $contadorSedes = 0;
         }
-
         include("../graphics/reports_package_horizontally.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
@@ -98,8 +96,7 @@ if ($sede == '0') {
         } else {
             $cpcionSede = "";
         }
-
-        //include("../graphics/reports_package_vertical.php");
+        include("../graphics/reports_package_vertical.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/reports_package.php');

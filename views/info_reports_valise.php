@@ -249,14 +249,12 @@ if ($usuario == "") {
                                 <br>
                                 <br>
                                 <br>
-                                <form method="post">
-                                    <div class="span6" align="center">
-                                        <button type="submit" class="btn" id="graficar" name="graficar"> Graficar </button>
-                                    </div>
-                                    <div class="span6" align="center">
-                                        <button type="submit" class="btn" id="imprimir" name="imprimir"> Imprimir </button>
-                                    </div>
-                                </form>
+                                <div class="span6" align="center">
+                                	<a href="../pages/graphics_reports_valise.php" target="new"><button type="submit" class="btn" id="graficar" name="graficar"> Graficar </button></a>
+                               	</div>
+                                <div class="span5" align="center">
+                                	<a href="../pages/proof_of_bags_report.php" target="new"><button type="submit" class="btn" id="imprimir" name="imprimir"> Imprimir </button></a>
+                                </div>
                             </div>
                             <?php
                         }

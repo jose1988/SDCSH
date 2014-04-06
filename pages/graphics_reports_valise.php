@@ -65,7 +65,6 @@ if ($sede == '0') {
                         'idsede' => $resultadoSedes->return[$i]->idsed);
                     $resultadoConsultarValijas = $client->consultarEstadisticasValijas($Con);
                     $valijas[$i] = count($resultadoConsultarValijas->return);
-                    echo $valijas[$i];
                 }
             } else {
                 $nombreSede = $resultadoSedes->return->nombresed;
@@ -79,7 +78,6 @@ if ($sede == '0') {
         } else {
             $contadorSedes = 0;
         }
-
         include("../graphics/reports_valise_horizontally.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
@@ -97,7 +95,6 @@ if ($sede == '0') {
         } else {
             $cpcionSede = "";
         }
-
         include("../graphics/reports_valise_vertical.php");
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
