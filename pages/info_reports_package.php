@@ -60,15 +60,6 @@ try {
             $nombreReporte = "Paquetes por Entregar";
         }
     }
-
-    if (isset($_POST["imprimir"])) {
-        echo"<script>window.open('../pages/proof_reporting_package.php');</script>";
-    }
-
-    if (isset($_POST["graficar"])) {
-        echo"<script>window.open('../pages/graphics_reports_package.php');</script>";
-    }
-
     include("../views/info_reports_package.php");
 } catch (Exception $e) {
 

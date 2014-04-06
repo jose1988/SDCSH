@@ -14,6 +14,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
+$SedeRol = $client->consultarSedeRol($UsuarioRol);
 
 if (isset($SedeRol->return)) {
     if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "5") {
@@ -84,15 +85,6 @@ try {
             $_SESSION["nombreSede"] = $nombreSede;
         }
     }
-
-    if (isset($_POST["imprimir"])) {
-        echo"<script>window.open('../pages/proof_of_bags_report.php');</script>";
-    }
-
-    if (isset($_POST["graficar"])) {
-        echo"<script>window.open('../pages/graphics_reports_valise.php');</script>";
-    }
-
     include("../views/info_reports_valise.php");
 } catch (Exception $e) {
 
