@@ -91,7 +91,7 @@ try {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/create_valise.php');
     }
-    iraURL('../pages/create_valise.php');
+    echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/create_valise.php');

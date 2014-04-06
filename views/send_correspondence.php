@@ -122,7 +122,7 @@
                     <div class="row-fluid">
                         <div class="span2">
                             <ul class="nav nav-pills nav-stacked">
-                                <li> <a href="inbox.php">Atrás</a> </li>
+                                <li> <a href="inbox.php">AtrÃ¡s</a> </li>
 
                             </ul>
                         </div>
@@ -178,7 +178,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td> Frágil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es frágil"></td>
+                                        <td> FrÃ¡gil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es frÃ¡gil"></td>
                                     </tr>
                                     <tr>
                                         <td>Imagen del paquete(opcional):</td><td>
@@ -192,7 +192,7 @@
                                         <td>Desea recibir respuesta de este paquete: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta"></td>
                                     </tr>
                                     <tr>          
-                                        <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podría modificar la correspondencia')" value="Enviar Correspondecia" name="enviar"><br>
+                                        <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('Â¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrÃ­a modificar la correspondencia')" value="Enviar Correspondecia" name="enviar"><br>
                                         </td>
                                     </tr>
                                 </table>
@@ -206,7 +206,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel">Buscar Buzón</h4>
+                                <h4 class="modal-title" id="myModalLabel">Buscar BuzÃ³n</h4>
                             </div>
                             <div class="modal-body">
                                 <table>
@@ -237,9 +237,9 @@
                                                 ?>
                                             </select><br>
                                         </td>
-                                        <td>Áreas:</td>
+                                        <td>Ãreas:</td>
                                         <td><select name="area" id="area"   title="Seleccione Area">
-                                                <option value="">Seleccione Área</option> 
+                                                <option value="">Seleccione Ã¡rea</option> 
 
                                             </select><br>
                                         </td>
