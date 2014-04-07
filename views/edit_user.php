@@ -102,7 +102,7 @@ if (!isset($Usuario->return)) {
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="inbox.php">Atrás</a> </li>
+                        <li> <a href="view_user.php">Atrás</a> </li>
                     </ul>
                 </div>
 

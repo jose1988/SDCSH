@@ -116,8 +116,15 @@ function Menu($SedeRol) {
                             <div class="btn-group  pull-right">
                                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <?php if ($SedeRol->return->idrol->idrol != "4") { ?>
+                                    <?php if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "6") { ?>
                                         <li><a href="confirm_package.php">Recibir Paquete</a></li>
+                                        <?php
+                                    }
+									if ($SedeRol->return->idrol->idrol != "2" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                        <li class="divider"></li>
+										<li><a href="external_costs.php">Enviar Paquetes Externos</a></li>
+										<li class="divider"></li>
+										<li><a href="confirm_externo.php">Confirmar Paquetes Externos</a></li>
                                         <?php
                                     }
                                     if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {

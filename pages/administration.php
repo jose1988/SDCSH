@@ -15,8 +15,9 @@ try {
     } elseif (!usuarioCreado()) {
         iraURL("../pages/create_user.php");
     }
+	//echo '<pre>';print_r($SedeRol);
     if (isset($SedeRol->return)) {
-        if ($SedeRol->return->idrol->idrol == 0) {
+        if ($SedeRol->return->tipousu == 0) {
             iraURL("../pages/inbox.php");
         }
     } else {

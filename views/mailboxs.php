@@ -79,7 +79,7 @@ if ($usu== "") {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/administration.php">
+                                <a href="../pages/view_user.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -105,7 +105,7 @@ if ($usu== "") {
                                             <tr>
                                                 
                                                 <th style="text-align:center" data-sort-ignore="true">Nombre</th>
-                                                <th style="text-align:center" data-sort-ignore="true">Area</th>
+                                                <th style="text-align:center" data-sort-ignore="true">Área</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Sede</th>
                                                 <th style="text-align:center" data-sort-ignore="true">Editar</th>                       
                                             </tr>
@@ -113,17 +113,23 @@ if ($usu== "") {
                                         <tbody>
                                             <?php
                                             if ($bitacora > 1) {
-                                                for ($i = 0; $i < $bitacora; $i++) { ?>
+                                                for ($i = 0; $i < $bitacora; $i++) {
+													 $areaBuzon="";$sedeBuzon="";
+													if(isset($resultadoLista->return[$i]->idatr->nombreatr)){
+														$areaBuzon=$resultadoLista->return[$i]->idatr->nombreatr;
+													}
+													if(isset($resultadoLista->return[$i]->idatr->idsed->nombresed)){
+														$sedeBuzon=$resultadoLista->return[$i]->idatr->idsed->nombresed;
+													}
+												?>
                                                     <tr>
-                                                        <td style="text-align:center"><?php echo $resultadoLista->return[$i]->nombrebuz ?></td>
-                                                        <td style="text-align:center"><?php echo $resultadoLista->return[$i]->idatr->nombreatr ?></td>                   
-                                                        <td style="text-align:center"><?php echo $resultadoLista->return[$i]->idatr->idsed->nombresed ?></td>                                            	
-                                                  
-                                                       
+                                                        <td style="text-align:center"><?php echo $resultadoLista->return[$i]->nombrebuz; ?></td>
+                                                        <td style="text-align:center"><?php echo $areaBuzon; ?></td>                   
+                                                        <td style="text-align:center"><?php echo $sedeBuzon; ?></td>                                            	
                                                         <td style="text-align:center"><a href='../pages/edit_mailbox.php?id=<?php echo $resultadoLista->return[$i]->idbuz?>'><button type='button' class='btn btn-info btn-primary' value='Editar'> Editar </button> </a></td>
                                                         
                                                     </tr>
-                                                        <
+                                                        
                                                     <?php }
                                             } else { ?>
                                                 <tr>

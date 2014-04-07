@@ -87,7 +87,7 @@ if (!isset($Usuario->return)) {
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="inbox.php">Atrás</a> </li>
+                        <li> <a href="mailboxs.php">Atrás</a> </li>
                     </ul>
                 </div>
 
@@ -95,7 +95,7 @@ if (!isset($Usuario->return)) {
                     <div class="tab-content" id="lista" align="center"> 
                         <form id="formulario" method="post">      
                             <div class="tab-content" id="lista" align="center"> 
-                                <h2> Datos del Buzon </h2> 
+                                <h2> Datos del Buzón </h2> 
                                 <table class='footable table table-striped table-bordered'>
                                     <tr>
                                         <td style="text-align:center" >Nombre</td>
@@ -106,20 +106,12 @@ if (!isset($Usuario->return)) {
                                         <td style="text-align:center">Dirección</td>
                                         <td style="text-align:center"><input type="text" name="direccion" id="direccion" autocomplete="off" value="<?php echo $Usuario->return->direccionbuz; ?>" maxlength="150" size="30"  ></td>
                                     </tr>
-
-                                   
-                                    
-                                    <tr>
-
-
                                     <tr>
 
                                         <td style="text-align:center">Teléfono </td>
-                                        <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" value="<?php echo $telefono; ?>" maxlength="50" size="30"    ></td>
+                                        <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" value="<?php echo $telefono; ?>" maxlength="50" size="30"></td>
                                     </tr>
                                     <tr>
-
-
                                 </table><br>
                                 <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" onclick="return confirm('¿Esta seguro que desea guardar los cambios?')" type="submit">Guardar</button></div>
                                 <br>
