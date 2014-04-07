@@ -46,11 +46,11 @@
 	echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
     	 <thead bgcolor='#ff0000'>
                                     <tr>";
-			echo "<th ; text-align:center' >Nombre</th>";
+			echo "<th ; text-align:center' >Nombres y apellidos</th>";
 				
-echo "<th  text-align:center' data-sort-ignore='true'>Apellido </th>";								
-						        echo "<th style='width:7%; text-align:center' >Buzon</th>
-								<th style='width:7%; text-align:center' ></th>
+echo "<th  text-align:center' data-sort-ignore='true'>Area </th>";								
+						        echo "<th style='width:7%; text-align:center' >Sede</th>
+								 <th style='width:5%; text-align:center' ></th>
 								
                                      
 								
@@ -66,11 +66,11 @@ echo "<th  text-align:center' data-sort-ignore='true'>Apellido </th>";
 					if( $Buz->return[$j]->tipobuz=="1"){
 						echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return[$j]->nombrebuz."</th>";			
 				echo "<td style='text-align:center'> Externo</td>";
-				echo "<td style='text-align:center'>".$Buz->return[$j]->nombrebuz."</td>";
+				echo "<td style='text-align:center'> Externo</td>";
 					}else{
-				echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return[$j]->idusu->nombreusu."</th>";			
-				echo "<td style='text-align:center'>".$Buz->return[$j]->idusu->apellidousu."</td>";
-				echo "<td style='text-align:center'>".$Buz->return[$j]->nombrebuz."</td>";
+				echo "<th text-align:center' data-sort-ignore='true'>".$Buz->return[$j]->idusu->nombreusu.",".$Buz->return[$j]->idusu->apellidousu."</th>";			
+				echo "<td style='text-align:center'>".$Buz->return[$j]->idatr->nombreatr."</td>";
+				echo "<td style='text-align:center'>".$Buz->return[$j]->idatr->idsed->nombresed."</td>";
 					}
 				?>
 				<th  'text-align:center' > 
@@ -110,7 +110,7 @@ echo "<th  text-align:center' data-sort-ignore='true'>Apellido </th>";
 			 
 			
 	echo " </tbody>
-  	</table>;";
+  	</table>";
    
     }else{
 		echo " No se encuentran coincidencias en la busqueda";
