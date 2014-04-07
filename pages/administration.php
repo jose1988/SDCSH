@@ -15,11 +15,10 @@ try {
     } elseif (!usuarioCreado()) {
         iraURL("../pages/create_user.php");
     }
-	//echo '<pre>';print_r($SedeRol);
     if (isset($SedeRol->return)) {
-        if ($SedeRol->return->tipousu == 0) {
-            iraURL("../pages/inbox.php");
-        }
+        if ($_SESSION["Usuario"]->return->tipousu != "1" && $_SESSION["Usuario"]->return->tipousu != "2") {
+    		iraURL('../pages/inbox.php');
+		}
     } else {
         iraURL('../pages/inbox.php');
     }
