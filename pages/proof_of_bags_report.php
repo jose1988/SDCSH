@@ -14,6 +14,7 @@ if (!isset($_SESSION["Usuario"])) {
 $_SESSION["fechaEnvio"] = "";
 $_SESSION["fechaRecibido"] = "";
 $resultadoConsultarValijas = $_SESSION["valijas"];
+$nombreSede = $_SESSION["nombreSede"];
 
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);

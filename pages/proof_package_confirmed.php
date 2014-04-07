@@ -30,6 +30,9 @@ if (isset($SedeRol->return)) {
     iraURL('../pages/inbox.php');
 }
 
+$_SESSION["paquetesTotales"] = "";
+$_SESSION["rol"] = "";
+
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);

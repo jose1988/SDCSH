@@ -30,6 +30,7 @@ $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
 $_SESSION["valijas"] = "";
+$_SESSION["nombreSede"] = "";
 
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
