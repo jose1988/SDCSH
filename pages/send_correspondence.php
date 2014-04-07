@@ -23,6 +23,12 @@ try {
 
     $rowDocumentos = $client->listarDocumentos();
     $rowPrioridad = $client->listarPrioridad();
+	$origenbuz = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'idsede' => $_SESSION["Sede"]->return->idsed);
+    $propioBuzon = $client->consultarBuzonXUsuarioSede($origenbuz);
+	if (!isset($propioBuzon->return)) {
+        javaalert("Lo sentimos no se puede enviar correspondencia porque no tiene el buzon creado,Consulte con el Administrador");
+        iraURL('../pages/inbox.php');
+    }
     if (!isset($rowDocumentos->return)) {
         javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Tipos de documentos registrados,Consulte con el Administrador");
         iraURL('../pages/inbox.php');
@@ -31,13 +37,12 @@ try {
         javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Prioridades registradas,Consulte con el Administrador");
         iraURL('../pages/inbox.php');
     }
-
+    
     if (isset($_POST["enviar"])) {
         if ($_POST["contacto"] != "" && isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
 
             $idbuz = $_POST["id"];
-            $origenbuz = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'idsede' => $_SESSION["Sede"]->return->idsed);
-            $propioBuzon = $client->consultarBuzonXUsuarioSede($origenbuz);
+        
             $origenpaq = array('idbuz' => $propioBuzon->return->idbuz);
             if (count($propioBuzon->return) == 1) {
                 $tipobuz = $propioBuzon->return->tipobuz;
