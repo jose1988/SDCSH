@@ -23,7 +23,7 @@ try {
     }
 
     if (isset($_POST["crear"])) {
-        if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["direccion"]) && $_POST["direccion"] != "" && isset($_POST["telefono"]) && $_POST["telefono"] != "" && isset($_POST["organizacion"]) && $_POST["organizacion"] != "") {
+        if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["direccion"]) && $_POST["direccion"] != "" && isset($_POST["telefono"]) && $_POST["telefono"] != ""  && isset($_POST["codigo"]) && $_POST["codigo"] != "" && isset($_POST["organizacion"]) && $_POST["organizacion"] != "") {
 
             $result = 0;
             try {
@@ -49,7 +49,10 @@ try {
                     'direccionsed' => $direccion,
                     'telefonosed' => $telefono,
                     'telefono2sed' => $telefono2,
-                    'idorg' => $_POST["organizacion"]);
+					 'idorg' => $_POST["organizacion"],
+					'borradosed' => "0",
+					'codigosed' => $_POST["codigo"]
+                   );
                 $parametros = array('registroSede' => $Sedenueva, 'idorg' => $_POST["organizacion"]);
                 $guardo = $client->insertarSede($parametros);
 

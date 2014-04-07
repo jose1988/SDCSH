@@ -99,6 +99,10 @@ if (!isset($org->return)) {
                                     <td style="text-align:center" >Dirección</td>
                                     <td style="text-align:center"><textarea style="width:500px;"   id="direccion" name="direccion" maxlength="2000"  style="width:800px" ></textarea></td>
                                 </tr>
+                                 <tr>
+                                    <td style="text-align:center">Codigo de sede:</td>
+                                    <td style="text-align:center"><input type="text" name="codigo" id="codigo" autocomplete="off" maxlength="4" size="30" title="Ingrese un número de teléfono" placeholder="Ej. 0212"   ></td>
+                                </tr> 
                                
                                 </tr>
                                 <tr>

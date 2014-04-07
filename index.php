@@ -15,7 +15,12 @@ if (isset($_POST["Biniciar"])) {
         $client = new SOAPClient($wsdl_url);
         $client->decode_utf8 = false;
         $Usuario = array('user' => $_POST["usuario"]);
-        $UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
+		$UsuarioC = array('user' => $_POST["usuario"], 'password' => $_POST["password"]);
+		$auto=$client->auntenticarLDAP($UsuarioC);
+		
+		//if($auto->return=="ACEPT"){
+			
+			 $UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
 
         if (isset($UsuarioLogIn->return)) {
 
@@ -34,6 +39,14 @@ if (isset($_POST["Biniciar"])) {
             $_SESSION["User"] = $_POST["usuario"];
             iraURL("pages/create_user.php");
         }
+			
+		//}else{
+		//	javaalert('No pertenece a la organizacion');
+         //     iraURL('index.php');
+			
+		//}
+		
+       
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
     }
