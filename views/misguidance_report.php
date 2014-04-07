@@ -80,7 +80,7 @@ if ($usuarioBitacora == "") {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/inbox.php">
+                                <a href="../pages/administration.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -126,18 +126,15 @@ if ($usuarioBitacora == "") {
                 </div>
             </div>
         </div>
-        <!-- /container -->
-        <div id="footer" class="container">    	
-        </div>
 
         <script>
-        	window.onload = function() {
-            	killerSession();
-        	}
-        	function killerSession() {
-            	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        	}
-    	</script>
+ 			window.onload = function() {
+     			killerSession();
+ 		}
+ 		function killerSession() {
+     		setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+ 		}
+		</script>
 
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>

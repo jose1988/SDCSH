@@ -76,7 +76,7 @@
                 <div class="row-fluid">
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
-                            <li> <a href="../pages/inbox.php">Atrás</a> <li>
+                            <li> <a href="../pages/administration.php">Atrás</a> <li>
                         </ul>
                     </div>
 

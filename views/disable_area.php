@@ -24,12 +24,12 @@ if (!isset($Sedes->return)) {
         <link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
         <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
         <script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="../css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -50,98 +50,60 @@ if (!isset($Sedes->return)) {
         <link href="../css/footable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
-         <script>
-	
-	
-	function buscarAreas(idsede){
-			
-			 var parametros = {
+        <script>
+            function buscarAreas(idsede) {
+                var parametros = {
+                    "idsede": idsede
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "../ajax/ajaxareas.php",
+                    data: parametros,
+                    dataType: "text",
+                    success: function(response) {
+                        $("#contenedor").html(response);
+                    }
+                });
+            }
+            function buscarSedes() {
+                $.ajax({
+                    type: "POST",
+                    url: "../ajax/ajaxsedes.php",
+                    dataType: "text",
+                    success: function(response) {
+                        $("#contenedor").html(response);
+                    }
+                });
+            }
+            function cambiar(idarea, cp) {
+                var parametros = {
+                    "idarea": idarea
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "../ajax/ajaxcambioestado.php",
+                    data: parametros,
+                    dataType: "text",
+                    success: function(response) {
+                        colorear(cp);
+                    }
+                });
+            }
 
-                "idsede" : idsede
-       		 };
-			 
+            function colorear(cp)
+            {
+                if ($(cp).parents('tr').find('td').css('background-color') == "rgb(249, 249, 249)" || $(cp).parents('tr').find('td').css('background-color') == "rgba(0, 0, 0, 0)")
+                {
+                    $(cp).parents('tr').find('td').css('background-color', "rgb(206, 200, 200)");
 
-		
-			$.ajax({
-           	type: "POST",
-           	url: "../ajax/ajaxareas.php",
-           	data: parametros,
-           	dataType: "text",
-			success:  function (response) {
-            	$("#contenedor").html(response);
-			}
-		
-	             }); 
-		
-		
-	}
-	function buscarSedes(){
-			
-			
-			 
+                }
+                else
+                {
+                    $(cp).parents('tr').find('td').css('background-color', "rgb(249, 249, 249)");
 
-		
-			$.ajax({
-           	type: "POST",
-           	url: "../ajax/ajaxsedes.php",
-           	dataType: "text",
-			success:  function (response) {
-            	$("#contenedor").html(response);
-			}
-		
-	             }); 
-		
-		
-	}
-	function cambiar(idarea,cp){
-			
-			
-			 var parametros = {
-
-                "idarea" : idarea
-       		 };
-			  
-
-         
-		
-			$.ajax({
-           	type: "POST",
-           	url: "../ajax/ajaxcambioestado.php",
-		    data: parametros,
-           	dataType: "text",
-				success:  function (response) {
-            	colorear(cp);
-			}
-		
-	             }); 
-		
-		
-	}
-	
- function colorear(cp)
- {
-	 if($(cp).parents('tr').find('td').css('background-color')=="rgb(249, 249, 249)" || $(cp).parents('tr').find('td').css('background-color')=="rgba(0, 0, 0, 0)")
-	      {
-			          $(cp).parents('tr').find('td').css('background-color',"rgb(206, 200, 200)");  
-					  
-		  }
-	else
-	{
-		 $(cp).parents('tr').find('td').css('background-color',"rgb(249, 249, 249)"); 
-		
-	}
-	 
-	 
-	 
-	 
- }
-		
-	
-	
-	</script>
-        
-        
-
+                }
+            }
+        </script>
     </head>
 
     <body class="appBg">
@@ -163,121 +125,96 @@ if (!isset($Sedes->return)) {
             </div>
         </div>
 
-      <div id="middle">
+        <div id="middle">
             <div class="container app-container"> 
-               <?php
-			 Menu($SedeRol);
-			 ?> 
-               
+                <?php
+                Menu($SedeRol);
+                ?>
                 <!--Caso pantalla uno-->
-                    <div class="row-fluid">
-                        <div class="span2">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li> <a href="../pages/inbox.php">Atrás</a> </li>
-                                  </ul>
-                        </div>
+                <div class="row-fluid">
+                    <div class="span2">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li> <a href="../pages/administration.php">Atrás</a> </li>
+                        </ul>
+                    </div>
 
-                        <div class="span10">
-                            <div class="tab-content" id="contenedor">
-                             
-                             
-                        <?php    
-						
-						
-						 
-                                 echo "<h2> <strong>Sedes</strong> </h2>";
-            
-	echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
-    	 <thead bgcolor='#ff0000'>
-                                    <tr>";
-			echo "<th  style='width:7%; text-align:center' >ID</th>";
-				
-echo "<th  text-align:center' data-sort-ignore='true'>Nombre </th>";								
-						        echo "<th style='width:7%; text-align:center' >Area</th>
-									
-                                     
-								
-         </thead>
-        <tbody>
-		
-        	<tr>";
-			if($reg>0){
-				$j=0;
-				while($j<$reg){ 
-				
-				
-								
-				echo "<th text-align:center' data-sort-ignore='true'>". $Sedes->return[$j]->idsed."</th>";			
-				echo "<td style='text-align:left'>". $Sedes->return[$j]->nombresed."</td>";
-				?>
-				<th  'text-align:center' > 
-                <button class='btn' onClick="buscarAreas('<?php echo  $Sedes->return[$j]->idsed; ?>');">
-              <span class="icon-home" > </span>
-                
-                
-                 </button></th>
-				<?php
-            echo "</tr>";
-					$j++;
-				} 
-			}
-	echo " </tbody>
-  	</table>";
-	echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
-   ?>
-                            </div>
+                    <div class="span10">
+                        <div class="tab-content" id="contenedor">
+                            <?php
+                            echo "<h2> <strong>Sedes</strong> </h2>";
+                            echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
+    	 					<thead bgcolor='#ff0000'>
+                            <tr>";
+                            echo "<th  style='width:7%; text-align:center' >ID</th>";
+                            echo "<th  text-align:center' data-sort-ignore='true'>Nombre </th>";
+                            echo "<th style='width:7%; text-align:center' >Area</th>
+         					</thead>
+        					<tbody>
+        					<tr>";
+                            if ($reg > 0) {
+                                $j = 0;
+                                while ($j < $reg) {
+                                    echo "<th text-align:center' data-sort-ignore='true'>" . $Sedes->return[$j]->idsed . "</th>";
+                                    echo "<td style='text-align:left'>" . $Sedes->return[$j]->nombresed . "</td>";
+                                    ?>
+                                    <th  'text-align:center' > 
+                                        <button class='btn' onClick="buscarAreas('<?php echo $Sedes->return[$j]->idsed; ?>');">
+                                            <span class="icon-home" > </span>
+                                        </button></th>
+										<?php
+        							echo "</tr>";
+        							$j++;
+    							}
+							}
+							echo " </tbody>
+  							</table>";
+							echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+							?>
                         </div>
                     </div>
-             
-               
-                <!-- /container -->
-                <div id="footer" class="container">    	
                 </div>
-
             </div>
-     </body>
+    </body>
 </html>
-            <script>
-                                                window.onload = function() {
-                                                    killerSession();
-                                                }
-                                                function killerSession() {
-                                                    setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-                                                }
-            </script>
-            <script>
-                function LimitAttach(tField) {
-                    file = imagen.value;
+<script>
+ window.onload = function() {
+     killerSession();
+ }
+ function killerSession() {
+     setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+ }
+</script>
+<script>
+    function LimitAttach(tField) {
+        file = imagen.value;
+        extArray = new Array(".gif", ".jpg", ".png");
+        allowSubmit = false;
+        if (!file)
+            return;
+        while (file.indexOf("\\") != - 1)
+            file = file.slice(file.indexOf("\\") + 1);
+        ext = file.slice(file.indexOf(".")).toLowerCase();
+        for (var i = 0; i < extArray.length; i++) {
+            if (extArray[i] == ext) {
+                allowSubmit = true;
+                break;
+            }
+        }
+        if (allowSubmit) {
+        } else {
+            tField.value = "";
+            alert("Usted sólo puede subir archivos con extensiones " + (extArray.join(" ")) + "\nPor favor seleccione un nuevo archivo");
+        }
+    }
+</script>
 
-                    extArray = new Array(".gif", ".jpg", ".png");
+</script>
+<script src="../js/footable.js" type="text/javascript"></script>
+<script src="../js/footable.paginate.js" type="text/javascript"></script>
+<script src="../js/footable.sortable.js" type="text/javascript"></script>
 
-                    allowSubmit = false;
-                    if (!file)
-                        return;
-                    while (file.indexOf("\\") != - 1)
-                        file = file.slice(file.indexOf("\\") + 1);
-                    ext = file.slice(file.indexOf(".")).toLowerCase();
-                    for (var i = 0; i < extArray.length; i++) {
-                        if (extArray[i] == ext) {
-                            allowSubmit = true;
-                            break;
-                        }
-                    }
-                    if (allowSubmit) {
-                    } else {
-                        tField.value = "";
-                        alert("Usted sólo puede subir archivos con extensiones " + (extArray.join(" ")) + "\nPor favor seleccione un nuevo archivo");
-                    }
-                }
-            </script>
-            
-            </script>
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-
-        <script type="text/javascript">
-            $(function() {
-                $('table').footable();
-            });
-        </script>
+<script type="text/javascript">
+    $(function() {
+        $('table').footable();
+    });
+</script>
