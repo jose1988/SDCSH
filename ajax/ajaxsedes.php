@@ -19,22 +19,22 @@ echo "<br>";
 echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
     	 <thead bgcolor='#ff0000'>
                                     <tr>";
-echo "<th  style='width:7%; text-align:center' >ID</th>";
+echo "<th  style='width:10%; text-align:center' >Id</th>";
 echo "<th  text-align:center' data-sort-ignore='true'>Nombre </th>";
-echo "<th style='width:7%; text-align:center' >Areas</th>								
+echo "<th style='width:10%; text-align:center' data-sort-ignore='true'>Areas</th>								
          </thead>
         <tbody>		
         	<tr>";
 if ($reg > 0) {
     $j = 0;
     while ($j < $reg) {
-        echo "<th text-align:center' data-sort-ignore='true'>" . $Sedes->return[$j]->idsed . "</th>";
+        echo "<td text-align:center' data-sort-ignore='true'>" . $Sedes->return[$j]->idsed . "</td>";
         echo "<td style='text-align:left'>" . $Sedes->return[$j]->nombresed . "</td>";
         ?>
-        <th text-align:center'> 
+        <td style="text-align:center"> 
              <button class='btn' onClick="buscarAreas('<?php echo $Sedes->return[$j]->idsed; ?>');">
                 <span class="icon-home" > </span>
-            </button></th>
+            </button></td>
         <?php
         echo "</tr>";
         $j++;
@@ -44,3 +44,12 @@ echo " </tbody>
   	</table>";
 echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
 ?>
+<script src="../js/footable.js" type="text/javascript"></script>
+<script src="../js/footable.paginate.js" type="text/javascript"></script>
+<script src="../js/footable.sortable.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('table').footable();
+    });
+</script>

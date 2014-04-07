@@ -13,17 +13,15 @@ if (!isset($Sedes->return)) {
         <meta name="author" content="">
 
         <!-- javascript -->
-        <script type="text/javascript" src="../js/jquery-1.9.1.js" ></script> 
+        <script type='text/javascript' src="../js/jquery-1.9.1.js"></script>
         <script type='text/javascript' src="../js/bootstrap.js"></script>
         <script type='text/javascript' src="../js/bootstrap-transition.js"></script>
         <script type='text/javascript' src="../js/bootstrap-tooltip.js"></script>
         <script type='text/javascript' src="../js/modernizr.min.js"></script>
+<!--<script type='text/javascript' src="../js/togglesidebar.js"></script>-->	
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
-        <!-- javascript para el funcionamiento del calendario -->
-        <link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
-        <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
-        <script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
+
         <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
 
@@ -145,31 +143,32 @@ if (!isset($Sedes->return)) {
                             echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
     	 					<thead bgcolor='#ff0000'>
                             <tr>";
-                            echo "<th  style='width:7%; text-align:center' >ID</th>";
-                            echo "<th  text-align:center' data-sort-ignore='true'>Nombre </th>";
-                            echo "<th style='width:7%; text-align:center' >Area</th>
+                            echo "<th style='width:10%; text-align:center'>Id</th>";
+                            echo "<th data-sort-ignore='true'>Nombre </th>";
+                            echo "<th style='width:10%; text-align:center' data-sort-ignore='true'>Area</th>
          					</thead>
         					<tbody>
         					<tr>";
                             if ($reg > 0) {
                                 $j = 0;
                                 while ($j < $reg) {
-                                    echo "<th text-align:center' data-sort-ignore='true'>" . $Sedes->return[$j]->idsed . "</th>";
+                                    echo "<td style='text-align:center'>" . $Sedes->return[$j]->idsed . "</td>";
                                     echo "<td style='text-align:left'>" . $Sedes->return[$j]->nombresed . "</td>";
                                     ?>
-                                    <th  'text-align:center' > 
+                                    <td style="text-align:center"> 
                                         <button class='btn' onClick="buscarAreas('<?php echo $Sedes->return[$j]->idsed; ?>');">
                                             <span class="icon-home" > </span>
-                                        </button></th>
-										<?php
-        							echo "</tr>";
-        							$j++;
-    							}
-							}
-							echo " </tbody>
-  							</table>";
-							echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
-							?>
+                                        </button>
+                                    </td>
+                                    <?php
+                                    echo "</tr>";
+                                    $j++;
+                                }
+                            }
+                            echo " </tbody>
+                                </table>";
+                            echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -177,12 +176,21 @@ if (!isset($Sedes->return)) {
     </body>
 </html>
 <script>
- window.onload = function() {
-     killerSession();
- }
- function killerSession() {
-     setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
- }
+window.onload = function() {
+	killerSession();
+}
+function killerSession() {
+	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+}
+</script>
+<script src="../js/footable.js" type="text/javascript"></script>
+<script src="../js/footable.paginate.js" type="text/javascript"></script>
+<script src="../js/footable.sortable.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('table').footable();
+    });
 </script>
 <script>
     function LimitAttach(tField) {
@@ -206,15 +214,4 @@ if (!isset($Sedes->return)) {
             alert("Usted sólo puede subir archivos con extensiones " + (extArray.join(" ")) + "\nPor favor seleccione un nuevo archivo");
         }
     }
-</script>
-
-</script>
-<script src="../js/footable.js" type="text/javascript"></script>
-<script src="../js/footable.paginate.js" type="text/javascript"></script>
-<script src="../js/footable.sortable.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-    $(function() {
-        $('table').footable();
-    });
 </script>
