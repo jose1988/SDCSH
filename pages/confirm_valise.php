@@ -44,21 +44,18 @@ if (isset($_POST["confirmar"])) {
             $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
             $client = new SOAPClient($wsdl_url);
             $client->decode_utf8 = false;
-
             $valija = $_POST["cValija"];
-            $Val = array('codigo' => $valija, 'sede' => $_SESSION["Sede"]->return->nombresed);
-            $Valijac = $client->consultarValijaXIdOCodigoBarras($Val);
-
+            $Val = array('codigo' => $valija);
+            $Valijac = $client->consultarValijaXIdOCodigoBarra($Val);
             if (isset($Valijac->return)) {
                 $idVal = $Valijac->return->idval;
                 $parametros = array('idValija' => $idVal,
                     'proveedor' => $_POST["proveedor"],
                     'codProveedor' => $_POST["cProveedor"]);
                 $confirmarValija = $client->confirmarValija($parametros);
-
                 if (isset($confirmarValija->return) == 1) {
                     javaalert('Valija Confirmada');
-                    llenarLog(2, "Confirmación Valija", $usuarioBitacora, $sede);
+                    llenarLog(2, "ConfirmaciÃ³n de Valija", $usuarioBitacora, $sede);
                     iraURL('../pages/create_valise.php');
                 } else {
                     javaalert('Valija No Confirmada');
@@ -70,7 +67,7 @@ if (isset($_POST["confirmar"])) {
             }
         } catch (Exception $e) {
             javaalert('Lo sentimos no hay conexion');
-            iraURL('../pages/create_valise.php');
+            iraURL('../pages/administration.php');
         }
     } else {
         javaalert("Debe agregar todos los campos, por favor verifique");

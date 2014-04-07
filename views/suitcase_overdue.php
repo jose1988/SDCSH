@@ -97,9 +97,9 @@ if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                         <thead bgcolor='#FF0000'>
                                             <tr>	
+											  <th style='width:7%; text-align:center' data-sort-ignore="true">Código</th>
 											  <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
-                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha del Envio</th>
                                             </tr>
                                         </thead>
@@ -107,40 +107,24 @@ if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
     <?php
 	if(isset($ValijasDestino->return)){
 											if (count($ValijasDestino->return) == 1) {
-        if (isset($ValijasDestino->return->asuntoval)) {
-            if (strlen($ValijasDestino->return->asuntoval) > 10) {
-                $asunto = substr($ValijasDestino->return->asuntoval, 0, 10) . "...";
-            } else {
-                $asunto = $ValijasDestino->return->asuntoval;
-            }
-        } else {
-            $asunto = "";
-        }
+       
         ?>
                                                 <tr class="success">     
+												 <td style='text-align:center'><?php echo $ValijasDestino->return->idval; ?></td>
                                                     <td style='text-align:center'><?php echo $ValijasDestino->return->origenval->nombresed; ?></td>
 													<td style='text-align:center'><?php echo $ValijasDestino->return->destinoval->nombresed; ?></td>
-                                                    <td style='text-align:center'><?php echo $asunto; ?></td>
                                                     <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return->fechaval, 0, 10))); ?></td>
                                                 </tr>   
                                                 <?php
                                             } else {
                                                 for ($i = 0; $i < count($ValijasDestino->return); $i++) {
-                                                    if (isset($ValijasDestino->return[$i]->asuntoval)) {
-                                                        if (strlen($ValijasDestino->return[$i]->asuntoval) > 10) {
-                                                            $asunto = substr($ValijasDestino->return[$i]->asuntoval, 0, 10) . "...";
-                                                        } else {
-                                                            $asunto = $ValijasDestino->return[$i]->asuntoval;
-                                                        }
-                                                    } else {
-                                                        $asunto = "";
-                                                    }
+                                            
                                                     ?>
                                                     <tr class="success">     
+													 <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->idval; ?></td>
                                                         <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->origenval->nombresed; ?></td>
                                                         <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->destinoval->nombresed; ?></td>
-                                                        <td style='text-align:center'><?php echo $asunto; ?></td>
-                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return[$i]->fechaval, 0, 10))); ?></td>
+                                                      <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return[$i]->fechaval, 0, 10))); ?></td>
                                                     </tr>   
                                                     <?php
                                                 }
@@ -148,39 +132,23 @@ if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
 											}
 	if(isset($ValijasOrigen->return)){
     if (count($ValijasOrigen->return) == 1) {
-        if (isset($ValijasOrigen->return->asuntoval)) {
-            if (strlen($ValijasOrigen->return->asuntoval) > 10) {
-                $asunto = substr($ValijasOrigen->return->asuntoval, 0, 10) . "...";
-            } else {
-                $asunto = $ValijasOrigen->return->asuntoval;
-            }
-        } else {
-            $asunto = "";
-        }
+     
         ?>
                                                 <tr class="info">     
+												 <td style='text-align:center'><?php echo $ValijasOrigen->return->idval; ?></td>
 												    <td style='text-align:center'><?php echo $ValijasOrigen->return->origenval->nombresed; ?></td>
                                                     <td style='text-align:center'><?php echo $ValijasOrigen->return->destinoval->nombresed; ?></td>
-                                                    <td style='text-align:center'><?php echo $asunto; ?></td>
                                                     <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return->fechaval, 0, 10))); ?></td>
                                                 </tr>   
                                                 <?php
                                             } else {
                                                 for ($i = 0; $i < count($ValijasOrigen->return); $i++) {
-                                                    if (isset($ValijasOrigen->return[$i]->asuntoval)) {
-                                                        if (strlen($ValijasOrigen->return[$i]->asuntoval) > 10) {
-                                                            $asunto = substr($ValijasOrigen->return[$i]->asuntoval, 0, 10) . "...";
-                                                        } else {
-                                                            $asunto = $ValijasOrigen->return[$i]->asuntoval;
-                                                        }
-                                                    } else {
-                                                        $asunto = "";
-                                                    }
+                                                 
                                                     ?>
                                                     <tr class="info">     
+													<td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->idval; ?></td>
 											  <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->origenval->nombresed; ?></td>
                                                         <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->destinoval->nombresed; ?></td>
-                                                        <td style='text-align:center'><?php echo $asunto; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return[$i]->fechaval, 0, 10))); ?></td>
                                                     </tr>   
                                                     <?php

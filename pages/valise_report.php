@@ -69,18 +69,18 @@ try {
                     if ($reportarPaqExc->return == 1) {
                         javaalert('Paquete Reportado y Reenviado');
                         llenarLog(7, "Paquete Excedente", $usuarioBitacora, $sede);
-                        iraURL('../pages/create_valise.php');
+                        iraURL('../pages/breakdown_valise.php');
                     } else {
                         javaalert('Paquete No Reportado y No Reenviado');
-                        iraURL('../pages/create_valise.php');
+                        iraURL('../pages/breakdown_valise.php');
                     }
                 } else {
                     javaalert('Paquete No Reportado y No Reenviado');
-                    iraURL('../pages/create_valise.php');
+                    iraURL('../pages/breakdown_valise.php');
                 }
             } catch (Exception $e) {
                 javaalert('Lo sentimos no hay conexión');
-                iraURL('../pages/create_valise.php');
+                iraURL('../pages/breakdown_valise.php');
             }
         } else {
             javaalert("Debe agregar todos los campos, por favor verifique");
@@ -95,35 +95,23 @@ try {
                 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
                 $client = new SOAPClient($wsdl_url);
                 $client->decode_utf8 = false;
+                $parametros = array('registroValija' => $_POST["cValija"],
+                    'registroUsuario' => $idUsuario,
+                    'registroSede' => $sede,
+                    'datosValija' => $_POST["datosValija"]);
+                $reportarValija = $client->reportarValija($parametros);
 
-                $valija = $_POST["cValija"];
-                $Val = array('codigo' => $valija, 'sede' => $_SESSION["Sede"]->return->nombresed);
-                $Valijac = $client->consultarValijaXIdOCodigoBarras($Val);
-
-                if (isset($Valijac->return)) {
-                    $idVal = $Valijac->return->idval;
-
-                    $parametros = array('registroValija' => $idVal,
-                        'registroUsuario' => $idUsuario,
-                        'registroSede' => $sede,
-                        'datosValija' => $_POST["datosValija"]);
-                    $reportarValija = $client->reportarValija($parametros);
-
-                    if ($reportarValija->return == 1) {
-                        javaalert('Valija Reportada y Reenviada');
-                        llenarLog(7, "Valija Erronea", $usuarioBitacora, $sede);
-                        iraURL('../pages/create_valise.php');
-                    } else {
-                        javaalert('Valija No Reportada y No Reenviada');
-                        iraURL('../pages/create_valise.php');
-                    }
+                if ($reportarValija->return == 1) {
+                    javaalert('Valija Reportada y Reenviada');
+                    llenarLog(7, "Valija Erronea", $usuarioBitacora, $sede);
+                    iraURL('../pages/breakdown_valise.php');
                 } else {
                     javaalert('Valija No Reportada y No Reenviada');
-                    iraURL('../pages/create_valise.php');
+                    iraURL('../pages/breakdown_valise.php');
                 }
             } catch (Exception $e) {
                 javaalert('Lo sentimos no hay conexion');
-                iraURL('../pages/create_valise.php');
+                iraURL('../pages/breakdown_valise.php');
             }
         } else {
             javaalert("Debe agregar todos los campos, por favor verifique");
@@ -132,6 +120,6 @@ try {
     include("../views/valise_report.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
-    iraURL('../pages/create_valise.php');
+    iraURL('../pages/breakdown_valise.php');
 }
 ?>

@@ -51,7 +51,7 @@ try {
 
         if (isset($resultadoVacioBitacora->return) == 1) {
             javaalert('Bitacora Vaciada');
-            llenarLog(8, "Vacio de Bitacora", $usuarioBitacora, $sede);
+            llenarLog(8, "Vacio de Bitácora", $usuarioBitacora, $sede);
             iraURL('../pages/administration.php');
         } else {
             javaalert('Bitacora No Vaciada');
