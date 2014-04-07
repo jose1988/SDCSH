@@ -34,7 +34,6 @@ if ($reg > 0) {
     if ($reg > 1) {
         $j = 0;
         while ($j < $reg) {
-            $arreglo = pg_fetch_array($result, $j);
             //verifico si esta borrada
             if ($Areas->return[$j]->borradoatr == 0) {
                 echo "<td style='background-color: rgb(206, 200, 200);	text-align:center' data-sort-ignore='true'>" . $Areas->return[$j]->idatr . "</td>";
