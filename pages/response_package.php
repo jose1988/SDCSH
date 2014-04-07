@@ -8,7 +8,7 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-}  elseif (!isset($_GET['idpaqr'])) {
+} elseif (!isset($_GET['idpaqr'])) {
     iraURL("../pages/inbox.php");
 }
 //try {
@@ -19,12 +19,11 @@ $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
 $idPaquete = array('idPaquete' => $_GET['idpaqr']);
 $Paquete = $client->ConsultarPaqueteXId($idPaquete);
-  //echo '<pre>';print_r($Paquete);
 
 if (!isset($Paquete->return)) {
     iraURL('../pages/inbox.php');
-}elseif($Paquete->return->statuspaq!="1" && $Paquete->return->destinopaq->idusu->idusu != $_SESSION["Usuario"]->return->idusu){
-iraURL('../pages/inbox.php');
+} elseif ($Paquete->return->statuspaq != "1" && $Paquete->return->destinopaq->idusu->idusu != $_SESSION["Usuario"]->return->idusu) {
+    iraURL('../pages/inbox.php');
 }
 $contacto = array('idusu' => $Paquete->return->origenpaq->idusu);
 $dueno = array('idusu' => $Paquete->return->destinopaq->idusu->idusu);
@@ -35,22 +34,20 @@ $rowDocumentos = $client->listarDocumentos();
 $rowPrioridad = $client->listarPrioridad();
 
 if (!isset($rowDocumentos->return)) {
-    javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Tipos de documentos registrados,Consulte con el Administrador");
+    javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Tipos de documentos registrados, Consulte con el Administrador");
     iraURL('../pages/inbox.php');
 }
 if (!isset($rowPrioridad->return)) {
-    javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Prioridades registradas,Consulte con el Administrador");
+    javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Prioridades registradas, Consulte con el Administrador");
     iraURL('../pages/inbox.php');
 }
-if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';		
-//echo '<br>'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))).'Lados___'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"])));
-//echo $_POST["contacto"].'_'.$_POST["asunto"].'_'.$_POST["doc"].'_'.$_POST["prioridad"].'_'.$_POST["datepicker"].'_'.$_POST["datepickerf"].'_'.$_POST["elmsg"];
+if (isset($_POST["enviar"])) {
     if (isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
         $origenpaq = array('idusu' => $Paquete->return->destinopaq->idusu->idusu);
         $Parametros = array('userUsu' => $Paquete->return->origenpaq->userusu,
             'idUsuario' => $origenpaq);
         $usuarioBuzon = $client->consultarBuzonXNombreUsuario($Parametros);
- // echo '<pre>';print_r($Parametros);
+        
         if (isset($usuarioBuzon->return)) {
             $destinopaq = array('idbuz' => $usuarioBuzon->return->idbuz);
             $prioridad = array('idpri' => $_POST["prioridad"]);
@@ -65,7 +62,7 @@ if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';
                 'fechaenviopaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"]))),
                 'fechaapaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))),
                 'statuspaq' => "0",
-				'respaq' => "0",
+                'respaq' => "0",
                 'localizacionpaq' => $Paquete->return->destinopaq->idusu->userusu,
                 'idpri' => $prioridad,
                 'iddoc' => $documento,
@@ -90,7 +87,6 @@ if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';
                     $cadena .= substr($caracteres, rand(0, strlen($caracteres)), 1); /* Extraemos 1 caracter de los caracteres 
                       entre el rango 0 a Numero de letras que tiene la cadena */
                 }
-
                 $direccion = "../images"; //para cargar
                 $direccion2 = "images"; //para guardar
                 $tipo = explode('/', $_FILES['imagen']['type']);
@@ -122,7 +118,7 @@ if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';
 }
 include("../views/response_package.php");
 /* } catch (Exception $e) {
-  javaalert('Lo sentimos no hay conexión');
+  javaalert('Lo sentimos no hay conexion');
   iraURL('../pages/inbox.php');
   } */
 ?>

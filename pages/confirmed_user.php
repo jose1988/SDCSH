@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include("../recursos/funciones.php");
@@ -7,7 +8,7 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-} 
+}
 
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
@@ -22,11 +23,9 @@ try {
     } else {
         iraURL('../pages/inbox.php');
     }
-    
-	$usuSede = array('iduse' =>$SedeRol->return->iduse);
+    $usuSede = array('iduse' => $SedeRol->return->iduse);
     $parametros = array('idUsuarioSede' => $usuSede);
     $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXUsuarioSede($parametros);
-
     include("../views/confirmed_user.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

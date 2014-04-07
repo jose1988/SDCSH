@@ -24,7 +24,7 @@ if (isset($SedeRol->return)) {
         iraURL("../pages/inbox.php");
     }
 } else {
-    iraURL("../pages/index.php");
+    iraURL('../pages/inbox.php');
 }
 
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;

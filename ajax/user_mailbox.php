@@ -76,7 +76,7 @@ echo "<th  text-align:center' data-sort-ignore='true'>Apellido </th>";
 				<th  'text-align:center' > 
                 
                 <button class='btn' onClick="seleccionar('<?php echo $Buz->return[$j]->idbuz; ?>','<?php echo $Buz->return[$j]->nombrebuz; ?>');">
-              <span class="icon-check" > </span>
+              <span class="icon-hand-up" > </span>
                 
                 
                  </button></th>
@@ -98,7 +98,7 @@ echo "<th  text-align:center' data-sort-ignore='true'>Apellido </th>";
 				<th  'text-align:center' > 
                 
                 <button class='btn' onClick="seleccionar('<?php echo $Buz->return->idbuz; ?>','<?php echo $Buz->return->nombrebuz; ?>');">
-              <span class="icon-check" > </span>
+              <span class="icon-hand-up" > </span>
                 
                 
                  </button></th> 

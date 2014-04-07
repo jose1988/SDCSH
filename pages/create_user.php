@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include("../recursos/funciones.php");
@@ -8,16 +9,16 @@ try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
-	if(!isset($_SESSION["User"])){
-	 iraURL('../index.php');
-	}
+    if (!isset($_SESSION["User"])) {
+        iraURL('../index.php');
+    }
     $usuario = array('user' => $_SESSION["User"]);
-	 $usernuevo=$_SESSION["User"];
-    
-    /* 
-					$Usuario= array('user' =>$usernuevo);
-					$UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
-	if(isset($UsuarioLogIn->return)){
+    $usernuevo = $_SESSION["User"];
+
+    /*
+      $Usuario= array('user' =>$usernuevo);
+      $UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
+      if(isset($UsuarioLogIn->return)){
       javaalert("Lo sentimos no se puede guardar los datos del usuario porque el nombre de usuario ya existe,Consulte con el Administrador");
       iraURL('../index.php');   //ojo necesito el index
       } */    //importante:implementar cuando se tenga el index 
@@ -39,7 +40,7 @@ try {
                 if (isset($_POST["telefono1"])) {
                     $telefono1 = $_POST["telefono1"];
                 }
-				 if (isset($_POST["cargo"])) {
+                if (isset($_POST["cargo"])) {
                     $cargo = $_POST["cargo"];
                 }
                 if (isset($_POST["telefono2"])) {
@@ -48,38 +49,35 @@ try {
                 if (isset($_POST["direccion1"])) {
                     $direccion1 = $_POST["direccion1"];
                 }
-
-                $Usuario =
-                        array(
-                            'nombreusu' => $_POST["nombre"],
-                            'apellidousu' => $_POST["apellido"],
-                            'correousu' => $correo,
-                            'direccionusu' => $direccion1,
-                            'telefonousu' => $telefono1,
-                            'telefono2usu' => $telefono2,
-                            'tipousu' => "0",
-							'cargousu' => $cargo,
-                            'userusu' => $usernuevo,
-                            'statususu' => "1",
-							'borradousu' => "0");
+                $Usuario = array(
+                    'nombreusu' => $_POST["nombre"],
+                    'apellidousu' => $_POST["apellido"],
+                    'correousu' => $correo,
+                    'direccionusu' => $direccion1,
+                    'telefonousu' => $telefono1,
+                    'telefono2usu' => $telefono2,
+                    'tipousu' => "0",
+                    'cargousu' => $cargo,
+                    'userusu' => $usernuevo,
+                    'statususu' => "1",
+                    'borradousu' => "0");
                 $parametros = array('registroUsuario' => $Usuario);
                 $client->insertarUsuario($parametros);
                 $sede = array('idsed' => $_POST["sede"]);
-				$area = array('idatr' => $_POST["area"]);
+                $area = array('idatr' => $_POST["area"]);
                 $rol = array('idrol' => "6");
-                $usuSede = array('idsed' => $sede, 'idrol' => $rol,'idatr'=> $area);
+                $usuSede = array('idsed' => $sede, 'idrol' => $rol, 'idatr' => $area);
                 $RegUsuSede = array('registroUsuSede' => $usuSede,
                     'userUsu' => $usernuevo);
 
                 $guardo = $client->insertarUsuarioSedeXDefecto($RegUsuSede);
-				
+
                 if ($guardo->return == 0) {
                     javaalert("No se han Guardado los datos del Usuario, Consulte con el Admininistrador");
-					
                 } else {
-					  $Usuario= array('user' =>$usernuevo);
-					$UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
-					$_SESSION["Usuario"]=$UsuarioLogIn;
+                    $Usuario = array('user' => $usernuevo);
+                    $UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
+                    $_SESSION["Usuario"] = $UsuarioLogIn;
                     javaalert("Se han Guardado los datos del Usuario");
                     llenarLog(1, "Inserción de Usuario", $_SESSION["Usuario"]->return->idusu, $_POST["sede"]);
                 }

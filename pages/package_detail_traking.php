@@ -10,15 +10,21 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../pages/create_user.php");
 }
 
-if ($_SESSION["Usuario"]->return->tipousu != "1" && $_SESSION["Usuario"]->return->tipousu != "2") {
-    iraURL('../pages/inbox.php');
-}
-
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
+
+if (isset($SedeRol->return)) {
+    if ($SedeRol->return->idrol->idrol != "4" && $SedeRol->return->idrol->idrol != "5") {
+        if ($_SESSION["Usuario"]->return->tipousu != "1" && $_SESSION["Usuario"]->return->tipousu != "2") {
+            iraURL('../pages/inbox.php');
+        }
+    }
+} else {
+    iraURL('../pages/inbox.php');
+}
 
 $idPaquete = $_GET["id"];
 $usuario = $_SESSION["Usuario"]->return->idusu;
@@ -39,7 +45,7 @@ if ($idPaquete == "") {
             $segumientoPaquete = count($resultadoPaquete->return);
         }
         if ($segumientoPaquete > 1) {
-			$idPaq = $resultadoPaquete->return[0]->idpaq->idpaq;
+            $idPaq = $resultadoPaquete->return[0]->idpaq->idpaq;
             if (isset($resultadoPaquete->return[0]->idpaq->origenpaq->idatr->idsed->nombresed)) {
                 $origen = $resultadoPaquete->return[0]->idpaq->origenpaq->idatr->idsed->nombresed;
             } else {
@@ -88,8 +94,8 @@ if ($idPaquete == "") {
                         $destino = "";
                     }
                 }
-            }            
-        } elseif($segumientoPaquete==1) {
+            }
+        } elseif ($segumientoPaquete == 1) {
             $idPaq = $resultadoPaquete->return->idpaq->idpaq;
             if (isset($resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed)) {
                 $origen = $resultadoPaquete->return->idpaq->origenpaq->idatr->idsed->nombresed;

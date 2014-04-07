@@ -129,7 +129,6 @@ try {
             javaalert("Debe agregar todos los campos, por favor verifique");
         }
     }
-
     include("../views/valise_report.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

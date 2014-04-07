@@ -125,8 +125,8 @@ if ($idPaquete == "" || $usuario == "") {
                                             <th style="text-align:center" data-sort-ignore="true">Usuario</th>
                                             <th style="text-align:center" data-sort-ignore="true">Fecha - Hora</th>
                                             <th style="text-align:center" data-sort-ignore="true">Status</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Tipo</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Nivel</th>                       
+                                            <th style="text-align:center" data-sort-ignore="true">Procesado en</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Localización</th>                       
                                         </tr>
                                     </thead>
                                     <tbody>

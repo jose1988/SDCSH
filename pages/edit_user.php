@@ -5,8 +5,7 @@ try {
     include("../recursos/funciones.php");
     require_once('../lib/nusoap.php');
     if (!isset($_SESSION["Usuario"])) {
-
-        iraURL("../pages/index.php");
+        iraURL("../index.php");
     } elseif (!usuarioCreado()) {
         iraURL("../pages/create_user.php");
     }
@@ -17,7 +16,6 @@ try {
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
     $usuario = array('user' => $_SESSION["Usuario"]->return->userusu);
     $Usuario = $client->consultarUsuarioXUser($usuario);
-
 
     if (isset($_POST["guardar"])) {
         if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["apellido"]) && $_POST["apellido"] != "" && isset($_POST["correo"]) && $_POST["correo"] != "") {
@@ -52,7 +50,7 @@ try {
                     javaalert("No se han Guardado los datos del Usuario, Consulte con el Admininistrador");
                 } else {
                     javaalert("Se han Guardado los datos del Usuario");
-                    llenarLog(9, "EdiciÃ³n de Usuario", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
+                    llenarLog(9, "Edición de Usuario", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
                 }
                 iraURL('../pages/inbox.php');
             }
@@ -66,7 +64,3 @@ try {
     iraURL('../pages/inbox.php');
 }
 ?>
- 
-
-
-

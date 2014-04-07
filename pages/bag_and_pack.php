@@ -44,12 +44,6 @@ try {
         $paquetesXValija = 0;
     } else {
         $paquetesXValija = count($resultadoPaquetesPorValija->return);
-        $resultadoOrigen = $client->consultarSedeXId($idOrigen);
-        if (isset($resultadoOrigen->return->nombresed)) {
-            $origen = $resultadoOrigen->return->nombresed;
-        } else {
-            $origen = "";
-        }
         $contadorPaquetes = $paquetesXValija;
     }
     $fechaEnvio = "";
@@ -76,6 +70,12 @@ try {
             $destino = $resultadoPaquetesPorValija->return->idval->destinoval->nombresed;
         }
         $idVal = $resultadoPaquetesPorValija->return->idval->idval;
+		$resultadoOrigen = $client->consultarSedeXId($idOrigen);
+        if (isset($resultadoOrigen->return->nombresed)) {
+            $origen = $resultadoOrigen->return->nombresed;
+        } else {
+            $origen = "";
+        }
     } elseif ($paquetesXValija > 1) {
         $idOrigen = array('idSede' => $resultadoPaquetesPorValija->return[0]->idval->origenval);
         if (isset($resultadoPaquetesPorValija->return[0]->idval->fechaval)) {
@@ -94,8 +94,13 @@ try {
             $destino = $resultadoPaquetesPorValija->return[0]->idval->destinoval->nombresed;
         }
         $idVal = $resultadoPaquetesPorValija->return[0]->idval->idval;
+		$resultadoOrigen = $client->consultarSedeXId($idOrigen);
+        if (isset($resultadoOrigen->return->nombresed)) {
+            $origen = $resultadoOrigen->return->nombresed;
+        } else {
+            $origen = "";
+        }
     }
-
     include("../views/bag_and_pack.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

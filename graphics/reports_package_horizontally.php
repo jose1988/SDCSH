@@ -129,10 +129,10 @@ if ($usuario == "") {
 
         <script>
             window.onload = function() {
-            killerSession();
+                killerSession();
             }
             function killerSession() {
-            setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+                setTimeout("window.close();", 300000);
             }
         </script>
 

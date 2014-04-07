@@ -69,6 +69,6 @@ if ($idPaquete == "") {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/inbox.php');
     }
-	echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
+    echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 }
 ?>

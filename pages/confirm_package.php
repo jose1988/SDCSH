@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include("../recursos/funciones.php");
@@ -7,8 +8,7 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-} 
-
+}
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
@@ -22,14 +22,11 @@ try {
     } else {
         iraURL('../pages/inbox.php');
     }
-    
-	$usuSede = array('iduse' =>$SedeRol->return->iduse,
-					'idrol' =>$SedeRol->return->idrol,
-					'idsed' =>$SedeRol->return->idsed);
+    $usuSede = array('iduse' => $SedeRol->return->iduse,
+        'idrol' => $SedeRol->return->idrol,
+        'idsed' => $SedeRol->return->idsed);
     $parametros = array('idUsuarioSede' => $usuSede);
     $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXRol($parametros);
-//echo '<pre>';
-//print_R($PaquetesConfirmados);
     include("../views/confirm_package.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

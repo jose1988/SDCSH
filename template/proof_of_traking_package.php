@@ -34,8 +34,8 @@
                     <td align="center"><strong>Usuario</strong></td>
                     <td align="center"><strong>Fecha y Hora</strong></td>
                     <td align="center"><strong>Status</strong></td>
-                    <td align="center"><strong>Tipo</strong></td>
-                    <td align="center"><strong>Nivel</strong></td>
+                    <td align="center"><strong>Procesado en</strong></td>
+                    <td align="center"><strong>Localización</strong></td>
                 </tr>
                 <?php
                 if ($contadorPaquete > 1) {

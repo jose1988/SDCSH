@@ -14,6 +14,7 @@ $paquetes = $_SESSION["paquetes"];
 $paquetesConfirmados = $_SESSION["paquetesConfirmados"];
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
 $sede = $_SESSION["Sede"]->return->idsed;
+$codigos = $_SESSION["codigos"];
 
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
@@ -28,6 +29,9 @@ if (isset($SedeRol->return)) {
 } else {
     iraURL('../pages/inbox.php');
 }
+
+$_SESSION["paquetesTotales"] = "";
+$_SESSION["rol"] = "";
 
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
@@ -50,7 +54,6 @@ try {
             break;
         }
     }
-
     if ($paquetesTotales != "") {
         $contadorPaquetes = count($paquetesTotales);
         $_SESSION["rol"] = $SedeRol->return->idrol->nombrerol;

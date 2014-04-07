@@ -30,6 +30,7 @@ $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
 $_SESSION["valijas"] = "";
+$_SESSION["nombreSede"] = "";
 
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
@@ -87,7 +88,6 @@ try {
     }
     include("../views/info_reports_valise.php");
 } catch (Exception $e) {
-
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/reports_valise.php');
 }
