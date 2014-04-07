@@ -103,6 +103,10 @@
              <li>   
       <a href="../pages/create_area.php">Crear Area de Trabajo</a>
            </li>
+           
+             <li>   
+      <a href="../pages/diseble_area.php">Deshabilitar Area</a>
+           </li>
             
          <li>   
       <a href="../pages/user_role.php"> Editar Rol </a>
