@@ -63,10 +63,11 @@ require_once('../lib/nusoap.php');
   if(isset($Valijac->return)){
   $Val= array('registroValija' => $Valijac->return->idval , 'sede' => $_SESSION["Sede"]->return->nombresed);
   $Valija = $client->ConsultarPaquetesXValija($Val);
-  $regv=count($Valija->return); 
+  
   }
 
   if(isset($Valija->return)){
+	  
   $reg=count($Valija->return);
   $_SESSION["RE"]=$reg;
   }else{

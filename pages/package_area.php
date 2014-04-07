@@ -41,7 +41,7 @@ try {
     }
 
    
-    include("../views/packege_area.php");
+    include("../views/package_area.php");
     
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
