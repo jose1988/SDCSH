@@ -96,7 +96,6 @@ try {
                 guardarImagen($codigoTotal[$i]);
                 $_SESSION["codigos"][$i] = $codigoTotal[$i];
             }
-
             $_SESSION["paquetesConfirmados"] = $resultadoPaquetesConfirmados;
             $_SESSION["paquetes"] = $imprimirPaquetes;
             iraURL('../pages/proof_package_confirmed.php');
