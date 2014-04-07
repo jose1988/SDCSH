@@ -42,7 +42,7 @@ try {
                     javaalert("No se han Guardado los datos de la Area, Consulte con el Admininistrador");
                 } else {
                     javaalert("Se han Guardado los datos de la Area");
-                    llenarLog(1, "Inserción de Sede", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
+                    llenarLog(1, "Inserción de Area", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
                 }
                 iraURL('../pages/inbox.php');
             } else {
