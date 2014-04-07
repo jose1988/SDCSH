@@ -10,11 +10,6 @@ if (isset($resultadoConsultarUltimaValija->return)) {
 
 //Datos de la Valija
     $idVal = $resultadoConsultarUltimaValija->return->idval;
-    if (isset($resultadoConsultarUltimaValija->return->asuntoval)) {
-        $asunto = $resultadoConsultarUltimaValija->return->asuntoval;
-    } else {
-        $asunto = "";
-    }
     if (isset($resultadoConsultarUltimaValija->return->iduse->idsed->nombresed)) {
         $sede = $resultadoConsultarUltimaValija->return->iduse->idsed->nombresed;
     } else {

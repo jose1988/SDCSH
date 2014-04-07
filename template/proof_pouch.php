@@ -47,14 +47,11 @@
                 </tr>
                 <tr>
                     <td><strong>Número de la Valija: </strong><?php echo $idVal ?></td>
-                    <td><strong>Asunto: </strong><?php echo $asunto ?></td>
+                    <td><strong>Fecha y Hora de Envio: </strong><?php echo $fecha ?></td>                    
                 </tr>
                 <tr>
-                    <td><strong>Fecha - Hora: </strong><?php echo $fecha ?></td>
+                    <td><strong>Tipo: </strong><?php echo $tipo ?></td>
                     <td><strong>Sede: </strong><?php echo $sede ?></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><strong>Tipo: </strong><?php echo $tipo ?></td>
                 </tr>
             </table>
             <br>

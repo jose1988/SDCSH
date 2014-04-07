@@ -77,7 +77,7 @@ if ($usuario == "") {
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/reports_valise.php">
+                                <a href="../pages/create_valise.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -91,41 +91,22 @@ if ($usuario == "") {
                             if (!isset($resultadoConsultarValijas->return)) {
                                 echo '<div class="alert alert-block" align="center">';
                                 echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
-                                echo '<h4 align="center">No Existen Registros de Valijas</h4>';
+                                echo '<h4 align="center">No Existen Registros de Valijas Extraviadas</h4>';
                                 echo '</div>';
                             }
                             //Si existen registros muestro la tabla
                             else {
                                 ?>                        
-                                <strong> <h2 align="center"><?php echo $nombreReporte ?></h2> </strong>
-                                <br>
-                                <div class="span11">
-                                    <div class="span3"></div>
-                                    <div class="span6" align="center">
-                                        <table align="center" width="300" class='footable table table-striped table-bordered'>
-                                            <tr>
-                                                <td style="text-align:center"><strong>Total de <?php echo $nombreReporte ?></strong></td>
-                                                <td style="text-align:center" width="100"><?php echo $valijas ?></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="span3"></div>
-                                </div>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
+                                <strong> <h2 align="center">Valijas Extraviadas</h2> </strong>                                
                                 <table class='footable table table-striped table-bordered' data-page-size='5'>
                                     <thead bgcolor='#FF0000'>
                                         <tr>
                                             <th style="text-align:center">Fecha y Hora de Envio</th>
                                             <th style="text-align:center">Nro de Valija</th>
                                             <th style="text-align:center" data-sort-ignore="true">Nro de Guía</th>
-                                            <th style="text-align:center">Origen</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Realizado por</th>
-                                            <th style="text-align:center">Tipo</th>
-                                            <th style="text-align:center">Destino</th>
-                                            <th style="text-align:center" data-sort-ignore="true">Fecha y Hora de Recibido</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Origen</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Tipo</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Destino</th>
                                             <th style="text-align:center" data-sort-ignore="true">Ver más</th>
                                         </tr>
                                     </thead>
@@ -151,13 +132,7 @@ if ($usuario == "") {
                                                         <td><?php echo "" ?></td>
                                                     <?php } ?>
                                                     <td><?php echo $nombreSede[$i] ?></td>
-                                                    <?php if (isset($resultadoConsultarValijas->return[$i]->iduse->idusu->apellidousu)) { ?>
-                                                        <td><?php echo $resultadoConsultarValijas->return[$i]->iduse->idusu->nombreusu . ' ' . $resultadoConsultarValijas->return[$i]->iduse->idusu->apellidousu ?></td>
-                                                    <?php } else {
-                                                        ?>
-                                                        <td><?php echo $resultadoConsultarValijas->return[$i]->iduse->idusu->nombreusu ?></td>                                                    
-                                                        <?php
-                                                    }
+                                                    <?php
                                                     if (isset($resultadoConsultarValijas->return[$i]->tipoval)) {
                                                         ?>
                                                         <td><?php echo $resultadoConsultarValijas->return[$i]->tipoval ?></td>
@@ -174,14 +149,8 @@ if ($usuario == "") {
                                                         <td><?php echo "" ?></td>
                                                         <?php
                                                     }
-                                                    if (isset($resultadoConsultarValijas->return[$i]->fecharval)) {
-                                                        $fechaRecibido = FechaHora($resultadoConsultarValijas->return[$i]->fecharval);
-                                                    } else {
-                                                        $fechaRecibido = "";
-                                                    }
-                                                    ?>                                                    
-                                                    <td style="text-align:center"><?php echo $fechaRecibido ?></td>
-                                                    <td style='text-align:center'><a href='../pages/bag_and_pack.php?id=<?php echo $resultadoConsultarValijas->return[$i]->idval; ?>'><button type='button' class='btn btn-info btn-primary'>Ver más</button> </a></td>
+                                                    ?>
+                                                    <td style='text-align:center'><a href='../pages/bag_and_pack.php?id=<?php echo $resultadoConsultarValijas->return[$i]->idval; ?>'><button type='button' class='btn btn-info btn-primary'>Ver más</button> </a></td>                                               
                                                 </tr>
                                                 <?php
                                             }
@@ -204,13 +173,7 @@ if ($usuario == "") {
                                                     <td><?php echo "" ?></td>
                                                 <?php } ?>
                                                 <td><?php echo $nombreSede ?></td>
-                                                <?php if (isset($resultadoConsultarValijas->return->iduse->idusu->apellidousu)) { ?>
-                                                    <td><?php echo $resultadoConsultarValijas->return->iduse->idusu->nombreusu . ' ' . $resultadoConsultarValijas->return->iduse->idusu->apellidousu ?></td>
-                                                <?php } else {
-                                                    ?>
-                                                    <td><?php echo $resultadoConsultarValijas->return->iduse->idusu->nombreusu ?></td>                                                    
-                                                    <?php
-                                                }
+                                                <?php
                                                 if (isset($resultadoConsultarValijas->return->tipoval)) {
                                                     ?>
                                                     <td><?php echo $resultadoConsultarValijas->return->tipoval ?></td>
@@ -227,28 +190,12 @@ if ($usuario == "") {
                                                     <td><?php echo "" ?></td>
                                                     <?php
                                                 }
-                                                if (isset($resultadoConsultarValijas->return->fecharval)) {
-                                                    $fechaRecibido = FechaHora($resultadoConsultarValijas->return->fecharval);
-                                                } else {
-                                                    $fechaRecibido = "";
-                                                }
-                                                ?>                                                    
-                                                <td style="text-align:center"><?php echo $fechaRecibido ?></td>
+                                                ?>
                                                 <td style='text-align:center'><a href='../pages/bag_and_pack.php?id=<?php echo $resultadoConsultarValijas->return->idval; ?>'><button type='button' class='btn btn-info btn-primary'>Ver más</button> </a></td>
-                                            </tr>
-                                        <?php } ?>                                    
+                                            <?php } ?>                                    
                                     </tbody>
                                 </table>
-                                <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>                                
-                                <br>
-                                <br>
-                                <br>
-                                <div class="span6" align="center">
-                                    <a href="../pages/graphics_reports_valise.php" target="new"><button type="submit" class="btn" id="graficar" name="graficar"> Graficar </button></a>
-                                </div>
-                                <div class="span5" align="center">
-                                    <a href="../pages/proof_of_bags_report.php" target="new"><button type="submit" class="btn" id="imprimir" name="imprimir"> Imprimir </button></a>
-                                </div>
+                                <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
                             </div>
                             <?php
                         }

@@ -36,14 +36,11 @@
                                 <td><?php echo "" ?></td>
                             <?php } ?>
                             <td><?php echo $nombreSede[$i] ?></td>
-                            <?php
-                            if (isset($resultadoConsultarValijas->return[$i]->iduse->idusu->nombreusu)) {
+                            <?php if (isset($resultadoConsultarValijas->return[$i]->iduse->idusu->apellidousu)) { ?>
+                                <td><?php echo $resultadoConsultarValijas->return[$i]->iduse->idusu->nombreusu . ' ' . $resultadoConsultarValijas->return[$i]->iduse->idusu->apellidousu ?></td>
+                            <?php } else {
                                 ?>
-                                <td><?php echo $resultadoConsultarValijas->return[$i]->iduse->idusu->nombreusu ?></td>
-                                <?php
-                            } else {
-                                ?>
-                                <td><?php echo "" ?></td>
+                                <td><?php echo $resultadoConsultarValijas->return[$i]->iduse->idusu->nombreusu ?></td>                                                    
                                 <?php
                             }
                             if (isset($resultadoConsultarValijas->return[$i]->tipoval)) {
@@ -77,14 +74,11 @@
                             <td><?php echo "" ?></td>
                         <?php } ?>
                         <td><?php echo $nombreSede ?></td>
-                        <?php
-                        if (isset($resultadoConsultarValijas->return->iduse->idusu->nombreusu)) {
+                        <?php if (isset($resultadoConsultarValijas->return->iduse->idusu->apellidousu)) { ?>
+                            <td><?php echo $resultadoConsultarValijas->return->iduse->idusu->nombreusu . ' ' . $resultadoConsultarValijas->return->iduse->idusu->apellidousu ?></td>
+                        <?php } else {
                             ?>
-                            <td><?php echo $resultadoConsultarValijas->return->iduse->idusu->nombreusu ?></td>
-                            <?php
-                        } else {
-                            ?>
-                            <td><?php echo "" ?></td>
+                            <td><?php echo $resultadoConsultarValijas->return->iduse->idusu->nombreusu ?></td>                                                    
                             <?php
                         }
                         if (isset($resultadoConsultarValijas->return->tipoval)) {

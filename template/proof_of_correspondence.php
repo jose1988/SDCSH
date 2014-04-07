@@ -51,7 +51,7 @@
                     <td><strong>Asunto: </strong><?php echo $asunto ?></td>
                 </tr>
                 <tr>
-                    <td><strong>Fecha - Hora: </strong><?php echo $fecha ?></td>
+                    <td><strong>Fecha y Hora de Envio: </strong><?php echo $fecha ?></td>
                     <td><strong>Sede: </strong><?php echo $sede ?></td>
                 </tr>
                 <tr>
