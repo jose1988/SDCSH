@@ -93,6 +93,16 @@ if (!isset($SedeRol->return)) {
 							<?php
 							}
 							?>
+                            <?php
+							if($SedeRol->return->idrol->idrol==1){
+							?>
+							<li>   
+                                <a href="package_area.php">Paquetes por buscar</a>
+                            </li>
+							<?php
+							}
+							?>
+                            
                         </ul>
                     </div>
                     <div class="span10">

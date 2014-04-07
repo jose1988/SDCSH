@@ -3,7 +3,7 @@
 
 
 
-$idsede=$_POST['idsede'];
+$idpri=$_POST['id'];
 
 
 
@@ -11,17 +11,15 @@ $idsede=$_POST['idsede'];
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
     $usu = array('sede' => $idsede);
-    $SedeRol = $client->consultarSedeRol($UsuarioRol);
+	 $prioridad= array('prioridad' => $idpri);
+    $nivel = $client->consultarNivel( $prioridad);
    
 
-   consultarAreasXSede
      
-	   echo '<option value="">Seleccione Un Area</option>';   
-	  for($i=0;$i<$cont;$i++){	
+	  for($i=0;$i<count($nivel->return);$i++){	
 
-			 $arreglo_n=pg_fetch_array($result,$i);
 
-			echo '<option value="'. $arreglo_n[0].'">' . $arreglo_n[1]. '</option>';
+			echo '<option value="'. $nivel->return[$i]->idniv.'">' . $nivel->return[$i]->operadorniv. '</option>';
 		}
 	
 	?>
