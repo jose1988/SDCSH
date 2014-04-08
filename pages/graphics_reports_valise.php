@@ -64,7 +64,12 @@ if ($sede == '0') {
                         'consulta' => $reporte,
                         'idsede' => $resultadoSedes->return[$i]->idsed);
                     $resultadoConsultarValijas = $client->consultarEstadisticasValijas($Con);
-                    $valijas[$i] = count($resultadoConsultarValijas->return);
+					if(isset($resultadoConsultarValijas->return)){
+                    	$valijas[$i] = count($resultadoConsultarValijas->return);
+					}
+					else{
+						$valijas[$i] = 0;
+					}
                 }
             } else {
                 $nombreSede = $resultadoSedes->return->nombresed;
@@ -73,7 +78,12 @@ if ($sede == '0') {
                     'consulta' => $reporte,
                     'idsede' => $resultadoSedes->return->idsed);
                 $resultadoConsultarValijas = $client->consultarEstadisticasValijas($Con);
-                $valijas = count($resultadoConsultarValijas->return);
+                if(isset($resultadoConsultarValijas->return)){
+                	$valijas = count($resultadoConsultarValijas->return);
+				}
+				else{
+					$valijas = 0;
+				}
             }
         } else {
             $contadorSedes = 0;

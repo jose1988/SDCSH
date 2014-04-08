@@ -65,7 +65,11 @@ if ($sede == '0') {
                         'consulta' => $reporte,
                         'idsede' => $resultadoSedes->return[$i]->idsed);
                     $resultadoConsultarPaquetes = $client->consultarEstadisticasPaquetes($Con);
-                    $paquetes[$i] = count($resultadoConsultarPaquetes->return);
+					if(isset($resultadoConsultarPaquetes->return)){
+                    	$paquetes[$i] = count($resultadoConsultarPaquetes->return);
+					}else{
+						$paquetes[$i] = 0;
+					}
                 }
             } else {
                 $nombreSede = $resultadoSedes->return->nombresed;
@@ -74,7 +78,11 @@ if ($sede == '0') {
                     'consulta' => $reporte,
                     'idsede' => $resultadoSedes->return->idsed);
                 $resultadoConsultarPaquetes = $client->consultarEstadisticasPaquetes($Con);
-                $paquetes = count($resultadoConsultarPaquetes->return);
+                if(isset($resultadoConsultarPaquetes->return)){
+                	$paquetes = count($resultadoConsultarPaquetes->return);
+				}else{
+					$paquetes = 0;
+				}
             }
         } else {
             $contadorSedes = 0;
