@@ -23,6 +23,7 @@
 <body class="appBg">
 
     <?php
+	session_start();
     $nom = $_POST['nom'];
     $ape = $_POST['ape'];
     $area = $_POST['area'];
@@ -30,7 +31,11 @@
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
-    $BuzonNA = array('nombre' => $nom, 'apellido' => $ape, 'area' => $area);
+	$idusu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
+	$parametrosBuzon = array('idUsuario' => $idusu);
+	$idBuzon=$client->miIdBuzon($parametrosBuzon);	
+	$idBuz=array('idbuz' => $idBuzon->return);
+    $BuzonNA = array('nombre' => $nom, 'apellido' => $ape, 'area' => $area, 'miBuzon' =>$idBuz);
     $Buz = $client->consultarBuzonParaEnviar($BuzonNA);
     if (isset($Buz->return)) {
         $reg = count($Buz->return);
@@ -57,7 +62,7 @@
                     echo "<td style='text-align:center'> Externo</td>";
                     echo "<td style='text-align:center'> Externo</td>";
                 } else {
-                    echo "<th text-align:center' data-sort-ignore='true'>" . $Buz->return[$j]->idusu->nombreusu . "," . $Buz->return[$j]->idusu->apellidousu . "</th>";
+                    echo "<th text-align:center' data-sort-ignore='true'>" . $Buz->return[$j]->idusu->nombreusu . " " . $Buz->return[$j]->idusu->apellidousu . "</th>";
                     echo "<td style='text-align:center'>" . $Buz->return[$j]->idatr->nombreatr . "</td>";
                     echo "<td style='text-align:center'>" . $Buz->return[$j]->idatr->idsed->nombresed . "</td>";
                 }
@@ -76,7 +81,7 @@
             echo "<td style='text-align:center'> Externo</td>";
             echo "<td style='text-align:center'>" . $Buz->return->nombrebuz . "</td>";
         } else {
-            echo "<th text-align:center' data-sort-ignore='true'>" . $Buz->return->idusu->nombreusu . "</th>";
+            echo "<th text-align:center' data-sort-ignore='true'>" . $Buz->return->idusu->nombreusu ." " . $Buz->return->idusu->apellidousu . "</th>";
             echo "<td style='text-align:center'>" . $Buz->return->idusu->apellidousu . "</td>";
             echo "<td style='text-align:center'>" . $Buz->return->nombrebuz . "</td>";
         }
@@ -90,6 +95,6 @@
     echo " </tbody>
   	</table>";
 } else {
-    echo " No se encuentran coincidencias en la busqueda";
+    echo " No se encuentran coincidencias en la búsqueda";
 }
 ?>

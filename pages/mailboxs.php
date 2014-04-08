@@ -9,25 +9,19 @@ if (!isset($_SESSION["Usuario"])) {
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
 }
-
+try {
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
 $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
-
 $usu = $_SESSION["Usuario"]->return->idusu;
 $sede = $_SESSION["Sede"]->return->idsed;
-
-try {
-    $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-    $client = new SOAPClient($wsdl_url);
-    $client->decode_utf8 = false;
     $datos = array('registroUsuario' => $usu);
     $resultadoLista = $client->consultarBuzonUsuario($datos);
-
     if (!isset($resultadoLista->return)) {
-        $bitacora = 0;
+       javaalert('No hay buzones registrados, consulte con el Administrador');
+    iraURL('../pages/inbox.php');
     } else {
         $bitacora = count($resultadoLista->return);
     }

@@ -79,7 +79,7 @@
             function seleccionar(id, nombre) {
                 $('#myModal').modal('hide');
                 $('#contacto').val(nombre);
-				$('#vista').val(nombre);
+                $('#vista').val(nombre);
                 $('#id').val(id);
 
             }
@@ -123,7 +123,7 @@
                         <div class="span2">
                             <ul class="nav nav-pills nav-stacked">
                                 <li> <a href="inbox.php">Atrás</a> </li>
-
+                                <li> <a href="create_external_mailbox.php">Crear Buzón Externo</a> </li>
                             </ul>
                         </div>
 
@@ -138,8 +138,8 @@
                                         </td>
                                         <td>
                                             <input id="vista" disabled name="vista" type="text"  maxlength="199" style="width:800px ;height:28px" size="100"  autocomplete="off"  required>								
-                                             <input type="hidden" name="contacto" id="contacto">	
-											<input type="hidden" name="id" id="id">				
+                                            <input type="hidden" name="contacto" id="contacto">	
+                                            <input type="hidden" name="id" id="id">				
                                         </td>
                                     </tr>
                                     <tr>
@@ -237,7 +237,7 @@
                                                 ?>
                                             </select><br>
                                         </td>
-                                        <td>Áreas:</td>
+                                        <td>�?reas:</td>
                                         <td><select name="area" id="area"   title="Seleccione Area">
                                                 <option value="">Seleccione área</option> 
 
@@ -291,7 +291,7 @@
                     if (allowSubmit) {
                     } else {
                         tField.value = "";
-                        alert("Usted sólo puede subir archivos con extensiones " + (extArray.join(" ")) + "\nPor favor seleccione un nuevo archivo");
+                        alert("Usted s�lo puede subir archivos con extensiones " + (extArray.join(" ")) + "\nPor favor seleccione un nuevo archivo");
                     }
                 }
             </script>

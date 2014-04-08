@@ -53,7 +53,7 @@
         if ($aux != "Por Recibir") {
             echo "<th style='width:7%; text-align:center' data-sort-ignore='true'>Asunto </th>";
         } else {
-            echo "<th style='width:7%; text-align:center' data-sort-ignore='true'>Codigo </th>";
+            echo "<th style='width:7%; text-align:center' data-sort-ignore='true'>Código </th>";
         }
         echo "<th style='width:7%; text-align:center' >Tipo</th>
                                         <th style='width:7%; text-align:center' data-sort-ignore='true'>Con Respuesta</th>
@@ -82,12 +82,12 @@
                     $asunto = $Bandeja->return[$j]->asuntopaq;
                 }
                 if ($aux == "Por Recibir" || $aux == "Recibidas") {
-                    echo "<td  style='text-align:center'>" . $Bandeja->return[$j]->origenpaq->idusu->nombreusu . "</td>";
+                    echo "<td  style='text-align:center'>" . $Bandeja->return[$j]->origenpaq->idusu->nombreusu . " ".$Bandeja->return[$j]->origenpaq->idusu->apellidousu. "</td>";
                 } else if ($aux == "Por Entregar" || $aux == "Entregadas") {
                     if ($Bandeja->return[$j]->destinopaq->tipobuz == "1") {
                         echo "<td  style='text-align:center'>" . $Bandeja->return[$j]->destinopaq->nombrebuz . "</td>";
                     } else {
-                        echo "<td  style='text-align:center'>" . $Bandeja->return[$j]->destinopaq->idusu->nombreusu . "</td>";
+                        echo "<td  style='text-align:center'>" . $Bandeja->return[$j]->destinopaq->idusu->nombreusu ." ".$Bandeja->return[$j]->destinopaq->idusu->apellidousu. "</td>";
                     }
                 }
                 if ($aux != "Por Recibir") {
@@ -105,7 +105,7 @@
                 if ($aux != "Recibidas") {
                     echo "<td style='text-align:center'>" . $Bandeja->return[$j]->localizacionpaq . "</td>";
                 }
-                echo "<td style='text-align:center'><a href='../pages/see_package.php?id=" . $Bandeja->return[$j]->idpaq . "'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";
+                echo "<td style='text-align:center'><a href='../pages/see_package.php?id=" . $Bandeja->return[$j]->idpaq . "'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Más </button> </a></td>";
                 if ($aux == "Por Recibir") {
                     echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
 			<form> <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(" . $Bandeja->return[$j]->idpaq . ");' value='Realizar Valija'>  Confirmar </button> </form> </th>";
@@ -127,7 +127,16 @@
             } else {
                 $asunto = $Bandeja->return->asuntopaq;
             }
-            echo "<td  style='text-align:center'>" . $Bandeja->return->destinopaq->idusu->nombreusu . "</td>";
+			 if ($aux == "Por Recibir" || $aux == "Recibidas") {
+                    echo "<td  style='text-align:center'>" . $Bandeja->return->origenpaq->idusu->nombreusu . " ".$Bandeja->return->origenpaq->idusu->apellidousu ."</td>";
+                } else if ($aux == "Por Entregar" || $aux == "Entregadas") {
+                    if ($Bandeja->return[$j]->destinopaq->tipobuz == "1") {
+                        echo "<td  style='text-align:center'>" . $Bandeja->return->destinopaq->nombrebuz . "</td>";
+                    } else {
+                        echo "<td  style='text-align:center'>" . $Bandeja->return->destinopaq->idusu->nombreusu ." ".$Bandeja->return->destinopaq->idusu->apellidousu ."</td>";
+                    }
+                }
+           // echo "<td  style='text-align:center'>" . $Bandeja->return->destinopaq->idusu->nombreusu ." ".$Bandeja->return->destinopaq->idusu->apellidousu "</td>";
             if ($aux != "Por Recibir") {
                 echo "<td  style='text-align:center'>" . $asunto . "</td>";
             } else {
@@ -142,7 +151,7 @@
             echo "<td style='text-align:center'>" . date("d/m/Y", strtotime(substr($Bandeja->return->fechapaq, 0, 10))) . "</td>";
             if ($aux != "Recibidas") {
                 echo "<td style='text-align:center'>" . $Bandeja->return->localizacionpaq . "</td>";
-            }echo "<td style='text-align:center'><a href='../pages/see_package.php?id=" . $Bandeja->return->idpaq . "'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";
+            }echo "<td style='text-align:center'><a href='../pages/see_package.php?id=" . $Bandeja->return->idpaq . "'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Más </button> </a></td>";
             if ($aux == "Por Recibir") {
                 echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
 			 <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(" . $Bandeja->return->idpaq . ");' value='Realizar Valija'>  Confirmar </button>  </th>";

@@ -76,14 +76,14 @@
                 <div class="row-fluid">
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
-                            <li> <a href="../pages/administration.php">Atrás</a> </li>
+                            <li> <a href="../pages/send_correspondence.php">Atrás</a> </li>
                         </ul>
                     </div>
 
                     <div class="span10" align="center">
                         <div class="tab-content" id="lista" align="center"> 
                             <form id="formulario" method="post">                            
-                                <h2> Datos del Usuario </h2> 
+                                <h2> Datos del Buzón Externo </h2> 
                                 <table class='footable table table-striped table-bordered'>
                                     <tr>
                                         <td style="text-align:center" >Nombre</td>
@@ -121,197 +121,12 @@
         </div>
 
         <script>
-            /*window.onload = function(){killerSession();}
+            window.onload = function(){killerSession();}
              
              function killerSession(){
              setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
              }
         </script>
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
-
-        <script type="text/javascript">
-        $(document).ready(function() {
-             
-             
-             
-        <!-- Codigo para verificar si el nombre del usuario ya existe --> 
-        $('#usuario').blur(function(){
-        if($(this).val()!=""){
-        $('#Info').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-        }
-        var nombre = $(this).val();        
-        var dataString = 'nombre='+nombre;
-             
-        var parametros = {
-             
-        "nombre" : nombre
-        };
-        $.ajax({
-        type: "POST",
-        url: "../ajax/chequeoNombreUsuario.php",
-        data: parametros,
-        success: function(data) {
-        $('#Info').fadeIn(1000).html(data);
-        }
-        });     
-        });
-             
-             
-        <!-- Codigo para verificar las contraseñas --> 
-        $('#contrasena_c').blur(function(){
-             
-        document.getElementById('fortaleza').style.display='none';
-             
-        if($(this).val()!="" && document.forms.formulario.contrasena.value!=""){
-        $('#contra').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-        $('#contra1').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             
-        }
-             
-        var contrasena_c = $(this).val();        
-        var dataString = 'contrasena_c='+contrasena_c;
-        var con= document.forms.formulario.contrasena.value;
-             
-        $.ajax({
-        type: "POST",
-        url: "../ajax/chequeoContrasena.php?contra="+con+"",
-        data: dataString,
-        success: function(data) {
-        $('#contra').fadeIn(1000).html(data);
-        $('#contra1').fadeIn(1000).html(data);
-        }
-        });
-        });
-             
-        $('#contrasena').blur(function(){
-        document.getElementById('fortaleza').style.display='none';
-             
-        if($(this).val()!="" && document.forms.formulario.contrasena_c.value!=""){
-        $('#contra').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-        $('#contra1').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             
-        }
-             
-        var contrasena = $(this).val();        
-        var dataString = 'contrasena='+contrasena;
-        var con= document.forms.formulario.contrasena_c.value;
-             
-        $.ajax({
-        type: "POST",
-        url: "../ajax/chequeoContrasena.php?contra="+con+"",
-        data: dataString,
-        success: function(data) {
-        $('#contra').fadeIn(1000).html(data);
-        $('#contra1').fadeIn(1000).html(data);
-        }
-        });
-        });  
-        <!-- Codigo para verificar si el Correo lleva el formato correcto --> 
-        $('#correo').blur(function(){
-        if($(this).val()!=""){
-        $('#Info2').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-        }
-        var correo = $(this).val();
-        var dataString = 'correo='+correo;
-        $.ajax({
-        type: "POST",
-        url: "../ajax/chequeoCorreo.php",
-        data: dataString,
-        success: function(data) {
-        $('#Info2').fadeIn(1000).html(data);
-        }
-        });     
-        });	
-        });
-             
-        <!-- Codigo para verificar la fortaleza de la contraseña --> 
-             
-        var numeros="0123456789";
-        var letras="abcdefghyjklmnñopqrstuvwxyz";
-        var letras_mayusculas="ABCDEFGHYJKLMNÑOPQRSTUVWXYZ";
-             
-        function tiene_numeros(texto){
-        for(i=0; i<texto.length; i++){
-        if (numeros.indexOf(texto.charAt(i),0)!=-1){
-        return 1;
-        }
-        }
-        return 0;
-        } 
-             
-        function tiene_letras(texto){
-        texto = texto.toLowerCase();
-        for(i=0; i<texto.length; i++){
-        if (letras.indexOf(texto.charAt(i),0)!=-1){
-        return 1;
-        }
-        }
-        return 0;
-        } 
-             
-        function tiene_minusculas(texto){
-        for(i=0; i<texto.length; i++){
-        if (letras.indexOf(texto.charAt(i),0)!=-1){
-        return 1;
-        }
-        }
-        return 0;
-        } 
-             
-        function tiene_mayusculas(texto){
-        for(i=0; i<texto.length; i++){
-        if (letras_mayusculas.indexOf(texto.charAt(i),0)!=-1){
-        return 1;
-        }
-        }
-        return 0;
-        } 
-             
-        function seguridad_clave(clave){
-        var seguridad = 0;
-        if (clave.length!=0){
-        if (tiene_numeros(clave) && tiene_letras(clave)){
-        seguridad += 30;
-        }
-        if (tiene_minusculas(clave) && tiene_mayusculas(clave)){
-        seguridad += 30;
-        }
-        if (clave.length >= 4 && clave.length <= 5){
-        seguridad += 10;
-        }else{
-        if (clave.length >= 6 && clave.length <= 8){
-        seguridad += 30;
-        }else{
-        if (clave.length > 8){
-        seguridad += 40;
-        }
-        }
-        }
-        }
-        return seguridad				
-        }	
-             
-        function muestra_seguridad_clave(clave,formulario){
-        seguridad=seguridad_clave(clave);
-        document.getElementById('fortaleza').style.color='#FFFFFF'; 
-        if(seguridad>0 && seguridad<=40){
-        document.getElementById('fortaleza').style.display='block'; 
-        document.getElementById('fortaleza').style.backgroundColor="#2ECCFA"; 
-        formulario.fortaleza.value="Debil";
-        }else if(seguridad>40 && seguridad<=70){
-        formulario.fortaleza.value="Medio";
-        document.getElementById('fortaleza').style.backgroundColor="#5882FA"; 
-        }else if(seguridad>70){
-        formulario.fortaleza.value="Fuerte";
-        document.getElementById('fortaleza').style.backgroundColor="#0404B4"; 
-        }else{
-        document.getElementById('fortaleza').style.display='none'; 
-        }		
-        }*/
-        </script>  
 
     </body>
 </html>
