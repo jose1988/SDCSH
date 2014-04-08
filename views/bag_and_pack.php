@@ -121,7 +121,7 @@ if (!isset($SedeRol->return)) {
                                         </tr>
                                     </tbody>
                                 </table>                             
-                          		<br>
+                                <br>
                                 <div class="span3">
                                 </div> 
                                 <div class="span6">
@@ -132,9 +132,9 @@ if (!isset($SedeRol->return)) {
                                         </tr>
                                     </table>
                                 </div> 	
-							
-								<br></br><br></br>
-								
+
+                                <br></br><br></br>
+
                                 <strong> <h2 align="center">Detalle de la Valija</h2> </strong>
                                 <table class='footable table table-striped table-bordered' data-page-size='5'> 
                                     <thead bgcolor='#FF0000'>
@@ -215,23 +215,23 @@ if (!isset($SedeRol->return)) {
             </div>
         </div>   
 
-    <script>
-        window.onload = function() {
-            killerSession();
-        }
-        function killerSession() {
-            setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        }
-    </script>
+        <script>
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        </script>
 
-    <script src="../js/footable.js" type="text/javascript"></script>
-    <script src="../js/footable.paginate.js" type="text/javascript"></script>
-    <script src="../js/footable.sortable.js" type="text/javascript"></script>
+        <script src="../js/footable.js" type="text/javascript"></script>
+        <script src="../js/footable.paginate.js" type="text/javascript"></script>
+        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
-    <script type="text/javascript">
-        $(function() {
-            $('table').footable();
-        });
-    </script>		 
-</body>
+        <script type="text/javascript">
+            $(function() {
+                $('table').footable();
+            });
+        </script>		 
+    </body>
 </html>

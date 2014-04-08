@@ -22,12 +22,12 @@ if (!isset($SedeRol->return)) {
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -70,9 +70,9 @@ if (!isset($SedeRol->return)) {
 
         <div id="middle">
             <div class="container app-container">
-             <?php
-			 Menu($SedeRol);
-			 ?>  
+                <?php
+                Menu($SedeRol);
+                ?>  
 
                 <!--Caso pantalla uno-->
                 <div class="row-fluid">
@@ -81,18 +81,17 @@ if (!isset($SedeRol->return)) {
                             <li>   
                                 <a href="inbox.php">Atrás</a>
                             </li>
-
                         </ul>
                     </div>
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
                                 <div id="data">
-<?php
-if (isset($PaquetesConfirmados->return)) {
+                                    <?php
+                                    if (isset($PaquetesConfirmados->return)) {
 
-    echo "<br>";
-    ?>
+                                        echo "<br>";
+                                        ?>
                                         <h2>Correspondencia que has confirmado</h2>
                                         <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                             <thead bgcolor='#FF0000'>
@@ -106,29 +105,29 @@ if (isset($PaquetesConfirmados->return)) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-    <?php
-    if (count($PaquetesConfirmados->return) == 1) {
-        if ($PaquetesConfirmados->return->respaq == "0") {
-            $rta = "No";
-        } else {
-            $rta = "Si";
-        }
-        if (strlen($PaquetesConfirmados->return->textopaq) > 10) {
-            $contenido = substr($PaquetesConfirmados->return->textopaq, 0, 10) . "...";
-        } else {
-            $contenido = $PaquetesConfirmados->return->textopaq;
-        }
-        if (strlen($PaquetesConfirmados->return->asuntopaq) > 10) {
-            $asunto = substr($PaquetesConfirmados->return->asuntopaq, 0, 10) . "...";
-        } else {
-            $asunto = $PaquetesConfirmados->return->asuntopaq;
-        }
-		if($PaquetesConfirmados->return->destinopaq->tipobuz==0){
-		$nombrebuz=$PaquetesConfirmados->return->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusu->apellidousu;
-		}else{
-		$nombrebuz=$PaquetesConfirmados->return->destinopaq->nombrebuz;
-		}
-        ?>
+                                                <?php
+                                                if (count($PaquetesConfirmados->return) == 1) {
+                                                    if ($PaquetesConfirmados->return->respaq == "0") {
+                                                        $rta = "No";
+                                                    } else {
+                                                        $rta = "Si";
+                                                    }
+                                                    if (strlen($PaquetesConfirmados->return->textopaq) > 10) {
+                                                        $contenido = substr($PaquetesConfirmados->return->textopaq, 0, 10) . "...";
+                                                    } else {
+                                                        $contenido = $PaquetesConfirmados->return->textopaq;
+                                                    }
+                                                    if (strlen($PaquetesConfirmados->return->asuntopaq) > 10) {
+                                                        $asunto = substr($PaquetesConfirmados->return->asuntopaq, 0, 10) . "...";
+                                                    } else {
+                                                        $asunto = $PaquetesConfirmados->return->asuntopaq;
+                                                    }
+                                                    if ($PaquetesConfirmados->return->destinopaq->tipobuz == 0) {
+                                                        $nombrebuz = $PaquetesConfirmados->return->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusu->apellidousu;
+                                                    } else {
+                                                        $nombrebuz = $PaquetesConfirmados->return->destinopaq->nombrebuz;
+                                                    }
+                                                    ?>
                                                     <tr>     
                                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->idusu->nombreusu . " " . $PaquetesConfirmados->return->origenpaq->idusu->apellidousu; ?></td>
                                                         <td style='text-align:center'><?php echo $nombrebuz; ?></td>
@@ -137,30 +136,30 @@ if (isset($PaquetesConfirmados->return)) {
                                                         <td style='text-align:center'><?php echo $contenido; ?></td>
                                                         <td style='text-align:center'><?php echo $rta; ?></td>  
                                                     </tr>   
-        <?php
-    } else {
-        for ($i = 0; $i < count($PaquetesConfirmados->return); $i++) {
-            if ($PaquetesConfirmados->return[$i]->respaq == "0") {
-                $rta = "No";
-            } else {
-                $rta = "Si";
-            }
-            if (strlen($PaquetesConfirmados->return[$i]->textopaq) > 25) {
-                $contenido = substr($PaquetesConfirmados->return[$i]->textopaq, 0, 23) . "...";
-            } else {
-                $contenido = $PaquetesConfirmados->return[$i]->textopaq;
-            }
-            if (strlen($PaquetesConfirmados->return[$i]->asuntopaq) > 10) {
-                $asunto = substr($PaquetesConfirmados->return[$i]->asuntopaq, 0, 10) . "...";
-            } else {
-                $asunto = $PaquetesConfirmados->return[$i]->asuntopaq;
-            }
-				if($PaquetesConfirmados->return[$i]->destinopaq->tipobuz==0){
-			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu;
-			}else{
-			$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->nombrebuz;
-			}
-            ?>
+                                                    <?php
+                                                } else {
+                                                    for ($i = 0; $i < count($PaquetesConfirmados->return); $i++) {
+                                                        if ($PaquetesConfirmados->return[$i]->respaq == "0") {
+                                                            $rta = "No";
+                                                        } else {
+                                                            $rta = "Si";
+                                                        }
+                                                        if (strlen($PaquetesConfirmados->return[$i]->textopaq) > 25) {
+                                                            $contenido = substr($PaquetesConfirmados->return[$i]->textopaq, 0, 23) . "...";
+                                                        } else {
+                                                            $contenido = $PaquetesConfirmados->return[$i]->textopaq;
+                                                        }
+                                                        if (strlen($PaquetesConfirmados->return[$i]->asuntopaq) > 10) {
+                                                            $asunto = substr($PaquetesConfirmados->return[$i]->asuntopaq, 0, 10) . "...";
+                                                        } else {
+                                                            $asunto = $PaquetesConfirmados->return[$i]->asuntopaq;
+                                                        }
+                                                        if ($PaquetesConfirmados->return[$i]->destinopaq->tipobuz == 0) {
+                                                            $nombrebuz = $PaquetesConfirmados->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusu->apellidousu;
+                                                        } else {
+                                                            $nombrebuz = $PaquetesConfirmados->return[$i]->destinopaq->nombrebuz;
+                                                        }
+                                                        ?>
                                                         <tr>     
                                                             <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->idusu->nombreusu . " " . $PaquetesConfirmados->return[$i]->origenpaq->idusu->apellidousu; ?></td>
                                                             <td style='text-align:center'><?php echo $nombrebuz; ?></td>
@@ -169,56 +168,49 @@ if (isset($PaquetesConfirmados->return)) {
                                                             <td style='text-align:center'><?php echo $contenido; ?></td>
                                                             <td style='text-align:center'><?php echo $rta; ?></td>  
                                                         </tr>   
-            <?php
-        }
-    }//fin else
-    ?>  
+                                                        <?php
+                                                    }
+                                                }//fin else
+                                                ?>  
                                             </tbody>
                                         </table>
                                         <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
 
-    <?php
-}else{
-
-  echo "<br>";
-		echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No tiene paquetes confirmados </h4>
-		</div> ";
-}
-?>
-
-                                </div>  
-
+                                        <?php
+                                    } else {
+                                        echo "<br>";
+                                        echo"<div class='alert alert-block' align='center'>
+										<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+										<h4 align='center'>No tiene paquetes confirmados </h4>
+										</div> ";
+                                    }
+                                    ?>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-			</div>
+        </div>
 
-            <!-- /container -->
-            <div id="footer" class="container">    	
-            </div>
-   
         <script>
-                                    window.onload = function() {
-                                        killerSession();
-                                    }
-                                    function killerSession() {
-                                        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-                                    }
-                                    function isNumberKey(evt)
-                                    {
-                                        var charCode = (evt.which) ? evt.which : event.keyCode
-                                        if (charCode == 13) {
-                                            Paquete();
-                                        }
-                                        if (charCode > 31 && (charCode < 48 || charCode > 57))
-                                            return false;
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+            function isNumberKey(evt)
+            {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode == 13) {
+                    Paquete();
+                }
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
 
-                                        return true;
-                                    }
+                return true;
+            }
         </script>
 
         <script src="../js/footable.js" type="text/javascript"></script>

@@ -127,12 +127,13 @@ if ($usuarioBitacora == "") {
         </div>
 
         <script>
-            window.onload = function() {
-                killerSession();
-            }
-            function killerSession() {
-                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-            }
+                    window.onload = function() {
+                        killerSession();
+                    }
+
+                    function killerSession() {
+                        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+                    }
         </script>
 
         <script src="../js/footable.js" type="text/javascript"></script>

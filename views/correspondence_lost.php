@@ -21,12 +21,12 @@ if (!isset($SedeRol->return)) {
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -67,9 +67,9 @@ if (!isset($SedeRol->return)) {
 
         <div id="middle">
             <div class="container app-container">
-             <?php
-			 Menu($SedeRol);
-			 ?>   
+                <?php
+                Menu($SedeRol);
+                ?>   
 
                 <!--Caso pantalla uno-->
                 <div class="row-fluid">
@@ -84,35 +84,35 @@ if (!isset($SedeRol->return)) {
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
                                 <h2>Correspondencia Extraviada</h2>
-<?php
-if (isset($PaquetesExtraviados->return)) {
+                                <?php
+                                if (isset($PaquetesExtraviados->return)) {
 
-    echo "<br>";
-    ?>
+                                    echo "<br>";
+                                    ?>
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                         <thead bgcolor='#FF0000'>
                                             <tr>	
                                                 <th style='width:7%; text-align:center'>Origen</th>
-												<th style='width:7%; text-align:center'>Destino</th>
+                                                <th style='width:7%; text-align:center'>Destino</th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Localización</th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Emisión</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-    <?php
-    if (count($PaquetesExtraviados->return) == 1) {
-        if (strlen($PaquetesExtraviados->return->asuntopaq) > 10) {
-            $asunto = substr($PaquetesExtraviados->return->asuntopaq, 0, 10) . "...";
-        } else {
-            $asunto = $PaquetesExtraviados->return->asuntopaq;
-        }
-		if($PaquetesExtraviados->return->destinopaq->tipobuz==0){
-		$nombrebuz=$PaquetesExtraviados->return->destinopaq->idusu->nombreusu . " " . $PaquetesExtraviados->return->destinopaq->idusu->apellidousu;
-		}else{
-		$nombrebuz=$PaquetesExtraviados->return->destinopaq->nombrebuz;
-		}
-        ?>
+                                            <?php
+                                            if (count($PaquetesExtraviados->return) == 1) {
+                                                if (strlen($PaquetesExtraviados->return->asuntopaq) > 10) {
+                                                    $asunto = substr($PaquetesExtraviados->return->asuntopaq, 0, 10) . "...";
+                                                } else {
+                                                    $asunto = $PaquetesExtraviados->return->asuntopaq;
+                                                }
+                                                if ($PaquetesExtraviados->return->destinopaq->tipobuz == 0) {
+                                                    $nombrebuz = $PaquetesExtraviados->return->destinopaq->idusu->nombreusu . " " . $PaquetesExtraviados->return->destinopaq->idusu->apellidousu;
+                                                } else {
+                                                    $nombrebuz = $PaquetesExtraviados->return->destinopaq->nombrebuz;
+                                                }
+                                                ?>
                                                 <tr>     
                                                     <td  style='text-align:center'><?php echo $PaquetesExtraviados->return->origenpaq->idusu->nombreusu . " " . $PaquetesExtraviados->return->origenpaq->idusu->apellidousu; ?></td>
                                                     <td  style='text-align:center'><?php echo $nombrebuz; ?></td>
@@ -120,20 +120,20 @@ if (isset($PaquetesExtraviados->return)) {
                                                     <td style='text-align:center'><?php echo $PaquetesExtraviados->return->localizacionpaq; ?></td>
                                                     <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesExtraviados->return->fechapaq, 0, 10))); ?></td>
                                                 </tr>   
-        <?php
-    } else {
-        for ($i = 0; $i < count($PaquetesExtraviados->return); $i++) {
-            if (strlen($PaquetesExtraviados->return[$i]->asuntopaq) > 10) {
-                $asunto = substr($PaquetesExtraviados->return[$i]->asuntopaq, 0, 10) . "...";
-            } else {
-                $asunto = $PaquetesExtraviados->return[$i]->asuntopaq;
-            }
-			if($PaquetesExtraviados->return[$i]->destinopaq->tipobuz==0){
-			$nombrebuz=$PaquetesExtraviados->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesExtraviados->return[$i]->destinopaq->idusu->apellidousu;
-			}else{
-			$nombrebuz=$PaquetesExtraviados->return[$i]->destinopaq->nombrebuz;
-			}
-            ?>
+                                                <?php
+                                            } else {
+                                                for ($i = 0; $i < count($PaquetesExtraviados->return); $i++) {
+                                                    if (strlen($PaquetesExtraviados->return[$i]->asuntopaq) > 10) {
+                                                        $asunto = substr($PaquetesExtraviados->return[$i]->asuntopaq, 0, 10) . "...";
+                                                    } else {
+                                                        $asunto = $PaquetesExtraviados->return[$i]->asuntopaq;
+                                                    }
+                                                    if ($PaquetesExtraviados->return[$i]->destinopaq->tipobuz == 0) {
+                                                        $nombrebuz = $PaquetesExtraviados->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesExtraviados->return[$i]->destinopaq->idusu->apellidousu;
+                                                    } else {
+                                                        $nombrebuz = $PaquetesExtraviados->return[$i]->destinopaq->nombrebuz;
+                                                    }
+                                                    ?>
                                                     <tr>     
                                                         <td  style='text-align:center'><?php echo $PaquetesExtraviados->return[$i]->origenpaq->idusu->nombreusu . " " . $PaquetesExtraviados->return[$i]->origenpaq->idusu->apellidousu; ?></td>
                                                         <td  style='text-align:center'><?php echo $nombrebuz; ?></td>
@@ -141,34 +141,27 @@ if (isset($PaquetesExtraviados->return)) {
                                                         <td style='text-align:center'><?php echo $PaquetesExtraviados->return[$i]->localizacionpaq; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesExtraviados->return[$i]->fechapaq, 0, 10))); ?></td>
                                                     </tr>   
-            <?php
-        }
-    }//fin else
-	
-	 ?>
+                                                    <?php
+                                                }
+                                            }//fin else
+                                            ?>
                                         </tbody>
                                     </table>
-                                    <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
+                                    <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>			
 
-    <?php
-} else {
-    echo "<br>";
-    echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No hay Correspondencia Extraviada en estos Momentos  </h4>
-		</div> ";
-}
-?>			  
-
-
+                                    <?php
+                                } else {
+                                    echo "<br>";
+                                    echo"<div class='alert alert-block' align='center'>
+									<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+									<h4 align='center'>No hay Correspondencia Extraviada en estos Momentos  </h4>
+									</div> ";
+                                }
+                                ?>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- /container -->
-            <div id="footer" class="container">    	
             </div>
         </div>
 

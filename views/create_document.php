@@ -25,12 +25,12 @@ if (isset($_POST["guardar"])) {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -73,90 +73,83 @@ if (isset($_POST["guardar"])) {
             </div>
         </div>
 
-       
         <div id="middle">
             <div class="container app-container"> 
-               <?php
-			 Menu($SedeRol);
-			 ?> 
+                <?php
+                Menu($SedeRol);
+                ?> 
+                <!--Caso pantalla uno-->
+                <div class="row-fluid">
+                    <div class="span2">
+                        <ul class="nav nav-pills nav-stacked" >
+                            <li> <a href="../pages/administration.php">Atrás</a> </li>
+                        </ul>
+                    </div>
 
-            <!--Caso pantalla uno-->
-            <div class="row-fluid">
-                <div class="span2">
-                    <ul class="nav nav-pills nav-stacked" >
-                        <li> <a href="../pages/administration.php">Atrás</a> </li>
-                    </ul>
-                </div>
-
-                <div class="span10" align="center">
-
-                    <div class="tab-content" id="lista" align="center">
-                        <form id="formulario" method="post">
-                            <table class='footable table table-striped table-bordered'>
-                                <tr>
-                                    <td style="text-align:center" >Nombre</td>
-                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" maxlength="19" size="30" title="Ingrese Nombre del Documento" placeholder="Ej. Jose" autofocus required>
-                                        <div id="Info" style="float:right"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center">Descripción</td>
-                                    <td style="text-align:center"><input type="text" name="Descripcion" id="Descripcion" maxlength="2000" size="2000" title="Ingrese la Descripción del documento" placeholder="Ej. Documento de texto"></td>
-                                </tr>
-                            </table>
-                            <br>
-                            <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
-                        </form>
+                    <div class="span10" align="center">
+                        <div class="tab-content" id="lista" align="center">
+                            <form id="formulario" method="post">
+                                <table class='footable table table-striped table-bordered'>
+                                    <tr>
+                                        <td style="text-align:center" >Nombre</td>
+                                        <td style="text-align:center"><input type="text" name="nombre" id="nombre" maxlength="19" size="30" title="Ingrese Nombre del Documento" placeholder="Ej. Jose" autofocus required>
+                                            <div id="Info" style="float:right"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:center">Descripción</td>
+                                        <td style="text-align:center"><input type="text" name="Descripcion" id="Descripcion" maxlength="2000" size="2000" title="Ingrese la Descripción del documento" placeholder="Ej. Documento de texto"></td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <script>
-            /*window.onload = function(){killerSession();}
+            <script>
+                /*window.onload = function(){killerSession();}
              
-             function killerSession(){
-             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-             }
-             </script>
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
+                 function killerSession(){
+                 setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+                 }
+            </script>
+            <script src="../js/footable.js" type="text/javascript"></script>
+            <script src="../js/footable.paginate.js" type="text/javascript"></script>
+            <script src="../js/footable.sortable.js" type="text/javascript"></script>
+            <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
 
-             <script type="text/javascript">
-             $(document).ready(function() {
+            <script type="text/javascript">
+            $(document).ready(function() {
              
              
              
-             <!-- Codigo para verificar si el nombre del usuario ya existe --> 
-             $('#nombre').blur(function(){
-             if($(this).val()!=""){
-             $('#Info').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             }
-             var nombre = $(this).val();        
-             var dataString = 'nombre='+nombre;
+            <!-- Codigo para verificar si el nombre del usuario ya existe --> 
+            $('#nombre').blur(function(){
+            if($(this).val()!=""){
+            $('#Info').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
+            }
+            var nombre = $(this).val();        
+            var dataString = 'nombre='+nombre;
              
-             var parametros = {
+            var parametros = {
              
-             "nombre" : nombre
-             };
-             $.ajax({
-             type: "POST",
-             url: "../ajax/chequeoNombreDocumento.php",
-             data: parametros,
-             success: function(data) {
-             $('#Info').fadeIn(1000).html(data);
-             }
-             });     
-             });
-             
-             
-             
-             });
-             */
-
-        </script>  
+            "nombre" : nombre
+            };
+            $.ajax({
+            type: "POST",
+            url: "../ajax/chequeoNombreDocumento.php",
+            data: parametros,
+            success: function(data) {
+            $('#Info').fadeIn(1000).html(data);
+            }
+            });     
+            });
+            });
+            */
+            </script>  
 
     </body>
 </html>

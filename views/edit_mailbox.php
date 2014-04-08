@@ -23,12 +23,12 @@ if (!isset($Usuario->return)) {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -51,14 +51,12 @@ if (!isset($Usuario->return)) {
 
     </head>
     <?php
-   
     $telefono = "";
-   
-  
+
+
     if (isset($Usuario->return->telefonousu)) {
         $telefono = $Usuario->return->telefonousu;
     }
-   
     ?>
     <body class="appBg">
         <div id="header">
@@ -81,8 +79,8 @@ if (!isset($Usuario->return)) {
 
         <div class="container app-container">
             <?php
-                Menu($SedeRol);
-                ?>
+            Menu($SedeRol);
+            ?>
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
@@ -102,12 +100,10 @@ if (!isset($Usuario->return)) {
                                         <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" value="<?php echo $Usuario->return->nombrebuz; ?>" maxlength="150" size="30"  autofocus required></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center">Dirección</td>
                                         <td style="text-align:center"><input type="text" name="direccion" id="direccion" autocomplete="off" value="<?php echo $Usuario->return->direccionbuz; ?>" maxlength="150" size="30"  ></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center">Teléfono </td>
                                         <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" value="<?php echo $telefono; ?>" maxlength="50" size="30"></td>
                                     </tr>
@@ -121,18 +117,17 @@ if (!isset($Usuario->return)) {
                 </div>
             </div>
             <script>
-                                    window.onload = function() {
-                                        killerSession();
-                                    }
-                                    function killerSession() {
-                                        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-                                    }
-            </script>
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        	</script>
             <script src="../js/footable.js" type="text/javascript"></script>
             <script src="../js/footable.paginate.js" type="text/javascript"></script>
             <script src="../js/footable.sortable.js" type="text/javascript"></script>
-            <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
-
+            <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script>
 
     </body>
 </html>

@@ -17,12 +17,12 @@
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
@@ -64,15 +64,12 @@
         </div>
 
         <div id="middle">
-
             <div class="container app-container">
-
-
                 <div>
                     <ul class="nav nav-pills">
                         <li class="pull-left">
                             <div class="modal-header">
-                                <h3>Correspondencia <span> SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
+                                <h3>Correspondencia <span> SH</span> <?php echo "- Bienvenido, " . $_SESSION["Usuario"]->return->nombreusu; ?>
                                 </h3>
                             </div>
                         </li>
@@ -82,7 +79,6 @@
 
                 <!--Caso pantalla uno-->
                 <div class="tab-content">
-
                     <div id="logueo" align="center">
                         <form class="form-signin" method="post">
                             <h3 class="form-signin-heading">Por favor, escoja la sede</h3>
@@ -98,15 +94,8 @@
                         </form>
 
                     </div>
-
                 </div>
-
-                <!-- /container -->
-                <div id="footer" class="container">    	
-                </div>
-
-
             </div>
-
+        </div>
     </body>
 </html>

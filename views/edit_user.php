@@ -22,12 +22,12 @@ if (!isset($Usuario->return)) {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -95,9 +95,9 @@ if (!isset($Usuario->return)) {
         </div>
 
         <div class="container app-container">
-             <?php
-			 Menu($SedeRol);
-			 ?>  
+            <?php
+            Menu($SedeRol);
+            ?>  
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
@@ -150,7 +150,7 @@ if (!isset($Usuario->return)) {
                                         <td style="text-align:center">Dirección 1</td>
                                         <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1"  maxlength="2000" style="width:800px"><?php echo $direccion1; ?></textarea></td>
                                     </tr>
-    
+
 
                                 </table><br>
                                 <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" onclick="return confirm('¿Esta seguro que desea guardar los cambios?')" type="submit">Guardar</button></div>
@@ -172,7 +172,5 @@ if (!isset($Usuario->return)) {
             <script src="../js/footable.paginate.js" type="text/javascript"></script>
             <script src="../js/footable.sortable.js" type="text/javascript"></script>
             <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
-
-
     </body>
 </html>

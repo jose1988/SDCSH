@@ -23,12 +23,12 @@ if (!isset($org->return)) {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -72,8 +72,8 @@ if (!isset($org->return)) {
 
         <div class="container app-container">
             <?php
-                Menu($SedeRol);
-                ?>
+            Menu($SedeRol);
+            ?>
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
@@ -91,7 +91,6 @@ if (!isset($org->return)) {
                                     <td style="text-align:center" >Nombre del Proveedor</td>
                                     <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el nombre del Proveedor" placeholder="Ej. Zoom"  autofocus required></td>
                                 </tr>
-                                
                                 <tr>
                                     <td style="text-align:center">Teléfono</td>
                                     <td style="text-align:center"><input type="tel" name="telefono" id="telefono" autocomplete="off" maxlength="50" size="30" title="Ingrese el número de teléfono" placeholder="Ej. 04269876543"   ></td>
@@ -113,10 +112,9 @@ if (!isset($org->return)) {
                                                 }
                                             }
                                             ?>
-                                        </select></td>
+                                        </select>
+                                	</td>
                                 </tr>
-                                
-
                             </table>
                             <br>
                             <div class="span11" align="center"><button class="btn" id="crear" name="crear" type="submit">Guardar</button></div>
@@ -135,26 +133,23 @@ if (!isset($org->return)) {
                 setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
             }
         </script>
-        
+
         <script>
-		function areas(){
-		 //posicion
-        var $selectedOption = $('#sede').find('option:selected');
-		var id = $selectedOption.val();
-		$.ajax({
-           type: "POST",
-           url: "../ajax/user_headquarters_mail.php",
-           data: {'sed':id},
-           dataType: "text",
-                success:  function (response) {
-                       $("#area").html(response);
-					}
-		
-	    }); 
-		
-		
-	}
-		</script>
+            function areas() {
+                //posicion
+                var $selectedOption = $('#sede').find('option:selected');
+                var id = $selectedOption.val();
+                $.ajax({
+                    type: "POST",
+                    url: "../ajax/user_headquarters_mail.php",
+                    data: {'sed': id},
+                    dataType: "text",
+                    success: function(response) {
+                        $("#area").html(response);
+                    }
+                });
+            }
+        </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>

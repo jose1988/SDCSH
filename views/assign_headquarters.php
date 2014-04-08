@@ -17,12 +17,12 @@
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -63,80 +63,66 @@
                 </div>
             </div>
         </div>
-
-       
         <div id="middle">
             <div class="container app-container"> 
-               <?php
-			 Menu($SedeRol);
-			 ?> 
-            <!--Caso pantalla uno-->
-            <div class="row-fluid">
-                <div class="span2">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="../pages/administration.php">Atrás</a> <li>
-                    </ul>
-                </div>
+                <?php
+                Menu($SedeRol);
+                ?> 
+                <!--Caso pantalla uno-->
+                <div class="row-fluid">
+                    <div class="span2">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li> <a href="../pages/administration.php">Atrás</a> <li>
+                        </ul>
+                    </div>
 
-                <div class="span10" align="center">
-                  
-                    <div class="tab-content" id="lista" align="center">
-                     <h2> <strong> Asignar Sede </strong> </h2>
-                                               
+                    <div class="span10" align="center">
+                        <div class="tab-content" id="lista" align="center">
+                            <h2> <strong> Asignar Sede </strong> </h2>
                             <h2>
-                            
-                               <form class="form-Dvalija" method="post" id="fval">
-                            Usuario:  <input placeholder="Ejm. jose.fuentes" type="text" id="usuario" name="usuario" class="input-medium search-query">
-                            <button type="button"  onClick="Editar();" class="btn">Buscar</button>
-                           
-                           
-                        </form>
+                                <form class="form-Dvalija" method="post" id="fval">
+                                    Usuario:  <input placeholder="Ejm. jose.fuentes" type="text" id="usuario" name="usuario" class="input-medium search-query">
+                                    <button type="button"  onClick="Editar();" class="btn">Buscar</button>
+                                </form>
                             </h2>
                             <div id="datos">
-                            
-                            <br>
+
+                                <br>
                             </div>
                             <div class="span11" align="center"></div>
                             <br>
-                        
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <script>
-            window.onload = function(){killerSession();}
-             
-             function killerSession(){
-             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-             }
-             </script>
-      
+            <script>
+                    window.onload = function() {
+                        killerSession();
+                    }
 
+                    function killerSession() {
+                        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+                    }
+            </script>
 
-        <script>
+            <script>
+                function Editar() {
+                    var usu = document.forms.fval.usuario.value;
+                    var parametros = {
+                        "usu": usu
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "../ajax/info_assign_headquarters.php",
+                        data: parametros,
+                        dataType: "text",
+                        success: function(response) {
+                            $("#datos").html(response);
+                        }
 
-
-	 
-	function Editar(){
-			var usu= document.forms.fval.usuario.value;
-			 var parametros = {
-                "usu" : usu
-       		 };
-			$.ajax({
-           	type: "POST",
-           	url: "../ajax/info_assign_headquarters.php",
-           	data: parametros,
-           	dataType: "text",
-			success:  function (response) {
-            	$("#datos").html(response);
-			}
-		
-	    }); 
-		
-		
-	}
-
-</script>
-
+                    });
+                }
+            </script>
     </body>
 </html>

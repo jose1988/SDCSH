@@ -23,12 +23,12 @@ if (!isset($Sedes->return)) {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -71,7 +71,7 @@ if (!isset($Sedes->return)) {
         </div>
 
         <div class="container app-container">
-           <div>
+            <div>
                 <ul class="nav nav-pills">
                     <li class="pull-left">
                         <div class="modal-header" style="width:1135px;">
@@ -115,7 +115,6 @@ if (!isset($Sedes->return)) {
                                 <tr>
                                     <td style="text-align:center" width="50%">Correo</td>
                                     <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" maxlength="50" size="50" title="Ingrese un correo" placeholder="Ej. pedroperez@gmail.com">
-
                                     </td>
                                 </tr>
                                 <tr>
@@ -128,7 +127,8 @@ if (!isset($Sedes->return)) {
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Sede</td>
-                                    <td style="text-align:center"><select onChange="areas();direccion();" id="sede" name="sede" required  title="Seleccione la Sede a la que pertenece">
+                                    <td style="text-align:center"><select onChange="areas();
+                                            direccion();" id="sede" name="sede" required  title="Seleccione la Sede a la que pertenece">
                                             <option value="" style="display:none">Seleccionar:</option>                                  
                                             <?php
                                             if (count($Sedes->return) == 1) {
@@ -141,14 +141,14 @@ if (!isset($Sedes->return)) {
                                             ?>
                                         </select></td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td style="text-align:center">Área de Trabajo</td>
-                                    <td style="text-align:center"><select id="area" name="area"  required  title="Seleccione el Área de trabajo a la que pertenece">
-                              <option value="" style="display:none">Seleccionar:</option>  
-                                   
-                                </select></td>
+                                    <td style="text-align:center"><select id="area" name="area"  required  title="Seleccione el área de trabajo a la que pertenece">
+                                            <option value="" style="display:none">Seleccionar:</option>  
+
+                                        </select></td>
                                 </tr>
-                              <tr>
+                                <tr>
                                     <td style="text-align:center">Cargo</td>
                                     <td style="text-align:center"><input type="text" name="cargo" id="cargo" autocomplete="off" maxlength="150" size="30" title="Ingrese su cargo" placeholder="Ej. Analista"  required></td>
                                 </tr>
@@ -175,29 +175,29 @@ if (!isset($Sedes->return)) {
                 setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
             }
         </script>
-        
+
         <script>
-		function areas(){
-		 //posicion
-        var $selectedOption = $('#sede').find('option:selected');
-		var id = $selectedOption.val();
-		$.ajax({
-           type: "POST",
-           url: "../ajax/user_headquarters_mail.php",
-           data: {'sed':id},
-           dataType: "text",
-                success:  function (response) {
-                       $("#area").html(response);
-					}
-		
-	    }); 
-		
-		
-	}
-	function direccion(){
-	document.forms.formulario.direccion1.value=document.forms.formulario.sede.value;
-	}
-		</script>
+            function areas() {
+                //posicion
+                var $selectedOption = $('#sede').find('option:selected');
+                var id = $selectedOption.val();
+                $.ajax({
+                    type: "POST",
+                    url: "../ajax/user_headquarters_mail.php",
+                    data: {'sed': id},
+                    dataType: "text",
+                    success: function(response) {
+                        $("#area").html(response);
+                    }
+
+                });
+
+
+            }
+            function direccion() {
+                document.forms.formulario.direccion1.value = document.forms.formulario.sede.value;
+            }
+        </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>

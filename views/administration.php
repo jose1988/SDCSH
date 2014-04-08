@@ -77,7 +77,7 @@
                                 <a href="../pages/misguidance_report.php">Repotar Extravió</a>
                             </li>
                             <li>   
-                                <a href="#">Buzón Adicional</a>
+                                <a href="../pages/assign_headquarters.php">Buzón Adicional</a>
                             </li>
                             <li>   
                                 <a href="../pages/create_headquarters.php">Crear Sede</a>
