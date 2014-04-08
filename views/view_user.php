@@ -23,12 +23,12 @@ if (!isset($Usuario->return)) {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -96,19 +96,13 @@ if (!isset($Usuario->return)) {
         </div>
 
         <div id="middle">
-
             <div class="container app-container">
-
-                  <?php
-			 Menu($SedeRol);
-			 ?>  
+                <?php
+                Menu($SedeRol);
+                ?>  
                 <!--Caso pantalla uno-->
                 <div class="row-fluid">
-
                     <div class="span2">
-
-
-
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
                                 <a href="../pages/inbox.php"> Atrás </a>
@@ -116,18 +110,10 @@ if (!isset($Usuario->return)) {
                             <li>   
                                 <a href="../pages/edit_user.php"> Editar Usuario </a>
                             </li>
-                            
-                             <li>   
+                            <li>   
                                 <a href="../pages/mailboxs.php"> Editar Buzón </a>
                             </li>
-
-
-
-
                         </ul>
-
-
-
                     </div>
 
                     <div class="span10" align="center">
@@ -140,45 +126,34 @@ if (!isset($Usuario->return)) {
                                         <td style="text-align:center"><?php echo $Usuario->return->nombreusu; ?></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center"><b>Apellido</b></td>
                                         <td style="text-align:center"><?php echo $apellido; ?></td>
                                     </tr>
-
-                                    <td style="text-align:center" width="50%"><b>Correo</b></td>
-                                    <td style="text-align:center"><?php echo $correo; ?></td>		
-                                    </tr>
-
                                     <tr>
-
+                                        <td style="text-align:center" width="50%"><b>Correo</b></td>
+                                        <td style="text-align:center"><?php echo $correo; ?></td>		
+                                    </tr>
+                                    <tr>
                                         <td style="text-align:center" width="50%"><b>Usuario</b></td>
                                         <td style="text-align:center"><?php echo $Usuario->return->userusu; ?>
                                         </td>		
                                     </tr>
                                     <tr>
-
-
-                                    <tr>
-
                                         <td style="text-align:center"><b>Teléfono 1</b></td>
                                         <td style="text-align:center"><?php echo $telefono1; ?></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center"><b>Teléfono 2</b></td>
                                         <td style="text-align:center"><?php echo $telefono2; ?></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center"><b>Dirección 1</b></td>
                                         <td style="text-align:center"><?php echo $direccion1; ?></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center"><b>Dirección 2</b></td>
                                         <td style="text-align:center"><?php echo $direccion2; ?></td>
                                     </tr>
-
                                 </table>
                             </div>
                         </div>

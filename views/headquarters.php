@@ -52,12 +52,10 @@
                 <div class="container">
                     <img alt="" src="../images/header-top-left.png" class="pull-left">
                     <div class="pull-right">
-
                     </div>
                 </div>
                 <div class="filter-area">
                     <div class="container">
-
                         <span lang="es">&nbsp;</span></div>
                 </div>
             </div>

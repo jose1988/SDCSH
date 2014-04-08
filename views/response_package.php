@@ -24,12 +24,12 @@ if (!isset($rowDocumentos->return)) {
         <link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
         <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
         <script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -78,8 +78,8 @@ if (!isset($rowDocumentos->return)) {
 
     <div class="container app-container">
         <?php
-                Menu($SedeRol);
-                ?>
+        Menu($SedeRol);
+        ?>
         <!--Caso pantalla uno-->
         <form method="post" ENCTYPE="multipart/form-data">
             <div class="row-fluid">
@@ -98,67 +98,62 @@ if (!isset($rowDocumentos->return)) {
                                 </td>
                             </tr>
                             <tr>
-                                        <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="199"  size="100" style="width:800px" title="Ingrese el asunto" autocomplete="off"  required><br></td>
-                                    </tr>
-                                   <tr>
-                                        <td>Tipo Doc:</td><td><select name="doc" required  title="Seleccione el tipo de documento">
-                                                <option value="" style="display:none">Seleccionar:</option>
+                                <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="199"  size="100" style="width:800px" title="Ingrese el asunto" autocomplete="off"  required><br></td>
+                            </tr>
+                            <tr>
+                                <td>Tipo Doc:</td><td><select name="doc" required  title="Seleccione el tipo de documento">
+                                        <option value="" style="display:none">Seleccionar:</option>
 
-<?php
-if (count($rowDocumentos->return) == 1) {
-    echo '<option value="' . $rowDocumentos->return->iddoc . '">' . $rowDocumentos->return->nombredoc . '</option>';
-} else {
-    for ($i = 0; $i < count($rowDocumentos->return); $i++) {
-        echo '<option value="' . $rowDocumentos->return[$i]->iddoc . '">' . $rowDocumentos->return[$i]->nombredoc . '</option>';
-    }
-}
-?>
+                                        <?php
+                                        if (count($rowDocumentos->return) == 1) {
+                                            echo '<option value="' . $rowDocumentos->return->iddoc . '">' . $rowDocumentos->return->nombredoc . '</option>';
+                                        } else {
+                                            for ($i = 0; $i < count($rowDocumentos->return); $i++) {
+                                                echo '<option value="' . $rowDocumentos->return[$i]->iddoc . '">' . $rowDocumentos->return[$i]->nombredoc . '</option>';
+                                            }
+                                        }
+                                        ?>
 
-                                            </select><br></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Prioridad:</td><td><select name="prioridad" required  title="Seleccione la prioridad">
-                                                <option value="" style="display:none">Seleccionar:</option>                                  
-                                                <?php
-                                                if (count($rowPrioridad->return) == 1) {
-                                                    echo '<option value="' . $rowPrioridad->return->idpri . '">' . $rowPrioridad->return->nombrepri . '</option>';
-                                                } else {
-                                                    for ($i = 0; $i < count($rowPrioridad->return); $i++) {
-                                                        echo '<option value="' . $rowPrioridad->return[$i]->idpri . '">' . $rowPrioridad->return[$i]->nombrepri . '</option>';
-                                                    }
-                                                }
-                                                ?>
-                                            </select><br></td>
-                                    </tr>
-                                    <tr>
-                                     <td> Fragil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es fragil"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Imagen del paquete(opcional):</td><td>
-                                            <input id="imagen" name="imagen" type="file" maxlength="199" onBlur='LimitAttach(this);'/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Comentario del paquete: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="1999"  style="width:800px" title="Ingrese un comentario" required>...</textarea><br></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Desea recibir respuesta de este paquete: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta"></td>
-                                    </tr>
+                                    </select><br></td>
+                            </tr>
+                            <tr>
+                                <td>Prioridad:</td><td><select name="prioridad" required  title="Seleccione la prioridad">
+                                        <option value="" style="display:none">Seleccionar:</option>                                  
+                                        <?php
+                                        if (count($rowPrioridad->return) == 1) {
+                                            echo '<option value="' . $rowPrioridad->return->idpri . '">' . $rowPrioridad->return->nombrepri . '</option>';
+                                        } else {
+                                            for ($i = 0; $i < count($rowPrioridad->return); $i++) {
+                                                echo '<option value="' . $rowPrioridad->return[$i]->idpri . '">' . $rowPrioridad->return[$i]->nombrepri . '</option>';
+                                            }
+                                        }
+                                        ?>
+                                    </select><br></td>
+                            </tr>
+                            <tr>
+                                <td> Fragil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es fragil"></td>
+                            </tr>
+                            <tr>
+                                <td>Imagen del paquete(opcional):</td><td>
+                                    <input id="imagen" name="imagen" type="file" maxlength="199" onBlur='LimitAttach(this);'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Comentario del paquete: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="1999"  style="width:800px" title="Ingrese un comentario" required>...</textarea><br></td>
+                            </tr>
+                            <tr>
+                                <td>Desea recibir respuesta de este paquete: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta"></td>
+                            </tr>
+                            <tr>          
+                                <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrá modificar la correspondencia')" value="Respuesta Correspondecia" name="enviar"><br>
+                                </td>
+                            </tr>
 
-                                        <tr>          
-                                            <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrá modificar la correspondencia')" value="Respuesta Correspondecia" name="enviar"><br>
-                                            </td>
-                                        </tr>
-
-                                </table>
+                        </table>
                     </div>
                 </div>
             </div>
         </form>
-        <!-- /container -->
-        <div id="footer" class="container">    	
-        </div>
-
     </div>
     <script>
                                         function LimitAttach(tField) {

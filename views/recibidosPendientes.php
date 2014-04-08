@@ -20,12 +20,12 @@ session_start();
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -85,18 +85,18 @@ session_start();
                         </ul>
                         <?php if ($_SESSION["Usuario"] == "operador") { ?>
                             <a href="operator_level.php" ><button type="button" class="btn btn-info btn-primary " value="Recibir paquete">  Recibir paquete del usuario  </button> </a>
-                        <?php
+                            <?php
                         }
                         if ($_SESSION["Usuario"] == "operadorsede") {
                             ?>
                             <a href="headquarters_operator.php" > <button type="button"class="btn btn-info btn-primary"  value="Recibir paquete">  Recibir paquete del usuario   </button> </a>
-                        <?php
+                            <?php
                         }
                         if ($_SESSION["Usuario"] == "empaquetador") {
                             ?>
                             <a href="create_valise.php" ><button type="button" class="btn btn-info btn-primary" value="Realizar Valija">   Realizar Valija para enviar  </button> </a>
-<?php }
-?>
+                        <?php }
+                        ?>
                     </div>
 
                     <div class="span10">

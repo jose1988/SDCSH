@@ -8,7 +8,7 @@
         <meta name="author" content="">
 
         <!-- javascript -->
-      
+
         <script type='text/javascript' src="js/jquery-1.9.1.js"></script>
         <script type='text/javascript' src="js/bootstrap.js"></script>
         <script type='text/javascript' src="js/bootstrap-transition.js"></script>
@@ -21,8 +21,8 @@
 
         <!-- styles -->
         <link rel="shortcut icon" href="images/faviconsh.ico">
-       
-       
+
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-combined.min.css" rel="stylesheet">
@@ -45,9 +45,7 @@
 
     </head>
 
-
     <body class="appBg">
-
         <div id="header">
             <div class="container header-top-top hidden-phone">
                 <img alt="" src="images/header-top-top-left.png" class="pull-left">
@@ -62,17 +60,13 @@
                 </div>
                 <div class="filter-area">
                     <div class="container">
-
                         <span lang="es">&nbsp;</span></div>
                 </div>
             </div>
         </div>
 
         <div id="middle">
-
             <div class="container app-container">
-
-
                 <div>
                     <ul class="nav nav-pills">
                         <li class="pull-left">
@@ -86,7 +80,6 @@
 
                 <!--Caso pantalla uno-->
                 <div class="tab-content">
-
                     <div id="logueo" align="center">
                         <form class="form-signin" method="post">
                             <h3 class="form-signin-heading">Por favor, inicie sesión</h3>
@@ -94,16 +87,8 @@
                             <input type="password" class="input-block-level" placeholder="Contraseña" name="password" id="password" maxlength="34"  required>
                             <button class="btn btn-large btn-info" type="submit" name="Biniciar">Iniciar Sesión</button>
                         </form>
-
                     </div>
-
                 </div>
-
-                <!-- /container -->
-                <div id="footer" class="container">    	
-                </div>
-
-
             </div>
 
     </body>

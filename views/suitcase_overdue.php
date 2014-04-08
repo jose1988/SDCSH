@@ -22,12 +22,12 @@ if (!isset($SedeRol->return)) {
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -71,8 +71,8 @@ if (!isset($SedeRol->return)) {
         <div id="middle">
             <div class="container app-container">
                 <?php
-			 Menu($SedeRol);
-			 ?>   
+                Menu($SedeRol);
+                ?>   
 
                 <!--Caso pantalla uno-->
                 <div class="row-fluid">
@@ -87,78 +87,68 @@ if (!isset($SedeRol->return)) {
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
                                 <h2>Valijas que no han sido Entregadas</h2>
-<?php
-if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
-
-    echo "<br>";
-    ?>
-
-
+                                <?php
+                                if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
+                                    echo "<br>";
+                                    ?>
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                         <thead bgcolor='#FF0000'>
                                             <tr>	
-											  <th style='width:7%; text-align:center' data-sort-ignore="true">Código</th>
-											  <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
+                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Código</th>
+                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha del Envio</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-    <?php
-	if(isset($ValijasDestino->return)){
-											if (count($ValijasDestino->return) == 1) {
-       
-        ?>
-                                                <tr class="success">     
-												 <td style='text-align:center'><?php echo $ValijasDestino->return->idval; ?></td>
-                                                    <td style='text-align:center'><?php echo $ValijasDestino->return->origenval->nombresed; ?></td>
-													<td style='text-align:center'><?php echo $ValijasDestino->return->destinoval->nombresed; ?></td>
-                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return->fechaval, 0, 10))); ?></td>
-                                                </tr>   
-                                                <?php
-                                            } else {
-                                                for ($i = 0; $i < count($ValijasDestino->return); $i++) {
-                                            
+                                            <?php
+                                            if (isset($ValijasDestino->return)) {
+                                                if (count($ValijasDestino->return) == 1) {
                                                     ?>
                                                     <tr class="success">     
-													 <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->idval; ?></td>
-                                                        <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->origenval->nombresed; ?></td>
-                                                        <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->destinoval->nombresed; ?></td>
-                                                      <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return[$i]->fechaval, 0, 10))); ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasDestino->return->idval; ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasDestino->return->origenval->nombresed; ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasDestino->return->destinoval->nombresed; ?></td>
+                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return->fechaval, 0, 10))); ?></td>
                                                     </tr>   
                                                     <?php
-                                                }
-                                            }//fin else
-											}
-	if(isset($ValijasOrigen->return)){
-    if (count($ValijasOrigen->return) == 1) {
-     
-        ?>
-                                                <tr class="info">     
-												 <td style='text-align:center'><?php echo $ValijasOrigen->return->idval; ?></td>
-												    <td style='text-align:center'><?php echo $ValijasOrigen->return->origenval->nombresed; ?></td>
-                                                    <td style='text-align:center'><?php echo $ValijasOrigen->return->destinoval->nombresed; ?></td>
-                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return->fechaval, 0, 10))); ?></td>
-                                                </tr>   
-                                                <?php
-                                            } else {
-                                                for ($i = 0; $i < count($ValijasOrigen->return); $i++) {
-                                                 
+                                                } else {
+                                                    for ($i = 0; $i < count($ValijasDestino->return); $i++) {
+                                                        ?>
+                                                        <tr class="success">     
+                                                            <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->idval; ?></td>
+                                                            <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->origenval->nombresed; ?></td>
+                                                            <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->destinoval->nombresed; ?></td>
+                                                            <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return[$i]->fechaval, 0, 10))); ?></td>
+                                                        </tr>   
+                                                        <?php
+                                                    }
+                                                }//fin else
+                                            }
+                                            if (isset($ValijasOrigen->return)) {
+                                                if (count($ValijasOrigen->return) == 1) {
                                                     ?>
                                                     <tr class="info">     
-													<td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->idval; ?></td>
-											  <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->origenval->nombresed; ?></td>
-                                                        <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->destinoval->nombresed; ?></td>
-                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return[$i]->fechaval, 0, 10))); ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasOrigen->return->idval; ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasOrigen->return->origenval->nombresed; ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasOrigen->return->destinoval->nombresed; ?></td>
+                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return->fechaval, 0, 10))); ?></td>
                                                     </tr>   
                                                     <?php
-                                                }
-                                            }//fin else
-											}
-											
-                                            ?>  
-                                           
-											
+                                                } else {
+                                                    for ($i = 0; $i < count($ValijasOrigen->return); $i++) {
+                                                        ?>
+                                                        <tr class="info">     
+                                                            <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->idval; ?></td>
+                                                            <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->origenval->nombresed; ?></td>
+                                                            <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->destinoval->nombresed; ?></td>
+                                                            <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return[$i]->fechaval, 0, 10))); ?></td>
+                                                        </tr>   
+                                                        <?php
+                                                    }
+                                                }//fin else
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                     <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
@@ -167,21 +157,15 @@ if (isset($ValijasOrigen->return) || isset($ValijasDestino->return)) {
                                 } else {
                                     echo "<br>";
                                     echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No hay Paquetes con Fechas Vencidas en estos Momentos  </h4>
-		</div> ";
+									<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+									<h4 align='center'>No hay Paquetes con Fechas Vencidas en estos Momentos  </h4>
+									</div> ";
                                 }
-                                ?>			  
-
-
+                                ?>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- /container -->
-            <div id="footer" class="container">    	
             </div>
         </div>
 

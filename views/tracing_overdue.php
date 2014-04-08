@@ -22,12 +22,12 @@ if (!isset($SedeRol->return)) {
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -70,9 +70,9 @@ if (!isset($SedeRol->return)) {
 
         <div id="middle">
             <div class="container app-container">
-             <?php
-			 Menu($SedeRol);
-			 ?>  
+                <?php
+                Menu($SedeRol);
+                ?>  
 
                 <!--Caso pantalla uno-->
                 <div class="row-fluid">
@@ -87,48 +87,49 @@ if (!isset($SedeRol->return)) {
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
                                 <h2>Correspondencia que no ha sido confirmada con tiempo vencido</h2>
-<?php
-if (isset($PaquetesDestino->return)) {
+                                <?php
+                                if (isset($PaquetesDestino->return)) {
 
-    echo "<br>";
-    ?>
+                                    echo "<br>";
+                                    ?>
 
 
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                         <thead bgcolor='#FF0000'>
                                             <tr>	
                                                 <th style='width:7%; text-align:center'>Origen</th>
-												<th style='width:7%; text-align:center'>Destino</th>
+                                                <th style='width:7%; text-align:center'>Destino</th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
                                                 <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Emisión</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-    <?php
-    if (count($PaquetesDestino->return) == 1) {
-        if (strlen($PaquetesDestino->return->asuntopaq) > 10) {
-            $asunto = substr($PaquetesDestino->return->asuntopaq, 0, 10) . "...";
-        } else {
-            $asunto = $PaquetesDestino->return->asuntopaq;
-        }
-        ?>
+                                            <?php
+                                            if (count($PaquetesDestino->return) == 1) {
+                                                if (strlen($PaquetesDestino->return->asuntopaq) > 10) {
+                                                    $asunto = substr($PaquetesDestino->return->asuntopaq, 0, 10) . "...";
+                                                } else {
+                                                    $asunto = $PaquetesDestino->return->asuntopaq;
+                                                }
+                                                ?>
                                                 <tr>     
                                                     <td  style='text-align:center'><?php echo $PaquetesDestino->return->origenpaq->idusu->nombreusu . " " . $PaquetesDestino->return->origenpaq->idusu->apellidousu; ?></td>
                                                     <td  style='text-align:center'><?php echo $PaquetesDestino->return->destinopaq->idusu->nombreusu . " " . $PaquetesDestino->return->destinopaq->idusu->apellidousu; ?></td>
                                                     <td style='text-align:center'><?php echo $asunto; ?></td>
                                                     <td style='text-align:center'><?php echo $PaquetesDestino->return->iddoc->nombredoc; ?></td>
-                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesDestino->return->fechapaq, 0, 10))); ; ?></td>
+                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesDestino->return->fechapaq, 0, 10)));
+                                        ; ?></td>
                                                 </tr>   
-        <?php
-    } else {
-        for ($i = 0; $i < count($PaquetesDestino->return); $i++) {
-            if (strlen($PaquetesDestino->return[$i]->asuntopaq) > 10) {
-                $asunto = substr($PaquetesDestino->return[$i]->asuntopaq, 0, 10) . "...";
-            } else {
-                $asunto = $PaquetesDestino->return[$i]->asuntopaq;
-            }
-            ?>
+                                                <?php
+                                            } else {
+                                                for ($i = 0; $i < count($PaquetesDestino->return); $i++) {
+                                                    if (strlen($PaquetesDestino->return[$i]->asuntopaq) > 10) {
+                                                        $asunto = substr($PaquetesDestino->return[$i]->asuntopaq, 0, 10) . "...";
+                                                    } else {
+                                                        $asunto = $PaquetesDestino->return[$i]->asuntopaq;
+                                                    }
+                                                    ?>
                                                     <tr>     
                                                         <td  style='text-align:center'><?php echo $PaquetesDestino->return[$i]->origenpaq->idusu->nombreusu . " " . $PaquetesDestino->return[$i]->origenpaq->idusu->apellidousu; ?></td>
                                                         <td  style='text-align:center'><?php echo $PaquetesDestino->return[$i]->destinopaq->idusu->nombreusu . " " . $PaquetesDestino->return[$i]->destinopaq->idusu->apellidousu; ?></td>
@@ -136,33 +137,27 @@ if (isset($PaquetesDestino->return)) {
                                                         <td style='text-align:center'><?php echo $PaquetesDestino->return[$i]->iddoc->nombredoc; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesDestino->return[$i]->fechapaq, 0, 10))); ?></td>
                                                     </tr>   
-            <?php
-        }
-    }//fin else
-    ?>  
+                                                    <?php
+                                                }
+                                            }//fin else
+                                            ?>  
                                         </tbody>
                                     </table>
                                     <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
 
-    <?php
-} else {
-    echo "<br>";
-    echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No hay Correspondencia con Tiempos Vencidos en estos Momentos  </h4>
-		</div> ";
-}
-?>			  
-
-
+                                    <?php
+                                } else {
+                                    echo "<br>";
+                                    echo"<div class='alert alert-block' align='center'>
+									<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+									<h4 align='center'>No hay Correspondencia con Tiempos Vencidos en estos Momentos  </h4>
+									</div> ";
+                                }
+                                ?>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- /container -->
-            <div id="footer" class="container">    	
             </div>
         </div>
 

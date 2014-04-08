@@ -117,41 +117,31 @@ if (!isset($Usuario->return)) {
                                         <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" value="<?php echo $Usuario->return->nombreusu; ?>" maxlength="150" size="30"  autofocus required></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center">Apellido</td>
                                         <td style="text-align:center"><input type="text" name="apellido" id="apellido" autocomplete="off" value="<?php echo $apellido; ?>" maxlength="150" size="30"  ></td>
                                     </tr>
-
-                                    <td style="text-align:center" width="50%">Correo</td>
-                                    <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" value="<?php echo $correo; ?>" maxlength="100" size="50" >	 
-                                    </td>		
-
-                                    </tr>
-
                                     <tr>
-
+                                        <td style="text-align:center" width="50%">Correo</td>
+                                        <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" value="<?php echo $correo; ?>" maxlength="100" size="50" >	 
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td style="text-align:center" width="50%">Usuario</td>
                                         <td style="text-align:center"><input type="text" name="usuario" id="usuario"  value="<?php echo $Usuario->return->userusu; ?>" size="30"   disabled>
                                         </td>		
                                     </tr>
-
                                     <tr>
-
                                         <td style="text-align:center">Teléfono 1</td>
                                         <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" value="<?php echo $telefono1; ?>" maxlength="50" size="30"    ></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center">Teléfono 2</td>
                                         <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" value="<?php echo $telefono2; ?>" maxlength="50" size="30"  ></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center">Dirección 1</td>
                                         <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1"  maxlength="2000" style="width:800px"><?php echo $direccion1; ?></textarea></td>
                                     </tr>
-
-
                                 </table><br>
                                 <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" onclick="return confirm('¿Esta seguro que desea guardar los cambios?')" type="submit">Guardar</button></div>
                                 <br>

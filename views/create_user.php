@@ -144,8 +144,7 @@ if (!isset($Sedes->return)) {
                                 <tr>
                                     <td style="text-align:center">Área de Trabajo</td>
                                     <td style="text-align:center"><select id="area" name="area"  required  title="Seleccione el área de trabajo a la que pertenece">
-                                            <option value="" style="display:none">Seleccionar:</option>  
-
+                                            <option value="" style="display:none">Seleccionar:</option>
                                         </select></td>
                                 </tr>
                                 <tr>
@@ -156,7 +155,6 @@ if (!isset($Sedes->return)) {
                                     <td style="text-align:center" >Dirección</td>
                                     <td style="text-align:center"><textarea  style="width:500px;"   id="direccion1" name="direccion1" maxlength="2000"  style="width:800px" ></textarea></td>
                                 </tr>
-
                             </table>
                             <br>
                             <div class="span11" align="center"><button class="btn" id="crear" name="crear" type="submit">Guardar</button></div>

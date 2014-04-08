@@ -139,10 +139,7 @@ if (!isset($Sedes->return)) {
                     success: function(response) {
                         $("#area").html(response);
                     }
-
                 });
-
-
             }
         </script>
         <script src="../js/footable.js" type="text/javascript"></script>
