@@ -17,7 +17,7 @@ try {
             $client->decode_utf8 = false;
             $res = $client->insertarUsuarioSedeXAdicional($datosB);
             if ($res->return == 1) {
-                javaalert('Sede asignado con exito');
+                javaalert('Buzon asignado con exito');
                 iraURL('../pages/administration.php');
             } else {
                 javaalert('Error al realizar la operacion');

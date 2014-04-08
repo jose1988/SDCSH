@@ -78,7 +78,7 @@
 
                     <div class="span10" align="center">
                         <div class="tab-content" id="lista" align="center">
-                            <h2> <strong> Asignar Sede </strong> </h2>
+                            <h2> <strong> Asignar Buzón Adicional </strong> </h2>
                             <h2>
                                 <form class="form-Dvalija" method="post" id="fval">
                                     Usuario:  <input placeholder="Ejm. jose.fuentes" type="text" id="usuario" name="usuario" class="input-medium search-query">
