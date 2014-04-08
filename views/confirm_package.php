@@ -85,7 +85,7 @@ if (!isset($SedeRol->return)) {
                                 <a href="confirmed_user.php">Procesados</a>
                             </li>
                             <?php
-                            if ($SedeRol->return->idrol->idrol == 1 || $SedeRol->return->idrol->idrol == 3) {
+                            if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") {
                                 ?>
                                 <li>   
                                     <a href="print_packages_confirmed.php">Imprimir</a>
@@ -94,7 +94,7 @@ if (!isset($SedeRol->return)) {
                             }
                             ?>
                             <?php
-                            if ($SedeRol->return->idrol->idrol == 1) {
+                            if ($SedeRol->return->idrol->idrol == "1") {
                                 ?>
                                 <li>   
                                     <a href="package_area.php">Paquetes por buscar</a>
