@@ -10,7 +10,7 @@ try {
     } elseif (!usuarioCreado()) {
         iraURL("../pages/create_user.php");
     }
-    
+
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
@@ -19,16 +19,16 @@ try {
     $Sedes = $client->ConsultarSedes();
     $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
-    $reg = 0;
-    if (isset($Sedes->return)) {
-        $reg = count($Sedes->return);
-    }
     if (isset($SedeRol->return)) {
-        if ($SedeRol->return->idrol->idrol == 0) {
-            iraURL("../pages/inbox.php");
+        if ($SedeRol->return->idusu->tipousu != "1" && $SedeRol->return->idusu->tipousu != "2") {
+            iraURL('../pages/inbox.php');
         }
     } else {
         iraURL('../pages/inbox.php');
+    }
+    $reg = 0;
+    if (isset($Sedes->return)) {
+        $reg = count($Sedes->return);
     }
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');

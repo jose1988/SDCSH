@@ -15,9 +15,15 @@ try {
     $client->decode_utf8 = false;
     $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
+    if (isset($SedeRol->return)) {
+        if ($SedeRol->return->idusu->tipousu != "1" && $SedeRol->return->idusu->tipousu != "2") {
+            iraURL('../pages/inbox.php');
+        }
+    } else {
+        iraURL('../pages/inbox.php');
+    }
+
     $org = $client->listarSedes();
-
-
     if (!isset($org->return)) {
         javaalert("lo sentimos no se pueden crear sedes, no existen organizaciones registradas, Consulte con el administrador");
         iraURL('../pages/inbox.php');

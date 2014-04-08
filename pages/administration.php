@@ -9,7 +9,7 @@ try {
     $client->decode_utf8 = false;
     $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
-    
+
     if (!isset($_SESSION["Usuario"])) {
         iraURL("../index.php");
     } elseif (!usuarioCreado()) {
@@ -17,8 +17,8 @@ try {
     }
     if (isset($SedeRol->return)) {
         if ($_SESSION["Usuario"]->return->tipousu != "1" && $_SESSION["Usuario"]->return->tipousu != "2") {
-    		iraURL('../pages/inbox.php');
-		}
+            iraURL('../pages/inbox.php');
+        }
     } else {
         iraURL('../pages/inbox.php');
     }

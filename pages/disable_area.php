@@ -15,6 +15,14 @@ try {
     $client->decode_utf8 = false;
     $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
+    if (isset($SedeRol->return)) {
+        if ($SedeRol->return->idusu->tipousu != "1" && $SedeRol->return->idusu->tipousu != "2") {
+            iraURL('../pages/inbox.php');
+        }
+    } else {
+        iraURL('../pages/inbox.php');
+    }
+
     $Sedes = $client->consultarSedes();
     if (!isset($Sedes->return)) {
         javaalert("lo sentimos no se pueden deshabilitar areas, no existen sedes registradas, consulte con el administrador");

@@ -77,13 +77,13 @@
                                 <a href="../pages/misguidance_report.php">Repotar Extravió</a>
                             </li>
                             <li>   
-                                <a href="../pages/assign_headquarters.php">Buzon Adicional</a>
+                                <a href="#">Buzón Adicional</a>
                             </li>
                             <li>   
                                 <a href="../pages/create_headquarters.php">Crear Sede</a>
                             </li>
                             <li>   
-                                <a href="../pages/create_area.php">Crear Area de Trabajo</a>
+                                <a href="../pages/create_area.php">Crear Área de Trabajo</a>
                             </li>
                             <li>   
                                 <a href="../pages/disable_area.php">Deshabilitar Area</a>
@@ -93,15 +93,18 @@
                             </li>
                             <li>   
                                 <a href="../pages/create_provider.php">Crear Proveedor</a>
+                            </li>                            
+                            <li>   
+                                <a href="../pages/reports_valise.php">Estadísticas De Valijas</a>
+                            </li>                            
+                            <li>   
+                                <a href="../pages/reports_package.php">Estadísticas Paquetes</a>
                             </li>
                             <li>   
                                 <a href="../pages/vacuum_bitacora.php">Bitácora</a>
                             </li>
                             <li>   
-                                <a href="../pages/reports_valise.php">Estadísticas De Valijas</a>
-                            </li> 
-                            <li>   
-                                <a href="../pages/reports_package.php">Estadísticas De Paquetes</a>
+                                <a href="../pages/level_time.php">Editar Tiempo en Área</a>
                             </li>
                             <?php
                             $i = 0;

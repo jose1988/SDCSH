@@ -15,15 +15,22 @@ try {
     $client->decode_utf8 = false;
     $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
-    $org = $client->ConsultarOrganizaciones();
+    if (isset($SedeRol->return)) {
+        if ($SedeRol->return->idusu->tipousu != "1" && $SedeRol->return->idusu->tipousu != "2") {
+            iraURL('../pages/inbox.php');
+        }
+    } else {
+        iraURL('../pages/inbox.php');
+    }
 
+    $org = $client->ConsultarOrganizaciones();
     if (!isset($org->return)) {
         javaalert("lo sentimos no se pueden crear sedes, no existen organizaciones registradas, consulte con el administrador");
         iraURL('../pages/inbox.php');
     }
 
     if (isset($_POST["crear"])) {
-        if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["direccion"]) && $_POST["direccion"] != "" && isset($_POST["telefono"]) && $_POST["telefono"] != ""  && isset($_POST["codigo"]) && $_POST["codigo"] != "" && isset($_POST["organizacion"]) && $_POST["organizacion"] != "") {
+        if (isset($_POST["nombre"]) && $_POST["nombre"] != "" && isset($_POST["direccion"]) && $_POST["direccion"] != "" && isset($_POST["telefono"]) && $_POST["telefono"] != "" && isset($_POST["codigo"]) && $_POST["codigo"] != "" && isset($_POST["organizacion"]) && $_POST["organizacion"] != "") {
 
             $result = 0;
             try {
@@ -49,10 +56,10 @@ try {
                     'direccionsed' => $direccion,
                     'telefonosed' => $telefono,
                     'telefono2sed' => $telefono2,
-					 'idorg' => $_POST["organizacion"],
-					'borradosed' => "0",
-					'codigosed' => $_POST["codigo"]
-                   );
+                    'idorg' => $_POST["organizacion"],
+                    'borradosed' => "0",
+                    'codigosed' => $_POST["codigo"]
+                );
                 $parametros = array('registroSede' => $Sedenueva, 'idorg' => $_POST["organizacion"]);
                 $guardo = $client->insertarSede($parametros);
 

@@ -1,5 +1,5 @@
 <?php
-if ($usu== "") {
+if ($usu == "") {
     echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
 ?>
@@ -22,12 +22,12 @@ if ($usu== "") {
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -79,7 +79,7 @@ if ($usu== "") {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/inbox.php">
+                                <a href="../pages/administration.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -87,14 +87,13 @@ if ($usu== "") {
                     </div>
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
-                          <form class="form-signin" method="post">
-                            <div class="tab-content">
-                                <div class="row-fluid">
-                                    <strong> <h2 align="center">Tiempo en areas</h2> </strong>
-                                    
-                                    <div class="span5" align="right"><strong> Prioridad: </strong></div>
-                                    <div class="span3" align="left">
-                                     <select id="prioridad" name="prioridad" required onChange="areas();" title="Seleccione la prioridad">
+                            <form class="form-signin" method="post">
+                                <div class="tab-content">
+                                    <div class="row-fluid">
+                                        <strong> <h2 align="center">Tiempo en Áreas</h2> </strong>
+                                        <div class="span5" align="right"><strong> Prioridad: </strong></div>
+                                        <div class="span3" align="left">
+                                            <select id="prioridad" name="prioridad" required onChange="areas();" title="Seleccione la prioridad">
                                                 <option value="" style="display:none">Seleccionar:</option>                                  
                                                 <?php
                                                 if (count($rowPrioridad->return) == 1) {
@@ -106,70 +105,51 @@ if ($usu== "") {
                                                 }
                                                 ?>
                                             </select>
-                                    
+                                        </div>
+                                        <div class="span5" align="right"><strong>Área:</strong></div>
+                                        <div class="span3" align="left">
+                                            <select id="area" name="area"  required  title="Seleccione el área">
+                                                <option value="" style="display:none">Seleccionar:</option>
+                                            </select>
+                                        </div>
+                                        <div class="span5" align="right"><strong>Tiempo en horas:</strong></div>
+                                        <div class="span3" align="left">
+                                            <input type="text" class="input-block-level" name="hora" id="hora" placeholder="Ej. 3" title="Ingrese la hora del nivel" autocomplete="off" pattern="[0-9]{1,500}" autofocus required>
+                                        </div>
+                                        <div class="span5" align="right"><strong></strong></div>
+                                        <div class="span3" align="left">
+                                            <button class="btn" type="submit" id="Guardar" name="Guardar" onclick="return confirm('¿Esta seguro que desea cambiar la hora del nivel?')">Guardar</button>
+                                        </div>
+                                    </div>
                                 </div>
-                              
-                                    <div class="span5" align="right"><strong>Area:</strong></div>
-                                    <div class="span3" align="left">
-                                      <select id="area" name="area"  required  title="Seleccione el Área">
-                              <option value="" style="display:none">Seleccionar:</option>  
-                                   
-                                </select>
-                                
-                                
-                                </div>
-                              
-                                
-                                 <div class="span5" align="right"><strong>Tiempo en horas:</strong></div>
-                                    <div class="span3" align="left">
-                                     <input type="text" class="input-block-level" name="hora" id="hora" placeholder="Ej. 3" title="Ingrese la hora del nivel" autocomplete="off" pattern="[0-9]{1,500}" autofocus required>  
-                                
-                                
-                                </div>
-                              
-                                  <div class="span5" align="right"><strong></strong></div>
-                                    <div class="span3" align="left">
-                                <button class="btn" type="submit" id="Guardar" name="Guardar" onclick="return confirm('¿Esta seguro que desea cambiar la hora del nivel?')">Guardar</button>
-                            </div>
-                            </div>
-                                </div>
-                        </form>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- /container -->
-        <div id="footer" class="container">    	
-        </div>
-    </div>
-
     <script>
-    	window.onload = function() {
-        	killerSession();
-        }
-        function killerSession() {
-        	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        }
-		
-		
-		function areas(){
-		 //posicion
-        var $selectedOption = $('#prioridad').find('option:selected');
+	window.onload = function() {
+		killerSession();
+	}
+	function killerSession() {
+		setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+	}
+	
+	function areas() {
+		//posicion
+		var $selectedOption = $('#prioridad').find('option:selected');
 		var id = $selectedOption.val();
 		$.ajax({
-           type: "POST",
-           url: "../ajax/areas.php",
-           data: {'id':id},
-           dataType: "text",
-                success:  function (response) {
-                       $("#area").html(response);
-					}
-		
-	    }); 
-		
-		
+			type: "POST",
+			url: "../ajax/areas.php",
+			data: {'id': id},
+			dataType: "text",
+			success: function(response) {
+				$("#area").html(response);
+			}
+		});
 	}
     </script>
 
