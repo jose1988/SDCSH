@@ -82,125 +82,119 @@ if (!isset($SedeRol->return)) {
                         <form class="form-signin" method="post" name="formulario" id="formulario">
                             <div class="tab-content">
                                 <div class="row-fluid">
-                                  <div id="data">
-                                       <?php
-if (isset($PaquetesExternos->return)) {
+                                    <div id="data">
+                                        <?php
+                                        if (isset($PaquetesExternos->return)) {
 
-    echo "<br>";
-    ?>
+                                            echo "<br>";
+                                            ?>
 
-                                        <h2>Envio de Correspondencia Externa</h2>
-                                        <table class='footable table table-striped table-bordered' data-page-size='10'>    
-                                            <thead bgcolor='#FF0000'>
-                                                <tr>	
-                                                    <th style='width:7%; text-align:center'>Origen</th>
-                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
-                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
-                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">C/R</th>
-                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha</th>
-                                                    <th style='width:7%; text-align:center' data-sort-ignore="true">Enviar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-    <?php
-    if (count($PaquetesExternos->return) == 1) {
-        if ($PaquetesExternos->return->respaq == "0") {
-            $rta = "No";
-        } else {
-            $rta = "Si";
-        }
-        if (strlen($PaquetesExternos->return->asuntopaq) > 10) {
-            $asunto = substr($PaquetesExternos->return->asuntopaq, 0, 10) . "...";
-        } else {
-            $asunto = $PaquetesExternos->return->asuntopaq;
-        }
-        ?>
-                                                    <tr>     
-                                                        <td  style='text-align:center'><?php echo $PaquetesExternos->return->origenpaq->idusu->nombreusu . " " . $PaquetesExternos->return->origenpaq->idusu->apellidousu; ?></td>
-                                                        <td style='text-align:center'><?php echo $PaquetesExternos->return->destinopaq->nombrebuz; ?></td>
-                                                        <td style='text-align:center'><?php echo $asunto; ?></td>
-                                                        <td style='text-align:center'><?php echo $rta; ?></td>
-                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesExternos->return->fechapaq, 0, 10))); ?></td>
-                                                        <td style='text-align:center'><input type="radio" name="ide" id="ide" value="<?php echo $PaquetesExternos->return->idpaq; ?>"></td>  
-                                                    </tr>   
-        <?php
-    } else {
-        for ($i = 0; $i < count($PaquetesExternos->return); $i++) {
-            if ($PaquetesExternos->return[$i]->respaq == "0") {
-                $rta = "No";
-            } else {
-                $rta = "Si";
-            }
-            if (strlen($PaquetesExternos->return[$i]->asuntopaq) > 10) {
-                $asunto = substr($PaquetesExternos->return[$i]->asuntopaq, 0, 10) . "...";
-            } else {
-                $asunto = $PaquetesExternos->return[$i]->asuntopaq;
-            }
-		
-            ?>
+                                            <h2>Envio de Correspondencia Externa</h2>
+                                            <table class='footable table table-striped table-bordered' data-page-size='10'>    
+                                                <thead bgcolor='#FF0000'>
+                                                    <tr>	
+                                                        <th style='width:7%; text-align:center'>Origen</th>
+                                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
+                                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
+                                                        <th style='width:7%; text-align:center' data-sort-ignore="true">C/R</th>
+                                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha</th>
+                                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Enviar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    if (count($PaquetesExternos->return) == 1) {
+                                                        if ($PaquetesExternos->return->respaq == "0") {
+                                                            $rta = "No";
+                                                        } else {
+                                                            $rta = "Si";
+                                                        }
+                                                        if (strlen($PaquetesExternos->return->asuntopaq) > 10) {
+                                                            $asunto = substr($PaquetesExternos->return->asuntopaq, 0, 10) . "...";
+                                                        } else {
+                                                            $asunto = $PaquetesExternos->return->asuntopaq;
+                                                        }
+                                                        ?>
                                                         <tr>     
-                                                            <td  style='text-align:center'><?php echo $PaquetesExternos->return[$i]->origenpaq->idusu->nombreusu . " " . $PaquetesExternos->return[$i]->origenpaq->idusu->apellidousu; ?></td>
-                                                            <td style='text-align:center'><?php echo $PaquetesExternos->return[$i]->destinopaq->nombrebuz; ?></td>
+                                                            <td  style='text-align:center'><?php echo $PaquetesExternos->return->origenpaq->idusu->nombreusu . " " . $PaquetesExternos->return->origenpaq->idusu->apellidousu; ?></td>
+                                                            <td style='text-align:center'><?php echo $PaquetesExternos->return->destinopaq->nombrebuz; ?></td>
                                                             <td style='text-align:center'><?php echo $asunto; ?></td>
                                                             <td style='text-align:center'><?php echo $rta; ?></td>
-                                                            <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesExternos->return[$i]->fechapaq, 0, 10))); ?></td>
-                                                            <td style='text-align:center'><input type="radio" name="ide" id="ide" value="<?php echo $PaquetesExternos->return[$i]->idpaq; ?>"></td>  
+                                                            <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesExternos->return->fechapaq, 0, 10))); ?></td>
+                                                            <td style='text-align:center'><input type="radio" name="ide" id="ide" value="<?php echo $PaquetesExternos->return->idpaq; ?>"></td>  
                                                         </tr>   
-            <?php
-        }
-    }//fin else
-    ?>  
-                                            </tbody>
-                                        </table>
-                                        <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>	
-<button class="btn" type="button" id="enviar" name="enviar" onClick="Paquete();">Seleccionar</button>										
+                                                        <?php
+                                                    } else {
+                                                        for ($i = 0; $i < count($PaquetesExternos->return); $i++) {
+                                                            if ($PaquetesExternos->return[$i]->respaq == "0") {
+                                                                $rta = "No";
+                                                            } else {
+                                                                $rta = "Si";
+                                                            }
+                                                            if (strlen($PaquetesExternos->return[$i]->asuntopaq) > 10) {
+                                                                $asunto = substr($PaquetesExternos->return[$i]->asuntopaq, 0, 10) . "...";
+                                                            } else {
+                                                                $asunto = $PaquetesExternos->return[$i]->asuntopaq;
+                                                            }
+                                                            ?>
+                                                            <tr>     
+                                                                <td  style='text-align:center'><?php echo $PaquetesExternos->return[$i]->origenpaq->idusu->nombreusu . " " . $PaquetesExternos->return[$i]->origenpaq->idusu->apellidousu; ?></td>
+                                                                <td style='text-align:center'><?php echo $PaquetesExternos->return[$i]->destinopaq->nombrebuz; ?></td>
+                                                                <td style='text-align:center'><?php echo $asunto; ?></td>
+                                                                <td style='text-align:center'><?php echo $rta; ?></td>
+                                                                <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesExternos->return[$i]->fechapaq, 0, 10))); ?></td>
+                                                                <td style='text-align:center'><input type="radio" name="ide" id="ide" value="<?php echo $PaquetesExternos->return[$i]->idpaq; ?>"></td>  
+                                                            </tr>   
+                                                            <?php
+                                                        }
+                                                    }//fin else
+                                                    ?>  
+                                                </tbody>
+                                            </table>
+                                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>	
+                                            <button class="btn" type="button" id="enviar" name="enviar" onClick="Paquete();">Seleccionar</button>										
 
-    <?php
-}else{
-echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No hay Correspondencia Externa por enviar</h4>
-		</div> ";
-}
-?>
-<br><br>
-                                
-
-                              </div>
+                                            <?php
+                                        } else {
+                                            echo"<div class='alert alert-block' align='center'>
+											<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+											<h4 align='center'>No hay Correspondencia Externa por enviar</h4>
+											</div> ";
+                                        }
+                                        ?>
+                                        <br><br>
+                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
-            <!-- /container -->
-            <div id="footer" class="container">    	
-            </div>
         </div>
 
         <script>
-        	window.onload = function() {
-            	killerSession();
-        	}
-        	function killerSession() {
-            	setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-        	}
-    	</script>
-<script>
+    window.onload = function() {
+        killerSession();
+    }
+    function killerSession() {
+        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+    }
+        </script>
+        <script>
 
             function Paquete() {
-			 elementos = document.getElementById("formulario").elements;
-     longitud = document.getElementById("formulario").length;
-     var selecciono=0;
-     for (var i = 0; i < longitud; i++){
-         if(elementos[i].type == "radio" && elementos[i].checked == true){
-             var idpaq = elementos[i].value;
-selecciono=1;break;
-         }
-     }
-                if (selecciono==1) {
-                   
+                elementos = document.getElementById("formulario").elements;
+                longitud = document.getElementById("formulario").length;
+                var selecciono = 0;
+                for (var i = 0; i < longitud; i++) {
+                    if (elementos[i].type == "radio" && elementos[i].checked == true) {
+                        var idpaq = elementos[i].value;
+                        selecciono = 1;
+                        break;
+                    }
+                }
+                if (selecciono == 1) {
+
                     var parametros = {
                         "idpaq": idpaq
                     };
