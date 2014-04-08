@@ -39,7 +39,7 @@ if ($reg > 0) {
                 echo "<td style='background-color: rgb(206, 200, 200);	text-align:center' data-sort-ignore='true'>" . $Areas->return[$j]->idatr . "</td>";
                 echo "<td style='text-align:left; background-color: rgb(206, 200, 200);'>" . $Areas->return[$j]->nombreatr . "</td>";
                 ?>
-                <td style='background-color: rgb(206, 200, 200)'> 
+                <td style='background-color: rgb(206, 200, 200); text-align:center'>
                     <button class='btn' onClick="cambiar('<?php echo $Areas->return[$j]->idatr; ?>', this);">
                         <span class="icon-refresh" > </span>
                     </button></td>
@@ -62,7 +62,7 @@ if ($reg > 0) {
             echo "<td style='background-color: rgb(206, 200, 200);	text-align:center' data-sort-ignore='true'>" . $Areas->return->idatr . "</td>";
             echo "<td style='text-align:left; background-color: rgb(206, 200, 200);'>" . $Areas->return->nombreatr . "</td>";
             ?>
-            <td style='background-color: rgb(206, 200, 200)'> 
+            <td style='background-color: rgb(206, 200, 200); text-align:center'> 
                 <button class='btn' onClick="cambiar('<?php echo $Areas->return->idatr; ?>', this);">
                     <span class="icon-refresh" > </span>
                 </button></td>
