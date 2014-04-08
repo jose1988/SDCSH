@@ -73,8 +73,8 @@ if (isset($_POST["enviar"])) {
             $paq = array('idpaq' => $idPaquete->return->idpaq);
             $bandejaorigen = $client->insertarBandejaOrigen($paq);
             $bandejaDestino = $client->insertarBandejaDestino($paq);
-            $paramPadre = array('idpaq' => $_GET['idpaqr'], 'status' => "2");
-            $statusPadre = $client->editarEstatusPaquete($paramPadre);
+            $paramPadre = array('idpaq' => $_GET['idpaqr']);
+            $ResPadre = $client->editarRespuestaPaquete($paramPadre);
             if ($_FILES['imagen']['name'] != "") {
                 $imagenName = $_FILES['imagen']['name'];
                 $caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; //posibles caracteres a usar
@@ -97,10 +97,10 @@ if (isset($_POST["enviar"])) {
                 $par = array('registroAdj' => $adj);
                 $Rta = $client->insertarAdjunto($par);
             }
-            if (!isset($envio->return) || !isset($bandejaorigen->return) || !isset($bandejaDestino->return) || !isset($statusPadre->return)) {
+            if (!isset($envio->return) || !isset($bandejaorigen->return) || !isset($bandejaDestino->return) || !isset($ResPadre->return)) {
                 javaalert("La correspondencia no ha podido ser enviada correctamente , por favor consulte con el administrador");
             } else {
-                if ($envio->return == "1" && $bandejaorigen->return == "1" && $bandejaDestino->return == "1" && $statusPadre->return == "1") {
+                if ($envio->return == "1" && $bandejaorigen->return == "1" && $bandejaDestino->return == "1" && $ResPadre->return == "1") {
                     javaalert("La correspondencia ha sido enviada");
 					$usuario = array('idusu' => $Paquete->return->destinopaq->idusu->idusu);
 					$parametros = array('registroPaquete' => $paq,
