@@ -111,7 +111,7 @@
 			<form> <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(" . $Bandeja->return[$j]->idpaq . ");' value='Realizar Valija'>  Confirmar </button> </form> </th>";
                 }
                 if ($aux == "Recibidas") {
-                    if ($Bandeja->return[$j]->respaq == 1) {
+                    if ($Bandeja->return[$j]->respaq == "1") {
                         echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
 			<a href='../pages/response_package.php?idpaqr=" . $Bandeja->return[$j]->idpaq . "'><button type='button' class='btn btn-info btn-primary' value='Responder'>  Responder </button> </a></td>";
                     } else {
@@ -130,7 +130,7 @@
 			 if ($aux == "Por Recibir" || $aux == "Recibidas") {
                     echo "<td  style='text-align:center'>" . $Bandeja->return->origenpaq->idusu->nombreusu . " ".$Bandeja->return->origenpaq->idusu->apellidousu ."</td>";
                 } else if ($aux == "Por Entregar" || $aux == "Entregadas") {
-                    if ($Bandeja->return[$j]->destinopaq->tipobuz == "1") {
+                    if ($Bandeja->return->destinopaq->tipobuz == "1") {
                         echo "<td  style='text-align:center'>" . $Bandeja->return->destinopaq->nombrebuz . "</td>";
                     } else {
                         echo "<td  style='text-align:center'>" . $Bandeja->return->destinopaq->idusu->nombreusu ." ".$Bandeja->return->destinopaq->idusu->apellidousu ."</td>";
@@ -157,7 +157,7 @@
 			 <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(" . $Bandeja->return->idpaq . ");' value='Realizar Valija'>  Confirmar </button>  </th>";
             }
             if ($aux == "Recibidas") {
-                if ($Bandeja->return->respaq == 1) {
+                if ($Bandeja->return->respaq == "1") {
                     echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
 			<a href='../pages/response_package.php?idpaqr=" . $Bandeja->return->idpaq . "'><button type='button' class='btn btn-info btn-primary' value='Responder'>  Responder </button> </a></td>";
                 } else {

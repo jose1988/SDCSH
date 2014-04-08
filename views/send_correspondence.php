@@ -122,8 +122,8 @@
                     <div class="row-fluid">
                         <div class="span2">
                             <ul class="nav nav-pills nav-stacked">
-                                <li> <a href="inbox.php">Atr√°s</a> </li>
-                                <li> <a href="create_external_mailbox.php">Crear Buz√≥n Externo</a> </li>
+                                <li> <a href="inbox.php">Atr·s</a> </li>
+                                <li> <a href="create_external_mailbox.php">Crear BuzÛn Externo</a> </li>
                             </ul>
                         </div>
 
@@ -178,7 +178,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td> Fr√°gil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es fr√°gil"></td>
+                                        <td> Fr·gil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es fr√°gil"></td>
                                     </tr>
                                     <tr>
                                         <td>Imagen del paquete(opcional):</td><td>
@@ -188,11 +188,9 @@
                                     <tr>
                                         <td>Comentario del paquete: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="1999"  style="width:800px" title="Ingrese un comentario" required>...</textarea><br></td>
                                     </tr>
-                                    <tr>
-                                        <td>Desea recibir respuesta de este paquete: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta"></td>
-                                    </tr>
+
                                     <tr>          
-                                        <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¬øEsta seguro que desea enviar la correspondencia? \n Luego de enviado no podr√≠a modificar la correspondencia')" value="Enviar Correspondecia" name="enviar"><br>
+                                        <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('øEsta seguro que desea enviar la correspondencia? \n Luego de enviado no podr· modificar la correspondencia')" value="Enviar Correspondecia" name="enviar"><br>
                                         </td>
                                     </tr>
                                 </table>
@@ -206,7 +204,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel">Buscar Buz√≥n</h4>
+                                <h4 class="modal-title" id="myModalLabel">Buscar BuzÛn</h4>
                             </div>
                             <div class="modal-body">
                                 <table>
@@ -237,9 +235,9 @@
                                                 ?>
                                             </select><br>
                                         </td>
-                                        <td>√?reas:</td>
+                                        <td>¡reas:</td>
                                         <td><select name="area" id="area"   title="Seleccione Area">
-                                                <option value="">Seleccione √°rea</option> 
+                                                <option value="">Seleccione ¡rea</option> 
 
                                             </select><br>
                                         </td>

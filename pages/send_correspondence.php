@@ -44,11 +44,13 @@ try {
             $idbuz = $_POST["id"];
         
             $origenpaq = array('idbuz' => $propioBuzon->return->idbuz);
+			$paramBuzonP= array('idbuz' => $idbuz);
+			$buzonPara=$client->consultarBuzon($paramBuzonP);
             if (count($propioBuzon->return) == 1) {
                 $tipobuz = $propioBuzon->return->tipobuz;
             }
             //if (isset($usuarioBuzon->return)) {
-            if ($tipobuz == 0) {
+            if ($buzonPara->return->tipobuz == "0") {
                 if (!isset($_POST["rta"])) {
                     $rta = "0";
                 } else {

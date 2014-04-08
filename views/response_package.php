@@ -94,7 +94,7 @@ if (!isset($rowDocumentos->return)) {
                         <table> 
                             <tr>
                                 <td>Para:</td><td>
-                                    <input id="contacto" name="contacto" type="text"  value="<?php echo $Paquete->return->origenpaq->idusu->userusu; ?>" maxlength="199" style="width:800px" size="100"  disabled>								
+                                    <input id="contacto" name="contacto" type="text"  value="<?php echo $Paquete->return->origenpaq->nombrebuz; ?>" maxlength="199" style="width:800px" size="100"  disabled>								
                                 </td>
                             </tr>
                             <tr>
@@ -131,7 +131,7 @@ if (!isset($rowDocumentos->return)) {
                                     </select><br></td>
                             </tr>
                             <tr>
-                                <td> Fragil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es fragil"></td>
+                                <td> Frágil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es frágil"></td>
                             </tr>
                             <tr>
                                 <td>Imagen del paquete(opcional):</td><td>
@@ -141,11 +141,9 @@ if (!isset($rowDocumentos->return)) {
                             <tr>
                                 <td>Comentario del paquete: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="1999"  style="width:800px" title="Ingrese un comentario" required>...</textarea><br></td>
                             </tr>
-                            <tr>
-                                <td>Desea recibir respuesta de este paquete: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta"></td>
-                            </tr>
+
                             <tr>          
-                                <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrá modificar la correspondencia')" value="Respuesta Correspondecia" name="enviar"><br>
+                                <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrá modificar la correspondencia')" value="Responder Correspondecia" name="enviar"><br>
                                 </td>
                             </tr>
 
