@@ -30,7 +30,11 @@ $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
 $resultadoConsultarValijas = $_SESSION["valijas"];
-$contadorValijas = count($resultadoConsultarValijas->return);
+if(isset($resultadoConsultarValijas->return)){
+	$contadorValijas = count($resultadoConsultarValijas->return);
+}else{
+	$contadorValijas = 0;
+}
 $sede = $_SESSION["Osede"];
 
 $reporte = $_SESSION["Reporte"];

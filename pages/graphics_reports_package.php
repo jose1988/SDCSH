@@ -31,7 +31,11 @@ $ideSede = $_SESSION["Sede"]->return->idsed;
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
 $resultadoConsultarPaquetes = $_SESSION["paquetes"];
-$contadorPaquetes = count($resultadoConsultarPaquetes->return);
+if(isset($resultadoConsultarPaquetes->return)){
+	$contadorPaquetes = count($resultadoConsultarPaquetes->return);
+}else{
+	$contadorPaquetes = 0;
+}
 $sede = $_SESSION["Osede"];
 
 $reporte = $_SESSION["Reporte"];
