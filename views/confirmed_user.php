@@ -79,7 +79,7 @@ if (!isset($SedeRol->return)) {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="inbox.php">Atrás</a>
+                                <a href="../pages/confirm_package.php">Atrás</a>
                             </li>
                         </ul>
                     </div>
