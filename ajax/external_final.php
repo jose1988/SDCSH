@@ -65,7 +65,7 @@ try {
                 echo "<br>";
                 echo"<div class='alert alert-block' align='center'>
 			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>Paquete con seguimiento errado ,consulte con el administrado </h4>
+			<h4 align='center'>Paquete con seguimiento errado ,consulte con el administrador </h4>
 		</div> ";
             } elseif ($seg->return == 1) {
                 echo"<div class='alert alert-block' align='center'>

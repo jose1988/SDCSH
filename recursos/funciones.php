@@ -120,18 +120,19 @@ function Menu($SedeRol) {
                                         <li><a href="confirm_package.php">Recibir Paquete</a></li>
                                         <?php
                                     }
-									if ($SedeRol->return->idrol->idrol != "2" || $SedeRol->return->idrol->idrol == "5") { ?>
+									if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") { ?>
                                         <li class="divider"></li>
 										<li><a href="external_costs.php">Enviar Paquetes Externos</a></li>
 										<li class="divider"></li>
 										<li><a href="confirm_externo.php">Confirmar Paquetes Externos</a></li>
                                         <?php
-                                    }
-                                    if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
-                                        if ($SedeRol->return->idrol->idrol == "5") {
+										  if ($SedeRol->return->idrol->idrol == "5") {
                                             ?>                                        
                                             <li class="divider"></li>
-                                        <?php } ?>
+                                        <?php } 
+                                    }
+                                    if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
+									?>  
                                         <li><a href="create_valise.php">Crear Valija</a></li>
                                         <li class="divider"></li>
                                         <li><a href="breakdown_valise.php">Recibir Valija</a></li>
