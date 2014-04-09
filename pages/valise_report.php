@@ -28,6 +28,8 @@ $nomUsuario = $_SESSION["Usuario"]->return->userusu;
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
 $sede = $_SESSION["Sede"]->return->idsed;
 
+$_SESSION['val'] = "";
+
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
@@ -44,6 +46,14 @@ try {
 
     $idUsuario = $resultadoConsultarUsuario->return->idusu;
 
+    $idsede = array('idsed' => $sede);
+    $sedeP = array('sede' => $idsede);
+    $resultadoProveedor = $client->consultarProveedorXSede($sedeP);
+    if (!isset($resultadoProveedor->return)) {
+        $proveedor = 0;
+    } else {
+        $proveedor = count($resultadoProveedor->return);
+    }
 
     if (isset($_POST["reportarPaqExc"])) {
 
@@ -59,6 +69,19 @@ try {
                 $rowPaquete = $client->consultarPaqueteXIdOCodigoBarras($idPaquete);
 
                 if (isset($rowPaquete->return)) {
+
+                    $idDestino = $rowPaquete->return->destinopaq->idusu->idusu;
+                    $idUsu = array('idusu' => $idDestino);
+                    $registroUsu = array('registroUsuario' => $idUsu);
+                    $resultadoDestino = $client->consultarSedeDeUsuario($registroUsu);
+                    if (isset($resultadoDestino->return)) {
+                        if (count($resultadoDestino->return) > 1) {
+                            $sedeDestino = $resultadoDestino->return[0]->nombresed;
+                        } else {
+                            $sedeDestino = $resultadoDestino->return->nombresed;
+                        }
+                    }
+
                     $idPaq = $rowPaquete->return->idpaq;
                     $parametros = array('registroPaquete' => $idPaq,
                         'registroUsuario' => $idUsuario,
@@ -67,15 +90,40 @@ try {
                     $reportarPaqExc = $client->reportarPaqueteExcedente($parametros);
 
                     if ($reportarPaqExc->return == 1) {
+
+                        //Creación de Valija
+                        $datosValija = array('idusu' => $usuarioBitacora, 'sorigen' => $sede, 'sdestino' => $sedeDestino, 'fechaapaq' => date('Y-m-d', strtotime(str_replace('/', '-', "27/03/2014"))));
+                        $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+                        $client = new SOAPClient($wsdl_url);
+                        $client->decode_utf8 = false;
+                        $idValija = $client->insertarValija($datosValija);
+
+                        //Actualizacion del dato de la valija en paquete
+                        $datosAct = array('idpaq' => $idPaq, 'idval' => $idValija->return);
+                        $client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
+
+                        $valija = $idValija->return;
+                        $Val = array('codigo' => $valija);
+                        $Valijac = $client->consultarValijaXIdOCodigoBarra($Val);
+                        if (isset($Valijac->return)) {
+                            $idVal = $Valijac->return->idval;
+                            $parametros = array('idValija' => $idVal,
+                                'proveedor' => $_POST["proveedor"],
+                                'codProveedor' => $_POST["cProveedor"]);
+                            $confirmarValija = $client->confirmarValija($parametros);
+                            $_SESSION['val'] = $idVal;
+                            echo"<script>window.open('../pages/proof_pouch.php');</script>";
+                        }
+
                         javaalert('Paquete Reportado y Reenviado');
                         llenarLog(7, "Paquete Excedente", $usuarioBitacora, $sede);
                         iraURL('../pages/breakdown_valise.php');
                     } else {
-                        javaalert('Paquete No Reportado y No Reenviado');
+                        javaalert('Paquete No Reportado y No Reenviado, verifique los datos');
                         iraURL('../pages/breakdown_valise.php');
                     }
                 } else {
-                    javaalert('Paquete No Reportado y No Reenviado');
+                    javaalert('Paquete No Reportado y No Reenviado, verifique los datoss');
                     iraURL('../pages/breakdown_valise.php');
                 }
             } catch (Exception $e) {
@@ -102,11 +150,24 @@ try {
                 $reportarValija = $client->reportarValija($parametros);
 
                 if ($reportarValija->return == 1) {
+                    $valija = $_POST["cValija"];
+                    $Val = array('codigo' => $valija);
+                    $Valijac = $client->consultarValijaXIdOCodigoBarra($Val);
+                    if (isset($Valijac->return)) {
+                        $idVal = $Valijac->return->idval;
+                        $parametros = array('idValija' => $idVal,
+                            'proveedor' => $_POST["proveedor"],
+                            'codProveedor' => $_POST["cProveedor"]);
+                        $confirmarValija = $client->confirmarValija($parametros);
+                        $_SESSION['val'] = $idVal;
+                        echo"<script>window.open('../pages/proof_pouch_report.php');</script>";
+                    }
+
                     javaalert('Valija Reportada y Reenviada');
                     llenarLog(7, "Valija Erronea", $usuarioBitacora, $sede);
                     iraURL('../pages/breakdown_valise.php');
                 } else {
-                    javaalert('Valija No Reportada y No Reenviada');
+                    javaalert('Valija No Reportada y No Reenviada, verifique los datos');
                     iraURL('../pages/breakdown_valise.php');
                 }
             } catch (Exception $e) {
