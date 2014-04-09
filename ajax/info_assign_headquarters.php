@@ -34,7 +34,10 @@
             $client = new SOAPClient($wsdl_url);
             $client->decode_utf8 = false;
             $Bandeja = $client->consultarUsuarioXUser($datosU);
-            $Sedes = $client->listarSedes($datosU);
+			$u = array('idusu' => $Bandeja->return->idusu);
+			$usu= array('registroUsuario' => $u);
+			 $SedeMia = $client->consultarSedeDeUsuario($usu);
+            $Sedes = $client->listarSedes();
             $regs = 0;
             if (isset($Bandeja->return) && isset($Sedes->return)) {
                 $reg = count($Bandeja->return);
@@ -66,7 +69,25 @@
                                     <td style='text-align:center'>
                                     <label>" . $Bandeja->return->apellidousu . " </label>
                                     </td> 
-                                </tr>
+                                </tr>";
+								if(isset( $SedeMia->return)){
+								echo" <tr>
+                                    <td style='text-align:center'>Sede(s)</td>
+                                    <td style='text-align:center'>
+                                    <label>"; 
+									if(count()==1){
+									echo $SedeMia->return->nombresed;
+									}else{
+									echo $SedeMia->return[0]->nombresed;
+									   for ($i = 0; $i < count($SedeMia->return); $i++) {
+									  echo ",".$SedeMia->return[$i]->nombresed;
+									  }
+									}
+									echo" </label>
+                                    </td> 
+                                </tr>";
+								}
+								echo"
                                 <tr>
                                     <td style='text-align:center'>  Seleccionar Sede: </td>
                                     <td style='text-align:center'>  <select  onChange='usuario()'  name='lis' id='lis'  required  title='Seleccione una sede'>
