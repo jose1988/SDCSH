@@ -66,7 +66,7 @@ if (isset($_POST['idval']) && $_POST['idval'] != "" && $_POST['idval'] != "") {
     javaalert('Debe ingresar el Codigo de una valija');
     iraURL('../pages/breakdown_valise.php');
 }
-if ($regv != 0) {
+if ($reg != 0) {
     echo "<strong> <h2>  Contenido de la Valija </h2> </strong>";
     echo "</div>";
     echo "<br>

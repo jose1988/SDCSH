@@ -64,7 +64,9 @@
         }
         echo "<th style='width:7%; text-align:center' data-sort-ignore='true'>Ver más</th>";
         if ($aux == "Por Recibir") {
+			
             echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>Confirmar</th>";
+			
         }
         if ($aux == "Recibidas") {
             echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>Status</th>";
@@ -107,8 +109,10 @@
                 }
                 echo "<td style='text-align:center'><a href='../pages/see_package.php?id=" . $Bandeja->return[$j]->idpaq . "'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Más </button> </a></td>";
                 if ($aux == "Por Recibir") {
+					
                     echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
 			<form> <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(" . $Bandeja->return[$j]->idpaq . ");' value='Realizar Valija'>  Confirmar </button> </form> </th>";
+			
                 }
                 if ($aux == "Recibidas") {
                     if ($Bandeja->return[$j]->respaq == "1") {

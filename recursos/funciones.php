@@ -96,7 +96,7 @@ function Menu($SedeRol) {
             <li class="pull-left">
                 <div class="modal-header" style="width:1135px;">
                     <h3> Correspondencia    
-                        <span>SH</span> <?php echo "- Bienvenido, " . $_SESSION["Usuario"]->return->nombreusu; ?>
+                        <span></span> <?php echo " - " . $_SESSION["Usuario"]->return->nombreusu ." ". $_SESSION["Usuario"]->return->apellidousu; ?>
                         <div class="btn-group  pull-right">
                             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuración </span> </button>
                             <ul class="dropdown-menu" role="menu">
