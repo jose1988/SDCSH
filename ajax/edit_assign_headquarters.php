@@ -20,7 +20,7 @@ try {
                 javaalert('Buzon asignado con exito');
                 iraURL('../pages/administration.php');
             } elseif($res->return == 2) {
-                javaalert('El usuario ta esta en esa sede, Seleccione otra sede');
+                javaalert('El usuario ya esta en esa sede, Seleccione otra sede');
                 //iraURL('../pages/administration.php');
             }else {
                 javaalert('Error al realizar la operacion');

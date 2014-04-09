@@ -79,7 +79,7 @@
 									echo $SedeMia->return->nombresed;
 									}else{
 									echo $SedeMia->return[0]->nombresed;
-									   for ($i = 0; $i < count($SedeMia->return); $i++) {
+									   for ($i = 1; $i < count($SedeMia->return); $i++) {
 									  echo ",".$SedeMia->return[$i]->nombresed;
 									  }
 									}
