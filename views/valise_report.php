@@ -99,10 +99,39 @@ if ($usuarioBitacora == "") {
                                     <textarea rows="5" cols="5" id="datosPaquete" name="datosPaquete" style="width:600px"></textarea>
                                     <br>
                                     <br>
-                                    <button type="submit" class="btn" id="reportarPaqExc" name="reportarPaqExc" onclick="return confirm('¿Esta seguro que desea reportar la Correspondencia?')">Reenviar</button>
-                                    <h6>(El paquete será reenviado a su destino)</h6>
+                                    <div class="span5" align="right">Proveedor:</div>
+                                    <div class="span3" align="left">
+                                        <select name='proveedor' id='proveedor' required  title='Seleccione el Proveedor'>
+                                            <option value='' style='display:none'>Seleccionar:</option>
+                                            <?php
+                                            if ($proveedor > 1) {
+                                                $i = 0;
+                                                while ($proveedor > $i) {
+                                                    echo "<option value='" . $resultadoProveedor->return[$i]->idpro . "' >" . $resultadoProveedor->return[$i]->nombrepro . "</option>";
+                                                    $i++;
+                                                }
+                                            } else {
+                                                echo "<option value='" . $resultadoProveedor->return->idpro . "' >" . $resultadoProveedor->return->nombrepro . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="span5" align="right">Código del Proveedor:</div>
+                                    <div class="span3" align="left">
+                                        <input type="text" class="input-block-level" name="cProveedor" id="cProveedor" placeholder="Ej. 1234" title="Ingrese el código de Guía" autocomplete="off" required>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="span11">
+                                        <button type="submit" class="btn" id="reportarPaqExc" name="reportarPaqExc" onclick="return confirm('¿Esta seguro que desea reportar la Correspondencia?')">Reenviar</button>
+                                        <h6>(El paquete será reenviado a su destino)</h6>
+                                    </div>
                                 </div>               
                             </div>
+                        </form>
+                        <form class="form-search" method="post">
                             <div class="tab-content" id="bandeja">
                                 <strong> <h2 align="center">Valija Errada</h2> </strong>                
                                 <div align="center">
@@ -115,8 +144,35 @@ if ($usuarioBitacora == "") {
                                     <textarea rows="5" cols="5" id="datosValija" name="datosValija" style="width:600px"></textarea>
                                     <br>
                                     <br>
-                                    <button type="submit" class="btn" id="reportarValija" name="reportarValija" onclick="return confirm('¿Esta seguro que desea reportar la Valija?')">Reenviar</button>
-                                    <h6>(La valija será reenviada a su destino)</h6>
+                                    <div class="span5" align="right">Proveedor:</div>
+                                    <div class="span3" align="left">
+                                        <select name='proveedor' id='proveedor' required  title='Seleccione el Proveedor'>
+                                            <option value='' style='display:none'>Seleccionar:</option>
+                                            <?php
+                                            if ($proveedor > 1) {
+                                                $i = 0;
+                                                while ($proveedor > $i) {
+                                                    echo "<option value='" . $resultadoProveedor->return[$i]->idpro . "' >" . $resultadoProveedor->return[$i]->nombrepro . "</option>";
+                                                    $i++;
+                                                }
+                                            } else {
+                                                echo "<option value='" . $resultadoProveedor->return->idpro . "' >" . $resultadoProveedor->return->nombrepro . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="span5" align="right">Código del Proveedor:</div>
+                                    <div class="span3" align="left">
+                                        <input type="text" class="input-block-level" name="cProveedor" id="cProveedor" placeholder="Ej. 1234" title="Ingrese el código de Guía" autocomplete="off" required>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="span11">
+                                        <button type="submit" class="btn" id="reportarValija" name="reportarValija" onclick="return confirm('¿Esta seguro que desea reportar la Valija?')">Reenviar</button>
+                                        <h6>(La valija será reenviada a su destino)</h6>
+                                    </div>
                                 </div>               
                             </div>	  
                         </form>
@@ -126,12 +182,13 @@ if ($usuarioBitacora == "") {
         </div>
 
         <script>
-            window.onload = function() {
-                killerSession();
-            }
-            function killerSession() {
-                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-            }
+                    window.onload = function() {
+                        killerSession();
+                    }
+
+                    function killerSession() {
+                        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+                    }
         </script>
 
         <script src="../js/footable.js" type="text/javascript"></script>
