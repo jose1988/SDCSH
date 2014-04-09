@@ -75,7 +75,7 @@
                                     <td style='text-align:center'>Sede(s)</td>
                                     <td style='text-align:center'>
                                     <label>"; 
-									if(count()==1){
+									if(count($SedeMia->return)==1){
 									echo $SedeMia->return->nombresed;
 									}else{
 									echo $SedeMia->return[0]->nombresed;
