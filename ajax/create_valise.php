@@ -84,7 +84,7 @@
                 } else {
                     echo "<td style='text-align:center'> Si </td>";
                 }
-                echo "<td style='text-align:center'>" . date("d/m/Y", strtotime(substr($Registro->return[$j]->fechaenviopaq, 0, 10))) . "</td>";
+                echo "<td style='text-align:center'>" . date("d/m/Y", strtotime(substr($Registro->return[$j]->fechapaq, 0, 10))) . "</td>";
                 echo '<td style="text-align:center" width="15%"><input type="checkbox" name="ide[' . $j . ']" id="ide[' . $j . ']" value=' . $Registro->return[$j]->idpaq . '></td>';
                 echo "</tr>";
                 $j++;
